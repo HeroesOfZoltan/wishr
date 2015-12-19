@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+	<title>Wishr</title>
+</head>
+<body>
+
+
+
+{% if newList %}
+	{% include "newWishForm.html" %}
+{% else %}
+	{% include "newListForm.html" %}	
+{% endif %}
+
+
+{% if items %}
+	{% for item in items %}
+		{% include "listItemForm.html" %}	
+	{% endfor %}
+{% endif %}
+
+
+</form>
+
+
+
+</body>
+</html>
