@@ -19,8 +19,19 @@ class WishList{
 			$lastId = $mysqli->insert_id;
 			$_SESSION['listId']= $lastId;
 
+			$query2 = "SELECT * 
+					FROM category
+			";
 
-			return ['newList' => TRUE, 'listName' => $listName, 'listId' =>$lastId];
+			if($result = $mysqli->query($query2)){
+		 	while($category = $result->fetch_assoc()){
+			 	$categories[] = $category;
+			 	}
+
+			}
+
+
+			return ['newList' => TRUE, 'listName' => $listName, 'listId' =>$lastId, 'categories' =>$categories];
 			//redirect' => "?/wishList/getList/'$lastId'"];
 		}
 
@@ -34,15 +45,17 @@ class WishList{
 
 		 if(is_numeric($id)){
 		 	$query = " SELECT *
-						 FROM list, item
+						 FROM list, item, category
 						 WHERE list.id = item.list_id
+						 AND item.category_id = category.id
 						 AND list.id = $id
 			 ";
 		 }
 		 else{
 		 	$query = "SELECT *
-						 FROM list, item
+						 FROM list, item, category
 						 WHERE list.id = item.list_id
+						 AND item.category_id = category.id
 						 AND list.name = '$id'
 			 ";
 		 }	
@@ -54,15 +67,24 @@ class WishList{
 			 	}
 
 			}
+			$query2 = "SELECT * 
+					FROM category
+			";
+			if($result = $mysqli->query($query2)){
+		 	while($category = $result->fetch_assoc()){
+			 	$categories[] = $category;
+			 	}
+			 }
+
 			
-		  return ['newList' => TRUE,'items' => $items];
+		  return ['newList' => TRUE,'items' => $items,'categories' =>$categories];
 	}
 
 
 
 	public static function addItem($listId){
 		$lustId=$_SESSION['listId'];
-		$wish = new Wish($lustId, $_POST['wishName']);
+		$wish = new Wish($lustId, $_POST['wishName'],$_POST['wishDescription'],$_POST['wishCategory'] );
 		return ['redirect' => "?/wishList/getList/$lustId"];
 	}
 

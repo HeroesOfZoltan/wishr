@@ -11,13 +11,13 @@ $method = array_shift($url_parts);
 
 require_once("classes/".$class.".class.php"); 
 $data = $class::$method($url_parts);
+
 if(isset($data['redirect'])){
 	header("Location: ".$data['redirect']);
 }
 }
 else{
-
-	$data= array(1,2,3);
+	$data= array(1,2,3);//bara för att inte det ska bli error
 }
 
 $twig = startTwig();

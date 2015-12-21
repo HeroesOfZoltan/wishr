@@ -2,15 +2,16 @@
 
 class Wish{
 
-	function __construct($listId, $wish){
+	function __construct($listId, $wish, $description, $wishCategory){
 
 		$mysqli = DB::getInstance();
 			$listIdClean = $mysqli->real_escape_string($listId);
 			$wishClean = $mysqli->real_escape_string($wish);
-		
+			$descriptionClean = $mysqli->real_escape_string($description);
+			$wishCategoryClean = $mysqli->real_escape_string($wishCategory);
 			$query = "INSERT INTO item 
-				(wish, list_id) 
-				VALUES ('$wishClean', '$listIdClean')
+				(wish, list_id, description, category_id) 
+				VALUES ('$wishClean', '$listIdClean','$descriptionClean','$wishCategoryClean')
 			";
 
 			$mysqli->query($query);

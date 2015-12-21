@@ -1,4 +1,10 @@
 <form action='?/wishList/addItem/{{listId}}' method='post'>
-<input type='text' name="wishName">
+Önskan<br><input type='text' name="wishName"><br>
+Beskrivning<br><input type='text' name="wishDescription">
+Kategori<br><select name="wishCategory">
+{% for category in categories%}
+<option value='{{category.id}}'>{{category.categoryName}}</option>
+{% endfor %}
+</select>
 <input type='submit' value='Lägg till'>
 </form>
