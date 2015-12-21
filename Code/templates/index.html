@@ -5,20 +5,26 @@
 </head>
 <body>
 
+{% if user%}
+	<form method='post'>
+	<input type='submit' name='killSession'value='Logga ut'>
+	</form>
+	{% if items %}
+		{% include "newWishForm.html" %}
+		{% for item in items %}
+			{% include "listItemForm.html" %}	
+		{% endfor %}
+	{% elseif newList%}
+			{% include "newWishForm.html" %}
+		{% else %}
+			{% include "newListForm.html" %}	
+		{% endif %}
 
-
-{% if newList %}
-	{% include "newWishForm.html" %}
-{% else %}
-	{% include "newListForm.html" %}	
+{% else%}
+	{% include "loginForm.html" %}	
+	{% include "createUserForm.html" %}	
 {% endif %}
 
-
-{% if items %}
-	{% for item in items %}
-		{% include "listItemForm.html" %}	
-	{% endfor %}
-{% endif %}
 
 
 </form>

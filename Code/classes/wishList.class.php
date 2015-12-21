@@ -8,10 +8,10 @@ class WishList{
 		if(isset($_POST['listName'])){
 			$mysqli = DB::getInstance();
 			$listName = $mysqli->real_escape_string($_POST['listName']);
-
+			$userId = $_SESSION['user']['id'];
 			$query = "INSERT INTO list 
-					  (listName) 
-					  VALUES ('$listName')
+					  (listName, user_id) 
+					  VALUES ('$listName', '$userId')
 			";
 
 			$mysqli->query($query);
@@ -31,7 +31,7 @@ class WishList{
 			}
 
 
-			return ['newList' => TRUE, 'listName' => $listName, 'listId' =>$lastId, 'categories' =>$categories];
+			return ['newList' => TRUE, 'listName' => $listName, 'listId' =>$lastId, 'categories' =>$categories,'user' => $_SESSION['user']];
 			//redirect' => "?/wishList/getList/'$lastId'"];
 		}
 
@@ -42,13 +42,14 @@ class WishList{
 		$mysqli = DB::getInstance();
 
 		$id = $params[0];
-
+		$userId = $_SESSION['user']['id'];
 		 if(is_numeric($id)){
 		 	$query = " SELECT *
 						 FROM list, item, category
 						 WHERE list.id = item.list_id
 						 AND item.category_id = category.id
 						 AND list.id = $id
+						 AND list.user_id = $userId
 			 ";
 		 }
 		 else{
@@ -57,6 +58,7 @@ class WishList{
 						 WHERE list.id = item.list_id
 						 AND item.category_id = category.id
 						 AND list.name = '$id'
+						 AND list.user_id = $userId
 			 ";
 		 }	
 
@@ -65,7 +67,6 @@ class WishList{
 		 	while($item = $result->fetch_assoc()){
 			 	$items[] = $item;
 			 	}
-
 			}
 			$query2 = "SELECT * 
 					FROM category
@@ -75,9 +76,8 @@ class WishList{
 			 	$categories[] = $category;
 			 	}
 			 }
-
 			
-		  return ['newList' => TRUE,'items' => $items,'categories' =>$categories];
+		  return ['newList' => TRUE, 'items' => $items, 'categories' => $categories,'user' => $_SESSION['user']];
 	}
 
 

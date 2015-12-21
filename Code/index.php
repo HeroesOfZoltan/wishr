@@ -2,6 +2,11 @@
 session_start();
 require_once("classes/DB.class.php");
 require_once("classes/wish.class.php");
+require_once("classes/User.class.php");
+
+if(isset($_POST['killSession'])){
+	session_unset();
+}
 
 $url_parts = getUrlParts($_GET); 
 
@@ -24,6 +29,7 @@ $twig = startTwig();
 
 $template = 'index.html';
 echo $twig->render($template, $data);
+
 
 
 
