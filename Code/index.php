@@ -22,7 +22,7 @@ if(isset($data['redirect'])){
 }
 }
 else{
-	$data= array(1,2,3);//bara för att inte det ska bli error
+	$data= array(1,2,3);//för att inte det ska bli error
 }
 
 $twig = startTwig();

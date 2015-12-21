@@ -58,17 +58,24 @@ class User{
 						 AND item.category_id = category.id
 						 AND list.user_id = $userId
 			 ";
-		 
-
-
 		 if($result = $mysqli->query($query)){
 		 	while($item = $result->fetch_assoc()){
 			 	$items[] = $item;
 			 	}
 			}
+
+			 $query2 = "SELECT * 
+					FROM category
+			";
+			if($result = $mysqli->query($query2)){
+		 	while($category = $result->fetch_assoc()){
+			 	$categories[] = $category;
+			 	}
+			 }
+
 			if($items){
 				$_SESSION['list']['id'] = $list['id'];
-				return ['user' => $_SESSION['user'],'items' => $items];
+				return ['user' => $_SESSION['user'],'items' => $items, 'categories' => $categories];
 			}
 			else if ($user['id'])	{
 				return ['user' => $_SESSION['user']];
