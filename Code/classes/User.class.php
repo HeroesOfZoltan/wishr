@@ -10,13 +10,14 @@ class User{
 			$passwordClean = $mysqli->real_escape_string($_POST['password']);
 			$firstnameClean = $mysqli->real_escape_string($_POST['firstname']);
 			$lastnameClean = $mysqli->real_escape_string($_POST['lastname']);
+			$roleIdClean = $mysqli->real_escape_string($_POST['roleId']);
 
 
 			$password = crypt($passwordClean,'$2a$'.sha1($usernameClean));
 
 			$query = "INSERT INTO user
 						(password, email, firstname, lastname, role)
-						VALUES ('$password','$usernameClean','$firstnameClean','$lastnameClean','2')
+						VALUES ('$password','$usernameClean','$firstnameClean','$lastnameClean','$roleIdClean')
 			";
 
 				$mysqli->query($query);
@@ -50,7 +51,7 @@ class User{
 			if($user['id']){
 				$_SESSION['user']['id'] = $user['id'];
 			}	
-			$userId =$_SESSION['user']['id'];
+			$userId = $_SESSION['user']['id'];
 
 			$query = "SELECT *
 						 FROM list, item, category
@@ -64,13 +65,13 @@ class User{
 			 	}
 			}
 
-			 $query2 = "SELECT * 
+			 $query = "SELECT * 
 					FROM category
 			";
-			if($result = $mysqli->query($query2)){
-		 	while($category = $result->fetch_assoc()){
-			 	$categories[] = $category;
-			 	}
+			if($result = $mysqli->query($query)){
+			 	while($category = $result->fetch_assoc()){
+				 	$categories[] = $category;
+				 	}
 			 }
 
 
@@ -78,35 +79,69 @@ class User{
 						 FROM list, item, category
 						 WHERE list.id = item.list_id
 						 AND item.category_id = category.id
-						 AND list.user_id = $userId
+						 AND list.user_id =$userId
 						 LIMIT 1
 			 ";
 		 if($result = $mysqli->query($query)){
 		 	$item = $result->fetch_assoc();
-			 	$_SESSION['list'] = $item;
+			 	$_SESSION['listId'] = $item;
 			}
+
+		
 
 			if($items){
 				
-				return ['user' => $_SESSION['user'],'items' => $items, 'categories' => $categories];
+				return ['user' => $_SESSION['user'],'items' => $items, 'categories' => $categories,'listId' =>$_SESSION['listId']['listId']];
 			}
 			else if ($user['id'])	{
 				return ['user' => $_SESSION['user']];
 			}
 
 			//Sätter listId i session
-			$query3 = " SELECT list.id  AS listId
+			$query4 = " SELECT list.id  AS listId
 							FROM list, item, category
 							WHERE list.id = item.list_id
 							AND item.category_id = category.id
 							AND list.user_id =$userId
 							LIMIT 1
 			 ";
-			 $result = $mysqli->query($query3);
+			 $result = $mysqli->query($query4);
 		 	$listIdt= $result->fetch_assoc();
 			$_SESSION['listId']=$listIdt;
 		}
 		return [];
-	}
 
+
+	}
+	
+
+	public static function getGuestFormLoginData($params){
+			$mysqli = DB::getInstance();
+
+			//$listId=$_SESSION['listId']['listId'];
+			$listId = $params[0];
+			$listIdClean = $mysqli->real_escape_string($listId);
+			$query = " SELECT *
+						FROM list, item
+						WHERE list.id = $listIdClean
+						";
+
+			if($result = $mysqli->query($query)){
+			 	while($item = $result->fetch_assoc()){
+				 	$listItems[] = $item;
+				 	}
+			 }
+			 $listIdClean = $mysqli->real_escape_string($listId);
+			$query = " SELECT listName
+						FROM list, item
+						WHERE list.id = $listIdClean
+						LIMIT 1
+						";
+
+			if($result = $mysqli->query($query)){
+				$listName = $result->fetch_assoc();
+			}
+
+			return ['guestListItems' => $listItems, 'listNames'=>$listName];
+		}
 }

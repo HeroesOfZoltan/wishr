@@ -7,6 +7,7 @@ class Wish{
 		$mysqli = DB::getInstance();
 			$listIdClean = $mysqli->real_escape_string($listId);
 			$wishClean = $mysqli->real_escape_string($wish);
+			
 			$descriptionClean = $mysqli->real_escape_string($description);
 			$wishCategoryClean = $mysqli->real_escape_string($wishCategory);
 			$query = "INSERT INTO item 

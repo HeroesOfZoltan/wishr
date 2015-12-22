@@ -1,5 +1,6 @@
 <?php
 require_once("classes/wish.class.php");
+require_once("classes/User.class.php");
 
 class WishList{
 
@@ -17,7 +18,7 @@ class WishList{
 			$mysqli->query($query);
 
 			$lastId = $mysqli->insert_id;
-			$_SESSION['listId']= $lastId;
+			$_SESSION['listId']['listId']= $lastId;
 
 			$query2 = "SELECT * 
 					FROM category
@@ -40,7 +41,7 @@ class WishList{
 
 	public static function getList($params){
 		$mysqli = DB::getInstance();
-		
+
 
 		$id = $params[0];
 		$userId = $_SESSION['user']['id'];
@@ -78,10 +79,13 @@ class WishList{
 			 	}
 			 }
 
-			
+			 //$GuestLoginData = User::getGuestFormLoginData($userId);
+
+			 
+			//var_dump($GuestLoginData);
 				
 			
-		  return ['newList' => TRUE, 'items' => $items, 'categories' => $categories,'user' => $_SESSION['user']];
+		  return ['newList' => TRUE, 'items' => $items, 'categories' => $categories,'user' => $_SESSION['user'], 'listId' =>$_SESSION['listId']['listId']];
 	}
 
 
@@ -97,5 +101,27 @@ class WishList{
 		return ['redirect' => "?/wishList/getList/$listId"];
 	}
 
+	public static function printGuestLoginForm($listId){
+		return ['redirect' => "?/wishList/getList/$listId"];
+	}
 
-}
+	public static function getGuestList($listId){
+		$cleanedPassword = $mysqli->real_escape_string($_POST['guestVisitorPassword']);
+		$cleanedListId = $mysqli->real_escape_string($listId);
+		$query = "SELECT *
+					FROM list
+					AND list.password = '$cleanedPassword'
+					AND list.id = $cleanedListId
+			";
+
+			if($result = $mysqli->query($query)){
+		 	while($listItem = $result->fetch_assoc()){
+			 	$listItems[] = $listItem;
+			 	}
+			 }
+			 return ['items' => $listItems];
+		 }	
+
+
+	}
+
