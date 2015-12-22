@@ -40,6 +40,7 @@ class WishList{
 
 	public static function getList($params){
 		$mysqli = DB::getInstance();
+		
 
 		$id = $params[0];
 		$userId = $_SESSION['user']['id'];
@@ -76,16 +77,24 @@ class WishList{
 			 	$categories[] = $category;
 			 	}
 			 }
+
+			
+				
 			
 		  return ['newList' => TRUE, 'items' => $items, 'categories' => $categories,'user' => $_SESSION['user']];
 	}
 
 
 
-	public static function addItem($listId){
-		$lustId=$_SESSION['listId'];
-		$wish = new Wish($lustId, $_POST['wishName'],$_POST['wishDescription'],$_POST['wishCategory'] );
-		return ['redirect' => "?/wishList/getList/$lustId"];
+	public static function addItem($lzzzstId){
+		if($_SESSION['listId']['listId']){
+			$listId=$_SESSION['listId']['listId'];
+		}
+		else{
+		$listId=$_SESSION['listId'];
+	}
+		$wish = new Wish($listId, $_POST['wishName'],$_POST['wishDescription'],$_POST['wishCategory'] );
+		return ['redirect' => "?/wishList/getList/$listId"];
 	}
 
 

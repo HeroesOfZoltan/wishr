@@ -73,13 +73,38 @@ class User{
 			 	}
 			 }
 
+
+			 $query = "SELECT list.id as listId
+						 FROM list, item, category
+						 WHERE list.id = item.list_id
+						 AND item.category_id = category.id
+						 AND list.user_id = $userId
+						 LIMIT 1
+			 ";
+		 if($result = $mysqli->query($query)){
+		 	$item = $result->fetch_assoc();
+			 	$_SESSION['list'] = $item;
+			}
+
 			if($items){
-				$_SESSION['list']['id'] = $list['id'];
+				
 				return ['user' => $_SESSION['user'],'items' => $items, 'categories' => $categories];
 			}
 			else if ($user['id'])	{
 				return ['user' => $_SESSION['user']];
 			}
+
+			//Sätter listId i session
+			$query3 = " SELECT list.id  AS listId
+							FROM list, item, category
+							WHERE list.id = item.list_id
+							AND item.category_id = category.id
+							AND list.user_id =$userId
+							LIMIT 1
+			 ";
+			 $result = $mysqli->query($query3);
+		 	$listIdt= $result->fetch_assoc();
+			$_SESSION['listId']=$listIdt;
 		}
 		return [];
 	}

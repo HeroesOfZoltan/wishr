@@ -30,8 +30,8 @@ $twig = startTwig();
 $template = 'index.html';
 echo $twig->render($template, $data);
 
-
-
+$hej=$_SESSION['listId']['listId'];
+var_dump($hej);
 
 function getUrlParts($get){
 	$get_params = array_keys($get);
