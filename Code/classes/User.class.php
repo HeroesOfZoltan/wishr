@@ -122,8 +122,10 @@ class User{
 			$listId = $params[0];
 			$listIdClean = $mysqli->real_escape_string($listId);
 			$query = " SELECT *
-						FROM list, item
-						WHERE list.id = $listIdClean
+						FROM list, item, category
+						WHERE category.id = item.category_id
+						AND item.list_id = list.id
+						AND list.id =$listIdClean
 						";
 
 			if($result = $mysqli->query($query)){
