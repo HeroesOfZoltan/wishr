@@ -14,36 +14,21 @@ class Sql {
 	}
 
 	public static function category() {
-		//$mysqli = DB::getInstance();
-
-
 		$query = "SELECT * FROM category";
-
-
-			return Self::arrayResult($query);
-
-/*			if($result = $mysqli->query($query)){
-			 	while($category = $result->fetch_assoc()){
-				 	$categories[] = $category;
-				 	}
-				 }
-			return $categories;*/
+		return Self::arrayResult($query);
 	}
-	public static function listItems($userId) {
 
+	public static function listItems($userId) {
 		$query = "SELECT *
 						 FROM list, item, category
 						 WHERE list.id = item.list_id
 						 AND item.category_id = category.id
 						 AND list.user_id = $userId
 			 ";
-
 		return Self::arrayResult($query);
-
 	}
 
 	public static function getListItems($listId, $userId){
-
 		 	$query = " SELECT *
 						 FROM list, item, category
 						 WHERE list.id = item.list_id
@@ -51,26 +36,21 @@ class Sql {
 						 AND list.id = $listId
 						 AND list.user_id = $userId
 			 ";
-
 			 return Self::arrayResult($query);
-
 		 }
 
 	public static function listItemsGuest($listId) {
-
 		$query = " 	SELECT *
 					FROM list, item, category
 					WHERE category.id = item.category_id
 					AND item.list_id = list.id
 					AND list.id =$listId
 					";
-
 		return Self::arrayResult($query);
 	}
 
 	public static function insertUser($pass, $name, $first, $last, $role) {
 		$mysqli = DB::getInstance();
-
 		$query = "INSERT INTO user
 						(password, email, firstname, lastname, role)
 						VALUES ('$pass','$name','$first','$last','$role')
@@ -79,15 +59,13 @@ class Sql {
 	}
 	
 	public static function logIn($user, $pass){
-			$mysqli = DB::getInstance();
-
+		$mysqli = DB::getInstance();
 		$query = "SELECT id
 				FROM user
 				WHERE email = '$user'
 				AND password = '$pass'
 				LIMIT 1
 			";
-
 		$result = $mysqli->query($query);
 		$user = $result->fetch_assoc();
 
@@ -106,8 +84,7 @@ class Sql {
 			 if($result = $mysqli->query($query)){
 		 	$item = $result->fetch_assoc();
 			 	$_SESSION['listId'] = $item;
-			}
-				
+			}			
 	}
 
 	public static function insertNewList($listName){
@@ -117,9 +94,7 @@ class Sql {
 					  (listName, user_id) 
 					  VALUES ('$listName', '$userId')
 			";
-
 			$mysqli->query($query);
-
 			$lastId = $mysqli->insert_id;
 			$_SESSION['listId']['listId']= $lastId;
 	}
