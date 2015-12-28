@@ -1,6 +1,6 @@
 <form action='?/wishList/addItem/{{listId}}' method='post'>
 Önskan<br><input type='text' name="wishName"><br>
-Beskrivning<br><input type='text' name="wishDescription">
+Beskrivning<br><input type='text' name="wishDescription"><br>
 Kategori<br><select name="wishCategory">
 {% for category in categories%}
 <option value='{{category.id}}'>{{category.categoryName}}</option>
