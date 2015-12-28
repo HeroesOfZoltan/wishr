@@ -38,6 +38,9 @@ echo $twig->render($template, $data);
 
 
 
+
+
+
 function getUrlParts($get){
 	$get_params = array_keys($get);
 	$url = $get_params[0];

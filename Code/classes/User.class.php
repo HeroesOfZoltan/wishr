@@ -13,13 +13,10 @@ class User{
 			$roleIdClean = $mysqli->real_escape_string($_POST['roleId']);
 
 			$password = crypt($passwordClean,'$2a$'.sha1($usernameClean));
-
-
 			Sql::insertUser($password, $usernameClean, $firstnameClean, $lastnameClean, $roleIdClean);
 			}	
 			return [];			
 		}
-
 
 
 	public static function login($params){
@@ -30,9 +27,6 @@ class User{
 			$passwordClean = $mysqli->real_escape_string($_POST['password']);
 
 			$password = crypt($passwordClean,'$2a$'.sha1($usernameClean));
-
-
-
 			$user = Sql::logIn($usernameClean, $password);
 
 			if($user['id']){
@@ -44,35 +38,22 @@ class User{
 
 			Sql::setListId($userId);
 
-
-
-
-		
-
 			if($items){
-				
-				return ['user' => $_SESSION['user'],'items' => $items, 'categories' => Sql::category(),'listId' =>$_SESSION['listId']['listId']];
+				return ['user' => $_SESSION['user'],'items' => $items, 'categories' => Sql::category(),'listId' =>$_SESSION['listId']];
 			}
 			else if ($user['id'])	{
 				return ['user' => $_SESSION['user']];
 			}
-
-
 		}
 		return [];
-
-
 	}
 	
 
 	public static function getGuestFormLoginData($params){
 			$mysqli = DB::getInstance();
 
-
 			$listId = $params[0];
 			$listIdClean = $mysqli->real_escape_string($listId);
-
-
 
 			$query = " SELECT listName
 						FROM list, item

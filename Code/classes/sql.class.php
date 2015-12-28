@@ -96,6 +96,6 @@ class Sql {
 			";
 			$mysqli->query($query);
 			$lastId = $mysqli->insert_id;
-			$_SESSION['listId']['listId']= $lastId;
+			$_SESSION['listId']['listId'] = $lastId;
 	}
 }
