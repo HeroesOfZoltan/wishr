@@ -3,6 +3,8 @@ session_start();
 require_once("classes/DB.class.php");
 require_once("classes/wish.class.php");
 require_once("classes/User.class.php");
+require_once("classes/sql.class.php");
+
 
 if(isset($_POST['killSession'])){
 	session_unset();

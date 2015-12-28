@@ -1,6 +1,6 @@
 <?php
-require_once("classes/wish.class.php");
-require_once("classes/User.class.php");
+/*require_once("classes/wish.class.php");
+require_once("classes/User.class.php");*/
 
 class WishList{
 
@@ -9,7 +9,9 @@ class WishList{
 		if(isset($_POST['listName'])){
 			$mysqli = DB::getInstance();
 			$listName = $mysqli->real_escape_string($_POST['listName']);
-			$userId = $_SESSION['user']['id'];
+
+			Sql::insertNewList($listName);
+			/*$userId = $_SESSION['user']['id'];
 			$query = "INSERT INTO list 
 					  (listName, user_id) 
 					  VALUES ('$listName', '$userId')
@@ -18,21 +20,11 @@ class WishList{
 			$mysqli->query($query);
 
 			$lastId = $mysqli->insert_id;
-			$_SESSION['listId']['listId']= $lastId;
-
-			$query2 = "SELECT * 
-					FROM category
-			";
-
-			if($result = $mysqli->query($query2)){
-		 	while($category = $result->fetch_assoc()){
-			 	$categories[] = $category;
-			 	}
-
-			}
+			$_SESSION['listId']['listId']= $lastId;*/
 
 
-			return ['newList' => TRUE, 'listName' => $listName, 'listId' =>$lastId, 'categories' =>$categories,'user' => $_SESSION['user']];
+
+			return ['newList' => TRUE, 'listName' => $listName, 'listId' =>$_SESSION['listId']['listId'], 'categories' =>Sql::category(),'user' => $_SESSION['user']];
 			//redirect' => "?/wishList/getList/'$lastId'"];
 		}
 
@@ -43,14 +35,16 @@ class WishList{
 		$mysqli = DB::getInstance();
 
 
-		$id = $params[0];
+		$listId = $params[0];
 		$userId = $_SESSION['user']['id'];
-		 if(is_numeric($id)){
-		 	$query = " SELECT *
+		 
+
+		 	//$query =Sql::getListItems($listId, $userId);
+		 	/*$query = " SELECT *
 						 FROM list, item, category
 						 WHERE list.id = item.list_id
 						 AND item.category_id = category.id
-						 AND list.id = $id
+						 AND list.id = $listId
 						 AND list.user_id = $userId
 			 ";
 		 }
@@ -64,20 +58,12 @@ class WishList{
 			 ";
 		 }	
 
-
 		 if($result = $mysqli->query($query)){
 		 	while($item = $result->fetch_assoc()){
 			 	$items[] = $item;
 			 	}
-			}
-			$query2 = "SELECT * 
-					FROM category
-			";
-			if($result = $mysqli->query($query2)){
-		 	while($category = $result->fetch_assoc()){
-			 	$categories[] = $category;
-			 	}
-			 }
+			}*/
+
 
 			 //$GuestLoginData = User::getGuestFormLoginData($userId);
 
@@ -85,12 +71,12 @@ class WishList{
 			//var_dump($GuestLoginData);
 				
 			
-		  return ['newList' => TRUE, 'items' => $items, 'categories' => $categories,'user' => $_SESSION['user'], 'listId' =>$_SESSION['listId']['listId']];
+		  return ['newList' => TRUE, 'items' => Sql::getListItems($listId, $userId), 'categories' => Sql::category(),'user' => $_SESSION['user'], 'listId' =>$_SESSION['listId']['listId']];
 	}
 
 
 
-	public static function addItem($lzzzstId){
+	public static function addItem($params){
 		if($_SESSION['listId']['listId']){
 			$listId=$_SESSION['listId']['listId'];
 		}
@@ -101,6 +87,7 @@ class WishList{
 		return ['redirect' => "?/wishList/getList/$listId"];
 	}
 
+/*
 	public static function printGuestLoginForm($listId){
 		return ['redirect' => "?/wishList/getList/$listId"];
 	}
@@ -122,6 +109,6 @@ class WishList{
 			 return ['items' => $listItems];
 		 }	
 
-
+*/
 	}
 
