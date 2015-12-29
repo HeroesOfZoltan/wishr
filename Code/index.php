@@ -9,19 +9,22 @@ require_once("classes/sql.class.php");
 if(isset($_POST['killSession'])){
 	session_unset();
 }
-
+//anropar getUrlParts och skickar in url. url_parts blir en array med uppstyckad url. 
 $url_parts = getUrlParts($_GET); 
 
+//array_shift lägger in första värdet i $class osv.
 if($url_parts!= null){
-$class = array_shift($url_parts); 
-$method = array_shift($url_parts);
+	$class = array_shift($url_parts); 
+	$method = array_shift($url_parts);
 
-require_once("classes/".$class.".class.php"); 
-$data = $class::$method($url_parts);
+//skickar in class och anropar dess statiska metod.
+	require_once("classes/".$class.".class.php"); 
+	$data = $class::$method($url_parts);
 
-if(isset($data['redirect'])){
-	header("Location: ".$data['redirect']);
-}
+//redirectar sidan till valt destination.
+	if(isset($data['redirect'])){
+		header("Location: ".$data['redirect']);
+	}
 }
 else{
 	$data= array(1,2,3);//för att inte det ska bli error
@@ -33,16 +36,8 @@ $template = 'index.html';
 echo $twig->render($template, $data);
 
 
-
-
-
-
-
-
-
-
 function getUrlParts($get){
-	$get_params = array_keys($get);
+	$get_params = array_keys($get);//plockar key värden ur get-arrayen
 	$url = $get_params[0];
 	$url_parts = explode("/",$url);
 	foreach($url_parts as $k => $v){

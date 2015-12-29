@@ -8,7 +8,7 @@
 
 {% if guestListItems %}
 	{% for listName in listNames %}
-			{{listName}}	
+			{{listName.listName}}	
 	{% endfor %}
 	{% for guestListItem in guestListItems %}
 			{% include "guestListView.html" %}	
@@ -23,16 +23,24 @@
 
 	{% if items %}
 		{% include "newWishForm.html" %}
+		{% for listName in listNames %}
+			{{listName.listName}}	
+		{% endfor %}
 		{% for item in items %}
 			{% include "listItemForm.html" %}	
 		{% endfor %}
 		{% include "linkToSend.html" %}
+
 	{% elseif newList%}
+		{% for listName in listNames %}
+			{{listName.listName}}	
+		{% endfor %}
 			{% include "newWishForm.html" %}
-		{% else %}
-			{% include "newListForm.html" %}	
-		{% endif %}
-		
+			
+	{% else %}
+		{% include "newListForm.html" %}	
+	{% endif %}
+
 	{% else %}
 		{% include "loginForm.html" %}	
 		{% include "createUserForm.html" %}	

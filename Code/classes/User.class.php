@@ -1,7 +1,7 @@
 <?php
 class User{
 
-
+//Skapar, tvättar, krypterar och sparar ner ny user till databasem
 	public static function createUser($params){
 		
 		if(isset($_POST['email'])){
@@ -15,10 +15,10 @@ class User{
 			$password = crypt($passwordClean,'$2a$'.sha1($usernameClean));
 			Sql::insertUser($password, $usernameClean, $firstnameClean, $lastnameClean, $roleIdClean);
 			}	
-			return [];			
-		}
+		return [];			
+	}
 
-
+//Hanterar inloggning
 	public static function login($params){
 		
 		if(isset($_POST['email'])){
@@ -28,18 +28,19 @@ class User{
 
 			$password = crypt($passwordClean,'$2a$'.sha1($usernameClean));
 			$user = Sql::logIn($usernameClean, $password);
-
+//Om inloggning lyckas sparas user id in i session
 			if($user['id']){
 				$_SESSION['user']['id'] = $user['id'];
-			}	
-			$userId = $_SESSION['user']['id'];
+			}
 
+			$userId = $_SESSION['user']['id'];
+//Borde kanske flytta nedan kod och ersätta med ett metodanrop som skriver ut listan istället?
 			$items = Sql::listItems($userId);
 
 			Sql::setListId($userId);
 
 			if($items){
-				return ['user' => $_SESSION['user'],'items' => $items, 'categories' => Sql::category(),'listId' =>$_SESSION['listId']];
+				return ['user' => $_SESSION['user'],'items' => $items, 'categories' => Sql::category(),'listId' =>$_SESSION['listId'],'listNames'=> Sql::listName($_SESSION['listId']['listId'])];
 			}
 			else if ($user['id'])	{
 				return ['user' => $_SESSION['user']];
@@ -47,24 +48,14 @@ class User{
 		}
 		return [];
 	}
-	
 
+//Listvy för en gäst
 	public static function getGuestFormLoginData($params){
 			$mysqli = DB::getInstance();
 
 			$listId = $params[0];
 			$listIdClean = $mysqli->real_escape_string($listId);
 
-			$query = " SELECT listName
-						FROM list, item
-						WHERE list.id = $listIdClean
-						LIMIT 1
-						";
-
-			if($result = $mysqli->query($query)){
-				$listName = $result->fetch_assoc();
-			}
-
-			return ['guestListItems' => Sql::listItemsGuest($listIdClean), 'listNames'=>$listName];
+			return ['guestListItems' => Sql::listItemsGuest($listIdClean), 'listNames'=> Sql::listName($listIdClean)];
 		}
 }
