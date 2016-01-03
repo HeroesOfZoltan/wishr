@@ -95,6 +95,8 @@ class Sql {
 				(password, email, firstname, lastname, role)
 				VALUES ('$pass','$email','$first','$last','$role')";
 			$mysqli->query($query);
+
+			echo "New user $email created! Please log in to start your list.";
 		}
 	}
 	

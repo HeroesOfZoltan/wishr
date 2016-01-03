@@ -1,0 +1,28 @@
+body {
+	
+}
+.newWishForm {
+	margin:0 auto;
+	width: 75%;
+	padding: 8px;
+	border: 4px dotted lightsteelblue;
+}
+.listName {
+	text-align: center;
+}
+.listItemForm {
+	margin-top: 15px;
+	border: 1px solid black;
+}
+.linkToSend {
+	padding: 8px;
+}
+.linkToSend a {
+	text-decoration:none;
+}
+.loginForm {
+	
+	width: 50%;
+	margin: 0 auto;
+	padding: 10px;
+}
