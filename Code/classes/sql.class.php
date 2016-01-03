@@ -47,7 +47,7 @@ class Sql {
 			FROM list, item, category
 			WHERE category.id = item.category_id
 			AND item.list_id = list.id
-			AND list.id =$listId";
+			AND list.id =$listId";		//	<-----FELSKRIVEN citationstecknen?!?!
 
 		return Self::arrayResult($query);
 	}
@@ -62,13 +62,40 @@ class Sql {
 		return Self::arrayResult($query);
 	}
 
+	public static function checkUserName($email) {
+		$mysqli = DB::getInstance();
+
+		$query = 
+			"SELECT email
+			FROM user
+			WHERE email = '$email'";
+
+		$result = $mysqli->query($query);
+		
+		if($row = $result->fetch_assoc()){
+				$exists = TRUE;
+			}
+		else {
+			$exists = NULL;
+		}
+		return $exists;
+	}
+
 	public static function insertUser($pass, $email, $first, $last, $role) {
 		$mysqli = DB::getInstance();
-		$query = 
-			"INSERT INTO user
-			(password, email, firstname, lastname, role)
-			VALUES ('$pass','$email','$first','$last','$role')";
-		$mysqli->query($query);
+
+		$exists = Self::checkUserName($email);
+		
+		if($exists === TRUE){
+			echo 'User already exists!';
+		}
+		else {
+			$query = 
+				"INSERT INTO user
+				(password, email, firstname, lastname, role)
+				VALUES ('$pass','$email','$first','$last','$role')";
+			$mysqli->query($query);
+		}
 	}
 	
 	public static function logIn($user, $pass){
