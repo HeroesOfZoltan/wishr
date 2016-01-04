@@ -103,7 +103,7 @@ class Sql {
 	public static function logIn($user, $pass){
 		$mysqli = DB::getInstance();
 		$query = 
-			"SELECT id
+			"SELECT id, role
 			FROM user
 			WHERE email = '$user'
 			AND password = '$pass'

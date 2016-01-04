@@ -1,6 +1,12 @@
 body {
 	
 }
+.dashboard {
+	background-color: tomato;
+	width: 75%;
+	margin: 0 auto;
+	border: 3px solid black;
+}
 .newWishForm {
 	margin:0 auto;
 	width: 75%;

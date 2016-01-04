@@ -9,7 +9,11 @@
 	{% if payment %}
 
 		{% include "paymentForm.html" %}
-	
+
+	{% elseif admin %}
+		{% include "loggedInNav.html" %}
+		{% include "dash.html" %}
+
 	{% elseif guestListItems %}
 
 		{% for listName in listNames %}
