@@ -10,10 +10,9 @@ class User{
 			$passwordClean = $mysqli->real_escape_string($_POST['password']);
 			$firstnameClean = $mysqli->real_escape_string($_POST['firstname']);
 			$lastnameClean = $mysqli->real_escape_string($_POST['lastname']);
-			$roleIdClean = $mysqli->real_escape_string($_POST['roleId']);
 
 			$password = crypt($passwordClean,'$2a$'.sha1($usernameClean));
-			Sql::insertUser($password, $usernameClean, $firstnameClean, $lastnameClean, $roleIdClean);
+			Sql::insertUser($password, $usernameClean, $firstnameClean, $lastnameClean, 2);
 			}	
 		return [];			
 	}
@@ -47,6 +46,22 @@ class User{
 			}
 		}
 		return [];
+	}
+
+	public static function payUp() {
+		return ['payment' => 'pending', 'userId' => $_SESSION['user']['id']];
+
+	} 
+
+	public static function pay($id) {
+
+		$mysqli = DB::getInstance();
+		$id = $id[0];
+		$idClean = $mysqli->real_escape_string($id);
+		Sql::payTrue($idClean);
+		$listId = $_SESSION['listId']['listId'];
+		return ['redirect' => "?/wishList/getList/$listId"];
+
 	}
 
 //Listvy för en gäst

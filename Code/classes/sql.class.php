@@ -141,4 +141,13 @@ class Sql {
 			$lastId = $mysqli->insert_id;
 			$_SESSION['listId']['listId'] = $lastId;
 	}
+
+	public static function payTrue($id){
+		$mysqli = DB::getInstance();
+		$query = "UPDATE user
+				SET role=3
+				WHERE id=$id";
+
+		$mysqli->query($query);
+	}
 }

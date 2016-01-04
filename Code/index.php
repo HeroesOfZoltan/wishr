@@ -6,9 +6,11 @@ require_once("classes/User.class.php");
 require_once("classes/sql.class.php");
 
 
-if(isset($_POST['killSession'])){
+/*if(isset($_POST['killSession'])){
 	session_unset();
-}
+}*/
+
+
 //anropar getUrlParts och skickar in url. url_parts blir en array med uppstyckad url. 
 $url_parts = getUrlParts($_GET); 
 
