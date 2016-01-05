@@ -158,6 +158,7 @@ class Sql {
 				WHERE id = $itemId";
 		$mysqli->query($query);
 	}
+
 	public static function itemUnDone($itemId){
 		$mysqli = DB::getInstance();
 		
@@ -165,5 +166,31 @@ class Sql {
 				SET isChecked=NULL
 				WHERE id = $itemId";
 		$mysqli->query($query);
+	}
+
+
+	public static function dashBoard() {
+	$mysqli = DB::getInstance();
+	$dashArray=[];
+	$query = "SELECT COUNT(id) as lists
+				 FROM list
+				 LIMIT 1";
+$result = $mysqli->query($query);
+		$dashArray[] = $result->fetch_assoc();
+	$query = "SELECT COUNT(id) as users
+				FROM user
+				LIMIT 1";
+	
+	$result = $mysqli->query($query);
+		$dashArray[] = $result->fetch_assoc();			
+	$query = "SELECT COUNT(*) as customers
+	FROM user WHERE user.role=3
+	LIMIT 1"; 
+	
+	$result = $mysqli->query($query);
+		$dashArray[] = $result->fetch_assoc();	
+
+		return $dashArray;
+
 	}
 }
