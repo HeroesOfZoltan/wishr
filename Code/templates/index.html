@@ -15,41 +15,8 @@
 		{% include "dash.html" %}
 
 	{% elseif guestListItems %}
-
-		{% for listName in listNames %}
-			{{listName.listName}}	
-		{% endfor %}
-
-		<h1>WishList:</h1>
-		<table class="guestListView">
-			<tr>
-				<th>Önskan</th>
-				<th>Beskrivning</th>
-				<th>Kategori</th>
-				<th>Mark as Done</th>
-			</tr>
-		{% for guestListItem in guestListItems %}
-			{% if guestListItem.isChecked == NULL %}
-				{% include "guestListView.html" %}	
-			{% endif %}		
 		
-		{% endfor %}
-		</table>
-		<h1>Bought Items:</h1>
-		<table class="guestListView">
-			<tr>
-				<th>Önskan</th>
-				<th>Beskrivning</th>
-				<th>Kategori</th>
-				<th>Mark as Done</th>
-			</tr>
-		{% for guestListItem in guestListItems %}
-			{% if guestListItem.isChecked == 1 %}
-				{% include "guestListView.html" %}	
-			{% endif %}		
-		
-		{% endfor %}
-		</table>
+		{% include "guestListView.html" %}	
 
 	{% elseif user%}
 

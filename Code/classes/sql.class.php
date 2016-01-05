@@ -158,4 +158,12 @@ class Sql {
 				WHERE id = $itemId";
 		$mysqli->query($query);
 	}
+	public static function itemUnDone($itemId){
+		$mysqli = DB::getInstance();
+		
+		$query = "UPDATE item
+				SET isChecked=NULL
+				WHERE id = $itemId";
+		$mysqli->query($query);
+	}
 }

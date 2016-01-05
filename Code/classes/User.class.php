@@ -70,7 +70,7 @@ class User{
 	}
 
 //Listvy för en gäst
-	public static function getGuestFormLoginData($params){
+	public static function guestView($params){
 			$mysqli = DB::getInstance();
 
 			$listId = $params[0];
@@ -79,11 +79,18 @@ class User{
 			return ['guestListItems' => Sql::listItemsGuest($listIdClean), 'listNames'=> Sql::listName($listIdClean)];
 		}
 
-		public static function doneList($params) {
+		public static function itemDone($params) {
 
 			Sql::itemDone($_POST['itemId']);
 			$listId = $params[0];
 
-			return ['redirect' => "?/User/getGuestFormLoginData/$listId"];
+			return ['redirect' => "?/User/guestView/$listId"];
+		}
+		public static function unDoneItem($params) {
+
+			Sql::itemUnDone($_POST['itemId']);
+			$listId = $params[0];
+
+			return ['redirect' => "?/User/guestView/$listId"];
 		}
 }

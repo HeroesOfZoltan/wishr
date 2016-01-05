@@ -1,21 +1,57 @@
-<form  action='?/User/doneList/{{guestListItem.listId}}' method='post'>
+{% for listName in listNames %}
+	<h1>{{listName.listName}}</h1>
+{% endfor %}
+
+<h2>Wish List:</h2>
+<table class="guestListView">
 	<tr>
-		<td>{{guestListItem.wish}}</td>
-		<td>{{guestListItem.description}}</td>
-		<td>{{guestListItem.categoryName}}</td>
-		
-		{% if guestListItem.isChecked == NULL %}
-
-			<td><input type="submit" name="itemDone" value="Done"> 
-			
-			<input type="text" name="name" placeholder="Done by.."> 
-
-			<input type="hidden" name="itemId" value="{{guestListItem.itemId}}">
-		{%endif%}
-		</td>
+		<th>Önskan</th>
+		<th>Beskrivning</th>
+		<th>Kategori</th>
+		<th>Mark as Done</th>
 	</tr>
-</form>
+	{% for guestListItem in guestListItems %}
+		{% if guestListItem.isChecked == NULL %}
+				<tr>
+					<td>{{guestListItem.wish}}</td>
+					<td>{{guestListItem.description}}</td>
+					<td>{{guestListItem.categoryName}}</td>
+					<td>
+						<form  action='?/User/itemDone/{{guestListItem.listId}}' method='post'>
+							<input type="submit" name="itemDone" value="Done"> 
+							<input type="text" name="name" placeholder="Done by.."> 
+							<input type="hidden" name="itemId" value="{{guestListItem.itemId}}">
+						</form>
+					</td>
+				</tr>			
+		{% endif %}
+	{% endfor %}
+</table>
 
+<h2>Done list:</h2>
+<table class="guestListView">
+	<tr>
+		<th>Önskan</th>
+		<th>Beskrivning</th>
+		<th>Kategori</th>
+		<th>Mark as Done</th>
+	</tr>
+	{% for guestListItem in guestListItems %}
+		{% if guestListItem.isChecked == 1 %}
+				<tr>
+					<td>{{guestListItem.wish}}</td>
+					<td>{{guestListItem.description}}</td>
+					<td>{{guestListItem.categoryName}}</td>
+					<td>
+						<form  action='?/User/unDoneItem/{{guestListItem.listId}}' method='post'>
+							<input type="submit" name="itemUnDone" value="unDone"> 
+							<input type="hidden" name="itemId" value="{{guestListItem.itemId}}">
+						</form>
+					</td>
+				</tr>
+		{% endif %}
+	{% endfor %}
+</table>
 
 <!--strong>Önskan: </strong><label>{{guestListItem.wish}}</label>
 <strong>Beskrivning: </strong><label>{{guestListItem.description}}</label>
