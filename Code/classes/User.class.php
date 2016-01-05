@@ -30,11 +30,12 @@ class User{
 //Om inloggning lyckas sparas user id in i session
 			if($user['id']){
 				$_SESSION['user']['id'] = $user['id'];
-				$_SESSION['user']['role'] = $user['role'];//////////// <---------------------
+				$_SESSION['user']['role'] = $user['role'];		// <---------------------
 			}
 			$userId = $_SESSION['user']['id'];
 //Borde kanske flytta nedan kod och ersätta med ett metodanrop som skriver ut listan istället?
-			if ($_SESSION['user']['role'] == 1) {
+
+			if ($_SESSION['user']['role'] == 1) {				// <---------------------
 				return ['admin' => TRUE];
 				
 			}
