@@ -10,10 +10,6 @@ if(isset($_POST['killSession'])){
 	session_unset();
 }
 
-if(isset($_POST['itemDone'])) {
-
-}
-
 //anropar getUrlParts och skickar in url. url_parts blir en array med uppstyckad url. 
 $url_parts = getUrlParts($_GET); 
 
@@ -34,7 +30,8 @@ if($url_parts!= null){
 else{
 	$data= array(1,2,3);//för att inte det ska bli error
 }
- var_dump($data);
+//print_r($data); /*För felsökning av arrayen som skickas till Twig */
+
 $twig = startTwig();
 
 $template = 'index.html';

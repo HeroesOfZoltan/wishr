@@ -39,3 +39,6 @@ body {
 td {
 	width: 250px;
 }
+.doneList {
+	text-decoration: line-through;
+}

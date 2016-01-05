@@ -8,50 +8,49 @@
 		<th>Önskan</th>
 		<th>Beskrivning</th>
 		<th>Kategori</th>
-		<th>Mark as Done</th>
 	</tr>
 	{% for guestListItem in guestListItems %}
 		{% if guestListItem.isChecked == NULL %}
-				<tr>
-					<td>{{guestListItem.wish}}</td>
-					<td>{{guestListItem.description}}</td>
-					<td>{{guestListItem.categoryName}}</td>
-					<td>
-						<form  action='?/User/itemDone/{{guestListItem.listId}}' method='post'>
-							<input type="submit" name="itemDone" value="Done"> 
-							<input type="text" name="name" placeholder="Done by.."> 
-							<input type="hidden" name="itemId" value="{{guestListItem.itemId}}">
-						</form>
-					</td>
-				</tr>			
+			<tr>
+				<td>{{guestListItem.wish}}</td>
+				<td>{{guestListItem.description}}</td>
+				<td>{{guestListItem.categoryName}}</td>
+				{% if guestListItem.paid_list %}
+				<td>
+					<form  action='?/User/itemDone/{{guestListItem.listId}}' method='post'>
+						<input type="submit" name="itemDone" value="Done"> 
+						<input type="text" name="name" placeholder="Done by.."> 
+						<input type="hidden" name="itemId" value="{{guestListItem.itemId}}">
+					</form>
+				</td>
+				{% endif %}
+			</tr>			
 		{% endif %}
 	{% endfor %}
 </table>
 
+{% if guestListItems[0].paid_list %}
+
 <h2>Done list:</h2>
-<table class="guestListView">
-	<tr>
-		<th>Önskan</th>
-		<th>Beskrivning</th>
-		<th>Kategori</th>
-		<th>Mark as Done</th>
-	</tr>
-	{% for guestListItem in guestListItems %}
-		{% if guestListItem.isChecked == 1 %}
+	<table class="guestListView doneList">
+		{% for guestListItem in guestListItems %}
+			{% if guestListItem.isChecked == 1 %}
 				<tr>
 					<td>{{guestListItem.wish}}</td>
-					<td>{{guestListItem.description}}</td>
-					<td>{{guestListItem.categoryName}}</td>
+					<!--td>{{guestListItem.description}}</td>
+					<td>{{guestListItem.categoryName}}</td-->
 					<td>
-						<form  action='?/User/unDoneItem/{{guestListItem.listId}}' method='post'>
+						<form action='?/User/unDoneItem/{{guestListItem.listId}}' method='post'>
 							<input type="submit" name="itemUnDone" value="unDone"> 
 							<input type="hidden" name="itemId" value="{{guestListItem.itemId}}">
 						</form>
 					</td>
 				</tr>
-		{% endif %}
-	{% endfor %}
-</table>
+			{% endif %}
+		{% endfor %}
+	</table>
+
+{% endif %}
 
 <!--strong>Önskan: </strong><label>{{guestListItem.wish}}</label>
 <strong>Beskrivning: </strong><label>{{guestListItem.description}}</label>

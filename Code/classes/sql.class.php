@@ -43,7 +43,8 @@ class Sql {
 
 	public static function listItemsGuest($listId) {
 		$query = 
-			"SELECT item.wish, item.description, category.categoryName, item.isChecked, item.id as itemId, list.id as listId
+			"SELECT item.wish, item.description, category.categoryName, item.isChecked, item.id as itemId, 
+			list.id as listId, list.paid_list
 			FROM list, item, category
 			WHERE category.id = item.category_id
 			AND item.list_id = list.id
