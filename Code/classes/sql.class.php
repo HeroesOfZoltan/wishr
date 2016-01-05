@@ -168,7 +168,6 @@ class Sql {
 		$mysqli->query($query);
 	}
 
-
 	public static function dashBoard() {
 	$mysqli = DB::getInstance();
 	$dashArray=[];
@@ -191,6 +190,5 @@ $result = $mysqli->query($query);
 		$dashArray[] = $result->fetch_assoc();	
 
 		return $dashArray;
-
 	}
 }
