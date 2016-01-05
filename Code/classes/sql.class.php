@@ -43,11 +43,11 @@ class Sql {
 
 	public static function listItemsGuest($listId) {
 		$query = 
-			"SELECT *
+			"SELECT item.wish, item.description, category.categoryName, item.isChecked, item.id as itemId, list.id as listId
 			FROM list, item, category
 			WHERE category.id = item.category_id
 			AND item.list_id = list.id
-			AND list.id =$listId";		//	<-----FELSKRIVEN citationstecknen?!?!
+			AND list.id =$listId";		
 
 		return Self::arrayResult($query);
 	}
@@ -148,6 +148,14 @@ class Sql {
 				SET role=3
 				WHERE id=$id";
 
+		$mysqli->query($query);
+	}
+	public static function itemDone($itemId){
+		$mysqli = DB::getInstance();
+		
+		$query = "UPDATE item
+				SET isChecked=1
+				WHERE id = $itemId";
 		$mysqli->query($query);
 	}
 }

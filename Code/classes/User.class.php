@@ -58,10 +58,10 @@ class User{
 
 	} 
 
-	public static function pay($id) {
+	public static function pay($params) {
 
 		$mysqli = DB::getInstance();
-		$id = $id[0];
+		$id = $params[0];
 		$idClean = $mysqli->real_escape_string($id);
 		Sql::payTrue($idClean);
 		$listId = $_SESSION['listId']['listId'];
@@ -77,5 +77,13 @@ class User{
 			$listIdClean = $mysqli->real_escape_string($listId);
 
 			return ['guestListItems' => Sql::listItemsGuest($listIdClean), 'listNames'=> Sql::listName($listIdClean)];
+		}
+
+		public static function doneList($params) {
+
+			Sql::itemDone($_POST['itemId']);
+			$listId = $params[0];
+
+			return ['redirect' => "?/User/getGuestFormLoginData/$listId"];
 		}
 }
