@@ -34,7 +34,7 @@ if($url_parts!= null){
 else{
 	$data= array(1,2,3);//för att inte det ska bli error
 }
-
+ var_dump($data);
 $twig = startTwig();
 
 $template = 'index.html';

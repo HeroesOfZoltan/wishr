@@ -36,7 +36,7 @@ class User{
 //Borde kanske flytta nedan kod och ersätta med ett metodanrop som skriver ut listan istället?
 
 			if ($_SESSION['user']['role'] == 1) {				// <---------------------
-				return ['admin' => TRUE];
+				return ['admin' => TRUE, 'dashboard' => Sql::dashBoard()];
 				
 			}
 			$items = Sql::listItems($userId);
