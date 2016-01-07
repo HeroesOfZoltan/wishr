@@ -64,7 +64,7 @@ class User{
 		$id = $params[0];
 		$idClean = $mysqli->real_escape_string($id);
 		Sql::payTrue($idClean);
-		$uniqueUrl = $_SESSION['list']['uniqueUrl'];
+		$uniqueUrl = $_SESSION['uniqueUrl'];
 		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
 
 	}

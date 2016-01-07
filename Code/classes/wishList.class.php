@@ -32,7 +32,8 @@ class WishList{
 //metod för att lägga till ett objekt i en lista
 	public static function addItem($params){
 
-		$uniqueUrl = $_SESSION['list']['uniqueUrl'];
+		$uniqueUrl = $params[0];
+		
 		$wish = new Wish($uniqueUrl, $_POST['wishName'],$_POST['wishDescription'],$_POST['wishCategory'] );
 		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
 	}

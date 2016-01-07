@@ -21,7 +21,7 @@ if($url_parts!= null){
 	require_once("classes/".$class.".class.php"); 
 	$data = $class::$method($url_parts);
 
-var_dump($_SESSION['list']['uniqueUrl']);
+var_dump($_SESSION['uniqueUrl']);
 
 
 //redirectar sidan till valt destination.

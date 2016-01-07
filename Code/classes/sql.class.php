@@ -126,7 +126,8 @@ class Sql {
 
 			if($result = $mysqli->query($query)){
 		 		$item = $result->fetch_assoc();
-			 	$_SESSION['uniqueUrl'] = $item;
+
+			 	$_SESSION['uniqueUrl'] = $item['uniqueUrl'];
 			}			
 	}
 
@@ -139,7 +140,7 @@ class Sql {
 				VALUES ('$listName', '$userId', '$uniqueUrl')";
 			$mysqli->query($query);
 			//$lastId = $mysqli->insert_id;
-			$_SESSION['list']['uniqueUrl'] = $uniqueUrl;
+			$_SESSION['uniqueUrl'] = $uniqueUrl;
 	}
 
 	public static function payTrue($id){
