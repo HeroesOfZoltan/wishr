@@ -19,7 +19,7 @@
 				<td>
 					<form  action='?/User/itemDone/{{guestListItem.listId}}' method='post'>
 						<input type="submit" name="itemDone" value="Done"> 
-						<input type="text" name="name" placeholder="Done by.."> 
+						<input type="text" name="checked_by" placeholder="Done by.."> 
 						<input type="hidden" name="itemId" value="{{guestListItem.itemId}}">
 					</form>
 				</td>
@@ -37,6 +37,7 @@
 			{% if guestListItem.isChecked == 1 %}
 				<tr>
 					<td>{{guestListItem.wish}}</td>
+					<td>{{guestListItem.checked_by}}</td>
 					<!--td>{{guestListItem.description}}</td>
 					<td>{{guestListItem.categoryName}}</td-->
 					<td>

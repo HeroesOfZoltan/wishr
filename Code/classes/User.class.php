@@ -81,7 +81,7 @@ class User{
 
 		public static function itemDone($params) {
 
-			Sql::itemDone($_POST['itemId']);
+			Sql::itemDone($_POST['itemId'], $_POST['checked_by']);
 			$listId = $params[0];
 
 			return ['redirect' => "?/User/guestView/$listId"];

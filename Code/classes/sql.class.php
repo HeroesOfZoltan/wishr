@@ -44,19 +44,12 @@ class Sql {
 	public static function listItemsGuest($listId) {
 		$query = 
 				"SELECT item.wish, item.description, category.categoryName, item.isChecked, item.id as itemId, 
-				list.id as listId, user.role
+				list.id as listId, user.role, item.checked_by
 				FROM list, item, category, user
 				WHERE category.id = item.category_id
 				AND item.list_id = list.id
 				AND list.user_id = user.id
 				AND list.id =$listId";
-
-			/*"SELECT item.wish, item.description, category.categoryName, item.isChecked, item.id as itemId, 
-			list.id as listId, list.paid_list
-			FROM list, item, category
-			WHERE category.id = item.category_id
-			AND item.list_id = list.id
-			AND list.id =$listId";*/
 
 		return Self::arrayResult($query);
 	}
@@ -159,11 +152,12 @@ class Sql {
 
 		$mysqli->query($query);
 	}
-	public static function itemDone($itemId){
+	public static function itemDone($itemId, $checkedBy){
 		$mysqli = DB::getInstance();
 		
-		$query = "UPDATE item
-				SET isChecked=1
+		$query = 
+				"UPDATE item
+				SET isChecked = 1, checked_by = '$checkedBy'
 				WHERE id = $itemId";
 		$mysqli->query($query);
 	}
@@ -171,9 +165,13 @@ class Sql {
 	public static function itemUnDone($itemId){
 		$mysqli = DB::getInstance();
 		
-		$query = "UPDATE item
-				SET isChecked=NULL
+		$query = 
+				"UPDATE item
+				SET isChecked=NULL, checked_by = NULL
 				WHERE id = $itemId";
+		/*"UPDATE item
+				SET isChecked=NULL
+				WHERE id = $itemId";*/
 		$mysqli->query($query);
 	}
 
