@@ -43,12 +43,20 @@ class Sql {
 
 	public static function listItemsGuest($listId) {
 		$query = 
-			"SELECT item.wish, item.description, category.categoryName, item.isChecked, item.id as itemId, 
+				"SELECT item.wish, item.description, category.categoryName, item.isChecked, item.id as itemId, 
+				list.id as listId, user.role
+				FROM list, item, category, user
+				WHERE category.id = item.category_id
+				AND item.list_id = list.id
+				AND list.user_id = user.id
+				AND list.id =$listId";
+
+			/*"SELECT item.wish, item.description, category.categoryName, item.isChecked, item.id as itemId, 
 			list.id as listId, list.paid_list
 			FROM list, item, category
 			WHERE category.id = item.category_id
 			AND item.list_id = list.id
-			AND list.id =$listId";		
+			AND list.id =$listId";*/
 
 		return Self::arrayResult($query);
 	}
