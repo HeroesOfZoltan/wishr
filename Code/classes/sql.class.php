@@ -22,42 +22,42 @@ class Sql {
 		$query = 
 			"SELECT *
 			FROM list, item, category
-			WHERE list.id = item.list_id
+			WHERE list.unique_string = item.list_unique_string
 			AND item.category_id = category.id
-			AND list.user_id = $userId";
+			AND list.user_id = '$userId'";
 
 		return Self::arrayResult($query);
 	}
 
-	public static function getListItems($listId, $userId){
+	public static function getListItems($uniqueUrl, $userId){
 		 	$query = 
 		 		"SELECT *
 				FROM list, item, category
-				WHERE list.id = item.list_id
+				WHERE list.unique_string = item.list_unique_string
 				AND item.category_id = category.id
-				AND list.id = $listId
+				AND list.unique_string = '$uniqueUrl'
 				AND list.user_id = $userId";
 
 			return Self::arrayResult($query);
 		 }
 
-	public static function listItemsGuest($listId) {
+	public static function listItemsGuest($uniqueUrl) {
 		$query = 
 			"SELECT item.wish, item.description, category.categoryName, item.isChecked, item.id as itemId, 
-			list.id as listId, list.paid_list
+			list.unique_string as uniqueUrl, list.paid_list
 			FROM list, item, category
 			WHERE category.id = item.category_id
-			AND item.list_id = list.id
-			AND list.id =$listId";		
+			AND item.list_unique_string = list.unique_string
+			AND list.unique_string = '$uniqueUrl' ";		
 
 		return Self::arrayResult($query);
 	}
 
-	public static function listName($listId) {
+	public static function listName($uniqueUrl) {
 		$query =
 			"SELECT listName
-			FROM list, item
-			WHERE list.id = $listId
+			FROM list
+			WHERE list.unique_string = '$uniqueUrl'
 			LIMIT 1";
 
 		return Self::arrayResult($query);
@@ -115,32 +115,30 @@ class Sql {
 		return $user;
 	}
 
-	public static function setListId($userId) {
+	public static function setUniqueUrl($userId) {
 		$mysqli = DB::getInstance();
 		$query = 
-			"SELECT list.id as listId
-			FROM list, item, category
-			WHERE list.id = item.list_id
-			AND item.category_id = category.id
-			AND list.user_id =$userId
+			"SELECT list.unique_string as uniqueUrl
+			FROM list
+			WHERE list.user_id = '$userId'
 			LIMIT 1";
 
 			if($result = $mysqli->query($query)){
 		 		$item = $result->fetch_assoc();
-			 	$_SESSION['listId'] = $item;
+			 	$_SESSION['uniqueUrl'] = $item;
 			}			
 	}
 
-	public static function insertNewList($listName){
+	public static function insertNewList($listName, $uniqueUrl){
 		$mysqli = DB::getInstance();
 		$userId = $_SESSION['user']['id'];
 			$query =
 				"INSERT INTO list 
-				(listName, user_id) 
-				VALUES ('$listName', '$userId')";
+				(listName, user_id, unique_string) 
+				VALUES ('$listName', '$userId', '$uniqueUrl')";
 			$mysqli->query($query);
-			$lastId = $mysqli->insert_id;
-			$_SESSION['listId']['listId'] = $lastId;
+			//$lastId = $mysqli->insert_id;
+			$_SESSION['list']['uniqueUrl'] = $uniqueUrl;
 	}
 
 	public static function payTrue($id){

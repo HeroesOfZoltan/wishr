@@ -5,7 +5,6 @@ require_once("classes/wish.class.php");
 require_once("classes/User.class.php");
 require_once("classes/sql.class.php");
 
-
 if(isset($_POST['killSession'])){
 	session_unset();
 }
@@ -21,6 +20,9 @@ if($url_parts!= null){
 //skickar in class och anropar dess statiska metod.
 	require_once("classes/".$class.".class.php"); 
 	$data = $class::$method($url_parts);
+
+var_dump($_SESSION['list']['uniqueUrl']);
+
 
 //redirectar sidan till valt destination.
 	if(isset($data['redirect'])){

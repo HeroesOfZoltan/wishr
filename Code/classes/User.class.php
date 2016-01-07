@@ -41,10 +41,10 @@ class User{
 			}
 			$items = Sql::listItems($userId);
 
-			Sql::setListId($userId);
-
+			Sql::setUniqueUrl($userId);
+			
 			if($items){
-				return ['user' => $_SESSION['user'],'items' => $items, 'categories' => Sql::category(),'listId' =>$_SESSION['listId'],'listNames'=> Sql::listName($_SESSION['listId']['listId'])];
+				return ['user' => $_SESSION['user'],'items' => $items, 'categories' => Sql::category(),'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['list']['uniqueUrl'])];
 			}
 			else if ($user['id'])	{
 				return ['user' => $_SESSION['user']];
@@ -54,7 +54,7 @@ class User{
 	}
 
 	public static function payUp() {
-		return ['payment' => 'pending', 'userId' => $_SESSION['user']['id'], 'listId' => $_SESSION['listId']['listId']];
+		return ['payment' => 'pending', 'userId' => $_SESSION['user']['id'], 'uniqueUrl' => $_SESSION['list']['uniqueUrl']];
 
 	} 
 
@@ -64,8 +64,8 @@ class User{
 		$id = $params[0];
 		$idClean = $mysqli->real_escape_string($id);
 		Sql::payTrue($idClean);
-		$listId = $_SESSION['listId']['listId'];
-		return ['redirect' => "?/wishList/getList/$listId"];
+		$uniqueUrl = $_SESSION['list']['uniqueUrl'];
+		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
 
 	}
 
@@ -73,24 +73,24 @@ class User{
 	public static function guestView($params){
 			$mysqli = DB::getInstance();
 
-			$listId = $params[0];
-			$listIdClean = $mysqli->real_escape_string($listId);
+			$uniqueUrl = $params[0];
+			$uniqueUrlClean = $mysqli->real_escape_string($uniqueUrl);
 
-			return ['guestListItems' => Sql::listItemsGuest($listIdClean), 'listNames'=> Sql::listName($listIdClean)];
+			return ['guestListItems' => Sql::listItemsGuest($uniqueUrlClean), 'listNames'=> Sql::listName($uniqueUrlClean)];
 		}
 
 		public static function itemDone($params) {
 
 			Sql::itemDone($_POST['itemId']);
-			$listId = $params[0];
+			$uniqueUrl = $params[0];
 
-			return ['redirect' => "?/User/guestView/$listId"];
+			return ['redirect' => "?/User/guestView/$uniqueUrl"];
 		}
 		public static function unDoneItem($params) {
 
 			Sql::itemUnDone($_POST['itemId']);
-			$listId = $params[0];
+			$uniqueUrl = $params[0];
 
-			return ['redirect' => "?/User/guestView/$listId"];
+			return ['redirect' => "?/User/guestView/$uniqueUrl"];
 		}
 }

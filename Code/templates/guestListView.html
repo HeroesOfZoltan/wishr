@@ -17,7 +17,7 @@
 				<td>{{guestListItem.categoryName}}</td>
 				{% if guestListItem.paid_list %}
 				<td>
-					<form  action='?/User/itemDone/{{guestListItem.listId}}' method='post'>
+					<form  action='?/User/itemDone/{{guestListItem.uniqueUrl}}' method='post'>
 						<input type="submit" name="itemDone" value="Done"> 
 						<input type="text" name="name" placeholder="Done by.."> 
 						<input type="hidden" name="itemId" value="{{guestListItem.itemId}}">
@@ -40,7 +40,7 @@
 					<!--td>{{guestListItem.description}}</td>
 					<td>{{guestListItem.categoryName}}</td-->
 					<td>
-						<form action='?/User/unDoneItem/{{guestListItem.listId}}' method='post'>
+						<form action='?/User/unDoneItem/{{guestListItem.uniqueUrl}}' method='post'>
 							<input type="submit" name="itemUnDone" value="unDone"> 
 							<input type="hidden" name="itemId" value="{{guestListItem.itemId}}">
 						</form>
