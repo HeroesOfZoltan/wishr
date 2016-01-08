@@ -20,7 +20,7 @@ class Sql {
 
 	public static function listItems($userId) {
 		$query = 
-			"SELECT *
+			"SELECT *, item.id as 'itemId'
 			FROM list, item, category
 			WHERE list.unique_string = item.list_unique_string
 			AND item.category_id = category.id
@@ -31,7 +31,7 @@ class Sql {
 
 	public static function getListItems($uniqueUrl, $userId){
 		 	$query = 
-		 		"SELECT *
+		 		"SELECT *, item.id as 'itemId'
 				FROM list, item, category
 				WHERE list.unique_string = item.list_unique_string
 				AND item.category_id = category.id

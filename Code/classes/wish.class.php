@@ -15,18 +15,53 @@ class Wish{
 			VALUES ('$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryClean')";
 		$mysqli->query($query);
 	}
-/*
-	function updateItem($wishId,$wishName){
+
+
+
+	public static function updateItem($params){
 		$mysqli = DB::getInstance();
-		$itemIdClean = $mysqli->real_escape_string($wishId);
-		$wishTxtClean = $mysqli->real_escape_string($wishName);
 
-		$query = "UPDATE item
-			(wish)
-			VALUES ('$wishTxtClean')
-			WHERE id = $itemIdClean
-		";
+		$uniqueUrl = $params[0];
+
+		if(isset($_POST['updateBtn'])){
+			$wishNameClean = $mysqli->real_escape_string($_POST['wishName']);
+			$wishDescriptionClean = $mysqli->real_escape_string($_POST['wishDescription']);
+			$wishIdClean = $mysqli->real_escape_string($_POST['wishId']);
+			$wishCategoryIdClean = $mysqli->real_escape_string($_POST['wishCategoryId']);
+
+			
+
+			$query = "UPDATE item
+				SET wish='$wishNameClean', description='$wishDescriptionClean', category_id ='$wishCategoryIdClean'
+				WHERE id = $wishIdClean
+			";
+			
+			$mysqli->query($query);
+
+		}
+
+		if(isset($_POST['deleteBtn'])){
+			$wishClean = $mysqli->real_escape_string($_POST['wishName']);
+			$descriptionClean = $mysqli->real_escape_string($_POST['wishDescription']);
+			$wishCategoryClean = $mysqli->real_escape_string($_POST['wishCategoryId']);
+			$wishIdClean = $mysqli->real_escape_string($_POST['wishId']);
+			$uniqueUrlClean = $mysqli->real_escape_string($uniqueUrl);
+
+			$query = 
+				"INSERT INTO deletedItem
+				(id, wish, list_unique_string, description, category_id) 
+				VALUES ('$wishIdClean','$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryClean')
+				";
+			$mysqli->query($query);
+
+			$query = 
+				"DELETE FROM item
+					WHERE item.id = $wishIdClean";
+			$mysqli->query($query);
 
 
-	}*/
+				
+		}
+return ['redirect' => "?/wishList/getList/$uniqueUrl"];
+	}
 }
