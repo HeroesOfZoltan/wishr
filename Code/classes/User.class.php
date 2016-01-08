@@ -44,7 +44,7 @@ class User{
 			Sql::setUniqueUrl($userId);
 			
 			if($items){
-				return ['user' => $_SESSION['user'],'items' => $items, 'categories' => Sql::category(),'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['list']['uniqueUrl'])];
+				return ['user' => $_SESSION['user'],'items' => $items, 'categories' => Sql::category(),'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl'])];
 			}
 			else if ($user['id'])	{
 				return ['user' => $_SESSION['user']];
@@ -54,7 +54,7 @@ class User{
 	}
 
 	public static function payUp() {
-		return ['payment' => 'pending', 'userId' => $_SESSION['user']['id'], 'uniqueUrl' => $_SESSION['list']['uniqueUrl']];
+		return ['payment' => 'pending', 'userId' => $_SESSION['user']['id'], 'uniqueUrl' => $_SESSION['uniqueUrl']];
 
 	} 
 

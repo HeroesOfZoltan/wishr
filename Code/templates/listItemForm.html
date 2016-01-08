@@ -1,22 +1,24 @@
 <div class="listItemForm">
-	<form  method='post'>
+	<form  method='post' action="?/wish/updateItem/{{uniqueUrl}}">
 		Önskan
 		<input type='text' name="wishName" value="{{item.wish}}">
 		Beskrivning
 		<input type='text' name="wishDescription" value="{{item.description}}">
-		<select name="wishCategory">
+
+		Kategori<select name="wishCategoryId">
 			{% for category in categories%}
 				{% if category.categoryName == item.categoryName %}
 					<option value='{{category.id}}' selected>{{category.categoryName}}</option>
-
+​
 				{% else %}
 					<option value='{{category.id}}'>{{category.categoryName}}</option>
-
+​
 				{% endif %}
 			{% endfor %}
 		</select>
-		<!--Kategori<input type='text' name="" value="{{item.categoryName}}">-->
-		<input type='hidden' name="wishId" value='{{item.id}}'>
+		<input type='hidden' name="wishId" value='{{item.itemId}}'>
 		<input type='submit' name="updateBtn" value='Uppdatera'>
+		<input type='submit' name="deleteBtn" value='Tabort'>
 	</form>
 </div>
+
