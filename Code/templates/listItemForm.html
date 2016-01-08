@@ -4,7 +4,18 @@
 		<input type='text' name="wishName" value="{{item.wish}}">
 		Beskrivning
 		<input type='text' name="wishDescription" value="{{item.description}}">
-		Kategori<input type='text' name="" value="{{item.categoryName}}">
+		<select name="wishCategory">
+			{% for category in categories%}
+				{% if category.categoryName == item.categoryName %}
+					<option value='{{category.id}}' selected>{{category.categoryName}}</option>
+
+				{% else %}
+					<option value='{{category.id}}'>{{category.categoryName}}</option>
+
+				{% endif %}
+			{% endfor %}
+		</select>
+		<!--Kategori<input type='text' name="" value="{{item.categoryName}}">-->
 		<input type='hidden' name="wishId" value='{{item.id}}'>
 		<input type='submit' name="updateBtn" value='Uppdatera'>
 	</form>

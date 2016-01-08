@@ -32,7 +32,7 @@ var_dump($_SESSION['uniqueUrl']);
 else{
 	$data= array(1,2,3);//för att inte det ska bli error
 }
-//print_r($data); /*För felsökning av arrayen som skickas till Twig */
+print_r($data); /*För felsökning av arrayen som skickas till Twig */
 
 $twig = startTwig();
 
