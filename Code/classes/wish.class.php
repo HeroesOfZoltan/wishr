@@ -2,17 +2,20 @@
 
 class Wish{
 //Tvättar och sparar ner ett önskeobjekt till databasen
-	function __construct($uniqueUrl, $wish, $description, $wishCategory){
+	function __construct($uniqueUrl, $wish, $description, $wishCategory, $wishPrio, $wishCost){
 
 		$mysqli = DB::getInstance();
 		//$uniqueIdClean = $mysqli->real_escape_string($uniqueUrl);
 		$wishClean = $mysqli->real_escape_string($wish);
 		$descriptionClean = $mysqli->real_escape_string($description);
 		$wishCategoryClean = $mysqli->real_escape_string($wishCategory);
+		$wishPrioClean = $mysqli->real_escape_string($wishPrio);
+		$wishCostClean = $mysqli->real_escape_string($wishCost);
+
 		$query = 
 			"INSERT INTO item 
-			(wish, list_unique_string, description, category_id) 
-			VALUES ('$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryClean')";
+			(wish, list_unique_string, description, category_id, prio, cost) 
+			VALUES ('$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryClean', '$wishPrioClean', '$wishCostClean')";
 		$mysqli->query($query);
 	}
 
@@ -28,11 +31,15 @@ class Wish{
 			$wishDescriptionClean = $mysqli->real_escape_string($_POST['wishDescription']);
 			$wishIdClean = $mysqli->real_escape_string($_POST['wishId']);
 			$wishCategoryIdClean = $mysqli->real_escape_string($_POST['wishCategoryId']);
+			$wishPrioClean = $mysqli->real_escape_string($_POST['prio']);
+			$wishCostClean = $mysqli->real_escape_string($_POST['cost']);
+
 
 			
 
 			$query = "UPDATE item
-				SET wish='$wishNameClean', description='$wishDescriptionClean', category_id ='$wishCategoryIdClean'
+				SET wish='$wishNameClean', description='$wishDescriptionClean', category_id ='$wishCategoryIdClean',
+					prio='$wishPrioClean', cost='$wishCostClean'
 				WHERE id = $wishIdClean
 			";
 			

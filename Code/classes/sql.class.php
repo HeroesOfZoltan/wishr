@@ -36,7 +36,8 @@ class Sql {
 				WHERE list.unique_string = item.list_unique_string
 				AND item.category_id = category.id
 				AND list.unique_string = '$uniqueUrl'
-				AND list.user_id = $userId";
+				AND list.user_id = $userId
+				ORDER BY item.prio is null, item.prio = 0, item.prio asc";
 
 			return Self::arrayResult($query);
 		 }
@@ -44,12 +45,14 @@ class Sql {
 	public static function listItemsGuest($uniqueUrl) {
 		$query = 
 			"SELECT item.wish, item.description, category.categoryName, item.isChecked, item.id as itemId, 
-			list.unique_string as uniqueUrl, user.role, item.checked_by
+			list.unique_string as uniqueUrl, user.role, item.checked_by, item.cost
 			FROM list, item, category, user
 			WHERE category.id = item.category_id
 			AND item.list_unique_string = list.unique_string
 			AND list.user_id = user.id
-			AND list.unique_string = '$uniqueUrl' ";		
+			AND list.unique_string = '$uniqueUrl' 
+			ORDER BY item.prio is null, item.prio = 0, item.prio asc
+			";		
 
 		return Self::arrayResult($query);
 	}

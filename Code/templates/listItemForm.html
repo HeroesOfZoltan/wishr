@@ -16,6 +16,8 @@
 				{% endif %}
 			{% endfor %}
 		</select>
+		<input type="number" name="prio" value="{{item.prio}}">
+		<input type="number" name="cost" value="{{item.cost}}">
 		<input type='hidden' name="wishId" value='{{item.itemId}}'>
 		<input type='submit' name="updateBtn" value='Uppdatera'>
 		<input type='submit' name="deleteBtn" value='Tabort'>

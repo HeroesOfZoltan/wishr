@@ -34,8 +34,8 @@ class WishList{
 
 		$uniqueUrl = $params[0];
 		
-		$wish = new Wish($uniqueUrl, $_POST['wishName'],$_POST['wishDescription'],$_POST['wishCategory'] );
+		$wish = new Wish($uniqueUrl, $_POST['wishName'],$_POST['wishDescription'],$_POST['wishCategory'], $_POST['prio'],
+				$_POST['cost']);
 		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
 	}
-
 }

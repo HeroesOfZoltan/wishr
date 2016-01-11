@@ -8,6 +8,7 @@
 		<th>Önskan</th>
 		<th>Beskrivning</th>
 		<th>Kategori</th>
+		<th>Kostnad</th>
 	</tr>
 	{% for guestListItem in guestListItems %}
 		{% if guestListItem.isChecked == NULL %}
@@ -15,6 +16,8 @@
 				<td>{{guestListItem.wish}}</td>
 				<td>{{guestListItem.description}}</td>
 				<td>{{guestListItem.categoryName}}</td>
+				<td>{{guestListItem.cost}}</td>
+
 				{% if guestListItem.role == 3 %}
 				<td>
 					<form  action='?/User/itemDone/{{guestListItem.uniqueUrl}}' method='post'>
