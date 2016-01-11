@@ -34,7 +34,7 @@ class User{
 			}
 			$userId = $_SESSION['user']['id'];
 
-
+			$_SESSION['userPremission'] = Sql::userPermission($userId);
 //Borde kanske flytta nedan kod och ersätta med ett metodanrop som skriver ut listan istället?
 
 			if ($_SESSION['user']['role'] == 1) {				// <---------------------
@@ -46,17 +46,17 @@ class User{
 			Sql::setUniqueUrl($userId);
 			
 			if($items){
-				return ['user' => $_SESSION['user'], 'userPermission' => Sql::userPermission($userId),'items' => $items, 'categories' => Sql::category(),'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl'])];
+				return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPremission'],'items' => $items, 'categories' => Sql::category(),'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl'])];
 			}
 			else if ($user['id'])	{
-				return ['user' => $_SESSION['user'], 'userPermission' => Sql::userPermission($userId)];
+				return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPremission']];
 			}
 		}
 		return [];
 	}
 
 	public static function payUp() {
-		return ['payment' => 'pending', 'userId' => $_SESSION['user']['id'], 'uniqueUrl' => $_SESSION['uniqueUrl']];
+		return ['payment' => 'pending', 'userId' => $_SESSION['user']['id'], 'uniqueUrl' => $_SESSION['uniqueUrl'], 'userPermission' => $_SESSION['userPremission']];
 
 	} 
 

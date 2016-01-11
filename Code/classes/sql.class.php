@@ -124,7 +124,15 @@ class Sql {
 				WHERE user.id = user_permission.user_id
 				AND id = '$userId'";
 
-	return	Self::arrayResult($query);
+		$arrays = Self::arrayResult($query);
+
+		foreach($arrays as $row ) {
+	       foreach($row as $k['permission_id'] => $v ) {
+	            $userPermission[] = $v;
+	       }
+		}
+		
+		return  $userPermission;
 	}
 
 

@@ -21,7 +21,7 @@ if($url_parts!= null){
 	require_once("classes/".$class.".class.php"); 
 	$data = $class::$method($url_parts);
 
-var_dump($data);
+var_dump($_SESSION['userPremission']);
 
 
 //redirectar sidan till valt destination.
@@ -32,7 +32,7 @@ var_dump($data);
 else{
 	$data= array(1,2,3);//för att inte det ska bli error
 }
-print_r($data); /*För felsökning av arrayen som skickas till Twig */
+//print_r($data); /*För felsökning av arrayen som skickas till Twig */
 
 $twig = startTwig();
 
