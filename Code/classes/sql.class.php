@@ -119,6 +119,27 @@ class Sql {
 		return $user;
 	}
 
+	public static function userPermission($userId){
+		$mysqli = DB::getInstance();
+		$query = 
+			"SELECT permission_id
+				FROM user, user_permission
+				WHERE user.id = user_permission.user_id
+				AND id = '$userId'";
+
+		$arrays = Self::arrayResult($query);
+
+		foreach($arrays as $row ) {
+	       foreach($row as $k['permission_id'] => $v ) {
+	            $userPermission[] = $v;
+	       }
+		}
+		
+		return  $userPermission;
+	}
+
+
+
 	public static function setUniqueUrl($userId) {
 		$mysqli = DB::getInstance();
 		$query = 
@@ -154,6 +175,16 @@ class Sql {
 
 		$mysqli->query($query);
 	}
+
+	public static function payPermission1($id){
+		$mysqli = DB::getInstance();
+		$query = "INSERT INTO user_permission
+			(user_id, permission_id)
+			VALUES ('$id', '1')";
+
+		$mysqli->query($query);
+	}
+
 	public static function itemDone($itemId, $checkedBy){
 		$mysqli = DB::getInstance();
 		

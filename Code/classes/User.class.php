@@ -33,6 +33,8 @@ class User{
 				$_SESSION['user']['role'] = $user['role'];		// <---------------------
 			}
 			$userId = $_SESSION['user']['id'];
+
+			$_SESSION['userPremission'] = Sql::userPermission($userId);
 //Borde kanske flytta nedan kod och ersätta med ett metodanrop som skriver ut listan istället?
 
 			if ($_SESSION['user']['role'] == 1) {				// <---------------------
@@ -44,17 +46,17 @@ class User{
 			Sql::setUniqueUrl($userId);
 			
 			if($items){
-				return ['user' => $_SESSION['user'],'items' => $items, 'categories' => Sql::category(),'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl'])];
+				return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPremission'],'items' => $items, 'categories' => Sql::category(),'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl'])];
 			}
 			else if ($user['id'])	{
-				return ['user' => $_SESSION['user']];
+				return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPremission']];
 			}
 		}
 		return [];
 	}
 
 	public static function payUp() {
-		return ['payment' => 'pending', 'userId' => $_SESSION['user']['id'], 'uniqueUrl' => $_SESSION['uniqueUrl']];
+		return ['payment' => 'pending', 'userId' => $_SESSION['user']['id'], 'uniqueUrl' => $_SESSION['uniqueUrl'], 'userPermission' => $_SESSION['userPremission']];
 
 	} 
 
@@ -68,6 +70,18 @@ class User{
 		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
 
 	}
+
+		public static function payPermission1($params) {
+
+		$mysqli = DB::getInstance();
+		$id = $params[0];
+		$idClean = $mysqli->real_escape_string($id);
+		Sql::payPermission1($idClean);
+		$uniqueUrl = $_SESSION['uniqueUrl'];
+		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
+
+	}
+
 
 //Listvy för en gäst
 	public static function guestView($params){

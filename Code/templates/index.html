@@ -20,14 +20,15 @@
 		{% include "loggedInNav.html" %}
 
 	{% if items %}
-		{% include "newWishForm.html" %}
-		{% for listName in listNames %}
-			<h2 class="listName">{{listName.listName}}</h2>	
-		{% endfor %}
-		{% for item in items %}
-			{% include "listItemForm.html" %}	
-		{% endfor %}
-		{% include "linkToSend.html" %}
+
+			{% include "newWishForm.html" %}
+			{% for listName in listNames %}
+				<h2 class="listName">{{listName.listName}}</h2>	
+			{% endfor %}
+			{% for item in items %}
+				{% include "listItemForm.html" %}	
+			{% endfor %}
+			{% include "linkToSend.html" %}
 
 	{% elseif newList%}
 		{% for listName in listNames %}
