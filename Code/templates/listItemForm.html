@@ -4,6 +4,7 @@
 		<input type='text' name="wishName" value="{{item.wish}}">
 		Beskrivning
 		<input type='text' name="wishDescription" value="{{item.description}}">
+
 		Kategori<select name="wishCategoryId">
 			{% for category in categories%}
 				{% if category.categoryName == item.categoryName %}
