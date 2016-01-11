@@ -21,7 +21,7 @@ if($url_parts!= null){
 	require_once("classes/".$class.".class.php"); 
 	$data = $class::$method($url_parts);
 
-var_dump($_SESSION['userPremission']);
+//var_dump($_SESSION['userPremission']);
 
 
 //redirectar sidan till valt destination.

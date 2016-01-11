@@ -37,7 +37,7 @@ class Sql {
 				AND item.category_id = category.id
 				AND list.unique_string = '$uniqueUrl'
 				AND list.user_id = $userId
-				ORDER BY item.prio is null, item.prio = 0, item.prio asc";
+				ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id";
 
 			return Self::arrayResult($query);
 		 }
@@ -51,7 +51,7 @@ class Sql {
 			AND item.list_unique_string = list.unique_string
 			AND list.user_id = user.id
 			AND list.unique_string = '$uniqueUrl' 
-			ORDER BY item.prio is null, item.prio = 0, item.prio asc
+			ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id
 			";		
 
 		return Self::arrayResult($query);
