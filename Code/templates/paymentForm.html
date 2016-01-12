@@ -5,8 +5,23 @@
 		<input type="submit" value="Betala!">
 	</form>
 
-		<form action="?/User/payPermission1/{{userId}}" method="post">
-		<input type="submit" value="Permission 1!">
+		<form action="?/User/payPermission/{{userId}}" method="post">
+		<input type="hidden" name="permissionType" value="1">
+		<input type="submit" value="Get all permissions">
+	</form>
+
+
+		<form action="?/User/payPermission/{{userId}}" method="post">
+		<input type="hidden" name="permissionType" value="2">
+		<input type="submit" value="Permission 2!">
+	</form>
+			<form action="?/User/payPermission/{{userId}}" method="post">
+		<input type="hidden" name="permissionType" value="3">
+		<input type="submit" value="Permission 3!">
+	</form>
+			<form action="?/User/payPermission/{{userId}}" method="post">
+		<input type="hidden" name="permissionType" value="4">
+		<input type="submit" value="Permission 4!">
 	</form>
 
 	<form action="?/wishlist/getlist/{{uniqueUrl}}" method="post">

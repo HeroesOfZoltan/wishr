@@ -33,7 +33,7 @@
 		{% include "loggedInNav.html" %}
 
 	{% if items %}
-			{% if (items | length < 19) or (2 in userPermission) or (4 in userPermission) %}
+			{% if (items | length < 20) or (1 in userPermission) or (2 in userPermission) %}
 				{% include "newWishForm.html" %}
 			{% else %}
 			 <h1>Give us money!</h1>
