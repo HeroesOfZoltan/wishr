@@ -14,16 +14,21 @@
 
 	<!-- Custom CSS -->
 	<link rel="stylesheet" href="css/custom.css">
+
+	<!-- Custom fonts -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
 </head>
 <body>
 	
 	<div class="container-fluid">
+	{% include "pageNav.html" %}
 
 	{% if payment %}
 		{% include "paymentForm.html" %}
 
 	{% elseif admin %}
-		{% include "loggedInNav.html" %}
+
 		{% include "dash.html" %}
 
 	{% elseif guestListItems %}
@@ -34,10 +39,10 @@
 	
 
 	{% elseif user%}
-		{% include "loggedInNav.html" %}
+		
 
 	{% if items %}
-			{% if (items | length < 19) or (2 in userPermission) or (4 in userPermission) %}
+			{% if (items | length < 20) or (1 in userPermission) or (2 in userPermission) %}
 				{% include "newWishForm.html" %}
 				
 			{% else %}
@@ -66,8 +71,7 @@
 		{% include "newListForm.html" %}	
 	{% endif %}
 
-	{% else %}
-		{% include "loginForm.html" %}	
+	{% else %}	
 		{% include "createUserForm.html" %}	
 	{% endif %}	
 	</div>
