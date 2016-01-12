@@ -28,18 +28,14 @@
 			{% include "paymentForm.html" %}
 
 		{% elseif admin %}
-
 			{% include "dash.html" %}
 
 		{% elseif guestListItems %}
 			{% include "guestListView.html" %}
 
-
 		{% elseif blacklist %}
 			{% include "blacklistPage.html" %}	
 		
-
-
 		{% elseif user%}
 			{% if blacklist %}
 				{% include "blacklistPage.html" %}
@@ -59,7 +55,7 @@
 							{% include "listItemForm.html" %}
 
 						{%endif%}
-						
+
 					{% endfor %}
 
 					{% include "linkToSend.html" %}

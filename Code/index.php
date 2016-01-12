@@ -22,7 +22,7 @@ if($url_parts!= null){
 	require_once("classes/".$class.".class.php"); 
 	$data = $class::$method($url_parts);
 
-var_dump($_SESSION['userPermission']);
+//var_dump($data);
 
 
 //redirectar sidan till valt destination.
@@ -58,4 +58,4 @@ function startTwig(){
 	return $twig = new Twig_Environment($loader);
 }
 
-print_r($data); /*För felsökning av arrayen som skickas till Twig */
+//print_r($data); /*För felsökning av arrayen som skickas till Twig */
