@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
 
 		<div class="navbar-header">
@@ -10,29 +10,43 @@
 		</div>
 
 		<div class="collapse navbar-collapse" id="navbar-collapse">
+			
+			<ul class="nav navbar-nav navbar-right">
 			{% if user %}
-				<form action="?/User/getBlacklist/{{uniqueUrl}}" class="navbar-form navbar-right" method='post' action=''>
-					<input type= 'submit' class="btn btn-default" name='blacklist' value='Blacklisted items!'>
-				</form>
+				<li>
+					<form action="?/User/getBlacklist/{{uniqueUrl}}" class="navbar-form navbar-right" method='post' action=''>
+						<input type= 'submit' class="btn btn-default" name='blacklist' value='Blacklisted items!'>
+					</form>
+				</li>
 
-				<form class="navbar-form navbar-right" method='post' action='index.php'>
-					<input type='submit' class="btn btn-default" name='killSession' value='Logga ut'>
-				</form>
+				<li>
+					<form class="navbar-form" method='post' action='index.php'>
+						<input type='submit' class="btn btn-default" name='killSession' value='Logga ut'>
+					</form>
+				</li>
 			{% else %}
-				<div class="dropdown navbar-right navbar-form">
-					<button class="btn btn-default dropdown-toogle" type="button" id="loginDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-						Login<i class="fa fa-caret-down"></i>
-					</button>
-					<div class="dropdown-menu row" aria-labelledby="loginDropdown">
-						<div class="col-xs-12">
-						{% include "loginForm.html" %}
-						</div>
-					</div>
-				</div>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" >
+					<button class="btn btn-default">Login&nbsp;<i class="fa fa-caret-down"></i></button>
+					</a>
+					<ul class="dropdown-menu">
+					    <li>
+					    	<form class="navbar-form" action='?/User/login' method='post'>
+					    		<div class="form-group">
+									<input class="form-control" type='text' name='email' placeholder="E-mail">
+									<input class="form-control" type='password' name='password' placeholder="Password">
+								</div>
+								<button class="btn btn-default btn-xs btn-block" type='submit' name='submitLogin' value='Log in'>Log in</button>
+							</form>
+						</li>
+					</ul>
+				</li>
 			{% endif %}
-			<form class="navbar-form navbar-right" action="?/User/payUp/" method="post">
-				<input type='submit' class="btn btn-default" name='goPro' value='Go Pro!'>
-			</form>
+				<li>
+					<form class="navbar-form" action="?/User/payUp/" method="post">
+						<button type='submit' class="btn btn-default navbar-btn" name='goPro' value='Go Pro!'>Upgrade!&nbsp;<i class="fa fa-gift"></i></button>
+					</form>
+				</li>
 		</div>
 	</div>
 </nav>
