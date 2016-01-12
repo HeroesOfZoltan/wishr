@@ -18,7 +18,7 @@ class Sql {
 		return Self::arrayResult($query);
 	}
 
-	public static function listItems($userId) {
+	/*public static function listItems($userId) {
 		$query = 
 			"SELECT *, item.id as 'itemId'
 			FROM list, item, category
@@ -27,7 +27,7 @@ class Sql {
 			AND list.user_id = '$userId'";
 
 		return Self::arrayResult($query);
-	}
+	}*/
 
 	public static function getListItems($uniqueUrl, $userId){
 		 	$query = 
