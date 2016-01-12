@@ -44,7 +44,7 @@ class Sql {
 
 	public static function listItemsGuest($uniqueUrl) {
 		$query = 
-			"SELECT item.wish, item.description, category.categoryName, item.isChecked, item.id as itemId, 
+			"SELECT item.wish, item.description, item.blacklist, category.categoryName, item.isChecked, item.id as itemId, 
 			list.unique_string as uniqueUrl, user.role, item.checked_by, item.cost
 			FROM list, item, category, user
 			WHERE category.id = item.category_id
