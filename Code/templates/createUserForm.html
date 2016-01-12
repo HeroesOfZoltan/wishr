@@ -1,20 +1,12 @@
-<div class="row">
-	<div class="col-xs-12 col-md-3">
+<!-- kanske inte behövs? -->
+<form action='?/User/createUser' method='post'>
+	
+	<input class="form-control" type='text' name='email' placeholder="E-mail">
+	<input class="form-control" type='password' name='password' placeholder="Password">
 
-		<div class="createUserForm">
-			<h3>Registrera ny användare:</h3>
-			<form action='?/User/createUser' method='post'>
-				E-mail<br>
-				<input type='text' name='email'><br>
-				Lösenord<br>
-				<input type='password' name='password'><br>
-				Förnamn<br>
-				<input type='text' name='firstname'><br>
-				Efternamn<br>
-				<input type='text' name='lastname'><br>
-				<input type='submit' value='Skapa användare'>
-			</form>
-		</div>
+	<input class="form-control" type='text' name='firstname' placeholder="Firstname">
+	<input class="form-control" type='text' name='lastname' placeholder="Lastname">
 
-	</div>
-</div>
+	<input class="btn btn-default" type='submit' value='Create'>
+
+</form>
