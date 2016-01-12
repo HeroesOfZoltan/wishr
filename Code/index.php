@@ -57,4 +57,4 @@ function startTwig(){
 	return $twig = new Twig_Environment($loader);
 }
 
-print_r($data); /*För felsökning av arrayen som skickas till Twig */
+//print_r($data); /*För felsökning av arrayen som skickas till Twig */
