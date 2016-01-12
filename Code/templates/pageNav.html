@@ -12,31 +12,29 @@
 		</div>
 
 		<div class="collapse navbar-collapse" id="navbar-collapse">
-		{% if user %}
-		
-		<form action="?/User/getBlacklist/{{uniqueUrl}}" class="navbar-form navbar-right" method='post' action=''>
-						<input type= 'submit' class="btn btn-default" name='blacklist' value='Blacklisted items!'>
-					</form>
+			{% if user %}
+				<form action="?/User/getBlacklist/{{uniqueUrl}}" class="navbar-form navbar-right" method='post' action=''>
+					<input type= 'submit' class="btn btn-default" name='blacklist' value='Blacklisted items!'>
+				</form>
 
-			<form class="navbar-form navbar-right" method='post' action=''>
-				<input type='submit' class="btn btn-default" name='killSession' value='Logga ut'>
-			</form>
-		{% else %}
-			<div class="dropdown navbar-right navbar-form">
-				<button class="btn btn-default dropdown-toogle" type="button" id="loginDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					Login <i class="fa fa-caret-down"></i>
-				</button>
-				<div class="dropdown-menu row" aria-labelledby="loginDropdown">
-					<div class="col-xs-12">
-					{% include "loginForm.html" %}
+				<form class="navbar-form navbar-right" method='post' action='index.php'>
+					<input type='submit' class="btn btn-default" name='killSession' value='Logga ut'>
+				</form>
+			{% else %}
+				<div class="dropdown navbar-right navbar-form">
+					<button class="btn btn-default dropdown-toogle" type="button" id="loginDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						Login<i class="fa fa-caret-down"></i>
+					</button>
+					<div class="dropdown-menu row" aria-labelledby="loginDropdown">
+						<div class="col-xs-12">
+						{% include "loginForm.html" %}
+						</div>
 					</div>
 				</div>
-			</div>
-		{% endif %}
+			{% endif %}
 			<form class="navbar-form navbar-right" action="?/User/payUp/" method="post">
 				<input type='submit' class="btn btn-default" name='goPro' value='Go Pro!'>
 			</form>
 		</div>
 	</div>
-
 </nav>
