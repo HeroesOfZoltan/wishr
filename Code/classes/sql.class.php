@@ -18,7 +18,7 @@ class Sql {
 		return Self::arrayResult($query);
 	}
 
-	public static function listItems($userId) {
+	/*public static function listItems($userId) {
 		$query = 
 			"SELECT *, item.id as 'itemId'
 			FROM list, item, category
@@ -27,7 +27,7 @@ class Sql {
 			AND list.user_id = '$userId'";
 
 		return Self::arrayResult($query);
-	}
+	}*/
 
 	public static function getListItems($uniqueUrl, $userId){
 		 	$query = 
@@ -122,7 +122,7 @@ class Sql {
 	public static function userPermission($userId){
 		$mysqli = DB::getInstance();
 		$query = 
-			"SELECT permission_id
+				"SELECT permission_id
 				FROM user, user_permission
 				WHERE user.id = user_permission.user_id
 				AND id = '$userId'";
@@ -137,8 +137,23 @@ class Sql {
 		
 		return  $userPermission;
 	}
+	public static function getUserGuestPermission($uniqueUrl) {
+		$query = 
+			"SELECT user_permission.permission_id
+			FROM user_permission, list
+			WHERE list.user_id = user_permission.user_id
+			AND list.unique_string = '$uniqueUrl'
+			";
 
+		$arrays =  Self::arrayResult($query);
 
+		foreach($arrays as $row ) {
+	       	foreach($row as $k['permission_id'] => $v ) {
+	            $userPermission[] = $v;
+	       }
+		}
+		return  $userPermission;
+	}
 
 	public static function setUniqueUrl($userId) {
 		$mysqli = DB::getInstance();
@@ -167,15 +182,6 @@ class Sql {
 			$_SESSION['uniqueUrl'] = $uniqueUrl;
 	}
 
-	/*public static function payTrue($id){
-		$mysqli = DB::getInstance();
-		$query = "UPDATE user
-				SET role=3
-				WHERE id=$id";
-
-		$mysqli->query($query);
-	}
-*/
 	public static function insertUserPermission($id){
 		$mysqli = DB::getInstance();
 		$permissionTypeClean = $mysqli->real_escape_string($_POST['permissionType']);
