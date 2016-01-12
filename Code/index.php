@@ -7,6 +7,7 @@ require_once("classes/sql.class.php");
 
 if(isset($_POST['killSession'])){
 	session_unset();
+
 }
 
 //anropar getUrlParts och skickar in url. url_parts blir en array med uppstyckad url. 
@@ -21,7 +22,7 @@ if($url_parts!= null){
 	require_once("classes/".$class.".class.php"); 
 	$data = $class::$method($url_parts);
 
-var_dump($_SESSION['userPermission']);
+//var_dump($data);
 
 
 //redirectar sidan till valt destination.

@@ -1,0 +1,7 @@
+{% include "newBlacklistForm.html" %}
+
+{% for item in items %}
+				{% if item.blacklist==1%}
+					{% include "blacklistItemForm.html" %}	
+				{%endif%}
+			{% endfor %}

@@ -22,49 +22,58 @@
 <body>
 	
 	<div class="container-fluid">
-	{% include "pageNav.html" %}
+		{% include "pageNav.html" %}
 
-	{% if payment %}
-		{% include "paymentForm.html" %}
+		{% if payment %}
+			{% include "paymentForm.html" %}
 
-	{% elseif admin %}
+		{% elseif admin %}
+			{% include "dash.html" %}
 
-		{% include "dash.html" %}
+		{% elseif guestListItems %}
+			{% include "guestListView.html" %}
 
-	{% elseif guestListItems %}
-		{% include "guestListView.html" %}	
+		{% elseif blacklist %}
+			{% include "blacklistPage.html" %}	
 
-	{% elseif user %}
-		
+		{% elseif user%}
+			{% if blacklist %}
+				{% include "blacklistPage.html" %}
 
-	{% if items %}
-			{% if (items | length < 20) or (1 in userPermission) or (2 in userPermission) %}
-				{% include "newWishForm.html" %}
-			{% else %}
-			 <h1>Give us money!</h1>
-			{% endif %}
+			{% elseif items %}
+					{% if (items | length < 20) or (1 in userPermission) or (2 in userPermission) %}
+						{% include "newWishForm.html" %}
 
+					{% else %}
+						{% include "paymentInfo.html" %}
+
+					{% endif %}
+						<h2 class="listName">{{listNames[0].listName}}</h2>	
+
+					{% for item in items %}
+						{% if item.blacklist != 1 %}
+							{% include "listItemForm.html" %}
+
+						{%endif%}
+
+					{% endfor %}
+
+					{% include "linkToSend.html" %}
+
+		{% elseif newList%}
 			{% for listName in listNames %}
-				<h2 class="listName">{{listName.listName}}</h2>	
+				{{listName.listName}}	
 			{% endfor %}
-			{% for item in items %}
-				{% include "listItemForm.html" %}	
-			{% endfor %}
-			{% include "linkToSend.html" %}
 
-	{% elseif newList%}
-		{% for listName in listNames %}
-			{{listName.listName}}	
-		{% endfor %}
-			{% include "newWishForm.html" %}
-			
-	{% else %}
-		{% include "newListForm.html" %}	
-	{% endif %}
+				{% include "newWishForm.html" %}
+				
+		{% else %}
+			{% include "newListForm.html" %}	
+		{% endif %}
 
-	{% else %}	
-		{% include "landingPage.html" %}	
-	{% endif %}	
+		{% else %}	
+			{% include "landingPage.html" %}	
+		{% endif %}	
 	</div>
 
 	<!-- jQuery -->
