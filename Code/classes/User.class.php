@@ -41,7 +41,7 @@ class User{
 				return ['admin' => TRUE, 'dashboard' => Sql::dashBoard()];
 				
 			}
-
+			
 			Sql::setUniqueUrl($userId);
 
 			$items = Sql::getListItems($_SESSION['uniqueUrl'], $userId);

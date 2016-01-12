@@ -1,29 +1,27 @@
-<div class="row">
-		<form method='post' action="?/wish/updateItem/{{uniqueUrl}}" role="form">
+
+		<form class="form-horizontal" method='post' action="?/wish/updateItem/{{uniqueUrl}}" role="form">
 			
 			<div class="form-group">
-				<div class="col-xs-12 col-md-4">
+				<div class="col-xs-12 col-md-12">
 					<label for="listItemName"><p>Wish:</p></label>
 				</div>
-				<div class="col-xs-12 col-md-4">
+				<div class="col-xs-12 col-md-12">
 					<input type='text' id="listItemName" class="form-control" name="wishName" value="{{item.wish}}">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<div class="col-xs-12 col-md-4">
+				<div class="col-xs-12 col-md-12">
 					<label for="listItemDescription"><p>Description:</p></label>
 				</div>
-				<div class="col-xs-12 col-md-4">
+				<div class="col-xs-12 col-md-12">
 					<input type='text' id="listItemDescription" class="form-control" name="wishDescription" value="{{item.description}}">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<div class="col-xs-12 col-md-4">
-					<label for="categoryUpdate"><p>Category:</p></label>
-				</div>
-				<div class="col-xs-12 col-md-4">
+					<label class="col-xs-12 col-md-1 control-label" for="categoryUpdate"><p>Category:</p></label>
+				<div class="col-xs-12 col-md-3">
 					<select class="form-control" id="categoryUpdate" name="wishCategoryId">
 						{% for category in categories%}
 							{% if category.categoryName == item.categoryName %}
@@ -34,19 +32,28 @@
 						{% endfor %}
 					</select>
 				</div>
+				<label class="col-xs-12 col-md-1 control-label" for="prio"><p>Priority:</p></label>
+				<div class="col-xs-12 col-md-3">
+					<input class="form-control" type="number" name="prio" value="{{item.prio}}">
+				</div>
+				<label class="col-xs-12 col-md-1 control-label" for="cost"><p>Est. cost:</p></label>
+				<div class="col-xs-12 col-md-3">
+					<input class="form-control" type="number" name="cost" value="{{item.cost}}">
+				</div>
 			</div>
 
 			<div class="form-group">
+
 				<input type='hidden' name="wishId" value='{{item.itemId}}'>
-				<input type="number" name="prio" value="{{item.prio}}">
-				<input type="number" name="cost" value="{{item.cost}}">
+
 				<div class="col-xs-4 col-md-4">
-					<input type='submit' name="updateBtn" value='Update'>
+					<input class="btn btn-default" type='submit' name="updateBtn" value='Update'>
+					<input class="btn btn-default" type='submit' name="deleteBtn" value='Delete'>
 				</div>
-				<div class="col-xs-4 col-md-4">
-					<input type='submit' name="deleteBtn" value='Delete'>
-				</div>
+
 			</div>
+
 		</form>
 </div>
+
 
