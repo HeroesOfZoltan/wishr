@@ -2,7 +2,7 @@
 
 class Wish{
 //Tvättar och sparar ner ett önskeobjekt till databasen
-	function __construct($uniqueUrl, $wish, $description, $wishCategory, $wishPrio, $wishCost){
+	function __construct($uniqueUrl, $wish, $description, $wishCategory, $wishPrio="", $wishCost="", $wishBlacklist=""){
 
 		$mysqli = DB::getInstance();
 		//$uniqueIdClean = $mysqli->real_escape_string($uniqueUrl);
@@ -11,11 +11,12 @@ class Wish{
 		$wishCategoryClean = $mysqli->real_escape_string($wishCategory);
 		$wishPrioClean = $mysqli->real_escape_string($wishPrio);
 		$wishCostClean = $mysqli->real_escape_string($wishCost);
+		$wishBlacklistClean = $mysqli->real_escape_string($wishBlacklist);
 
 		$query = 
 			"INSERT INTO item 
-			(wish, list_unique_string, description, category_id, prio, cost) 
-			VALUES ('$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryClean', '$wishPrioClean', '$wishCostClean')";
+			(wish, list_unique_string, description, category_id, prio, cost, blacklist) 
+			VALUES ('$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryClean', '$wishPrioClean', '$wishCostClean','$wishBlacklistClean')";
 		$mysqli->query($query);
 	}
 

@@ -12,7 +12,7 @@ class WishList{
 
 			Sql::insertNewList($listName, $uniqueString); //Anropar metod som sparar ny lista i databasen
 //Returnerar array som sedan renderas av Twig
-			return ['newList' => TRUE, 'listName' => $listName, 'uniqueUrl' =>$_SESSION['uniqueUrl'], 'categories' =>Sql::category(),'user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPermission']];
+			return ['newList' => TRUE, 'listName' => $listName, 'uniqueUrl' =>$_SESSION['uniqueUrl'], 'categories' =>Sql::category(),'user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPremission']];
 		}
 		return ['newList' => FALSE];
 	}
@@ -35,7 +35,17 @@ class WishList{
 		$uniqueUrl = $params[0];
 		
 		$wish = new Wish($uniqueUrl, $_POST['wishName'],$_POST['wishDescription'],$_POST['wishCategory'], $_POST['prio'],
-				$_POST['cost']);
+				$_POST['cost'], NULL);
 		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
 	}
+
+	public static function addBlacklistItem($params){
+
+		$uniqueUrl = $params[0];
+		
+		$wish = new Wish($uniqueUrl, $_POST['wishName'], $_POST['wishDescription'], $_POST['wishCategory'],NULL,
+				NULL, $_POST['blacklist']);
+		return ['redirect' => "?/User/getBlacklist/$uniqueUrl"];
+	}
+
 }

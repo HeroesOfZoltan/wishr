@@ -27,7 +27,11 @@
 		{% include "dash.html" %}
 
 	{% elseif guestListItems %}
-		{% include "guestListView.html" %}	
+		{% include "guestListView.html" %}
+
+	{% elseif blacklist %}
+		{% include "blacklistPage.html" %}	
+	
 
 	{% elseif user%}
 		{% include "loggedInNav.html" %}
@@ -35,6 +39,7 @@
 	{% if items %}
 			{% if (items | length < 19) or (2 in userPermission) or (4 in userPermission) %}
 				{% include "newWishForm.html" %}
+				
 			{% else %}
 			 <h1>Give us money!</h1>
 			{% endif %}
@@ -42,9 +47,13 @@
 			{% for listName in listNames %}
 				<h2 class="listName">{{listName.listName}}</h2>	
 			{% endfor %}
+
 			{% for item in items %}
-				{% include "listItemForm.html" %}	
+				{% if item.blacklist!=1%}
+					{% include "listItemForm.html" %}	
+				{%endif%}
 			{% endfor %}
+
 			{% include "linkToSend.html" %}
 
 	{% elseif newList%}
