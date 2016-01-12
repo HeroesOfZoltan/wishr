@@ -34,7 +34,7 @@ class User{
 			}
 			$userId = $_SESSION['user']['id'];
 
-			$_SESSION['userPremission'] = Sql::userPermission($userId);
+			$_SESSION['userPermission'] = Sql::userPermission($userId);
 //Borde kanske flytta nedan kod och ersätta med ett metodanrop som skriver ut listan istället?
 
 			if ($_SESSION['user']['role'] == 1) {				// <---------------------
@@ -59,26 +59,14 @@ class User{
 		return ['payment' => 'pending', 'userId' => $_SESSION['user']['id'], 'uniqueUrl' => $_SESSION['uniqueUrl'], 'userPermission' => $_SESSION['userPermission']];
 
 	} 
-/*
-	public static function pay($params) {
-		$mysqli = DB::getInstance();
-		$id = $params[0];
-		$idClean = $mysqli->real_escape_string($id);
-		Sql::payTrue($idClean);
-		$uniqueUrl = $_SESSION['uniqueUrl'];
-		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
-	}
-*/
-		public static function payPermission($params) {
 
+	public static function payPermission($params) {
 		$mysqli = DB::getInstance();
 		$id = $params[0];
 		$idClean = $mysqli->real_escape_string($id);
 		Sql::insertUserPermission($idClean);
 		$uniqueUrl = $_SESSION['uniqueUrl'];
-
-		$_SESSION['userPremission'] = Sql::userPermission($userId);
-
+		$_SESSION['userPermission'] = Sql::userPermission($userId);
 		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
 	}
 
@@ -90,7 +78,7 @@ class User{
 			$uniqueUrl = $params[0];
 			$uniqueUrlClean = $mysqli->real_escape_string($uniqueUrl);
 
-			return ['guestListItems' => Sql::listItemsGuest($uniqueUrlClean), 'listNames'=> Sql::listName($uniqueUrlClean)];
+			return ['guestListItems' => Sql::listItemsGuest($uniqueUrlClean), 'listNames'=> Sql::listName($uniqueUrlClean), 'userpermission' => Sql::getUserGuestPermission($uniqueUrlClean)];
 		}
 
 		public static function itemDone($params) {
