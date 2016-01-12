@@ -1,24 +1,50 @@
-<div class="listItemForm">
-	<form  method='post' action="?/wish/updateItem/{{uniqueUrl}}">
-		Önskan
-		<input type='text' name="wishName" value="{{item.wish}}">
-		Beskrivning
-		<input type='text' name="wishDescription" value="{{item.description}}">
+<div class="row">
+		<form method='post' action="?/wish/updateItem/{{uniqueUrl}}" role="form">
+			
+			<div class="form-group">
+				<div class="col-xs-12 col-md-4">
+					<label for="listItemName"><p>Wish:</p></label>
+				</div>
+				<div class="col-xs-12 col-md-4">
+					<input type='text' id="listItemName" class="form-control" name="wishName" value="{{item.wish}}">
+				</div>
+			</div>
 
-		Kategori<select name="wishCategoryId">
-			{% for category in categories%}
-				{% if category.categoryName == item.categoryName %}
-					<option value='{{category.id}}' selected>{{category.categoryName}}</option>
-​
-				{% else %}
-					<option value='{{category.id}}'>{{category.categoryName}}</option>
-​
-				{% endif %}
-			{% endfor %}
-		</select>
-		<input type='hidden' name="wishId" value='{{item.itemId}}'>
-		<input type='submit' name="updateBtn" value='Uppdatera'>
-		<input type='submit' name="deleteBtn" value='Tabort'>
-	</form>
+			<div class="form-group">
+				<div class="col-xs-12 col-md-4">
+					<label for="listItemDescription"><p>Description:</p></label>
+				</div>
+				<div class="col-xs-12 col-md-4">
+					<input type='text' id="listItemDescription" class="form-control" name="wishDescription" value="{{item.description}}">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-xs-12 col-md-4">
+					<label for="categoryUpdate"><p>Category:</p></label>
+				</div>
+				<div class="col-xs-12 col-md-4">
+					<select class="form-control" id="categoryUpdate" name="wishCategoryId">
+						{% for category in categories%}
+							{% if category.categoryName == item.categoryName %}
+								<option value='{{category.id}}' selected>{{category.categoryName}}</option>
+							{% else %}
+								<option value='{{category.id}}'>{{category.categoryName}}</option>
+							{% endif %}
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<input type='hidden' name="wishId" value='{{item.itemId}}'>
+				<div class="col-xs-4 col-md-4">
+					<input type='submit' name="updateBtn" value='Update'>
+				</div>
+				<div class="col-xs-4 col-md-4">
+					<input type='submit' name="deleteBtn" value='Delete'>
+				</div>
+			</div>
+		</form>
 </div>
 
