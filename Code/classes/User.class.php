@@ -68,7 +68,7 @@ class User{
 		$uniqueUrl = $params[0];
 
 		$userId = $_SESSION['user']['id'];
-		return ['blacklist' => TRUE, 'items' => Sql::getListItems($uniqueUrl, $userId), 'userId' => $_SESSION['user']['id'], 'uniqueUrl' => $_SESSION['uniqueUrl'], 'userPermission' => $_SESSION['userPermission'], 'categories' =>Sql::category(), Sql::getListItems($uniqueUrl, $userId),];
+		return ['blacklist' => TRUE, 'items' => Sql::getListItems($uniqueUrl, $userId), 'user' => $_SESSION['user']['id'], 'uniqueUrl' => $_SESSION['uniqueUrl'], 'userPermission' => $_SESSION['userPermission'], 'categories' =>Sql::category(), Sql::getListItems($uniqueUrl, $userId),];
 
 		return ['redirect' => "?/User/getBlacklist/$userId"];
 	} 
