@@ -61,14 +61,12 @@ class User{
 	} 
 
 	public static function pay($params) {
-
 		$mysqli = DB::getInstance();
 		$id = $params[0];
 		$idClean = $mysqli->real_escape_string($id);
 		Sql::payTrue($idClean);
 		$uniqueUrl = $_SESSION['uniqueUrl'];
 		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
-
 	}
 
 		public static function payPermission1($params) {
@@ -79,7 +77,6 @@ class User{
 		Sql::payPermission1($idClean);
 		$uniqueUrl = $_SESSION['uniqueUrl'];
 		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
-
 	}
 
 
