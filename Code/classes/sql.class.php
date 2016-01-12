@@ -36,7 +36,8 @@ class Sql {
 				WHERE list.unique_string = item.list_unique_string
 				AND item.category_id = category.id
 				AND list.unique_string = '$uniqueUrl'
-				AND list.user_id = $userId";
+				AND list.user_id = $userId
+				ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id";
 
 			return Self::arrayResult($query);
 		 }
@@ -44,12 +45,14 @@ class Sql {
 	public static function listItemsGuest($uniqueUrl) {
 		$query = 
 			"SELECT item.wish, item.description, category.categoryName, item.isChecked, item.id as itemId, 
-			list.unique_string as uniqueUrl, user.role, item.checked_by
+			list.unique_string as uniqueUrl, user.role, item.checked_by, item.cost
 			FROM list, item, category, user
 			WHERE category.id = item.category_id
 			AND item.list_unique_string = list.unique_string
 			AND list.user_id = user.id
-			AND list.unique_string = '$uniqueUrl' ";		
+			AND list.unique_string = '$uniqueUrl' 
+			ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id
+			";		
 
 		return Self::arrayResult($query);
 	}
@@ -116,6 +119,27 @@ class Sql {
 		return $user;
 	}
 
+	public static function userPermission($userId){
+		$mysqli = DB::getInstance();
+		$query = 
+			"SELECT permission_id
+				FROM user, user_permission
+				WHERE user.id = user_permission.user_id
+				AND id = '$userId'";
+
+		$arrays = Self::arrayResult($query);
+
+		foreach($arrays as $row ) {
+	       foreach($row as $k['permission_id'] => $v ) {
+	            $userPermission[] = $v;
+	       }
+		}
+		
+		return  $userPermission;
+	}
+
+
+
 	public static function setUniqueUrl($userId) {
 		$mysqli = DB::getInstance();
 		$query = 
@@ -151,6 +175,16 @@ class Sql {
 
 		$mysqli->query($query);
 	}
+
+	public static function payPermission1($id){
+		$mysqli = DB::getInstance();
+		$query = "INSERT INTO user_permission
+			(user_id, permission_id)
+			VALUES ('$id', '1')";
+
+		$mysqli->query($query);
+	}
+
 	public static function itemDone($itemId, $checkedBy){
 		$mysqli = DB::getInstance();
 		

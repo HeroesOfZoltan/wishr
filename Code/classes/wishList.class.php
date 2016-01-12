@@ -12,7 +12,7 @@ class WishList{
 
 			Sql::insertNewList($listName, $uniqueString); //Anropar metod som sparar ny lista i databasen
 //Returnerar array som sedan renderas av Twig
-			return ['newList' => TRUE, 'listName' => $listName, 'uniqueUrl' =>$_SESSION['uniqueUrl'], 'categories' =>Sql::category(),'user' => $_SESSION['user']];
+			return ['newList' => TRUE, 'listName' => $listName, 'uniqueUrl' =>$_SESSION['uniqueUrl'], 'categories' =>Sql::category(),'user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPremission']];
 		}
 		return ['newList' => FALSE];
 	}
@@ -25,7 +25,7 @@ class WishList{
 
 		$userId = $_SESSION['user']['id'];
 
-		return ['newList' => TRUE, 'items' => Sql::getListItems($uniqueUrl, $userId), 'categories' => Sql::category(),'user' => $_SESSION['user'], 'uniqueUrl' => $uniqueUrl, 'listNames'=> Sql::listName($uniqueUrl)];
+		return ['newList' => TRUE, 'items' => Sql::getListItems($uniqueUrl, $userId), 'categories' => Sql::category(),'user' => $_SESSION['user'], 'uniqueUrl' => $uniqueUrl, 'listNames'=> Sql::listName($uniqueUrl), 'userPermission' => $_SESSION['userPremission']];
 	}
 
 
@@ -34,8 +34,8 @@ class WishList{
 
 		$uniqueUrl = $params[0];
 		
-		$wish = new Wish($uniqueUrl, $_POST['wishName'],$_POST['wishDescription'],$_POST['wishCategory'] );
+		$wish = new Wish($uniqueUrl, $_POST['wishName'],$_POST['wishDescription'],$_POST['wishCategory'], $_POST['prio'],
+				$_POST['cost']);
 		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
 	}
-
 }
