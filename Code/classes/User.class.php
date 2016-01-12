@@ -12,9 +12,9 @@ class User{
 			$lastnameClean = $mysqli->real_escape_string($_POST['lastname']);
 
 			$password = crypt($passwordClean,'$2a$'.sha1($usernameClean));
-			Sql::insertUser($password, $usernameClean, $firstnameClean, $lastnameClean, 2);
+			$message = Sql::insertUser($password, $usernameClean, $firstnameClean, $lastnameClean, 2);
 			}	
-		return [];			
+		return ['message' => $message];			
 	}
 
 //Hanterar inloggning

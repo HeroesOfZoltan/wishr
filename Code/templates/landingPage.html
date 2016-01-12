@@ -25,7 +25,13 @@
 			<input class="form-control" type='text' name='lastname' placeholder="Lastname">
 		</div>
 	</div>
+	{%if message == 1%}
+	<div class="alert alert-danger col-md-offset-2 col-md-8" role="alert">User already exists!</div>
+	{%elseif message == 2%}
+	<div class="alert alert-success col-md-offset-2 col-md-8" role="alert">New user created! Please log in to start your list.</div>
+	{%else%}
 
+	{%endif%}
 	<div class="form-group">
 		<div class="col-xs-12 col-md-offset-2 col-md-8">
 			<input class="btn btn-default btn-block" type='submit' value='Create'>
