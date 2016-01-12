@@ -46,20 +46,20 @@ class User{
 			Sql::setUniqueUrl($userId);
 			
 			if($items){
-				return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPremission'],'items' => $items, 'categories' => Sql::category(),'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl'])];
+				return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPermission'],'items' => $items, 'categories' => Sql::category(),'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl'])];
 			}
 			else if ($user['id'])	{
-				return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPremission']];
+				return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPermission']];
 			}
 		}
 		return [];
 	}
 
 	public static function payUp() {
-		return ['payment' => 'pending', 'userId' => $_SESSION['user']['id'], 'uniqueUrl' => $_SESSION['uniqueUrl'], 'userPermission' => $_SESSION['userPremission']];
+		return ['payment' => 'pending', 'userId' => $_SESSION['user']['id'], 'uniqueUrl' => $_SESSION['uniqueUrl'], 'userPermission' => $_SESSION['userPermission']];
 
 	} 
-
+/*
 	public static function pay($params) {
 
 		$mysqli = DB::getInstance();
@@ -70,14 +70,17 @@ class User{
 		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
 
 	}
-
-		public static function payPermission1($params) {
+*/
+		public static function payPermission($params) {
 
 		$mysqli = DB::getInstance();
 		$id = $params[0];
 		$idClean = $mysqli->real_escape_string($id);
-		Sql::payPermission1($idClean);
+		Sql::insertUserPermission($idClean);
 		$uniqueUrl = $_SESSION['uniqueUrl'];
+
+		$_SESSION['userPremission'] = Sql::userPermission($userId);
+
 		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
 
 	}

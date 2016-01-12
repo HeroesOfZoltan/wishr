@@ -167,7 +167,7 @@ class Sql {
 			$_SESSION['uniqueUrl'] = $uniqueUrl;
 	}
 
-	public static function payTrue($id){
+	/*public static function payTrue($id){
 		$mysqli = DB::getInstance();
 		$query = "UPDATE user
 				SET role=3
@@ -175,12 +175,14 @@ class Sql {
 
 		$mysqli->query($query);
 	}
-
-	public static function payPermission1($id){
+*/
+	public static function insertUserPermission($id){
 		$mysqli = DB::getInstance();
+		$permissionTypeClean = $mysqli->real_escape_string($_POST['permissionType']);
+		$idClean = $mysqli->real_escape_string($id);
 		$query = "INSERT INTO user_permission
 			(user_id, permission_id)
-			VALUES ('$id', '1')";
+			VALUES ('$idClean', '$permissionTypeClean')";
 
 		$mysqli->query($query);
 	}
