@@ -27,49 +27,40 @@ class Wish{
 
 		$uniqueUrl = $params[0];
 
+		$wishClean = $mysqli->real_escape_string($_POST['wishName']);
+		$descriptionClean = $mysqli->real_escape_string($_POST['wishDescription']);
+		$wishIdClean = $mysqli->real_escape_string($_POST['wishId']);
+		$wishCategoryIdClean = $mysqli->real_escape_string($_POST['wishCategoryId']);
+		$wishPrioClean = $mysqli->real_escape_string($_POST['prio']);
+		$wishCostClean = $mysqli->real_escape_string($_POST['cost']);
+
 		if(isset($_POST['updateBtn'])){
-			$wishNameClean = $mysqli->real_escape_string($_POST['wishName']);
-			$wishDescriptionClean = $mysqli->real_escape_string($_POST['wishDescription']);
-			$wishIdClean = $mysqli->real_escape_string($_POST['wishId']);
-			$wishCategoryIdClean = $mysqli->real_escape_string($_POST['wishCategoryId']);
-			$wishPrioClean = $mysqli->real_escape_string($_POST['prio']);
-			$wishCostClean = $mysqli->real_escape_string($_POST['cost']);
 
-
-			
-
-			$query = "UPDATE item
-				SET wish='$wishNameClean', description='$wishDescriptionClean', category_id ='$wishCategoryIdClean',
+			$query = 
+					"UPDATE item
+					SET wish='$wishClean', description='$descriptionClean', category_id ='$wishCategoryIdClean',
 					prio='$wishPrioClean', cost='$wishCostClean'
-				WHERE id = $wishIdClean
-			";
+					WHERE id = $wishIdClean
+					";
 			
 			$mysqli->query($query);
-
 		}
 
 		if(isset($_POST['deleteBtn'])){
-			$wishClean = $mysqli->real_escape_string($_POST['wishName']);
-			$descriptionClean = $mysqli->real_escape_string($_POST['wishDescription']);
-			$wishCategoryClean = $mysqli->real_escape_string($_POST['wishCategoryId']);
-			$wishIdClean = $mysqli->real_escape_string($_POST['wishId']);
-			$uniqueUrlClean = $mysqli->real_escape_string($uniqueUrl);
 
 			$query = 
-				"INSERT INTO deletedItem
-				(id, wish, list_unique_string, description, category_id) 
-				VALUES ('$wishIdClean','$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryClean')
-				";
+					"INSERT INTO deletedItem
+					(id, wish, list_unique_string, description, category_id) 
+					VALUES ('$wishIdClean','$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryIdClean')
+					";
 			$mysqli->query($query);
 
 			$query = 
-				"DELETE FROM item
+					"DELETE FROM item
 					WHERE item.id = $wishIdClean";
+
 			$mysqli->query($query);
-
-
-				
 		}
-return ['redirect' => "?/wishList/getList/$uniqueUrl"];
+		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
 	}
 }
