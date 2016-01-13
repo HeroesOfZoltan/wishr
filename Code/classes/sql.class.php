@@ -193,7 +193,7 @@ class Sql {
 		$idClean = $mysqli->real_escape_string($id);
 		$query = "INSERT INTO user_permission
 			(user_id, permission_id)
-			VALUES ('$idClean', '$permissionTypeClean')";
+			VALUES ($idClean, $permissionTypeClean)";
 
 		$mysqli->query($query);
 	}
