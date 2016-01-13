@@ -31,12 +31,13 @@
 		{% elseif guestListItems %}
 			{% include "guestListView.html" %}
 
-		{% elseif blacklist %}
-			{% include "blacklistPage.html" %}	
-
 		{% elseif user%}
 			{% if blacklist %}
-				{% include "blacklistPage.html" %}
+				{% if (1 in userPermission) or (2 in userPermission) %}
+					{% include "blacklistPage.html" %}
+				{% else %}
+					{% include "paymentForm.html" %}
+				{%endif%}
 
 			{% elseif items %}
 					{% if (items | length < 20) or (1 in userPermission) or (2 in userPermission) %}
@@ -59,9 +60,7 @@
 					{% include "linkToSend.html" %}
 
 		{% elseif newList%}
-			{% for listName in listNames %}
-				{{listName.listName}}	
-			{% endfor %}
+			<h2 class="listName">{{listNames[0].listName}}</h2>
 
 				{% include "newWishForm.html" %}
 				

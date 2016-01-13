@@ -51,7 +51,7 @@ class User{
 				return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPermission'],'items' => $items, 'categories' => Sql::category(),'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl'])];
 			}
 			else if ($user['id'])	{
-				return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPermission']];
+				return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPermission'], 'newList' => $_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl'])];
 			}
 		}
 		return [];
@@ -68,9 +68,9 @@ class User{
 		$uniqueUrl = $params[0];
 
 		$userId = $_SESSION['user']['id'];
-		return ['blacklist' => TRUE, 'items' => Sql::getListItems($uniqueUrl, $userId), 'user' => $_SESSION['user']['id'], 'uniqueUrl' => $_SESSION['uniqueUrl'], 'userPermission' => $_SESSION['userPermission'], 'categories' =>Sql::category(), Sql::getListItems($uniqueUrl, $userId),];
+		return ['blacklist' => TRUE, 'items' => Sql::getListItems($uniqueUrl, $userId), 'user' => $_SESSION['user'],'userId' => $_SESSION['user']['id'], 'uniqueUrl' => $_SESSION['uniqueUrl'], 'userPermission' => $_SESSION['userPermission'], 'categories' =>Sql::category(), Sql::getListItems($uniqueUrl, $userId),];
 
-		return ['redirect' => "?/User/getBlacklist/$userId"];
+		//return ['redirect' => "?/User/getBlacklist/$userId"];
 	} 
 
 
@@ -80,6 +80,7 @@ class User{
 		$idClean = $mysqli->real_escape_string($id);
 		Sql::insertUserPermission($idClean);
 		$uniqueUrl = $_SESSION['uniqueUrl'];
+		$userId = $_SESSION['user']['id'];
 		$_SESSION['userPermission'] = Sql::userPermission($userId);
 		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
 	}
