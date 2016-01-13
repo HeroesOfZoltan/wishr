@@ -42,3 +42,62 @@ td {
 .doneList {
 	text-decoration: line-through;
 }
+
+/* ---------- Style for paymentForm ---------- */
+.priceField {
+	/*border: 2px solid #272822;*/
+	border-radius: 10px; 
+	padding: 8px;
+	box-shadow: 5px 6px 10px #272822;
+	color: #f0f0f0;
+	margin-top: 15px;
+}
+.priceField button {
+	box-shadow: 2px 3px 10px #272822;
+}
+@media all and (min-width: 990px) {
+	.priceField {
+		width: 110%;
+		min-height: 300px;
+		margin-top: 50px;
+		margin-bottom: 100px;
+	}
+	.priceField p {
+		min-height: 100px;
+		max-height: 200px;
+	}
+	.priceField button {
+		margin-top: 10px;
+	}
+}
+.priceField h4 {
+	font-size: 2.0em;
+	font-weight: 800;
+	letter-spacing: 0.05em;
+	height: 70px;
+	text-shadow: 2px 3px 5px #272822;
+}
+.priceField h1 {
+	font-size: 4.0em;
+	font-weight: 800;
+	text-shadow: 2px 3px 5px #272822;
+}
+#plan_pro{
+	background-color: #8a74b9;
+}
+#plan_2 {
+
+	background-color: #4cb992; 
+}
+#plan_3 {
+	background-color: #3499e0;
+}
+#plan_4 {
+	background-color: #efb57c;
+}
+/* ------------------------------------------ */
+.footer {
+	border-top: 1px solid #e7e7e7;
+	padding-top: 10px;
+	margin-top: 25px;
+}
