@@ -27,14 +27,14 @@
 								<h3>Est. cost: {{guestListItem.cost}}</h3>
 							</div>
 							<div class="col-xs-12">
-								<h3>Search for item: {% include "searchBtns.html" %}</h3>
+								<h3>Search for {{guestListItem.wish}}: {% include "searchBtns.html" %}</h3>
 							</div>
 
 							{% if (1 in userpermission) or (3 in userpermission) %}
 								<div class="col-xs-12">
 									<form class="form-inline" action='?/User/itemDone/{{guestListItem.uniqueUrl}}' method='post'>
 										<input class="form-control" type="text" name="checked_by" placeholder="Done by.."> 
-										<button class="btn btn-default" type="submit" name="itemDone">Done</button>
+											<button class="btn btn-default" type="submit" name="itemDone"><i class="fa fa-check-circle"></i></button>
 										<input type="hidden" name="itemId" value="{{guestListItem.itemId}}">
 									</form>
 								</div>
@@ -53,7 +53,7 @@
 {% if (1 in userpermission) or (3 in userpermission) %}
 	<div class="row">
 		<div class="col-xs-12 text-center">
-			<h2>Done list:</h2>
+			<h1>Done list:</h1>
 		</div>
 
 		{% for guestListItem in guestListItems %}
@@ -63,23 +63,22 @@
 				</div>
 
 				<div class="col-xs-6">
-					<h3>{{guestListItem.checked_by}}</h3>
-				</div>
-
-				<div class="col-xs-6">
-					<form action='?/User/unDoneItem/{{guestListItem.uniqueUrl}}' method='post'>
-						<input class="btn btn-default" type="submit" name="itemUnDone" value="unDone"> 
-						<input type="hidden" name="itemId" value="{{guestListItem.itemId}}">
-					</form>
+					<h3>
+						<form action='?/User/unDoneItem/{{guestListItem.uniqueUrl}}' method='post'>
+							{{guestListItem.checked_by}} 
+							<button class="btn btn-default" type="submit" name="itemId" value="{{guestListItem.itemId}}"><i class="fa fa-times-circle"></i></button>
+						</form>
+					</h3>
 				</div>
 			{% endif %}
 		{% endfor %}
 	</div>
 
 <!-- black list -->
+
 	<div class="row">
 		<div class="col-xs-12 text-center">
-			<h2>Black list:</h2>
+			<h1>Black list:</h1>
 		</div>
 
 		{% for guestListItem in guestListItems %}
