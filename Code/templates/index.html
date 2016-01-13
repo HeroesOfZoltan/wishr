@@ -47,13 +47,13 @@
 
 					{% include "linkToSend.html" %}
 
-		{% elseif newList%}
-			<h2 class="listName">{{listNames[0].listName}}</h2>
+			{% elseif newList%}
+				<h2 class="listName">{{listNames[0].listName}}</h2>
 
-				{% include "newWishForm.html" %}
-				
-		{% else %}
-			{% include "newListForm.html" %}	
+					{% include "newWishForm.html" %}
+					
+			{% else %}
+				{% include "newListForm.html" %}	
 		{% endif %}
 
 		{% else %}	
