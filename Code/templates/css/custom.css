@@ -54,10 +54,8 @@ td {
 	text-decoration: line-through;
 }
 
-/* Reset classes */
-.navbar-default .navbar-form {
-    border: none;
-}
+
+.navbar-nav {}
 
 /* For small-screens / col-xs-12 */
 @media (max-width: 767px) {
@@ -72,4 +70,14 @@ td {
 	    display: block;
 	    padding: 10px 15px;
 	}
+
+	/* Reset classes */
+	.navbar-default .navbar-form {
+	    border: none;
+	}
+
+	.navbar-nav {
+		margin: 0;
+	}
+
 }
