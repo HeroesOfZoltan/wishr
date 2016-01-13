@@ -92,7 +92,7 @@ class Sql {
 		$exists = Self::checkUserName($email);
 		
 		if($exists === TRUE){
-			echo 'User already exists!';
+			return 1;
 		}
 		else {
 			$query = 
@@ -101,7 +101,7 @@ class Sql {
 				VALUES ('$pass','$email','$first','$last','$role')";
 			$mysqli->query($query);
 
-			echo "New user $email created! Please log in to start your list.";
+			return 2;
 		}
 	}
 	

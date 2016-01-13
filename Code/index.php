@@ -22,7 +22,7 @@ if($url_parts!= null){
 	require_once("classes/".$class.".class.php"); 
 	$data = $class::$method($url_parts);
 
-//var_dump($data);
+var_dump($data);
 
 
 //redirectar sidan till valt destination.
