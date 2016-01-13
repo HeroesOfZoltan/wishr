@@ -24,12 +24,8 @@ class WishList{
 		$uniqueUrl = $params[0];
 
 		$userId = $_SESSION['user']['id'];
-		if($uniqueUrl){
-			return ['newList' => TRUE, 'items' => Sql::getListItems($uniqueUrl, $userId), 'categories' => Sql::category(),'user' => $_SESSION['user'], 'uniqueUrl' => $uniqueUrl, 'listNames'=> Sql::listName($uniqueUrl), 'userPermission' => $_SESSION['userPermission']];
-		}	
-		else{
-			return ['user' => $_SESSION['user'], 'uniqueUrl' => $uniqueUrl, 'userPermission' => $_SESSION['userPermission']];
-		}
+
+		return ['newList' => TRUE, 'items' => Sql::getListItems($uniqueUrl, $userId), 'categories' => Sql::category(),'user' => $_SESSION['user'], 'uniqueUrl' => $uniqueUrl, 'listNames'=> Sql::listName($uniqueUrl), 'userPermission' => $_SESSION['userPermission']];
 	}
 
 
@@ -51,5 +47,15 @@ class WishList{
 				NULL, $_POST['blacklist']);
 		return ['redirect' => "?/User/getBlacklist/$uniqueUrl"];
 	}
+
+	public static function changeListName($params){
+		$mysqli = DB::getInstance();
+		$uniqueUrl = $params[0];
+		$newListNameClean= $mysqli->real_escape_string($_POST['newListName']);
+		Sql::updateListName($uniqueUrl, $newListNameClean);
+
+		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
+	}
+
 
 }

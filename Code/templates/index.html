@@ -35,7 +35,7 @@
 						{% include "paymentInfo.html" %}
 
 					{% endif %}
-						<h2 class="listName">{{listNames[0].listName}}</h2>	
+						{% include "listName.html" %}
 
 					{% for item in items %}
 						{% if item.blacklist != 1 %}
@@ -48,12 +48,9 @@
 					{% include "linkToSend.html" %}
 
 			{% elseif newList%}
-				<h2 class="listName">{{listNames[0].listName}}</h2>
+				{% include "listName.html" %}
 
 					{% include "newWishForm.html" %}
-					
-			{% else %}
-				{% include "newListForm.html" %}	
 		{% endif %}
 
 		{% else %}	

@@ -24,9 +24,7 @@ body {
 	padding: 8px;
 	border: 4px dotted lightsteelblue;
 }
-.listName {
-	text-align: center;
-}
+
 .listItemForm {
 	margin-top: 15px;
 	border: 1px solid black;
@@ -106,6 +104,31 @@ td {
 }
 #plan_4 {
 	background-color: #efb57c;
+}
+
+#listName{
+	font-size: 30px;
+	font-color:pink;
+    padding: 5px;
+    border: 0px;
+
+    width: 300px;
+    border-radius: 4px;
+    text-align: right;
+
+}
+
+#listName::-webkit-input-placeholder  {
+  color: black;
+
+}
+
+.listName {
+	font-size: 30px;
+}
+
+.btnInvisible{
+	display: none;
 }
 /* ---------- Style for footer ---------- */
 .footer {

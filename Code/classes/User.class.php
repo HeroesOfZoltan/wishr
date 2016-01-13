@@ -13,7 +13,12 @@ class User{
 
 			$password = crypt($passwordClean,'$2a$'.sha1($usernameClean));
 			$message = Sql::insertUser($password, $usernameClean, $firstnameClean, $lastnameClean, 2);
-			}	
+			}
+
+			$userId = $mysqli->insert_id;
+			$uniqueString = substr(md5(microtime()),rand(0,26),5); //genererar unik sträng på 5 tecken.
+			Sql::insertNewList($firstnameClean, $uniqueString, $userId); //Anropar metod som sparar ny lista i databasen
+
 		return ['message' => $message];			
 	}
 
@@ -51,8 +56,11 @@ class User{
 				return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPermission'],'items' => $items, 'categories' => Sql::category(),'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl'])];
 			}
 			else if ($user['id'])	{
-				return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPermission'], 'newList' => $_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl'])];
+				return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPermission'], 'newList' => $_SESSION['uniqueUrl'],'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl']),'categories' =>Sql::category()];
 			}
+
+
+		
 		}
 		return [];
 	}
@@ -110,4 +118,5 @@ class User{
 
 			return ['redirect' => "?/User/guestView/$uniqueUrl"];
 		}
+
 }
