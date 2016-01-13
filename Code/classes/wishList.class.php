@@ -24,8 +24,12 @@ class WishList{
 		$uniqueUrl = $params[0];
 
 		$userId = $_SESSION['user']['id'];
-
-		return ['newList' => TRUE, 'items' => Sql::getListItems($uniqueUrl, $userId), 'categories' => Sql::category(),'user' => $_SESSION['user'], 'uniqueUrl' => $uniqueUrl, 'listNames'=> Sql::listName($uniqueUrl), 'userPermission' => $_SESSION['userPermission']];
+		if($uniqueUrl){
+			return ['newList' => TRUE, 'items' => Sql::getListItems($uniqueUrl, $userId), 'categories' => Sql::category(),'user' => $_SESSION['user'], 'uniqueUrl' => $uniqueUrl, 'listNames'=> Sql::listName($uniqueUrl), 'userPermission' => $_SESSION['userPermission']];
+		}	
+		else{
+			return ['user' => $_SESSION['user'], 'uniqueUrl' => $uniqueUrl, 'userPermission' => $_SESSION['userPermission']];
+		}
 	}
 
 
