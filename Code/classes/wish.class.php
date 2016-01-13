@@ -62,7 +62,7 @@ class Wish{
 			$mysqli->query($query);
 		}
 
-		
+
 		if(isset($_POST['toBlacklist'])){
 			return ['redirect' => "?/User/getBlacklist/$uniqueUrl"];
 		}
