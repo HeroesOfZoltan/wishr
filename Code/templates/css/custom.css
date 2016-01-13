@@ -1,6 +1,17 @@
 body {
-	margin-top: 70px;
+	margin-top: 70px; /* For navbar */
 }
+
+/* General classes */
+.paddingRight15px {
+	padding-right: 15px;
+}
+
+.paddingRight0 {
+	padding-right: 0;
+}
+
+/* Specific classes */
 .dashboard {
 	background-color: tomato;
 	width: 75%;
@@ -41,4 +52,24 @@ td {
 }
 .doneList {
 	text-decoration: line-through;
+}
+
+/* Reset classes */
+.navbar-default .navbar-form {
+    border: none;
+}
+
+/* For small-screens / col-xs-12 */
+@media (max-width: 767px) {
+	.dropdown-menu>li>form {
+	    padding: 3px 20px;
+	    margin: 8px 0;
+	    border: none;
+	}
+
+	.nav>li>button {
+	    position: relative;
+	    display: block;
+	    padding: 10px 15px;
+	}
 }
