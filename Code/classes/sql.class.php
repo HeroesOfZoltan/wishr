@@ -125,18 +125,21 @@ class Sql {
 				"SELECT permission_id
 				FROM user, user_permission
 				WHERE user.id = user_permission.user_id
-				AND id = '$userId'";
+				AND id = $userId";
 
 		$arrays = Self::arrayResult($query);
 
-		foreach($arrays as $row ) {
-	       foreach($row as $k['permission_id'] => $v ) {
-	            $userPermission[] = $v;
-	       }
+		if($arrays){
+			foreach($arrays as $row ) {
+		       foreach($row as $k['permission_id'] => $v ) {
+		            $userPermission[] = $v;
+		       }
+			}
 		}
 		
 		return  $userPermission;
 	}
+
 	public static function getUserGuestPermission($uniqueUrl) {
 		$query = 
 			"SELECT user_permission.permission_id
@@ -147,11 +150,13 @@ class Sql {
 
 		$arrays =  Self::arrayResult($query);
 
+		if($arrays){
 		foreach($arrays as $row ) {
 	       	foreach($row as $k['permission_id'] => $v ) {
 	            $userPermission[] = $v;
 	       }
 		}
+	}
 		return  $userPermission;
 	}
 
