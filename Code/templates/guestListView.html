@@ -5,48 +5,40 @@
 </div>
 
 <div class="row">
+<!-- wish list: -->
 	{% for guestListItem in guestListItems %}
-		{% if guestListItem.blacklist != 1%}
+		{% if guestListItem.blacklist != 1 %}
 			{% if guestListItem.isChecked == NULL %}
-				<div class="col-xs-12" data-toggle="collapse" data-target="#wish{{guestListItem.itemId}}" >
+
+
+				<div class="col-xs-12" data-toggle="collapse" data-target="#wish{{guestListItem.itemId}}">
+
 					<h2>{{guestListItem.wish}}</h2>
 				</div>
 				<div class="col-xs-12">
 					<div id="wish{{guestListItem.itemId}}" class="collapse">
 						<div class="row">
 							<div class="col-xs-12">
-								<h3>Beskrivning:</h3>
-								<p>{{guestListItem.description}}</p>
+								<h3>Description: {{guestListItem.description}}</h3>
+							</div>
+							<div class="col-xs-6">
+								<h3>Category: {{guestListItem.categoryName}}</h3>
 							</div>
 
 							<div class="col-xs-6">
-								<h3>Kategori:</h3>
-								<p>{{guestListItem.categoryName}}</p>
-							</div>		
-							<div class="col-xs-6">
-								<h3>Cost:</h3>
-								<p>{{guestListItem.cost}}</p>
+								<h3>Est. cost: {{guestListItem.cost}}</h3>
 							</div>
-							<div class="col-xs-6">
-								<h3>Search for item:</h3>
-								{% include "searchBtns.html" %}
+							<div class="col-xs-12">
+								<h3>Search for {{guestListItem.wish}}: {% include "searchBtns.html" %}</h3>
 							</div>
 
 							{% if (1 in userpermission) or (3 in userpermission) %}
-								<div class="col-xs-6">
-									<form action='?/User/itemDone/{{guestListItem.uniqueUrl}}' method='post'>
-										<input type="submit" name="itemDone" value="Done"> 
-										<input type="text" name="checked_by" placeholder="Done by.."> 
+								<div class="col-xs-12">
+									<form class="form-inline" action='?/User/itemDone/{{guestListItem.uniqueUrl}}' method='post'>
+										<input class="form-control" type="text" name="checked_by" placeholder="Done by.."> 
+											<button class="btn btn-default" type="submit" name="itemDone"><i class="fa fa-check-circle"></i></button>
 										<input type="hidden" name="itemId" value="{{guestListItem.itemId}}">
 									</form>
-								</div>
-								<div class="col-xs-6">
-									<h3>Kategori:</h3>
-									<p>{{guestListItem.categoryName}}</p>
-								</div>		
-								<div class="col-xs-6">
-									<h3>Cost:</h3>
-									<p>{{guestListItem.cost}}</p>
 								</div>
 							{% endif %}
 						</div>
@@ -57,10 +49,13 @@
 	{% endfor %}
 </div>
 
+
+<!-- done list -->
+
 {% if (1 in userpermission) or (3 in userpermission) %}
 	<div class="row">
 		<div class="col-xs-12 text-center">
-			<h2>Done list:</h2>
+			<h1>Done list:</h1>
 		</div>
 
 		{% for guestListItem in guestListItems %}
@@ -70,23 +65,22 @@
 				</div>
 
 				<div class="col-xs-6">
-					<h3>{{guestListItem.checked_by}}</h3>
-				</div>
-
-				<div class="col-xs-6">
-					<form action='?/User/unDoneItem/{{guestListItem.uniqueUrl}}' method='post'>
-						<input type="submit" name="itemUnDone" value="unDone"> 
-						<input type="hidden" name="itemId" value="{{guestListItem.itemId}}">
-					</form>
+					<h3>
+						<form action='?/User/unDoneItem/{{guestListItem.uniqueUrl}}' method='post'>
+							{{guestListItem.checked_by}} 
+							<button class="btn btn-default" type="submit" name="itemId" value="{{guestListItem.itemId}}"><i class="fa fa-times-circle"></i></button>
+						</form>
+					</h3>
 				</div>
 			{% endif %}
 		{% endfor %}
 	</div>
 
+<!-- black list -->
 
 	<div class="row">
 		<div class="col-xs-12 text-center">
-			<h2>Black list:</h2>
+			<h1>Black list:</h1>
 		</div>
 
 		{% for guestListItem in guestListItems %}
