@@ -95,9 +95,21 @@ td {
 #plan_4 {
 	background-color: #efb57c;
 }
-/* ------------------------------------------ */
+/* ---------- Style for footer ---------- */
 .footer {
 	border-top: 1px solid #e7e7e7;
 	padding-top: 10px;
 	margin-top: 25px;
+}
+
+/* ---------- Style for listItemForm ---------- */
+.altBgColor:nth-of-type(odd) {
+    background: #808080 ;
+}
+.listItem{
+background: #A2A6AB ;
+margin-bottom: 10px;
+border: 2px solid darkgrey;
+border-radius: 6px;
+box-shadow: 5px 5px 5px lightgrey;
 }
