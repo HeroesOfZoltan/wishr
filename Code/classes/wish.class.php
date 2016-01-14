@@ -7,6 +7,7 @@ class Wish{
 		$mysqli = DB::getInstance();
 		//$uniqueIdClean = $mysqli->real_escape_string($uniqueUrl);
 		$wishClean = $mysqli->real_escape_string($wish);
+		//clean([&$wish,$description]);
 		$descriptionClean = $mysqli->real_escape_string($description);
 		$wishCategoryClean = $mysqli->real_escape_string($wishCategory);
 		$wishPrioClean = $mysqli->real_escape_string($wishPrio);
