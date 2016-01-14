@@ -7,6 +7,7 @@ class Wish{
 		$mysqli = DB::getInstance();
 		//$uniqueIdClean = $mysqli->real_escape_string($uniqueUrl);
 		$wishClean = $mysqli->real_escape_string($wish);
+		//clean([&$wish,$description]);
 		$descriptionClean = $mysqli->real_escape_string($description);
 		$wishCategoryClean = $mysqli->real_escape_string($wishCategory);
 		$wishPrioClean = $mysqli->real_escape_string($wishPrio);
@@ -18,6 +19,23 @@ class Wish{
 			(wish, list_unique_string, description, category_id, prio, cost, blacklist) 
 			VALUES ('$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryClean', '$wishPrioClean', '$wishCostClean','$wishBlacklistClean')";
 		$mysqli->query($query);
+		
+		/*clean($uniqueUrl);
+		clean($wish);
+		clean($description);
+		clean($wishCategory);
+		clean($wishPrio);
+		clean($wishCost);
+		clean($wishBlacklist);
+		$query = 
+			"INSERT INTO item 
+			(wish, list_unique_string, description, category_id, prio, cost, blacklist) 
+			VALUES ('$wish', '$uniqueUrl','$description','$wishCategory', '$wishPrio', '$wishCost','$wishBlacklist')";
+		$mysqli->query($query);*/
+
+
+
+		
 	}
 
 

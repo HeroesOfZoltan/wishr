@@ -21,9 +21,10 @@ if($url_parts!= null){
 //skickar in class och anropar dess statiska metod.
 	require_once("classes/".$class.".class.php"); 
 	$data = $class::$method($url_parts);
+	//$data['_session'] = $_SESSION;
 
 //var_dump($data);
-
+print_r($_SESSION);
 
 //redirectar sidan till valt destination.
 	if(isset($data['redirect'])){
@@ -58,4 +59,17 @@ function startTwig(){
 	return $twig = new Twig_Environment($loader);
 }
 
+function clean(&$var) {
+	$mysqli = DB::getInstance();
+
+	if (is_array($var)) {
+		foreach($var as $key => $val) {
+			$mysqli->real_escape_string($val);
+		}
+	}
+	else{
+		$mysqli->real_escape_string($var);
+	}
+	//$_SESSION['test'] = 'test';
+}
 //print_r($data); /*För felsökning av arrayen som skickas till Twig */
