@@ -21,6 +21,7 @@ if($url_parts!= null){
 //skickar in class och anropar dess statiska metod.
 	require_once("classes/".$class.".class.php"); 
 	$data = $class::$method($url_parts);
+	//$data['_session'] = $_SESSION;
 
 //var_dump($data);
 
@@ -59,3 +60,6 @@ function startTwig(){
 }
 
 //print_r($data); /*För felsökning av arrayen som skickas till Twig */
+function clean(&$var){
+
+}
