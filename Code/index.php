@@ -23,7 +23,7 @@ if($url_parts!= null){
 	$data = $class::$method($url_parts);
 
 //var_dump($data);
-
+print_r($_SESSION);
 
 //redirectar sidan till valt destination.
 	if(isset($data['redirect'])){
@@ -58,4 +58,17 @@ function startTwig(){
 	return $twig = new Twig_Environment($loader);
 }
 
+function clean(&$var) {
+	$mysqli = DB::getInstance();
+
+	if (is_array($var)) {
+		foreach($var as $key => $val) {
+			$mysqli->real_escape_string($val);
+		}
+	}
+	else{
+		$mysqli->real_escape_string($var);
+	}
+	//$_SESSION['test'] = 'test';
+}
 //print_r($data); /*För felsökning av arrayen som skickas till Twig */
