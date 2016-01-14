@@ -35,8 +35,8 @@ class User{
 //Om inloggning lyckas sparas user id in i session
 			if($user['id']){
 				$_SESSION['user']['id'] = $user['id'];
-				$_SESSION['user']['role'] = $user['role'];		// <---------------------
-				if ($user['role'] == 1) {				// <---------------------
+				$_SESSION['user']['role'] = $user['role'];
+				if ($user['role'] == 1) {
 					return ['redirect' => "?/Admin/start"];
 				}
 				
@@ -46,44 +46,36 @@ class User{
 				return ['redirect' => "?/"];
 			}
 //Borde kanske flytta nedan kod och ersätta med ett metodanrop som skriver ut listan istället?
-
-			
-		
+	
 		}
 		return [];
 	}
 
 	public static function mylist(){
-		$userId = $_SESSION['user']['id'];
 
-		$_SESSION['userPermission'] = Sql::userPermission($userId);
-		Sql::setUniqueUrl($userId);
+		$_SESSION['userPermission'] = Sql::userPermission($_SESSION['user']['id']);
+		Sql::setUniqueUrl($_SESSION['user']['id']);
 
-		$items = Sql::getListItems($_SESSION['uniqueUrl'], $userId);
+		$items = Sql::getListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']);
 
 		
 		if($items){
-			return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPermission'],'items' => $items, 'categories' => Sql::category(),'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl'])];
+			return ['items' => $items, 'categories' => Sql::category(),'listNames'=> Sql::listName($_SESSION['uniqueUrl'])];
 		}
-		else if ($userId)	{
-			return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPermission'], 'newList' => $_SESSION['uniqueUrl'],'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl']),'categories' =>Sql::category()];
+		else if ($_SESSION['user']['id'])	{
+			return ['listNames'=> Sql::listName($_SESSION['uniqueUrl']),'categories' =>Sql::category()];
 		}
 	}
 
 	public static function payUp() {
-		return ['payment' => 'pending', 'userId' => $_SESSION['user']['id'], 'uniqueUrl' => $_SESSION['uniqueUrl'], 'userPermission' => $_SESSION['userPermission']];
+		return ['payment' => TRUE];
 
 	} 
 
 
-	public static function getBlacklist($params) {
-
-		$uniqueUrl = $params[0];
-
-		$userId = $_SESSION['user']['id'];
-		return ['blacklist' => TRUE, 'items' => Sql::getListItems($uniqueUrl, $userId), 'user' => $_SESSION['user'],'userId' => $_SESSION['user']['id'], 'uniqueUrl' => $_SESSION['uniqueUrl'], 'userPermission' => $_SESSION['userPermission'], 'categories' =>Sql::category(), Sql::getListItems($uniqueUrl, $userId),];
-
-		//return ['redirect' => "?/User/getBlacklist/$userId"];
+	public static function getBlacklist() {
+		
+		return ['blacklist' => TRUE, 'items' => Sql::getListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']),'categories' =>Sql::category(), Sql::getListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']),];
 	} 
 
 
@@ -93,8 +85,7 @@ class User{
 		$idClean = $mysqli->real_escape_string($id);
 		Sql::insertUserPermission($idClean);
 		$uniqueUrl = $_SESSION['uniqueUrl'];
-		$userId = $_SESSION['user']['id'];
-		$_SESSION['userPermission'] = Sql::userPermission($userId);
+		$_SESSION['userPermission'] = Sql::userPermission($_SESSION['user']['id']);
 		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
 	}
 
@@ -106,7 +97,7 @@ class User{
 			$uniqueUrl = $params[0];
 			$uniqueUrlClean = $mysqli->real_escape_string($uniqueUrl);
 
-			return ['guestListItems' => Sql::listItemsGuest($uniqueUrlClean), 'listNames'=> Sql::listName($uniqueUrlClean), 'userpermission' => Sql::getUserGuestPermission($uniqueUrlClean)];
+			return ['guestListItems' => Sql::listItemsGuest($uniqueUrlClean), 'listNames'=> Sql::listName($uniqueUrlClean), 'userPermission' => Sql::getUserGuestPermission($uniqueUrlClean)];
 		}
 
 		public static function itemDone($params) {

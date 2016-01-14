@@ -9,7 +9,7 @@ if(isset($_POST['killSession'])){
 	session_unset();
 
 }
-error_reporting(0);
+//error_reporting(0);
 //anropar getUrlParts och skickar in url. url_parts blir en array med uppstyckad url. 
 $url_parts = getUrlParts($_GET); 
 
@@ -21,9 +21,10 @@ if($url_parts!= null){
 //skickar in class och anropar dess statiska metod.
 	require_once("classes/".$class.".class.php"); 
 	$data = $class::$method($url_parts);
-	//$data['_session'] = $_SESSION;
+	$data['_session'] = $_SESSION;
 
-//var_dump($data);
+
+//var_dump($data['_session']);
 
 
 //redirectar sidan till valt destination.
@@ -63,3 +64,4 @@ function startTwig(){
 function clean(&$var){
 
 }
+//var_dump($data);

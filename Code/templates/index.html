@@ -19,16 +19,16 @@
 		{% elseif guestListItems %}
 			{% include "guestListView.html" %}
 
-		{% elseif user%}
+		{% elseif _session.user%}
 			{% if blacklist %}
-				{% if (1 in userPermission) or (2 in userPermission) %}
+				{% if (1 in _session.userPermission) or (2 in _session.userPermission) %}
 					{% include "blacklistPage.html" %}
 				{% else %}
 					{% include "paymentForm.html" %}
 				{%endif%}
 
 			{% elseif items %}
-					{% if (items | length < 20) or (1 in userPermission) or (2 in userPermission) %}
+					{% if (items | length < 20) or (1 in _session.userPermission) or (2 in _session.userPermission) %}
 						{% include "newWishForm.html" %}
 
 					{% else %}
@@ -47,7 +47,7 @@
 
 					{% include "linkToSend.html" %}
 
-			{% elseif newList%}
+			{% elseif _session.uniqueUrl%}
 				{% include "listName.html" %}
 
 					{% include "newWishForm.html" %}

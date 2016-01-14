@@ -183,8 +183,6 @@ class Sql {
 				(listName, user_id, unique_string) 
 				VALUES ('$listName', '$userId', '$uniqueUrl')";
 			$mysqli->query($query);
-			//$lastId = $mysqli->insert_id;
-			$_SESSION['uniqueUrl'] = $uniqueUrl;
 	}
 
 	public static function insertUserPermission($id){

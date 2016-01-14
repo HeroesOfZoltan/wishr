@@ -123,12 +123,13 @@ td {
 	font-color:pink;
     padding: 5px;
     border: 0px;
-
+    outline: none;
     width: 300px;
     border-radius: 4px;
     text-align: right;
 
 }
+
 
 #listName::-webkit-input-placeholder  {
   color: black;
