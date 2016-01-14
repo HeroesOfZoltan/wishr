@@ -36,33 +36,38 @@ class User{
 			if($user['id']){
 				$_SESSION['user']['id'] = $user['id'];
 				$_SESSION['user']['role'] = $user['role'];		// <---------------------
-			}
-			$userId = $_SESSION['user']['id'];
+				if ($user['role'] == 1) {				// <---------------------
+					return ['redirect' => "?/Admin/start"];
+				}
+				
+				return ['redirect' => "?/User/myList"];
 
-			$_SESSION['userPermission'] = Sql::userPermission($userId);
+			}else{
+				return ['redirect' => "?/"];
+			}
 //Borde kanske flytta nedan kod och ersätta med ett metodanrop som skriver ut listan istället?
 
-			if ($_SESSION['user']['role'] == 1) {				// <---------------------
-				return ['admin' => TRUE, 'dashboard' => Sql::dashBoard()];
-				
-			}
 			
-			Sql::setUniqueUrl($userId);
-
-			$items = Sql::getListItems($_SESSION['uniqueUrl'], $userId);
-
-			
-			if($items){
-				return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPermission'],'items' => $items, 'categories' => Sql::category(),'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl'])];
-			}
-			else if ($user['id'])	{
-				return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPermission'], 'newList' => $_SESSION['uniqueUrl'],'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl']),'categories' =>Sql::category()];
-			}
-
-
 		
 		}
 		return [];
+	}
+
+	public static function mylist(){
+		$userId = $_SESSION['user']['id'];
+
+		$_SESSION['userPermission'] = Sql::userPermission($userId);
+		Sql::setUniqueUrl($userId);
+
+		$items = Sql::getListItems($_SESSION['uniqueUrl'], $userId);
+
+		
+		if($items){
+			return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPermission'],'items' => $items, 'categories' => Sql::category(),'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl'])];
+		}
+		else if ($userId)	{
+			return ['user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPermission'], 'newList' => $_SESSION['uniqueUrl'],'uniqueUrl' =>$_SESSION['uniqueUrl'],'listNames'=> Sql::listName($_SESSION['uniqueUrl']),'categories' =>Sql::category()];
+		}
 	}
 
 	public static function payUp() {
