@@ -73,6 +73,3 @@ function clean(&$var) {
 	//$_SESSION['test'] = 'test';
 }
 //print_r($data); /*För felsökning av arrayen som skickas till Twig */
-function clean(&$var){
-
-}
