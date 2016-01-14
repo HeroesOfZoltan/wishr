@@ -9,7 +9,7 @@ if(isset($_POST['killSession'])){
 	session_unset();
 
 }
-
+error_reporting(0);
 //anropar getUrlParts och skickar in url. url_parts blir en array med uppstyckad url. 
 $url_parts = getUrlParts($_GET); 
 
@@ -22,7 +22,7 @@ if($url_parts!= null){
 	require_once("classes/".$class.".class.php"); 
 	$data = $class::$method($url_parts);
 
-//var_dump($data);
+var_dump($data);
 
 
 //redirectar sidan till valt destination.

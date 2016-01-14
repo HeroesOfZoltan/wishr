@@ -175,9 +175,9 @@ class Sql {
 			}			
 	}
 
-	public static function insertNewList($listName, $uniqueUrl){
+	public static function insertNewList($listName, $uniqueUrl, $userId){
 		$mysqli = DB::getInstance();
-		$userId = $_SESSION['user']['id'];
+		
 			$query =
 				"INSERT INTO list 
 				(listName, user_id, unique_string) 
@@ -243,5 +243,15 @@ $result = $mysqli->query($query);
 		$dashArray[] = $result->fetch_assoc();	
 
 		return $dashArray;
+	}
+
+	public static function updateListName($uniqueUrl, $newName){
+		$mysqli = DB::getInstance();
+		
+		$query = 
+				"UPDATE list
+				SET listName = '$newName'
+				WHERE unique_string = '$uniqueUrl'";
+		$mysqli->query($query);
 	}
 }

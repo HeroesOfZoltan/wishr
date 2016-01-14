@@ -48,4 +48,14 @@ class WishList{
 		return ['redirect' => "?/User/getBlacklist/$uniqueUrl"];
 	}
 
+	public static function changeListName($params){
+		$mysqli = DB::getInstance();
+		$uniqueUrl = $params[0];
+		$newListNameClean= $mysqli->real_escape_string($_POST['newListName']);
+		Sql::updateListName($uniqueUrl, $newListNameClean);
+
+		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
+	}
+
+
 }
