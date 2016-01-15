@@ -12,7 +12,7 @@ class WishList{
 
 			Sql::insertNewList($listName, $uniqueString); //Anropar metod som sparar ny lista i databasen
 //Returnerar array som sedan renderas av Twig
-			return ['newList' => TRUE, 'listName' => $listName, 'uniqueUrl' =>$_SESSION['uniqueUrl'], 'categories' =>Sql::category(),'user' => $_SESSION['user'], 'userPermission' => $_SESSION['userPremission']];
+			return ['newList' => TRUE, 'listName' => $listName, 'categories' =>Sql::category()];
 		}
 		return ['newList' => FALSE];
 	}
@@ -23,9 +23,7 @@ class WishList{
 
 		$uniqueUrl = $params[0];
 
-		$userId = $_SESSION['user']['id'];
-
-		return ['newList' => TRUE, 'items' => Sql::getListItems($uniqueUrl, $userId), 'categories' => Sql::category(),'user' => $_SESSION['user'], 'uniqueUrl' => $uniqueUrl, 'listNames'=> Sql::listName($uniqueUrl), 'userPermission' => $_SESSION['userPermission']];
+		return ['items' => Sql::getListItems($uniqueUrl, $_SESSION['user']['id']), 'categories' => Sql::category(), 'listNames'=> Sql::listName($uniqueUrl)];
 	}
 
 

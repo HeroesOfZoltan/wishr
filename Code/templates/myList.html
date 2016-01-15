@@ -1,4 +1,4 @@
-<!doctype html>
+	<!doctype html>
 <html>
 <head>
 
@@ -10,24 +10,7 @@
 	<div class="container-fluid">
 		{% include "pageNav.html" %}
 
-		{% if payment %}
-			{% include "paymentForm.html" %}
-
-		{% elseif admin %}
-			{% include "dash.html" %}
-
-		{% elseif guestListItems %}
-			{% include "guestListView.html" %}
-
-		{% elseif _session.user%}
-			{% if blacklist %}
-				{% if (1 in _session.userPermission) or (2 in _session.userPermission) %}
-					{% include "blacklistPage.html" %}
-				{% else %}
-					{% include "paymentForm.html" %}
-				{%endif%}
-
-			{% elseif items %}
+	{% if items %}
 					{% if (items | length < 20) or (1 in _session.userPermission) or (2 in _session.userPermission) %}
 						{% include "newWishForm.html" %}
 
@@ -51,12 +34,7 @@
 				{% include "listName.html" %}
 
 					{% include "newWishForm.html" %}
-		{% endif %}
-
-		{% else %}	
-			{% include "landingPage.html" %}	
-		{% endif %}	
-
+			{% endif %}
 	{% include "footer.html" %}
 	</div>
 

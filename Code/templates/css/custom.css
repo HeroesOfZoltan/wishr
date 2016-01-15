@@ -75,10 +75,41 @@ input.clearForm,input.clearForm:focus {
 	color: #fffff0;
 }
 
-.textBox {
-	background-color: rgba(161,202,241,0.6);
-	color: #fffff0;
+.btnInvisible{
+	display: none;
+}
+
+.input {
+	background-color: #fffff0;
+	color: #a1caf1;
 	border: none;
+	border-bottom: 4px solid #a1caf1;
+	border-radius: 3px 3px 0 0;
+}
+
+.input::-webkit-input-placeholder {
+	color: #a1caf1; 
+}
+
+.input:-moz-placeholder { 
+	color: #a1caf1; 
+}
+
+.input::-moz-placeholder { 
+	color: #a1caf1; 
+}
+
+.input:-ms-input-placeholder { 
+	color: #a1caf1; 
+}
+
+.inputNumber {
+	border-left: 4px solid #a1caf1;
+	border-radius: 0 3px 0 0;
+}
+
+.textBox {
+
 }
 
 .dashboard {
@@ -123,30 +154,37 @@ h2 {
 }
 /* ---------- Style for newWishForm ---------- */
 .newWishForm {
-	padding-top: 20vh;
+	padding-top: 10	0px;
 }
 
-.newWishForm .col-xs-12>input, 
-.newWishForm .col-xs-6>input, 
-.newWishForm .col-xs-12>textarea, 
-.newWishForm .col-xs-12>select {
+.newWishForm button {
+
+}
+
+.newWishForm .col-xs-12 , 
+.newWishForm .col-xs-6 {
 	margin-bottom: 25px;
 }
 
 .wishNameInput {
 	height: auto;
-	background-color: rgba(255,255,240,0.8);
-	color: #a1caf1;
-
+	min-height: 90px;
+	line-height: normal;
 	font-family: 'Merriweather', 'Georgia', serif;
-	font-size: 2.2em;
+	font-size: 1.6em;
+}
 
+.wishNameInputIcon {
+	padding-right: 25px;
+	background-color: #fffff0;
+	color: #a1caf1;
 	border: none;
 	border-bottom: 4px solid #a1caf1;
 	border-radius: 3px 3px 0 0;
+	font-size: 1.1em;
 }
 
-.wishNameInput::-webkit-input-placeholder { 
+.wishNameInput::-webkit-input-placeholder {
 	color: #a1caf1; 
 	text-align: center;
 }
@@ -166,8 +204,8 @@ h2 {
 	text-align: center;
 }
 
-.wishCatDropdown {
-
+.wishCatDropdownBtn {
+	
 }
 
 .submitButton {
@@ -284,28 +322,40 @@ h2 {
 	background-color: #c6daf1;
 }
 
-#listName{
-	font-size: 30px;
-	font-color:pink;
-    padding: 5px;
-    border: 0px;
-
-    width: 300px;
-    border-radius: 4px;
-    text-align: right;
-
-}
-
-#listName::-webkit-input-placeholder  {
-  color: black;
+/* ---------- Style for listName ---------- */
+.listNameContainer {
+	min-height: 100px;
+	padding: 15px 30px;
 }
 
 .listName {
-	font-size: 30px;
+	padding: 15px;
+	border: 4px solid #fffff0;
 }
 
-.btnInvisible{
-	display: none;
+.listName p, .listName input{
+	color: #fffff0;
+	font-family: 'Merriweather', serif;
+	font-size: 30px;
+	text-transform: uppercase;;
+}
+
+
+.listNameEdit {
+}
+
+.listNameEdit>input {
+	background-color: #bee9d5;
+	text-align: right;
+	border: none;
+}
+
+.listNameEditlistName::-webkit-input-placeholder {
+	color: #fffff0;
+}
+
+.listNameText {
+
 }
 /* ---------- Style for footer ---------- */
 .footer {

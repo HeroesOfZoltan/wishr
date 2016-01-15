@@ -30,6 +30,8 @@ class Sql {
 	}*/
 
 	public static function getListItems($uniqueUrl, $userId){
+		 	
+		if(in_array(1, $_SESSION["userPermission"]) || in_array(3, $_SESSION["userPermission"])){
 		 	$query = 
 		 		"SELECT *, item.id as 'itemId'
 				FROM list, item, category
@@ -38,7 +40,20 @@ class Sql {
 				AND list.unique_string = '$uniqueUrl'
 				AND list.user_id = $userId
 				ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id";
+			}
+		else{
+			$query = 
+				"SELECT *, item.id as 'itemId'
+				FROM list, item, category
+				WHERE list.unique_string = item.list_unique_string
+				AND item.category_id = category.id
+				AND list.unique_string = '$uniqueUrl'
+				AND list.user_id = $userId
+				ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id
+				LIMIT 20";
+		}
 
+		
 			return Self::arrayResult($query);
 		 }
 
@@ -116,6 +131,23 @@ class Sql {
 		$result = $mysqli->query($query);
 		$user = $result->fetch_assoc();
 
+		$role = Self::setUserRole($user);
+
+		return $user;
+	}
+
+	public static function setUserRole($user){
+		$mysqli = DB::getInstance();
+		$query = 
+			"SELECT role
+			FROM user, user_permission
+			WHERE user.id = user_id
+			AND user.id = '$user'
+			LIMIT 1";
+		$result = $mysqli->query($query);
+		$user = $result->fetch_assoc();
+
+
 		return $user;
 	}
 
@@ -183,8 +215,6 @@ class Sql {
 				(listName, user_id, unique_string) 
 				VALUES ('$listName', '$userId', '$uniqueUrl')";
 			$mysqli->query($query);
-			//$lastId = $mysqli->insert_id;
-			$_SESSION['uniqueUrl'] = $uniqueUrl;
 	}
 
 	public static function insertUserPermission($id){
