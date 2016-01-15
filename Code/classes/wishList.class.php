@@ -23,7 +23,7 @@ class WishList{
 
 		$uniqueUrl = $params[0];
 
-		return ['newList' => TRUE, 'items' => Sql::getListItems($uniqueUrl, $_SESSION['user']['id']), 'categories' => Sql::category(), 'listNames'=> Sql::listName($uniqueUrl)];
+		return ['items' => Sql::getListItems($uniqueUrl, $_SESSION['user']['id']), 'categories' => Sql::category(), 'listNames'=> Sql::listName($uniqueUrl)];
 	}
 
 

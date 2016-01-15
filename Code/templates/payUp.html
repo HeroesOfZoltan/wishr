@@ -9,8 +9,12 @@
 	
 	<div class="container-fluid">
 		{% include "pageNav.html" %}
+			{% if _session.user %}
+				{% include "paymentForm.html" %}
+			{% else %}
+				{% include "ourProduct.html" %}
+			{% endif %}
 
-			{% include "paymentForm.html" %}
 
 
 	{% include "footer.html" %}

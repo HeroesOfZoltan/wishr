@@ -24,7 +24,6 @@ if($url_parts!= null){
 	$data = $class::$method($url_parts);
 	$data['_session'] = $_SESSION;
 
-var_dump($method);
 
 if($method ==  'myList' || $method ==  'getList'){
 	$template = 'myList.html';
@@ -41,12 +40,11 @@ elseif($method ==  'createUser'){
 elseif($method ==  'guestView'){
 	$template = 'guestView.html';
 }
-elseif($method ==  'adminDash'){
+elseif($method ==  'adminDash' AND $_SESSION['user']['role'] == 1 ){
+
 	$template = 'adminDash.html';
 }
-//var_dump($data['_session']);
 
-var_dump($template);
 //redirectar sidan till valt destination.
 	if(isset($data['redirect'])){
 		header("Location: ".$data['redirect']);
@@ -80,8 +78,8 @@ function startTwig(){
 	$loader = new Twig_Loader_Filesystem('templates/');
 	return $twig = new Twig_Environment($loader);
 }
-/*
-function clean(&$var) {
+
+/*function clean(&$var) {
 	$mysqli = DB::getInstance();
 
 
@@ -94,6 +92,8 @@ function clean(&$var) {
 		$mysqli->real_escape_string($var);
 	}
 	//$_SESSION['test'] = 'test';
-}*/
-print_r($data); /*För felsökning av arrayen som skickas till Twig */
+}
+*/
+
+
 

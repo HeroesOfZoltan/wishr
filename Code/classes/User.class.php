@@ -68,7 +68,11 @@ class User{
 	}
 
 	public static function payUp() {
-		return ['payment' => TRUE];
+		return [];
+
+	} 
+		public static function ourProduct() {
+		return [];
 
 	} 
 
