@@ -13,6 +13,7 @@ if(isset($_POST['killSession'])){
 //anropar getUrlParts och skickar in url. url_parts blir en array med uppstyckad url. 
 $url_parts = getUrlParts($_GET); 
 
+//var_dump($url_parts);
 //array_shift lägger in första värdet i $class osv.
 if($url_parts!= null){
 	$class = array_shift($url_parts); 
@@ -23,24 +24,42 @@ if($url_parts!= null){
 	$data = $class::$method($url_parts);
 	$data['_session'] = $_SESSION;
 
+var_dump($method);
 
-
+if($method ==  'myList' || $method ==  'getList'){
+	$template = 'myList.html';
+}
+elseif($method ==  'payUp'){
+	$template = 'payUp.html';
+}
+elseif($method ==  'getBlacklist'){
+	$template = 'blacklist.html';
+}
+elseif($method ==  'createUser'){
+	$template = 'login.html';
+}
+elseif($method ==  'guestView'){
+	$template = 'guestView.html';
+}
+elseif($method ==  'adminDash'){
+	$template = 'adminDash.html';
+}
 //var_dump($data['_session']);
 
-
-
+var_dump($template);
 //redirectar sidan till valt destination.
 	if(isset($data['redirect'])){
 		header("Location: ".$data['redirect']);
 	}
 }
 else{
+	$template = 'login.html';
 	$data= array(1,2,3);//för att inte det ska bli error
 }
 
 $twig = startTwig();
 
-$template = 'index.html';
+//$template = 'index.html';
 echo $twig->render($template, $data);
 
 
@@ -61,7 +80,7 @@ function startTwig(){
 	$loader = new Twig_Loader_Filesystem('templates/');
 	return $twig = new Twig_Environment($loader);
 }
-
+/*
 function clean(&$var) {
 	$mysqli = DB::getInstance();
 
@@ -75,6 +94,6 @@ function clean(&$var) {
 		$mysqli->real_escape_string($var);
 	}
 	//$_SESSION['test'] = 'test';
-}
+}*/
 print_r($data); /*För felsökning av arrayen som skickas till Twig */
 

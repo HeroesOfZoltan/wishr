@@ -37,7 +37,7 @@ class User{
 				$_SESSION['user']['id'] = $user['id'];
 				$_SESSION['user']['role'] = $user['role'];
 				if ($user['role'] == 1) {
-					return ['redirect' => "?/Admin/start"];
+					return ['redirect' => "?/Admin/adminDash"];
 				}
 				
 				return ['redirect' => "?/User/myList"];
