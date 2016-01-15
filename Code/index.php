@@ -29,6 +29,12 @@ if($url_parts!= null){
 
 if($method ==  'myList' || $method ==  'getList'){
 	$template = 'myList.html';
+	if( count($data["items"])<20|| in_array(1, $_SESSION["userPermission"]) || in_array(3, $_SESSION["userPermission"])){
+		$data['payment'] = "newWishForm.html";
+	}
+	else{
+		$data['payment'] = "paymentInfo.html";
+	}
 }
 elseif($method ==  'payUp'){
 	$template = 'payUp.html';
@@ -40,13 +46,25 @@ elseif($method ==  'createUser'){
 	$template = 'login.html';
 }
 elseif($method ==  'guestView'){
+
 	$template = 'guestView.html';
+	
+	if( in_array(1, $_SESSION["userPermission"]) || in_array(4, $_SESSION["userPermission"])){
+			$data['guestDonelist'] = "guestDonelist.html";
+
+			$data['guestDoneForm'] = "guestDoneForm.html";
+		}
+	if( in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
+		$data['guestBlacklist'] = "guestBlacklist.html";
+	}
+
+
 }
 elseif($method ==  'adminDash' AND $_SESSION['user']['role'] == 1 ){
 
 	$template = 'adminDash.html';
 }
-
+//var_dump($data);
 //redirectar sidan till valt destination.
 	if(isset($data['redirect'])){
 		header("Location: ".$data['redirect']);
