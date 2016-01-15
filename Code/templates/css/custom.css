@@ -22,7 +22,15 @@ body {
 .paddingRight0 {
 	padding-right: 0;
 }
-
+.cursorPointer{
+	cursor: pointer;
+}
+.button{
+	background-color: #a1caf1;
+	border: none;
+	color: #fffff0;
+	text-shadow: 0 1px 1px rgba(0,0,0,.1)
+}
 /* Specific classes */
 .dashboard {
 	background-color: tomato;
@@ -64,21 +72,14 @@ td {
 	text-decoration: line-through;
 }
 
-
 /* ---------- Style for paymentForm ---------- */
+
 .priceField {	
 	font-weight: 300;
 	border-radius: 10px; 
 	padding: 10px;
-	color: #f0f0f0;
+	color: #FFFFFF;
 	margin-top: 15px;
-}
-.priceFieldDetails p{
-	font-family: Merriweather sans;
-	font-size: 0.5em;
-}
-.priceField button {
-	margin-bottom: 15px;
 }
 @media all and (min-width: 990px) {
 	.priceField {
@@ -101,13 +102,25 @@ td {
 	font-weight: 800;
 	letter-spacing: 0.05em;
 	height: 70px;
-	text-shadow: 0px 3px 1px rgba(0,0,0,.1);
+	text-shadow: 0px 2px 1px rgba(0,0,0,.1);
 }
 .priceField h1 {
 	font-family: Merriweather;
 	font-size: 4.0em;
 	font-weight: 800;
 	text-shadow: 0px 3px 1px rgba(0,0,0,.1);
+}
+.priceField button {
+	margin-bottom: 15px;
+}
+.priceFieldDetails ul{
+	font-family: Merriweather sans;
+	font-weight: 300;
+	font-size: 0.8em;
+	text-align: center;
+}
+.priceFieldDetails li{
+	text-align: center;
 }
 #plan_pro{
 	background-color: #bee9d5;
@@ -136,7 +149,6 @@ td {
 
 #listName::-webkit-input-placeholder  {
   color: black;
-
 }
 
 .listName {

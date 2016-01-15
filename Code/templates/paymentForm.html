@@ -2,12 +2,12 @@
 	<div class="col-xs-12">
 		<div class="row">
 			<div class="col-xs-12 text-center">
-				<h1>Betala</h1>
+				<h1>Pay up</h1>
 			</div>
 		</div>
 		<div class="row">
 		<div class="col-xs-4 col-xs-offset-4 text-center">
-			<p>Här kan du läsa mer om våra betalplaner.</p>
+			<h4>Här kan du läsa mer om våra betalplaner.</h4>
 		</div>
 		</div>
 
@@ -16,7 +16,7 @@
 
 				<div id="plan_pro" class="priceField priceFieldDetails">
 					<h4>Go Pro!</h4>
-					Get unlimited access to all functions.
+					<span>Get unlimited access to all functions.</span>
 					<br>
 					<ul>
 						<li>Blacklist</li>
@@ -26,7 +26,7 @@
 					<h1>39€</h1>
 
 					<form action="?/User/payPermission/{{userId}}" method="post">
-						<button class="btn btn-default" name="permissionType" value="1">Get all!</button>
+						<button class="btn btn-default button" name="permissionType" value="1">Get all!</button>
 					</form>
 				</div>
 
@@ -37,11 +37,11 @@
 				<div id="plan_2" class="priceField">
 					<h4>Blacklist</h4>
 
-					<p>The blacklist allows you to create a list of items you really dont want.</p>
+					<span>The blacklist allows you to create a list of items you really dont want.</span>
 					<h1>9€</h1>
 
 					<form action="?/User/payPermission/{{userId}}" method="post">
-						<button class="btn btn-default" name="permissionType" value="2">Permission 2</button>
+						<button class="btn btn-default button" name="permissionType" value="2">Permission 2</button>
 					</form>
 				</div>
 			</div><!--col-->
@@ -49,11 +49,11 @@
 			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-2 col-md-offset-0 text-center">
 				<div id="plan_3" class="priceField">
 					<h4>Wishr unlimited</h4>
-					<p>Allows you to make more than 20 wishes.</p>
+					<span>Allows you to make more than 20 wishes.</span>
 					<h1>9€</h1>
 
 					<form action="?/User/payPermission/{{userId}}" method="post">
-						<button class="btn btn-default" name="permissionType" value="3">Permission 3</button>
+						<button class="btn btn-default button" name="permissionType" value="3">Permission 3</button>
 					</form>
 				</div>
 			</div><!--col-->
@@ -61,11 +61,12 @@
 			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-2 col-md-offset-0 text-center">
 				<div id="plan_4" class=" priceField">
 					<h4>Donedidit</h4>
-					<p>Få tillgång till funktion som tillåter dina gäster att 'färdig markera' önskningar i din lista</p>
+
+					<span>Allow your guests to call dibs on items in youre list.</span>
 					<h1>9€</h1>
 
 					<form action="?/User/payPermission/{{userId}}" method="post">
-						<button class="btn btn-default" name="permissionType" value="4">Permission 4</button>
+						<button class="btn btn-default button" name="permissionType" value="4">Permission 4</button>
 					</form>
 				</div>
 			</div><!--col-->
