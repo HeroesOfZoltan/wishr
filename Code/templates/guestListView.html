@@ -30,13 +30,16 @@
 										
 							{% endif %}
 							<div class="col-xs-12">
-								<h3>Description: {{guestListItem.description}}</h3>
+								<h4>Description:</h4>
+								<p>{{guestListItem.description}}</p>
 							</div>
 							<div class="col-xs-6">
-								<h3>Category: {{guestListItem.categoryName}}</h3>
+								<h4>Category:</h4>
+								<p>{{guestListItem.categoryName}}</p>
 							</div>
 							<div class="col-xs-6">
-								<h3>Est. cost: {{guestListItem.cost}}</h3>
+								<h4>Est. cost:</h4>
+								<p>{{guestListItem.cost}}</p>
 							</div>
 							<div class="col-xs-12">
 								<h3>Search for {{guestListItem.wish}}: {% include "searchBtns.html" %}</h3>
