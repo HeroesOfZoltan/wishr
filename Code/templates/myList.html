@@ -6,35 +6,20 @@
 
 </head>
 <body>
-	
 	<div class="container-fluid">
-		{% include "pageNav.html" %}
+	{% include "pageNav.html" %}
 
-	{% if items %}
-					{% if (items | length < 20) or (1 in _session.userPermission) or (2 in _session.userPermission) %}
-						{% include "newWishForm.html" %}
-
-					{% else %}
-						{% include "paymentInfo.html" %}
-
-					{% endif %}
-						{% include "listName.html" %}
-
-					{% for item in items %}
-						{% if item.blacklist != 1 %}
-							{% include "listItemForm.html" %}
-
-						{%endif%}
-
-					{% endfor %}
-
-					{% include "linkToSend.html" %}
-
-			{% elseif _session.uniqueUrl%}
-				{% include "listName.html" %}
-
-					{% include "newWishForm.html" %}
-			{% endif %}
+	{% if items %}	
+		{% include payment %}
+	{% elseif _session.uniqueUrl %}
+		{% include "listName.html" %}
+		{% include "newWishForm.html" %}
+	{% endif %}
+		{% include "listName.html" %}
+			{% for item in items %}
+					{% include "listItemForm.html" %}
+			{% endfor %}
+		{% include "linkToSend.html" %}		
 	{% include "footer.html" %}
 	</div>
 

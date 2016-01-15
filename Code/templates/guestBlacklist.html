@@ -1,0 +1,22 @@
+<div class="row">
+		<div class="col-xs-12 text-center">
+			<h1>Black list:</h1>
+		</div>
+
+		{% for guestBlackListItem in guestBlackListItems %}
+
+			<div class="col-xs-12" data-toggle="collapse" data-target="#wish{{guestBlackListItem.itemId}}" >
+				<h2>{{guestBlackListItem.wish}}</h2>
+			</div>
+			<div class="col-xs-12">
+				<div id="wish{{guestBlackListItem.itemId}}" class="collapse">
+					<div class="row">
+						<div class="col-xs-12">
+							<p>{{guestBlackListItem.description}}</p>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>

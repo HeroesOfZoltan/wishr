@@ -30,8 +30,8 @@ class Sql {
 	}*/
 
 	public static function getListItems($uniqueUrl, $userId){
-		 	
-		if(in_array(1, $_SESSION["userPermission"]) || in_array(3, $_SESSION["userPermission"])){
+		 	$userPerm[] = $_SESSION["userPermission"];
+		if(in_array(1, $userPerm ) || in_array(3, $userPerm)){
 		 	$query = 
 		 		"SELECT *, item.id as 'itemId'
 				FROM list, item, category
@@ -39,6 +39,7 @@ class Sql {
 				AND item.category_id = category.id
 				AND list.unique_string = '$uniqueUrl'
 				AND list.user_id = $userId
+				AND item.blacklist = 0
 				ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id";
 			}
 		else{
@@ -49,6 +50,7 @@ class Sql {
 				AND item.category_id = category.id
 				AND list.unique_string = '$uniqueUrl'
 				AND list.user_id = $userId
+				AND item.blacklist = 0
 				ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id
 				LIMIT 20";
 		}
@@ -56,6 +58,22 @@ class Sql {
 		
 			return Self::arrayResult($query);
 		 }
+
+public static function getBlackListItems($uniqueUrl, $userId){
+	
+			$query = 
+				"SELECT *, item.id as 'itemId'
+				FROM list, item, category
+				WHERE list.unique_string = item.list_unique_string
+				AND item.category_id = category.id
+				AND list.unique_string = '$uniqueUrl'
+				AND list.user_id = $userId
+				AND item.blacklist = 1
+				ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id
+				LIMIT 20";
+		
+			return Self::arrayResult($query);
+		 }	 
 
 	public static function listItemsGuest($uniqueUrl) {
 		$query = 
@@ -66,6 +84,23 @@ class Sql {
 			AND item.list_unique_string = list.unique_string
 			AND list.user_id = user.id
 			AND list.unique_string = '$uniqueUrl' 
+			AND item.blacklist = 0
+			ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id
+			";		
+
+		return Self::arrayResult($query);
+	}
+
+		public static function listBlackItemsGuest($uniqueUrl) {
+		$query = 
+			"SELECT item.wish, item.description, item.blacklist, category.categoryName, item.isChecked, item.id as itemId, 
+			list.unique_string as uniqueUrl, user.role, item.checked_by, item.cost
+			FROM list, item, category, user
+			WHERE category.id = item.category_id
+			AND item.list_unique_string = list.unique_string
+			AND list.user_id = user.id
+			AND list.unique_string = '$uniqueUrl' 
+			AND item.blacklist = 1
 			ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id
 			";		
 
