@@ -32,7 +32,7 @@
 								<h3>Search for {{guestListItem.wish}}: {% include "searchBtns.html" %}</h3>
 							</div>
 
-							{% if (1 in userpermission) or (3 in userpermission) %}
+							{% if (1 in userPermission) or (3 in userPermission) %}
 								<div class="col-xs-12">
 									<form class="form-inline" action='?/User/itemDone/{{guestListItem.uniqueUrl}}' method='post'>
 										<input class="form-control" required type="text" name="checked_by" placeholder="Done by.."> 
@@ -52,7 +52,7 @@
 
 <!-- done list -->
 
-{% if (1 in userpermission) or (3 in userpermission) %}
+{% if (1 in userPermission) or (2 in userPermission) %}
 	<div class="row">
 		<div class="col-xs-12 text-center">
 			<h1>Done list:</h1>

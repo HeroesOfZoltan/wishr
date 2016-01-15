@@ -2,7 +2,7 @@
 
 class Admin {
 
-	public static function start(){
-		return ['admin' => TRUE, 'dashboard' => Sql::dashboard()];
+	public static function adminDash(){
+		return ['dashboard' => Sql::dashboard()];
 	}
 }
