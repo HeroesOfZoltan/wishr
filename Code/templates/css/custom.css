@@ -26,7 +26,9 @@ p, input, textarea, button {
 }
 
 /* General classes */
-
+.width100 {
+	width: 100%;
+}
 .paddingRight15px {
 	padding-right: 15px;
 }
@@ -36,6 +38,24 @@ p, input, textarea, button {
 }
 
 /* Specific classes */
+.button {
+	background-color: #a1caf1;
+	color: #fffff0;
+	border: none;
+	text-shadow: 0 1px 1px rgba(0,0,0,.1;);
+}
+
+.button:hover, .button:active {
+	background-color: rgba(161,202,241,0.6);
+	color: #fffff0;
+}
+
+.textBox {
+	background-color: rgba(161,202,241,0.6);
+	color: #fffff0;
+	border: none;
+}
+
 .dashboard {
 	background-color: tomato;
 	width: 75%;
@@ -92,7 +112,7 @@ td {
 
 	border: none;
 	border-bottom: 4px solid #a1caf1;
-	border-radius: 0;
+	border-radius: 3px 3px 0 0;
 }
 
 .wishNameInput::-webkit-input-placeholder { 
@@ -115,6 +135,18 @@ td {
 	text-align: center;
 }
 
+.wishCatDropdown {
+
+}
+
+.submitButton {
+	width: 100%;
+}
+
+.button:hover, .button:active {
+	background-color: rgba(161,202,241,0.8);
+	color: #fffff0;
+}
 
 /* ---------- Style for paymentForm ---------- */
 .priceField {
