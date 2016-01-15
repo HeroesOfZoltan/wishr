@@ -2,29 +2,29 @@
 	<div class="col-xs-12">
 		<div class="row">
 			<div class="col-xs-12 text-center">
-				<h1>Betala</h1>
+				<h1>Pay up</h1>
 			</div>
 		</div>
 		<div class="row">
 		<div class="col-xs-4 col-xs-offset-4 text-center">
-			<p>Här kan du läsa mer om våra betalplaner.</p>
+			<h4>Här kan du läsa mer om våra betalplaner.</h4>
 		</div>
 		</div>
 
 		<div class="row">
 			<div  class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-2 col-md-offset-2 text-center ">
 
-				<div id="plan_pro" class="priceField">
+				<div id="plan_pro" class="priceField priceFieldDetails">
 					<h4>Go Pro!</h4>
-					Få tillgång till alla våra extrafunktioner i ett köp.
+					<span>Get unlimited access to all functions.</span>
 					<br>
 					<ul>
 						<li>Blacklist</li>
-						<li>Oändligt med önskningar</li>
+						<li>Wishr Unlimited</li>
 						<li>Donedidit</li>
-						<li>Till ett värde av <b><u>26:-</u></b></li>
 					</ul>
-					<h1>49:-</h1>
+					<h1>39€</h1>
+
 
 					<form action="?/User/payPermission/{{_session.user.id}}" method="post">
 						<button class="btn btn-default" name="permissionType" value="1">Get all!</button>
@@ -37,8 +37,9 @@
 
 				<div id="plan_2" class="priceField">
 					<h4>Blacklist</h4>
-					<p>Få tillgång till funktion som tillåter dig att även skapa en blacklist över saker du inte vill ha.</p>
-					<h1>9:-</h1>
+
+					<span>The blacklist allows you to create a list of items you really dont want.</span>
+					<h1>9€</h1>
 
 					<form action="?/User/payPermission/{{_session.user.id}}" method="post">
 						<button class="btn btn-default" name="permissionType" value="2">Permission 2</button>
@@ -48,9 +49,9 @@
 
 			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-2 col-md-offset-0 text-center">
 				<div id="plan_3" class="priceField">
-					<h4>Oändligt med önskningar</h4>
-					<p>Få tillgång till funktion som tillåter dig att ha fler än 20 önskningar i din lista</p>
-					<h1>9:-</h1>
+					<h4>Wishr unlimited</h4>
+					<span>Allows you to make more than 20 wishes.</span>
+					<h1>9€</h1>
 
 					<form action="?/User/payPermission/{{_session.user.id}}" method="post">
 						<button class="btn btn-default" name="permissionType" value="3">Permission 3</button>
@@ -61,8 +62,9 @@
 			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-2 col-md-offset-0 text-center">
 				<div id="plan_4" class=" priceField">
 					<h4>Donedidit</h4>
-					<p>Få tillgång till funktion som tillåter dina gäster att 'färdig markera' önskningar i din lista</p>
-					<h1>9:-</h1>
+
+					<span>Allow your guests to call dibs on items in youre list.</span>
+					<h1>9€</h1>
 
 					<form action="?/User/payPermission/{{_session.user.id}}" method="post">
 						<button class="btn btn-default" name="permissionType" value="4">Permission 4</button>

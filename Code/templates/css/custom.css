@@ -12,7 +12,7 @@ Coral: #fbd6d1
 
 body {
 	margin-top: 70px; /* For navbar */
-	background-color: #fffff0;
+	background-color: #bee9d5;
 }
 
 *:focus {
@@ -36,8 +36,33 @@ p, input, textarea, button {
 .paddingRight0 {
 	padding-right: 0;
 }
+.cursorPointer{
+	cursor: pointer;
+}
+.button{
+	background-color: #a1caf1;
+	border: none;
+	color: #fffff0;
+	text-shadow: 0 1px 1px rgba(0,0,0,.1)
+}
+
+input.clearForm,input.clearForm:focus {
+	background-color: transparent;
+	border:none;
+  	border-left: solid 2px;
+  	border-bottom: solid 2px;
+  	border-color: #a1caf1;
+  	box-shadow: none;
+  	border-radius: 0px;
+  	-webkit-box-shadow: none;
+  	-moz-box-shadow: none;
+  	-moz-transition: none;
+  	-webkit-transition: none;
+}
+
 
 /* Specific classes */
+
 .button {
 	background-color: #a1caf1;
 	color: #fffff0;
@@ -50,10 +75,41 @@ p, input, textarea, button {
 	color: #fffff0;
 }
 
-.textBox {
-	background-color: rgba(161,202,241,0.6);
-	color: #fffff0;
+.btnInvisible{
+	display: none;
+}
+
+.input {
+	background-color: #fffff0;
+	color: #a1caf1;
 	border: none;
+	border-bottom: 4px solid #a1caf1;
+	border-radius: 3px 3px 0 0;
+}
+
+.input::-webkit-input-placeholder {
+	color: #a1caf1; 
+}
+
+.input:-moz-placeholder { 
+	color: #a1caf1; 
+}
+
+.input::-moz-placeholder { 
+	color: #a1caf1; 
+}
+
+.input:-ms-input-placeholder { 
+	color: #a1caf1; 
+}
+
+.inputNumber {
+	border-left: 4px solid #a1caf1;
+	border-radius: 0 3px 0 0;
+}
+
+.textBox {
+
 }
 
 .dashboard {
@@ -74,7 +130,6 @@ p, input, textarea, button {
 	text-decoration:none;
 }
 .loginForm {
-	
 	width: 50%;
 	margin: 0 auto;
 	padding: 10px;
@@ -89,33 +144,47 @@ td {
 .doneList {
 	text-decoration: line-through;
 }
-
+h2 > .fa{
+	font-size: 0.5em;
+	vertical-align: middle;
+}
+h2 {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
 /* ---------- Style for newWishForm ---------- */
 .newWishForm {
-	padding-top: 20vh;
+	padding-top: 10	0px;
 }
 
-.newWishForm .col-xs-12>input, 
-.newWishForm .col-xs-6>input, 
-.newWishForm .col-xs-12>textarea, 
-.newWishForm .col-xs-12>select {
+.newWishForm button {
+
+}
+
+.newWishForm .col-xs-12 , 
+.newWishForm .col-xs-6 {
 	margin-bottom: 25px;
 }
 
 .wishNameInput {
 	height: auto;
-	background-color: rgba(255,255,240,0.8);
-	color: #a1caf1;
-
+	min-height: 90px;
+	line-height: normal;
 	font-family: 'Merriweather', 'Georgia', serif;
-	font-size: 2.2em;
+	font-size: 1.6em;
+}
 
+.wishNameInputIcon {
+	padding-right: 25px;
+	background-color: #fffff0;
+	color: #a1caf1;
 	border: none;
 	border-bottom: 4px solid #a1caf1;
 	border-radius: 3px 3px 0 0;
+	font-size: 1.1em;
 }
 
-.wishNameInput::-webkit-input-placeholder { 
+.wishNameInput::-webkit-input-placeholder {
 	color: #a1caf1; 
 	text-align: center;
 }
@@ -135,8 +204,8 @@ td {
 	text-align: center;
 }
 
-.wishCatDropdown {
-
+.wishCatDropdownBtn {
+	
 }
 
 .submitButton {
@@ -147,18 +216,54 @@ td {
 	background-color: rgba(161,202,241,0.8);
 	color: #fffff0;
 }
+/********************************************
+---------- Style for GuestListForm ----------
+*********************************************/
+
+.wishHeader{
+	background-color: #fffff0; 
+	color: #a1caf1;
+}
+.wishCollapseBody{
+	background-color: #fffff0; 
+	margin-bottom: 15px;
+	color: #a1caf1;
+}
+.wishCollapseBody form{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.buttonDibs{
+	background-color: transparent;
+	color: #a1caf1;
+	box-shadow: none;
+	border: none;
+  	border-bottom: solid 2px;
+  	border-color: #a1caf1;
+  	border-radius: 0px;
+  	box-shadow: none;
+  	border-radius: 0px;
+  	-webkit-box-shadow: none;
+  	-moz-box-shadow: none;
+  	-moz-transition: none;
+  	-webkit-transition: none;
+}
+.coverup{
+	color: transparent;
+}
+.buttonDibs:hover{
+	background: transparent;
+}
+/* ---------- Style end GuestListForm ---------- */
 
 /* ---------- Style for paymentForm ---------- */
-.priceField {
-	/*border: 2px solid #272822;*/
+
+.priceField {	
+	font-weight: 300;
 	border-radius: 10px; 
-	padding: 8px;
-	box-shadow: 5px 6px 10px #272822;
-	color: #f0f0f0;
+	padding: 10px;
+	color: #FFFFFF;
 	margin-top: 15px;
-}
-.priceField button {
-	box-shadow: 2px 3px 10px #272822;
 }
 @media all and (min-width: 990px) {
 	.priceField {
@@ -176,55 +281,81 @@ td {
 	}
 }
 .priceField h4 {
+	font-family: Merriweather;
 	font-size: 2.0em;
 	font-weight: 800;
 	letter-spacing: 0.05em;
 	height: 70px;
-	text-shadow: 2px 3px 5px #272822;
+	text-shadow: 0px 2px 1px rgba(0,0,0,.1);
 }
 .priceField h1 {
+	font-family: Merriweather;
 	font-size: 4.0em;
 	font-weight: 800;
-	text-shadow: 2px 3px 5px #272822;
+	text-shadow: 0px 3px 1px rgba(0,0,0,.1);
+}
+.priceField button {
+	margin-bottom: 15px;
+}
+.priceFieldDetails ul{
+	font-family: Merriweather sans;
+	font-weight: 300;
+	font-size: 0.8em;
+	text-align: center;
+}
+.priceFieldDetails li{
+	text-align: center;
 }
 #plan_pro{
-	background-color: #8a74b9;
+	background-color: #fbd6d1;
+}
+#plan_pro button{
+	background-color: #e1c0bc
 }
 #plan_2 {
-
-	background-color: #4cb992; 
+	background-color: #c6daf1; 
 }
 #plan_3 {
-	background-color: #3499e0;
+	background-color: #c6daf1;
 }
 #plan_4 {
-	background-color: #efb57c;
+	background-color: #c6daf1;
 }
 
-#listName{
-	font-size: 30px;
-	font-color:pink;
-    padding: 5px;
-    border: 0px;
-    outline: none;
-    width: 300px;
-    border-radius: 4px;
-    text-align: right;
-
-}
-
-
-#listName::-webkit-input-placeholder  {
-  color: black;
-
+/* ---------- Style for listName ---------- */
+.listNameContainer {
+	min-height: 100px;
+	padding: 15px 30px;
 }
 
 .listName {
-	font-size: 30px;
+	padding: 15px;
+	border: 4px solid #fffff0;
 }
 
-.btnInvisible{
-	display: none;
+.listName p, .listName input{
+	color: #fffff0;
+	font-family: 'Merriweather', serif;
+	font-size: 30px;
+	text-transform: uppercase;;
+}
+
+
+.listNameEdit {
+}
+
+.listNameEdit>input {
+	background-color: #bee9d5;
+	text-align: right;
+	border: none;
+}
+
+.listNameEditlistName::-webkit-input-placeholder {
+	color: #fffff0;
+}
+
+.listNameText {
+
 }
 /* ---------- Style for footer ---------- */
 .footer {

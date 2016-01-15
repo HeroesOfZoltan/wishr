@@ -5,18 +5,18 @@
 
 		{% for guestBlackListItem in guestBlackListItems %}
 
-			<div class="col-xs-12" data-toggle="collapse" data-target="#wish{{guestBlackListItem.itemId}}" >
-				<h2>{{guestBlackListItem.wish}}</h2>
+			<div class="col-xs-12 col-md-offset-2 col-md-8 " data-toggle="collapse" data-target="#wish{{guestListItem.itemId}}" >
+				<h2>{{guestListItem.wish}}</h2>
 			</div>
 			<div class="col-xs-12">
-				<div id="wish{{guestBlackListItem.itemId}}" class="collapse">
+				<div id="wish{{guestListItem.itemId}}" class="collapse">
 					<div class="row">
 						<div class="col-xs-12">
-							<p>{{guestBlackListItem.description}}</p>
+							<p>{{guestListItem.description}}</p>
 						</div>
 						
 					</div>
 				</div>
 			</div>
-		{% endfor %}
+			{% endfor %}
 	</div>

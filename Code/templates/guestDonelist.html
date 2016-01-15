@@ -5,11 +5,11 @@
 
 		{% for guestListItem in guestListItems %}
 			{% if guestListItem.isChecked == 1 %}
-				<div class="col-xs-12">
+				<div class="col-xs-12 col-md-offset-2 col-md-8 ">
 					<h2><del>{{guestListItem.wish}}</del></h2>
 				</div>
 
-				<div class="col-xs-6">
+				<div class="col-xs-6 col-md-offset-2 col-md-8">
 					<h3>
 						<form action='?/User/unDoneItem/{{guestListItem.uniqueUrl}}' method='post'>
 							{{guestListItem.checked_by}} 
