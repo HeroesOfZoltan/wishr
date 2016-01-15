@@ -282,14 +282,13 @@ td {
 
 /* ---------- Style for listItemForm ---------- */
 .altBgColor:nth-of-type(odd) {
-    background: #808080 ;
+	width: 100vw;
+	margin-left: -15px;
+    background-color: rgba(255,255,240,0.5);
 }
-.listItem{
-background: #A2A6AB ;
-margin-bottom: 10px;
-border: 2px solid darkgrey;
-border-radius: 6px;
-box-shadow: 5px 5px 5px lightgrey;
+
+.listItem {
+	padding: 15px 0;
 }
 
 /* ---------- Style for pageNav ---------- */

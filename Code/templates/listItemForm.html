@@ -3,10 +3,10 @@
 	
 	<div class="form-group">
 		<div class="col-xs-12 col-md-8 col-md-offset-2">
-			<label for="listItemName"><p>Wish:</p></label>
+			<label for="input listItemName"><p>Wish:</p></label>
 			</div>
 				<div class="col-xs-12 col-md-8 col-md-offset-2">
-			<input type='text' id="listItemName" class="form-control" name="wishName" value="{{item.wish}}">
+			<input type='text' id="listItemName" class="form-control input " name="wishName" value="{{item.wish}}">
 		</div>
 	</div>
 
@@ -15,7 +15,7 @@
 			<label for="listItemDescription"><p>Description:</p></label>
 		</div>
 		<div class="col-xs-12 col-md-8 col-md-offset-2">
-			<input type='text' id="listItemDescription" class="form-control" name="wishDescription" value="{{item.description}}">
+			<input type='text' id="listItemDescription" class="form-control input " name="wishDescription" value="{{item.description}}">
 		</div>
 	</div>
 
@@ -35,22 +35,22 @@
 		
 		<label class="col-xs-12 col-md-1 control-label" for="prio"><p>Priority:</p></label>
 		<div class="col-xs-12 col-md-3">
-			<input class="form-control" type="number" name="prio" value="{{item.prio}}">
+			<input class="form-control input " type="number" name="prio" value="{{item.prio}}">
 		</div>
 </div>
 		<div class="form-group">
 
 		<label class="col-xs-12 col-md-4  control-label" for="cost"><p>Est. cost:</p></label>
 		<div class="col-xs-12 col-md-3">
-			<input class="form-control" type="number" name="cost" value="{{item.cost}}">
+			<input class="form-control input " type="number" name="cost" value="{{item.cost}}">
 		</div>
 
 
 		<input type='hidden' name="wishId" value='{{item.itemId}}'>
 
 		<div class="col-xs-4 col-md-3">
-			<input class="btn btn-default" type='submit' name="updateBtn" value='Update'>
-			<input class="btn btn-default" type='submit' name="deleteBtn" value='Delete'>
+			<input class="btn btn-default button" type='submit' name="updateBtn" value='Update'>
+			<input class="btn btn-default button" type='submit' name="deleteBtn" value='Delete'>
 		</div>
 
 	</div>
