@@ -220,25 +220,43 @@ class Sql {
 	}
 
 	public static function dashBoard() {
-	$mysqli = DB::getInstance();
-	$dashArray=[];
-	$query = "SELECT COUNT(id) as lists
-				 FROM list
-				 LIMIT 1";
-$result = $mysqli->query($query);
+		$mysqli = DB::getInstance();
+		$dashArray=[];
+		$query = 
+				"SELECT COUNT(id) as lists
+				FROM list
+				LIMIT 1";
+		$result = $mysqli->query($query);
 		$dashArray[] = $result->fetch_assoc();
-	$query = "SELECT COUNT(id) as users
+		$query = 
+				"SELECT COUNT(id) as users
 				FROM user
 				LIMIT 1";
-	
-	$result = $mysqli->query($query);
+		
+		$result = $mysqli->query($query);
 		$dashArray[] = $result->fetch_assoc();			
-	$query = "SELECT COUNT(*) as customers
-	FROM user WHERE user.role=3
-	LIMIT 1"; 
-	
-	$result = $mysqli->query($query);
-		$dashArray[] = $result->fetch_assoc();	
+		$query = 
+				"SELECT COUNT(*) as customers
+				FROM user WHERE user.role=3
+				LIMIT 1"; 
+		
+		$result = $mysqli->query($query);
+		$dashArray[] = $result->fetch_assoc();
+
+		$query = 
+				"SELECT permission_id
+				FROM user_permission";
+
+		$arrays =  Self::arrayResult($query);
+
+		if($arrays){
+		foreach($arrays as $row ) {
+	       	foreach($row as $k['permission_id'] => $v ) {
+	            $dashArray['permissions'][] = $v;
+	       }
+		}
+	}
+		//$dashArray['permissions'] = Self::arrayResult($query);
 
 		return $dashArray;
 	}

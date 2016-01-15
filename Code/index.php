@@ -24,7 +24,9 @@ if($url_parts!= null){
 	$data['_session'] = $_SESSION;
 
 
+
 //var_dump($data['_session']);
+
 
 
 //redirectar sidan till valt destination.
@@ -60,8 +62,19 @@ function startTwig(){
 	return $twig = new Twig_Environment($loader);
 }
 
-//print_r($data); /*För felsökning av arrayen som skickas till Twig */
-function clean(&$var){
+function clean(&$var) {
+	$mysqli = DB::getInstance();
 
+
+	if (is_array($var)) {
+		foreach($var as $key => $val) {
+			$mysqli->real_escape_string($val);
+		}
+	}
+	else{
+		$mysqli->real_escape_string($var);
+	}
+	//$_SESSION['test'] = 'test';
 }
-//var_dump($data);
+print_r($data); /*För felsökning av arrayen som skickas till Twig */
+
