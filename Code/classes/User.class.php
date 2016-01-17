@@ -79,7 +79,7 @@ class User{
 
 	public static function getBlacklist() {
 		
-		return ['blacklist' => TRUE, 'items' => Sql::getBlackListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']),'categories' =>Sql::category(), Sql::getListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']),];
+		return ['blacklist' => TRUE, 'items' => Sql::getBlackListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']),'categories' =>Sql::category()];
 	} 
 
 

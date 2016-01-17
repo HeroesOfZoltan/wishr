@@ -38,9 +38,24 @@ if($method ==  'myList' || $method ==  'getList'){
 }
 elseif($method ==  'payUp'){
 	$template = 'payUp.html';
+
+	if( $_SESSION["user"]){//varför två olika?
+			$data['payView'] = "paymentForm.html";
+		}
+	else{
+			$data['payView'] = "ourProduct.html";
+	}
+
 }
 elseif($method ==  'getBlacklist'){
-	$template = 'blacklist.html';
+	if(in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
+			$template = 'blacklist.html';
+			$data['payView'] = "paymentForm.html";
+	}
+	else{
+		$template = 'payUp.html';
+		$data['payView'] = "paymentForm.html";
+	}
 }
 elseif($method ==  'createUser'){
 	$template = 'login.html';
