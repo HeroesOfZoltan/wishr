@@ -1,61 +1,61 @@
-<div class="altBgColor listItem">
-<form class="form-horizontal" method='post' action="?/wish/updateItem/{{_session.uniqueUrl}}" role="form">
-	
-	<div class="form-group">
-		<div class="col-xs-12 col-md-8 col-md-offset-2">
-			<label for="listItemName"><p>Wish:</p></label>
+<div class="">
+	<form class="form-horizontal" method='post' action="?/wish/updateItem/{{_session.uniqueUrl}}" role="form">	
+
+		<!-- Clickable title -->
+		<div class="input-group col-xs-12 col-sm-10 col-sm-offset-1 wishHeader" data-toggle="collapse" data-target="#wish{{item.itemId}}">
+			<span class="input-group-addon clearForm wishNameInputIcon">
+				<label for=""><i class="fa fa-chevron-down"></i></label>
+			</span>
+			<input type="text" id="listItemNameInput" class="form-control clearForm wishName wishNameInput" required name="wishName" value="{{item.wish}}" aria-describedby="basic-addon1">
+			<span class="input-group-addon clearForm wishNameInputIcon ">
+				<label for="listItemNameInput"><i class="fa fa-pencil"></i></label>
+			</span>
+		</div><!-- /Clickable title -->
+
+		<!-- Collapse content -->
+		<div class="col-xs-12 col-sm-10 col-sm-offset-1 wishCollapseBody">
+			<div id="wish{{item.itemId}}" class="collapse">
+				<div class="row">
+					<div class="col-xs-12">
+						<textarea type="text" id="listItemDescription" class="form-control input textBox listItemDescription" rows="6" id="wishDescription" name="listItemDescription" required placeholder="{{item.description}}"></textarea>
+					</div>
+				</div>
+
+				<div class="row">
+					<label class="col-xs-4 col-md-2 control-label" for="categoryUpdate"><p>Category:</p></label>
+					<div class="col-xs-2">
+						<select class="form-control clearForm input" id="categoryUpdate" name="wishCategoryId">
+							{% for category in categories%}
+								{% if category.categoryName == item.categoryName %}
+									<option value='{{category.id}}' selected>{{category.categoryName}}</option>
+								{% else %}
+									<option value='{{category.id}}'>{{category.categoryName}}</option>
+								{% endif %}
+							{% endfor %}
+						</select>
+					</div>
+				
+					<label class="col-xs-4 col-md-2 control-label" for="prio"><p>Priority:</p></label>
+					<div class="col-xs-8 col-md-2">
+						<input class="form-control clearForm input inputNumber" type="number" name="prio" value="{{item.prio}}">
+					</div>
+				
+					<label class="col-xs-4 col-md-2 control-label" for="cost"><p>Est. cost:</p></label>
+					<div class="col-xs-8 col-md-2">
+						<input class="form-control clearForm input inputNumber" type="number" name="cost" value="{{item.cost}}">
+					</div>
+				</div>
+
+				<div class="row">
+					<input type='hidden' name="wishId" value='{{item.itemId}}'>
+					<div class="col-xs-12 col-md-3">
+						<input class="btn btn-default button" type='submit' name="updateBtn" value='Update'>
+						<input class="btn btn-default button" type='submit' name="deleteBtn" value='Delete'>
+					</div>
+				</div>
 			</div>
-				<div class="col-xs-12 col-md-8 col-md-offset-2">
-			<input type='text' id="listItemName" class="form-control" name="wishName" value="{{item.wish}}">
-		</div>
-	</div>
-
-	<div class="form-group">
-		<div class="col-xs-12 col-md-8 col-md-offset-2">
-			<label for="listItemDescription"><p>Description:</p></label>
-		</div>
-		<div class="col-xs-12 col-md-8 col-md-offset-2">
-			<input type='text' id="listItemDescription" class="form-control" name="wishDescription" value="{{item.description}}">
-		</div>
-	</div>
-
-	<div class="form-group">
-			<label class="col-xs-12  col-md-1 col-md-offset-2 control-label" for="categoryUpdate"><p>Category:</p></label>
-		<div class="col-xs-12 col-md-3">
-			<select class="form-control" id="categoryUpdate" name="wishCategoryId">
-				{% for category in categories%}
-					{% if category.categoryName == item.categoryName %}
-						<option value='{{category.id}}' selected>{{category.categoryName}}</option>
-					{% else %}
-						<option value='{{category.id}}'>{{category.categoryName}}</option>
-					{% endif %}
-				{% endfor %}
-			</select>
-		</div>
-		
-		<label class="col-xs-12 col-md-1 control-label" for="prio"><p>Priority:</p></label>
-		<div class="col-xs-12 col-md-3">
-			<input class="form-control" type="number" name="prio" value="{{item.prio}}">
-		</div>
-</div>
-		<div class="form-group">
-
-		<label class="col-xs-12 col-md-4  control-label" for="cost"><p>Est. cost:</p></label>
-		<div class="col-xs-12 col-md-3">
-			<input class="form-control" type="number" name="cost" value="{{item.cost}}">
-		</div>
-
-
-		<input type='hidden' name="wishId" value='{{item.itemId}}'>
-
-		<div class="col-xs-4 col-md-3">
-			<input class="btn btn-default" type='submit' name="updateBtn" value='Update'>
-			<input class="btn btn-default" type='submit' name="deleteBtn" value='Delete'>
-		</div>
-
-	</div>
-
-</form>
+		</div><!-- /Collapsed content -->
+	</form>
 </div>
 
 
