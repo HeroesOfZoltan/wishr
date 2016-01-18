@@ -6,7 +6,7 @@ class Admin {
 
 	public static function adminDash(){
 
-		return Sql::dashboard();
+		return ['dashboard' => Sql::dashboard(), 'categories' => Sql::category()];
 
 
 		/*$arrays =  Self::arrayResult($query);
@@ -40,5 +40,12 @@ class Admin {
 		Sql::insertNewCategory($categoryClean);
 		return ['redirect' => '?/Admin/adminDash'];
 	
+	}
+	public function deleteCategory(){
+		/*$category = $_POST['category'];
+		echo '<b>'.$category.'</b>';*/
+		$category = $_POST['category'];
+		Sql::deleteCategory($category);
+		return ['redirect' => '?/Admin/adminDash'];
 	}
 }

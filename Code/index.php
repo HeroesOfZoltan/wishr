@@ -96,7 +96,6 @@ else{
 	$template = 'login.html';
 	$data= array();//Här kan vi lägga t ex statestik om sidan som ska visas på förstasidan
 }
-//print_r($data);
 
 //var_dump($data);
 $twig = startTwig();
