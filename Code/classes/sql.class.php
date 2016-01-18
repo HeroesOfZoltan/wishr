@@ -74,6 +74,20 @@ public static function getBlackListItems($uniqueUrl, $userId){
 			return Self::arrayResult($query);
 		 }	 
 
+public static function getListImage($uniqueUrl){
+	$mysqli = DB::getInstance();
+			$query = 
+				"SELECT imageUrl
+				FROM list
+				WHERE list.unique_string = '$uniqueUrl'
+				LIMIT 1";
+		
+			$result = $mysqli->query($query);
+			$imageUrl = $result->fetch_assoc();
+
+			return $imageUrl;
+		 }	
+
 	public static function listItemsGuest($uniqueUrl) {
 		$query = 
 			"SELECT item.wish, item.description, item.blacklist, category.categoryName, item.isChecked, item.id as itemId, 
@@ -245,8 +259,8 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		
 			$query =
 				"INSERT INTO list 
-				(listName, user_id, unique_string) 
-				VALUES ('$listName', '$userId', '$uniqueUrl')";
+				(listName, user_id, unique_string, imageUrl) 
+				VALUES ('$listName', '$userId', '$uniqueUrl', 'flowers.jpg')";
 			$mysqli->query($query);
 	}
 
@@ -285,45 +299,49 @@ public static function getBlackListItems($uniqueUrl, $userId){
 	}
 
 	public static function dashBoard() {
+
 		$mysqli = DB::getInstance();
 		$dashArray=[];
 		$query = 
 				"SELECT COUNT(id) as lists
 				FROM list
 				LIMIT 1";
+
 		$result = $mysqli->query($query);
-		$dashArray[] = $result->fetch_assoc();
+		$dashArray['lists'] = $result->fetch_assoc();
 		$query = 
 				"SELECT COUNT(id) as users
 				FROM user
 				LIMIT 1";
 		
 		$result = $mysqli->query($query);
-		$dashArray[] = $result->fetch_assoc();			
+		$dashArray['users'] = $result->fetch_assoc();			
 		$query = 
-				"SELECT COUNT(*) as customers
-				FROM user WHERE user.role=3
-				LIMIT 1"; 
+				"SELECT COUNT(distinct user_id) as customers
+				FROM user_permission"; 
 		
 		$result = $mysqli->query($query);
-		$dashArray[] = $result->fetch_assoc();
+		$dashArray['customers'] = $result->fetch_assoc();
 
-		$query = 
-				"SELECT permission_id
-				FROM user_permission";
-
-		$arrays =  Self::arrayResult($query);
-
-		if($arrays){
-		foreach($arrays as $row ) {
-	       	foreach($row as $k['permission_id'] => $v ) {
-	            $dashArray['permissions'][] = $v;
-	       }
-		}
-	}
-		//$dashArray['permissions'] = Self::arrayResult($query);
+		$query =
+				"SELECT permission_id as permission, count(permission_id) as number_of_permissions
+				FROM user_permission, user
+				WHERE user_permission.user_id = user.id
+				GROUP BY permission_id";
+				
+		$dashArray['permissions'] = Self::arrayResult($query);
 
 		return $dashArray;
+	}
+
+	public static function insertNewCategory($categoryName) {
+		$mysqli = DB::getInstance();
+
+		$query=
+				"INSERT INTO category (categoryName)
+				VALUES('$categoryName')";
+
+		$mysqli->query($query);
 	}
 
 	public static function updateListName($uniqueUrl, $newName){
@@ -332,6 +350,16 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		$query = 
 				"UPDATE list
 				SET listName = '$newName'
+				WHERE unique_string = '$uniqueUrl'";
+		$mysqli->query($query);
+	}
+
+	public static function updateListImage($uniqueUrl, $newImage){
+		$mysqli = DB::getInstance();
+		
+		$query = 
+				"UPDATE list
+				SET imageUrl = '$newImage'
 				WHERE unique_string = '$uniqueUrl'";
 		$mysqli->query($query);
 	}
