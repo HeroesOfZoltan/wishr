@@ -90,12 +90,12 @@ else{
 	$template = 'login.html';
 	$data= array();//Här kan vi lägga t ex statestik om sidan som ska visas på förstasidan
 }
-print_r($data);
+//print_r($data);
 
 //var_dump($data);
 $twig = startTwig();
 echo $twig->render($template, $data);
-//var_dump($data);
+
 
 function getUrlParts($get){
 	$get_params = array_keys($get);//plockar key värden ur get-arrayen

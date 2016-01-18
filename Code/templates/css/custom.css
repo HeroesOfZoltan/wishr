@@ -118,12 +118,7 @@ input.clearForm,input.clearForm:focus {
 
 }
 
-.dashboard {
-	background-color: tomato;
-	width: 75%;
-	margin: 0 auto;
-	border: 3px solid black;
-}
+
 
 .listItemForm {
 	margin-top: 15px;
@@ -158,6 +153,18 @@ h2 {
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
+
+/* ---------- Style for dash ---------- */
+
+.dashboard {
+	background-color: #fbd6d1;
+}
+.dashForm {
+	background-color: #a1caf1;
+	margin-top: 30px;
+	padding: 20px;
+}
+
 /* ---------- Style for newWishForm ---------- */
 .newWishForm {
 	padding-top: 10	0px;

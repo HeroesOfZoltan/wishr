@@ -287,27 +287,29 @@ public static function getBlackListItems($uniqueUrl, $userId){
 	}
 
 	public static function dashBoard() {
+
 		$mysqli = DB::getInstance();
 		$dashArray=[];
 		$query = 
 				"SELECT COUNT(id) as lists
 				FROM list
 				LIMIT 1";
+
 		$result = $mysqli->query($query);
-		$dashArray[] = $result->fetch_assoc();
+		$dashArray['lists'] = $result->fetch_assoc();
 		$query = 
 				"SELECT COUNT(id) as users
 				FROM user
 				LIMIT 1";
 		
 		$result = $mysqli->query($query);
-		$dashArray[] = $result->fetch_assoc();			
+		$dashArray['users'] = $result->fetch_assoc();			
 		$query = 
 				"SELECT COUNT(distinct user_id) as customers
 				FROM user_permission"; 
 		
 		$result = $mysqli->query($query);
-		$dashArray[] = $result->fetch_assoc();
+		$dashArray['customers'] = $result->fetch_assoc();
 
 		$query =
 				"SELECT permission_id as permission, count(permission_id) as number_of_permissions
@@ -315,20 +317,19 @@ public static function getBlackListItems($uniqueUrl, $userId){
 				WHERE user_permission.user_id = user.id
 				GROUP BY permission_id";
 				
-
-		/*$arrays =  Self::arrayResult($query);
-
-		if($arrays){
-		foreach($arrays as $row ) {
-	       	foreach($row as $k['permission'] => $v ) {
-	            $dashArray['permissions'][] = $v;
-	       }
-		}
-	}*/
 		$dashArray['permissions'] = Self::arrayResult($query);
-		
 
 		return $dashArray;
+	}
+
+	public static function insertNewCategory($categoryName) {
+		$mysqli = DB::getInstance();
+
+		$query=
+				"INSERT INTO category (categoryName)
+				VALUES('$categoryName')";
+
+		$mysqli->query($query);
 	}
 
 	public static function updateListName($uniqueUrl, $newName){
