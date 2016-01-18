@@ -29,24 +29,57 @@ if($url_parts!= null){
 
 if($method ==  'myList' || $method ==  'getList'){
 	$template = 'myList.html';
+	if( count($data["items"])<20|| in_array(1, $_SESSION["userPermission"]) || in_array(3, $_SESSION["userPermission"])){
+		$data['payment'] = "newWishForm.html";
+	}
+	else{
+		$data['payment'] = "paymentInfo.html";
+	}
 }
+
 elseif($method ==  'payUp'){
 	$template = 'payUp.html';
+
+	if( $_SESSION["user"]){
+			$data['payView'] = "paymentForm.html";
+		}
+	else{
+			$data['payView'] = "ourProduct.html";
+	}
 }
+
 elseif($method ==  'getBlacklist'){
-	$template = 'blacklist.html';
+	if(in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
+			$template = 'blacklist.html';
+			$data['payView'] = "paymentForm.html";
+	}
+	else{
+		$template = 'payUp.html';
+		$data['payView'] = "paymentForm.html";
+	}
 }
+
 elseif($method ==  'createUser'){
 	$template = 'login.html';
 }
+
 elseif($method ==  'guestView'){
 	$template = 'guestView.html';
-}
-elseif($method ==  'adminDash' AND $_SESSION['user']['role'] == 1 ){
 
+	if( in_array(1, $_SESSION["userPermission"]) || in_array(4, $_SESSION["userPermission"])){
+		$data['guestDonelist'] = "guestDonelist.html";
+
+		$data['guestDoneForm'] = "guestDoneForm.html";
+	}
+	if( in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
+		$data['guestBlacklist'] = "guestBlacklist.html";
+	}
+}
+
+elseif($method ==  'adminDash' AND $_SESSION['user']['role'] == 1 ){
 	$template = 'adminDash.html';
 }
-
+//var_dump($data);
 //redirectar sidan till valt destination.
 	if(isset($data['redirect'])){
 		header("Location: ".$data['redirect']);
@@ -54,15 +87,13 @@ elseif($method ==  'adminDash' AND $_SESSION['user']['role'] == 1 ){
 }
 else{
 	$template = 'login.html';
-	$data= array(1,2,3);//för att inte det ska bli error
+	$data= array();//Här kan vi lägga t ex statestik om sidan som ska visas på förstasidan
 }
 
 $twig = startTwig();
-
-//$template = 'index.html';
 echo $twig->render($template, $data);
 
-
+//var_dump($data);
 function getUrlParts($get){
 	$get_params = array_keys($get);//plockar key värden ur get-arrayen
 	$url = $get_params[0];

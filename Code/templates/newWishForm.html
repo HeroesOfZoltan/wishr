@@ -2,14 +2,12 @@
 	<form action='?/wishList/addItem/{{_session.uniqueUrl}}' method='post' role="form">
 		<div class="form-group">
 			<div class="col-xs-12 col-md-8 col-md-offset-2 wishNameInput">
-				
 				<div class="input-group">
 					<input type="text" id="wishName" class="form-control noSelect input wishNameInput" required placeholder="Make your wish here" name="wishName" value="{{item.wish}}" aria-describedby="basic-addon1">
 						<span class="input-group-addon wishNameInputIcon">
 							<label for="wishName"><i class="fa fa-pencil"></i></label>
 						</span>
 				</div><!-- /input-group -->
-
 			</div>
 		</div>
 
@@ -23,14 +21,14 @@
 		<div class="form-group">
 			<div class="col-xs-12 col-md-2 col-md-offset-2">
 				<select class="form-control dropdown wishCatDropdownBtn" name="wishCategory">
-					  <button class="btn btn-default dropdown-toggle " type="button" id="categoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					    <option value="" disabled selected>Select category:</option>
-					  </button>
-					  <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+					<button class="btn btn-default dropdown-toggle " type="button" id="categoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						<option value="" disabled selected>Select category:</option>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="categoryDropdown">
 					    {% for category in categories%}
 							<li><option value='{{category.id}}'>{{category.categoryName}}</option></li>
 						{% endfor %}
-					  </ul>
+					</ul>
 				</select>
 			</div>
 		</div>
@@ -52,7 +50,5 @@
 				<button type='submit' class="btn btn-default width100 button submitButton">Submit</button>
 			</div>
 		</div>
-	
-	</form>
-	
+	</form>	
 </div>

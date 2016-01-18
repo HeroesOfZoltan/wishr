@@ -24,6 +24,9 @@ body {
 p, input, textarea, button {
 	font-family: 'Merriweather Sans', 'Helvetica Neue', Helvetica, san-serif;
 }
+h1, h2, h3, h4{
+	font-family: 'Merriweather', serif;
+}
 
 /* General classes */
 .width100 {
@@ -228,6 +231,7 @@ h2 {
 	background-color: #fffff0; 
 	margin-bottom: 15px;
 	color: #a1caf1;
+	border-bottom: 4px solid #a1caf1;
 }
 .wishCollapseBody form{
 	margin-top:10px;

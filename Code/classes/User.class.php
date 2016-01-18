@@ -79,7 +79,7 @@ class User{
 
 	public static function getBlacklist() {
 		
-		return ['blacklist' => TRUE, 'items' => Sql::getListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']),'categories' =>Sql::category(), Sql::getListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']),];
+		return ['blacklist' => TRUE, 'items' => Sql::getBlackListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']),'categories' =>Sql::category()];
 	} 
 
 
@@ -101,7 +101,7 @@ class User{
 			$uniqueUrl = $params[0];
 			$uniqueUrlClean = $mysqli->real_escape_string($uniqueUrl);
 
-			return ['guestListItems' => Sql::listItemsGuest($uniqueUrlClean), 'listNames'=> Sql::listName($uniqueUrlClean), 'userPermission' => Sql::getUserGuestPermission($uniqueUrlClean)];
+			return ['guestListItems' => Sql::listItemsGuest($uniqueUrlClean), 'guestBlackListItems' => Sql::listBlackItemsGuest($uniqueUrlClean), 'listNames'=> Sql::listName($uniqueUrlClean), 'userPermission' => Sql::getUserGuestPermission($uniqueUrlClean)];
 		}
 
 		public static function itemDone($params) {

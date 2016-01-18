@@ -1,47 +1,16 @@
-	<!doctype html>
-<html>
-<head>
+{% include "pageHeader.html" %}
+{% include "listName.html" %}
 
-	{% include "pageHeader.html" %}
+{% if items %}	
+	{% include payment %}
 
-</head>
-<body>
+	{% for item in items %}
+		{% include "listItemForm.html" %}
+	{% endfor %}
 	
-	<div class="container-fluid">
-		{% include "pageNav.html" %}
-
-	{% if items %}
-					{% if (items | length < 20) or (1 in _session.userPermission) or (2 in _session.userPermission) %}
-						{% include "newWishForm.html" %}
-
-					{% else %}
-						{% include "paymentInfo.html" %}
-
-					{% endif %}
-						{% include "listName.html" %}
-
-					{% for item in items %}
-						{% if item.blacklist != 1 %}
-							{% include "listItemForm.html" %}
-
-						{%endif%}
-
-					{% endfor %}
-
-					{% include "linkToSend.html" %}
-
-			{% elseif _session.uniqueUrl%}
-				{% include "listName.html" %}
-
-					{% include "newWishForm.html" %}
-			{% endif %}
-	{% include "footer.html" %}
-	</div>
-
-	<!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-</body>
-</html>
+{% elseif _session.uniqueUrl %}
+	{% include "newWishForm.html" %}
+{% endif %}
+			
+{% include "linkToSend.html" %}		
+{% include "footer.html" %}
