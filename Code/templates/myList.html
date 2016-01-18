@@ -3,13 +3,14 @@
 
 {% if items %}	
 	{% include payment %}
+
+	{% for item in items %}
+		{% include "listItemForm.html" %}
+	{% endfor %}
+	
 {% elseif _session.uniqueUrl %}
 	{% include "newWishForm.html" %}
 {% endif %}
 			
-{% for item in items %}
-	{% include "listItemForm.html" %}
-{% endfor %}
-
 {% include "linkToSend.html" %}		
 {% include "footer.html" %}
