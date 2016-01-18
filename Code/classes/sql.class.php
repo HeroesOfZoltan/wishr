@@ -63,9 +63,8 @@ public static function getBlackListItems($uniqueUrl, $userId){
 	
 			$query = 
 				"SELECT *, item.id as 'itemId'
-				FROM list, item, category
+				FROM list, item
 				WHERE list.unique_string = item.list_unique_string
-				AND item.category_id = category.id
 				AND list.unique_string = '$uniqueUrl'
 				AND list.user_id = $userId
 				AND item.blacklist = 1
@@ -93,11 +92,10 @@ public static function getBlackListItems($uniqueUrl, $userId){
 
 		public static function listBlackItemsGuest($uniqueUrl) {
 		$query = 
-			"SELECT item.wish, item.description, item.blacklist, category.categoryName, item.isChecked, item.id as itemId, 
+			"SELECT item.wish, item.description, item.blacklist, item.isChecked, item.id as itemId, 
 			list.unique_string as uniqueUrl, user.role, item.checked_by, item.cost
-			FROM list, item, category, user
-			WHERE category.id = item.category_id
-			AND item.list_unique_string = list.unique_string
+			FROM list, item, user
+			WHERE item.list_unique_string = list.unique_string
 			AND list.user_id = user.id
 			AND list.unique_string = '$uniqueUrl' 
 			AND item.blacklist = 1

@@ -1,47 +1,49 @@
 <form class="form-horizontal" method='post' action="?/wish/updateItem/{{_session.uniqueUrl}}" role="form">
-	<input type="hidden" name="toBlacklist" value="">
-	<div class="form-group">
-		<div class="col-xs-12 col-md-12">
-			<label for="listItemName"><p>Wish:</p></label>
-		</div>
-		<div class="col-xs-12 col-md-12">
-			<input type='text' id="listItemName" class="form-control" name="wishName" value="{{item.wish}}">
+	<div class="col-xs-12 col-md-offset-2 col-md-8 wishHeader" data-toggle="collapse" data-target="#wish{{item.itemId}}">
+		<h2><i class="fa fa-chevron-down"> </i> {{item.wish}} </h2>
+	</div>
+	<div class="col-xs-12 col-md-offset-2 col-md-8 wishCollapseBody">
+		<div id="wish{{item.itemId}}" class="collapse">
+			<div class="form-group">
+				<div class="col-xs-12"
+					<label for="listItemDescription"><p>Description:</p></label>
+					<input type='text' id="listItemDescription" class="form-control input" name="wishDescription" value="{{item.description}}">
+				</div>
+			</div>
+			
 		</div>
 	</div>
-
-	<div class="form-group">
-		<div class="col-xs-12 col-md-12">
-			<label for="listItemDescription"><p>Description:</p></label>
-		</div>
-		<div class="col-xs-12 col-md-12">
-			<input type='text' id="listItemDescription" class="form-control" name="wishDescription" value="{{item.description}}">
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label class="col-xs-12 col-md-1 control-label" for="categoryUpdate"><p>Category:</p></label>
-		<div class="col-xs-12 col-md-3">
-			<select class="form-control" id="categoryUpdate" name="wishCategoryId">
-				{% for category in categories%}
-					{% if category.categoryName == item.categoryName %}
-						<option value='{{category.id}}' selected>{{category.categoryName}}</option>
-					{% else %}
-						<option value='{{category.id}}'>{{category.categoryName}}</option>
-					{% endif %}
-				{% endfor %}
-			</select>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<input type='hidden' name="wishId" value='{{item.itemId}}'>
-		<div class="col-xs-4 col-md-4">
-			<input class="btn btn-default" type='submit' name="updateBtn" value='Update'>
-			<input class="btn btn-default" type='submit' name="deleteBtn" value='Delete'>
-		</div>
-	</div>
-
 </form>
-</div>
+<!--
+	<form class="form-horizontal" method='post' action="?/wish/updateItem/{{_session.uniqueUrl}}" role="form">
+		<input type="hidden" name="toBlacklist" value="">
+		<div class="form-group">
+			<div class="col-xs-12 col-md-offset-2 col-md-8">
+				<label for="listItemName"><p>Wish:</p></label>
+			</div>
+			<div class="col-xs-12 col-md-offset-2 col-md-8">
+				<input type='text' id="listItemName" class="form-control input" name="wishName" value="{{item.wish}}">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-xs-12 col-md-offset-2 col-md-8">
+				<label for="listItemDescription"><p>Description:</p></label>
+			</div>
+			<div class="col-xs-12 col-md-offset-2 col-md-8">
+				<input type='text' id="listItemDescription" class="form-control input" name="wishDescription" value="{{item.description}}">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<input type='hidden' name="wishId" value='{{item.itemId}}'>
+			<div class="col-xs-4 col-md-offset-2 col-md-4">
+				<input class="btn btn-default button" type='submit' name="updateBtn" value='Update'>
+				<input class="btn btn-default button" type='submit' name="deleteBtn" value='Delete'>
+			</div>
+		</div>
+	</form>
+-->
 
 
+			
