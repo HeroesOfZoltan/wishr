@@ -80,25 +80,29 @@ if($url_parts!= null){
 		}
 	}
 
+
 	elseif($method ==  'adminDash' AND $_SESSION['user']['role'] == 1 ){
 		$template = 'adminDash.html';
 	}
-	
-	//var_dump(Sql::getListImage($_SESSION['uniqueUrl']));
-	//redirectar sidan till valt destination.
-		if(isset($data['redirect'])){
-			header("Location: ".$data['redirect']);
-		}
+
+
+//redirectar sidan till valt destination.
+	if(isset($data['redirect'])){
+		header("Location: ".$data['redirect']);
+	}
+
 }
 else{
 	$template = 'login.html';
 	$data= array();//Här kan vi lägga t ex statestik om sidan som ska visas på förstasidan
 }
+//print_r($data);
 
+//var_dump($data);
 $twig = startTwig();
 echo $twig->render($template, $data);
 
-//var_dump($data);
+
 function getUrlParts($get){
 	$get_params = array_keys($get);//plockar key värden ur get-arrayen
 	$url = $get_params[0];
