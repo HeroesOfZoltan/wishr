@@ -74,6 +74,20 @@ public static function getBlackListItems($uniqueUrl, $userId){
 			return Self::arrayResult($query);
 		 }	 
 
+public static function getListImage($uniqueUrl){
+	$mysqli = DB::getInstance();
+			$query = 
+				"SELECT imageUrl
+				FROM list
+				WHERE list.unique_string = '$uniqueUrl'
+				LIMIT 1";
+		
+			$result = $mysqli->query($query);
+			$imageUrl = $result->fetch_assoc();
+
+			return $imageUrl;
+		 }	
+
 	public static function listItemsGuest($uniqueUrl) {
 		$query = 
 			"SELECT item.wish, item.description, item.blacklist, category.categoryName, item.isChecked, item.id as itemId, 
@@ -245,8 +259,8 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		
 			$query =
 				"INSERT INTO list 
-				(listName, user_id, unique_string) 
-				VALUES ('$listName', '$userId', '$uniqueUrl')";
+				(listName, user_id, unique_string, imageUrl) 
+				VALUES ('$listName', '$userId', '$uniqueUrl', 'flowers.jpg')";
 			$mysqli->query($query);
 	}
 
@@ -332,6 +346,16 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		$query = 
 				"UPDATE list
 				SET listName = '$newName'
+				WHERE unique_string = '$uniqueUrl'";
+		$mysqli->query($query);
+	}
+
+	public static function updateListImage($uniqueUrl, $newImage){
+		$mysqli = DB::getInstance();
+		
+		$query = 
+				"UPDATE list
+				SET imageUrl = '$newImage'
 				WHERE unique_string = '$uniqueUrl'";
 		$mysqli->query($query);
 	}

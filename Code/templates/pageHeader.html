@@ -22,8 +22,13 @@
 </head>
 <body>
 
-	<div class="topImage">
-		<div class="triangleBg" ></div>
+	
+	{% if _session.user %}
+		<div class="topImageDiv" style="background-image: url({{imageUrl.imageUrl}});">
+	{%else%}
+		<div class="topImage topImageDiv">
+	{%endif%}
+	<div class="triangleBg" ></div>
 	</div>
 
 	{% include "pageNav.html" %}

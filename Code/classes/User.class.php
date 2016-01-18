@@ -57,18 +57,18 @@ class User{
 		Sql::setUniqueUrl($_SESSION['user']['id']);
 
 		$items = Sql::getListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']);
-
+		
 		
 		if($items){
-			return ['items' => $items, 'categories' => Sql::category(),'listNames'=> Sql::listName($_SESSION['uniqueUrl'])];
+			return ['items' => $items, 'categories' => Sql::category(),'listNames'=> Sql::listName($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 		}
 		else if ($_SESSION['user']['id'])	{
-			return ['listNames'=> Sql::listName($_SESSION['uniqueUrl']),'categories' =>Sql::category()];
+			return ['listNames'=> Sql::listName($_SESSION['uniqueUrl']),'categories' =>Sql::category(),'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 		}
 	}
 
 	public static function payUp() {
-		return [];
+		return ['listNames'=> Sql::listName($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 
 	} 
 		public static function ourProduct() {
@@ -79,7 +79,7 @@ class User{
 
 	public static function getBlacklist() {
 		
-		return ['blacklist' => TRUE, 'items' => Sql::getBlackListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']),'categories' =>Sql::category()];
+		return ['blacklist' => TRUE, 'items' => Sql::getBlackListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']),'categories' =>Sql::category(), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 	} 
 
 

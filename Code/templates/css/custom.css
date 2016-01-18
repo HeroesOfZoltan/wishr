@@ -96,9 +96,6 @@ input.clearForm,input.clearForm:focus {
 	color: #fffff0;
 }
 
-.btnInvisible{
-	display: none;
-}
 
 .input {
 	background-color: #fffff0;
@@ -362,7 +359,7 @@ h2 {
 }
 
 .listName p, .listName input{
-	color: #fffff0;
+	/*color: #fffff0;*/
 	font-family: 'Merriweather', serif;
 	font-size: 30px;
 	text-transform: uppercase;;
@@ -373,9 +370,9 @@ h2 {
 }
 
 .listNameEdit>input {
-	background-color: #bee9d5;
+	/*background-color: #bee9d5;
 	text-align: right;
-	border: none;
+	border: none;*/
 }
 
 .listNameEditlistName::-webkit-input-placeholder {
@@ -438,22 +435,26 @@ box-shadow: 5px 5px 5px lightgrey;
 	color: #fffff0;
 }
 /* ---------- Style for header ---------- */
-.topImage{
- background-image: url("jGlzr.png");
-  background-style:cover;
+.topImageDiv{
+  background-size:cover;
     width:100vw;
     height: 100vh;
 position: absolute;
+}
+.topImage{
+ background-image: url("flowers.jpg");
 }
 
 .triangleBg{
     border-right: 100vw solid transparent;
 	border-bottom: 100vh solid  #bee9d5;
-
     width: 100vw;
 
 }
 
+.userSettings{
+
+}
 
 /* For small-screens / col-xs-12 */
 @media (max-width: 767px) {
