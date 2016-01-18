@@ -303,27 +303,30 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		$result = $mysqli->query($query);
 		$dashArray[] = $result->fetch_assoc();			
 		$query = 
-				"SELECT COUNT(*) as customers
-				FROM user WHERE user.role=3
-				LIMIT 1"; 
+				"SELECT COUNT(distinct user_id) as customers
+				FROM user_permission"; 
 		
 		$result = $mysqli->query($query);
 		$dashArray[] = $result->fetch_assoc();
 
-		$query = 
-				"SELECT permission_id
-				FROM user_permission";
+		$query =
+				"SELECT permission_id as permission, count(permission_id) as number_of_permissions
+				FROM user_permission, user
+				WHERE user_permission.user_id = user.id
+				GROUP BY permission_id";
+				
 
-		$arrays =  Self::arrayResult($query);
+		/*$arrays =  Self::arrayResult($query);
 
 		if($arrays){
 		foreach($arrays as $row ) {
-	       	foreach($row as $k['permission_id'] => $v ) {
+	       	foreach($row as $k['permission'] => $v ) {
 	            $dashArray['permissions'][] = $v;
 	       }
 		}
-	}
-		//$dashArray['permissions'] = Self::arrayResult($query);
+	}*/
+		$dashArray['permissions'] = Self::arrayResult($query);
+		
 
 		return $dashArray;
 	}
