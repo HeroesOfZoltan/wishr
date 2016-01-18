@@ -11,10 +11,11 @@ Coral: #fbd6d1
 
 
 body {
-	margin-top: 70px; /* For navbar */
 	background-color: #bee9d5;
 }
-
+.topMargin70{
+	margin-top: 300px; /* For navbar */
+}
 *:focus {
     outline: 0;
 }
@@ -52,6 +53,23 @@ h1, h2, h3, h4{
   	-moz-box-shadow: none;
   	-moz-transition: none;
   	-webkit-transition: none;
+}
+
+.buttonForm{
+	background-color: transparent;
+	color: #a1caf1;
+	box-shadow: none;
+	border: none;
+  	border-radius: 0px;
+  	box-shadow: none;
+  	-webkit-box-shadow: none;
+  	-moz-box-shadow: none;
+  	-moz-transition: none;
+  	-webkit-transition: none;
+}
+.buttonDibs{
+  	border-bottom: solid 2px;
+  	border-color: #a1caf1;
 }
 
 
@@ -208,7 +226,8 @@ h2 {
 	color: #a1caf1;
 	border: none;
 	border-bottom: 4px solid #a1caf1;
-	border-radius: 0 3px 0 0;
+	border-left: 4px solid #a1caf1;
+	border-radius: 0px 3px 0px 0px;
 }
 
 .submitButton {
@@ -244,6 +263,7 @@ h2 {
 .wishHeader{
 	background-color: #fffff0; 
 	color: #a1caf1;
+	border-radius: 3px 3px 0 0;
 }
 .wishCollapseBody{
 	background-color: #fffff0; 
@@ -403,6 +423,54 @@ h2 {
 
 /* ---------- Style for pageNav ---------- */
 .navbar-nav {}
+
+.navbar-default{
+	background: rgba(255,255,240,.2);
+	border-color: transparent;
+}
+.navbar-logo{
+	font-family:Merriweather;
+	border: 2px solid  #fffff0;
+	color: #fffff0 !important;
+	font-size: 30px;
+	padding: 0 2px 0 2px;
+
+}
+
+.landing-logo{
+	font-family:Merriweather;
+	border: 4px solid  #fffff0;
+	color: #fffff0 !important;
+	font-size: 100px;
+	padding: 0 2px 0 2px;
+	width: 600px;
+
+}
+
+.lead{
+	color: #fffff0;
+}
+
+.copyrightText{
+	color: #fffff0;
+}
+/* ---------- Style for header ---------- */
+.topImage{
+ background-image: url("jGlzr.png");
+  background-style:cover;
+    width:100vw;
+    height: 100vh;
+position: absolute;
+}
+
+.triangleBg{
+    border-right: 100vw solid transparent;
+	border-bottom: 100vh solid  #bee9d5;
+
+    width: 100vw;
+
+}
+
 
 /* For small-screens / col-xs-12 */
 @media (max-width: 767px) {

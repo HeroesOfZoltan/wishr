@@ -10,7 +10,7 @@ if(isset($_POST['killSession'])){
 
 }
 
-//error_reporting(0);
+error_reporting(0);
 
 //anropar getUrlParts och skickar in url. url_parts blir en array med uppstyckad url. 
 $url_parts = getUrlParts($_GET); 
@@ -27,63 +27,63 @@ if($url_parts!= null){
 	$data['_session'] = $_SESSION;
 
 
-if($method ==  'myList' || $method ==  'getList'){
-	$template = 'myList.html';
-	if( count($data["items"])<20|| in_array(1, $_SESSION["userPermission"]) || in_array(3, $_SESSION["userPermission"])){
-		$data['payment'] = "newWishForm.html";
+	if($method ==  'myList' || $method ==  'getList'){
+		$template = 'myList.html';
+		if( count($data["items"])<20|| in_array(1, $_SESSION["userPermission"]) || in_array(3, $_SESSION["userPermission"])){
+			$data['payment'] = "newWishForm.html";
+		}
+		else{
+			$data['payment'] = "paymentInfo.html";
+		}
 	}
-	else{
-		$data['payment'] = "paymentInfo.html";
+
+	elseif($method ==  'payUp'){
+		$template = 'payUp.html';
+
+		if( $_SESSION["user"]){
+				$data['payView'] = "paymentForm.html";
+			}
+		else{
+				$data['payView'] = "ourProduct.html";
+		}
 	}
-}
 
-elseif($method ==  'payUp'){
-	$template = 'payUp.html';
-
-	if( $_SESSION["user"]){
+	elseif($method ==  'getBlacklist'){
+		if(in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
+				$template = 'blacklist.html';
+				$data['payView'] = "paymentForm.html";
+		}
+		else{
+			$template = 'payUp.html';
 			$data['payView'] = "paymentForm.html";
 		}
-	else{
-			$data['payView'] = "ourProduct.html";
 	}
-}
 
-elseif($method ==  'getBlacklist'){
-	if(in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
-			$template = 'blacklist.html';
-			$data['payView'] = "paymentForm.html";
+	elseif($method ==  'createUser'){
+		$template = 'login.html';
 	}
-	else{
-		$template = 'payUp.html';
-		$data['payView'] = "paymentForm.html";
+
+	elseif($method ==  'guestView'){
+		$template = 'guestView.html';
+
+		if( in_array(1, $_SESSION["userPermission"]) || in_array(4, $_SESSION["userPermission"])){
+			$data['guestDonelist'] = "guestDonelist.html";
+
+			$data['guestDoneForm'] = "guestDoneForm.html";
+		}
+		if( in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
+			$data['guestBlacklist'] = "guestBlacklist.html";
+		}
 	}
-}
 
-elseif($method ==  'createUser'){
-	$template = 'login.html';
-}
-
-elseif($method ==  'guestView'){
-	$template = 'guestView.html';
-
-	if( in_array(1, $_SESSION["userPermission"]) || in_array(4, $_SESSION["userPermission"])){
-		$data['guestDonelist'] = "guestDonelist.html";
-
-		$data['guestDoneForm'] = "guestDoneForm.html";
+	elseif($method ==  'adminDash' AND $_SESSION['user']['role'] == 1 ){
+		$template = 'adminDash.html';
 	}
-	if( in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
-		$data['guestBlacklist'] = "guestBlacklist.html";
-	}
-}
-
-elseif($method ==  'adminDash' AND $_SESSION['user']['role'] == 1 ){
-	$template = 'adminDash.html';
-}
-//var_dump($data);
-//redirectar sidan till valt destination.
-	if(isset($data['redirect'])){
-		header("Location: ".$data['redirect']);
-	}
+	//var_dump($data);
+	//redirectar sidan till valt destination.
+		if(isset($data['redirect'])){
+			header("Location: ".$data['redirect']);
+		}
 }
 else{
 	$template = 'login.html';
