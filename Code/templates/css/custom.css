@@ -13,8 +13,8 @@ Coral: #fbd6d1
 body {
 	background-color: #bee9d5;
 }
-.topMargin70{
-	margin-top: 300px; /* For navbar */
+.topMargin{
+	margin-top: 70px; /* For navbar */
 }
 *:focus {
     outline: 0;
@@ -485,7 +485,20 @@ position: absolute;
     width: 100vw;
 
 }
+.triangleFilter{
+    border-right: 100vw solid rgba(161,202,241, 0.5);
+	border-bottom: 100vh solid  #bee9d5;
+    width: 100vw;
+position: absolute;
+}
 
+.triangleError{
+	    width:100vw;
+    height: 100vh;
+position: absolute;
+	background-image: url("not-found.png");
+
+}
 .userSettings{
 
 }

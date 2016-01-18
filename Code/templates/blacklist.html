@@ -1,3 +1,9 @@
 {% include "pageHeader.html" %}
-	{% include "blacklistPage.html" %}
+
+{% include "newBlacklistForm.html" %}
+
+{% for item in items %}
+		{% include "blacklistItemForm.html" %}	
+{% endfor %}
+
 {% include "footer.html" %}

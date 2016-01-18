@@ -121,7 +121,7 @@ public static function getListImage($uniqueUrl){
 
 	public static function listName($uniqueUrl) {
 		$query =
-			"SELECT listName
+			"SELECT firstName, secondName
 			FROM list
 			WHERE list.unique_string = '$uniqueUrl'
 			LIMIT 1";
@@ -254,13 +254,13 @@ public static function getListImage($uniqueUrl){
 			}			
 	}
 
-	public static function insertNewList($listName, $uniqueUrl, $userId){
+	public static function insertNewList($firstName, $secondName, $uniqueUrl, $userId){
 		$mysqli = DB::getInstance();
 		
 			$query =
 				"INSERT INTO list 
-				(listName, user_id, unique_string, imageUrl) 
-				VALUES ('$listName', '$userId', '$uniqueUrl', 'flowers.jpg')";
+				(firstName, secondName, user_id, unique_string, imageUrl) 
+				VALUES ('$firstName','$secondName', '$userId', '$uniqueUrl', 'flowers.jpg')";
 			$mysqli->query($query);
 	}
 
@@ -344,12 +344,12 @@ public static function getListImage($uniqueUrl){
 		$mysqli->query($query);
 	}
 
-	public static function updateListName($uniqueUrl, $newName){
+	public static function updateListName($uniqueUrl, $newNameFirst, $newNameSecond){
 		$mysqli = DB::getInstance();
 		
 		$query = 
 				"UPDATE list
-				SET listName = '$newName'
+				SET firstName = '$newNameFirst', secondName = '$newNameSecond'
 				WHERE unique_string = '$uniqueUrl'";
 		$mysqli->query($query);
 	}

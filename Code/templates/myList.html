@@ -8,7 +8,7 @@
 		{% include "listItemForm.html" %}
 	{% endfor %}
 	
-{% elseif _session.uniqueUrl %}
+{% else%}
 	{% include "newWishForm.html" %}
 {% endif %}
 			
