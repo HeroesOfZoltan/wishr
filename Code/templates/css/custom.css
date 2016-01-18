@@ -42,19 +42,10 @@ h1, h2, h3, h4{
 .cursorPointer{
 	cursor: pointer;
 }
-.button{
-	background-color: #a1caf1;
-	border: none;
-	color: #fffff0;
-	text-shadow: 0 1px 1px rgba(0,0,0,.1)
-}
 
-input.clearForm,input.clearForm:focus {
+.clearForm, .clearForm:focus {
 	background-color: transparent;
 	border:none;
-  	border-left: solid 2px;
-  	border-bottom: solid 2px;
-  	border-color: #a1caf1;
   	box-shadow: none;
   	border-radius: 0px;
   	-webkit-box-shadow: none;
@@ -112,7 +103,7 @@ input.clearForm,input.clearForm:focus {
 }
 
 .textBox {
-
+	border-left: 4px solid #a1caf1;
 }
 
 .dashboard {
@@ -155,9 +146,13 @@ h2 {
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
-/* ---------- Style for newWishForm ---------- */
+
+/********************************************
+---------- Style for newWishForm ----------
+*********************************************/
+
 .newWishForm {
-	padding-top: 10	0px;
+	padding-top: 10px 0;
 }
 
 .newWishForm button {
@@ -169,21 +164,22 @@ h2 {
 	margin-bottom: 25px;
 }
 
-.wishNameInput {
-	height: auto;
-	min-height: 90px;
-	line-height: normal;
+.wishName {
+	color: #a1caf1;
 	font-family: 'Merriweather', 'Georgia', serif;
 	font-size: 1.6em;
 }
 
+.wishNameInput {
+	height: auto;
+	min-height: 90px;
+	line-height: normal;
+	
+}
+
 .wishNameInputIcon {
 	padding-right: 25px;
-	background-color: #fffff0;
 	color: #a1caf1;
-	border: none;
-	border-bottom: 4px solid #a1caf1;
-	border-radius: 3px 3px 0 0;
 	font-size: 1.1em;
 }
 
@@ -208,7 +204,11 @@ h2 {
 }
 
 .wishCatDropdownBtn {
-	
+	background-color: #fffff0;
+	color: #a1caf1;
+	border: none;
+	border-bottom: 4px solid #a1caf1;
+	border-radius: 0 3px 0 0;
 }
 
 .submitButton {
@@ -219,6 +219,24 @@ h2 {
 	background-color: rgba(161,202,241,0.8);
 	color: #fffff0;
 }
+
+/********************************************
+---------- Style for ListItemForm ----------
+*********************************************/
+
+.listItemNameInput {
+	height: auto;
+	min-height: 90px;
+	line-height: normal;
+	font-family: 'Merriweather', 'Georgia', serif;
+	font-size: 1.6em;
+}
+
+.listItemContent {
+	background-color: #fffff0; 
+	color: #a1caf1;
+}
+
 /********************************************
 ---------- Style for GuestListForm ----------
 *********************************************/
@@ -233,6 +251,11 @@ h2 {
 	color: #a1caf1;
 	border-bottom: 4px solid #a1caf1;
 }
+
+.wishCollapseBody .row {
+	padding: 15px 0;
+}
+
 .wishCollapseBody form{
 	margin-top:10px;
 	margin-bottom:10px;
