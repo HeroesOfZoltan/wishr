@@ -11,10 +11,11 @@ Coral: #fbd6d1
 
 
 body {
-	margin-top: 70px; /* For navbar */
 	background-color: #bee9d5;
 }
-
+.topMargin70{
+	margin-top: 300px; /* For navbar */
+}
 *:focus {
     outline: 0;
 }
@@ -208,7 +209,12 @@ h2 {
 }
 
 .wishCatDropdownBtn {
-	
+	background-color: #fffff0;
+	color: #a1caf1;
+	border: none;
+	border-bottom: 4px solid #a1caf1;
+	border-left: 4px solid #a1caf1;
+	border-radius: 0px 3px 0px 0px;
 }
 
 .submitButton {
@@ -382,6 +388,54 @@ box-shadow: 5px 5px 5px lightgrey;
 
 /* ---------- Style for pageNav ---------- */
 .navbar-nav {}
+
+.navbar-default{
+	background: rgba(255,255,240,.2);
+	border-color: transparent;
+}
+.navbar-logo{
+	font-family:Merriweather;
+	border: 2px solid  #fffff0;
+	color: #fffff0 !important;
+	font-size: 30px;
+	padding: 0 2px 0 2px;
+
+}
+
+.landing-logo{
+	font-family:Merriweather;
+	border: 4px solid  #fffff0;
+	color: #fffff0 !important;
+	font-size: 100px;
+	padding: 0 2px 0 2px;
+	width: 600px;
+
+}
+
+.lead{
+	color: #fffff0;
+}
+
+.copyrightText{
+	color: #fffff0;
+}
+/* ---------- Style for header ---------- */
+.topImage{
+ background-image: url("jGlzr.png");
+  background-style:cover;
+    width:100vw;
+    height: 100vh;
+position: absolute;
+}
+
+.triangleBg{
+    border-right: 100vw solid transparent;
+	border-bottom: 100vh solid  #bee9d5;
+
+    width: 100vw;
+
+}
+
 
 /* For small-screens / col-xs-12 */
 @media (max-width: 767px) {
