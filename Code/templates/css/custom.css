@@ -63,6 +63,23 @@ input.clearForm,input.clearForm:focus {
   	-webkit-transition: none;
 }
 
+.buttonForm{
+	background-color: transparent;
+	color: #a1caf1;
+	box-shadow: none;
+	border: none;
+  	border-radius: 0px;
+  	box-shadow: none;
+  	-webkit-box-shadow: none;
+  	-moz-box-shadow: none;
+  	-moz-transition: none;
+  	-webkit-transition: none;
+}
+.buttonDibs{
+  	border-bottom: solid 2px;
+  	border-color: #a1caf1;
+}
+
 
 /* Specific classes */
 
@@ -226,6 +243,7 @@ h2 {
 .wishHeader{
 	background-color: #fffff0; 
 	color: #a1caf1;
+	border-radius: 3px 3px 0 0;
 }
 .wishCollapseBody{
 	background-color: #fffff0; 
