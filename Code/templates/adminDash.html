@@ -1,4 +1,59 @@
-{% include "pageHeader.html" %}
+<!doctype html>
+<html>
+<head>
+	<title>Wishr</title>
+	<meta charset="UTF-8">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Custom fonts -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<!-- Merriweather - regular 400, italic, bold 700 and bold 700 italic -->
+	<link href='https://fonts.googleapis.com/css?family=Merriweather:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+	<!-- Merriweather Sans - light 300, italic 300, regular 400, italic, bold 700 and bold 700 italic -->
+	<link href='https://fonts.googleapis.com/css?family=Merriweather+Sans:400,400italic,700,700italic,300italic,300' rel='stylesheet' type='text/css'>
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="templates/css/custom.css" type="text/css">
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<i class="fa fa-bars"></i>
+			</button>
+			<a class="navbar-brand" href="?/Admin/adminDash"><i class="navbar-logo">WISHR</i></a>
+		</div>
+
+
+		<div class="collapse navbar-collapse" id="navbar-collapse">
+			<!-- Logut Button -->
+			<form class="navbar-form  navbar-right" method="post" action="index.php">
+				<button type='submit' class="btn btn-default button" name='killSession' value='Logga ut'>Log out</button>
+			</form>
+		</div>
+	</div>
+</nav>
+
+<div class="triangleError" ></div>
+{% if _session.user %}
+	<div class="topImageDiv" style="background-image: url({{imageUrl.imageUrl}});">
+{%else%}
+	<div class="topImage topImageDiv">
+{%endif%}
+		<div class="triangleFilter" ></div>
+		<div class="triangleBg" ></div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 topMargin">
 
 {% include "dash.html" %}
 

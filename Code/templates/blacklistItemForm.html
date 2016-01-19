@@ -1,37 +1,44 @@
 <form class="form-horizontal" method='post' action="?/wish/updateItem/{{_session.uniqueUrl}}" role="form">
-	
+	<input type="hidden" name="toBlacklist" value="">
 	<!-- collapse title -->
-	<div class="input-group col-xs-12 col-md-offset-2 col-md-8 wishHeader" data-toggle="collapse" data-target="#wish{{item.itemId}}">
-		<span class="input-group-addon clearForm wishNameInputIcon">
-			<label for=""><i class="fa fa-chevron-down"> </i> </label>
+	<div class="input-group col-xs-12 col-sm-offset-1 col-sm-10 wishHeader" data-toggle="collapse" data-target="#wish{{item.itemId}}">
+		<span class="input-group-addon clearForm wishNameInputIcon wishName">
+			<label for=""><i class="fa fa-chevron-down"></i></label>
 		</span>
-		<input type="text" id="listItemName" class="form-control clearForm wishName wishNameInput" name="wishName" value="{{item.wish}}">
-		<span class="input-group-addon clearForm wishNameInputIcon">
+		<input type="text" id="listItemNameInput" class="form-control clearForm wishName wishNameInput" required name="wishName" value="{{item.wish}}" aria-describedby="basic-addon1" autocomplete="off">
+		<span class="input-group-addon clearForm wishNameInputIcon wishName">
 			<label for="listItemName"><i class="fa fa-pencil"></i></label>
 		</span>
 	</div><!-- end collapse title -->
 
+
 	<!-- collapse content -->
-	<div class="col-xs-12 col-md-offset-2 col-md-8 wishCollapseBody">
+	<div class="col-xs-12 col-sm-offset-1 col-sm-10 wishCollapseBody">
 		<div id="wish{{item.itemId}}" class="collapse">
 			<div class="row">
 				<div class="col-xs-12">
 					<label for="listItemDescription"><p>Description:</p></label>
-					<input type='text' id="listItemDescription" class="form-control input clearForm" name="wishDescription" value="{{item.description}}">
+					<textarea class="form-control input listItemDescription" rows="6" id="listItemDescription" name="wishDescription" placeholder="">{{item.description}}
+					</textarea>
 				</div>
 			</div>
 
 			<div class="row">
 				<input type='hidden' name="wishId" value='{{item.itemId}}'>
-				<div class="col-xs-12 col-md-3">
-					<input class="btn btn-default button" type='submit' name="updateBtn" value='Update'>
-					<input class="btn btn-default button" type='submit' name="deleteBtn" value='Delete'>
+				<div class="col-xs-6 col-md-offset-8 col-md-2">
+					<input class="btn btn-default button width100" type='submit' name="updateBtn" value='Update'>
+				</div>
+				<div class="col-xs-6 col-md-2">
+					<input class="btn btn-default button width100" type='submit' name="deleteBtn" value='Delete'>
 				</div>
 			</div>
 		</div>
 	</div><!-- end collapse content -->
 
 </form>
+
+
+
 <!--
 	<form class="form-horizontal" method='post' action="?/wish/updateItem/{{_session.uniqueUrl}}" role="form">
 		<input type="hidden" name="toBlacklist" value="">
@@ -62,6 +69,4 @@
 		</div>
 	</form>
 -->
-
-
 			
