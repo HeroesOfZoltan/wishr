@@ -20,16 +20,16 @@
 							{% include guestDoneForm %}
 						{% endif %}
 						<div class="col-xs-12">
-							<h3>Description: {{guestListItem.description}}</h3>
+							<label>Description: </label> {{guestListItem.description}}
 						</div>
 						<div class="col-xs-6">
-							<h3>Category: {{guestListItem.categoryName}}</h3>
+							<label>Category: </label> {{guestListItem.categoryName}}
 						</div>
 						<div class="col-xs-6">
-							<h3>Est. cost: {{guestListItem.cost}}</h3>
+							<label>Est. cost: </label> {{guestListItem.cost}}
 						</div>
 						<div class="col-xs-12">
-							<h3>Search for {{guestListItem.wish}}: {% include "searchBtns.html" %}</h3>
+							<label>Search for {{guestListItem.wish}}: </label><br>{% include "searchBtns.html" %}
 						</div>
 					</div>
 				</div>

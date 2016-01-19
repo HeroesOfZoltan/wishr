@@ -10,7 +10,6 @@ Coral: #fbd6d1
 
 */
 
-
 body {
 	background-color: #bee9d5;
 	color: #fffff0;
@@ -86,6 +85,12 @@ h1, h2, h3, h4{
 
 /* Specific classes */
 
+.formAddon {
+	background-color: #a1caf1;
+	color: #fffff0;
+	border: none;
+	text-shadow: 0 1px 1px rgba(0,0,0,.1;);
+}
 .button {
 	background-color: #a1caf1;
 	color: #fffff0;
@@ -98,16 +103,20 @@ h1, h2, h3, h4{
 	color: #fffff0;
 }
 
-
 .input {
 	box-shadow: none;
+  	-webkit-box-shadow: none;
+  	-moz-box-shadow: none;
+  	-moz-transition: none;
+  	-webkit-transition: none;
 	background-color: #fffff0;
 	color: #a1caf1;
 	border: none;
-	border-bottom: 2px solid #a1caf1;
 	border-radius: 3px 3px 0 0;
 }
-
+.inputBorderBottom{
+	border-bottom: 2px solid #a1caf1;
+}
 .input::-webkit-input-placeholder {
 	color: #a1caf1; 
 }

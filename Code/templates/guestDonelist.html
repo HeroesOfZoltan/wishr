@@ -15,9 +15,10 @@
 						<div class="col-xs-10 col-md-6">
 							<form action='?/User/unDoneItem/{{guestListItem.uniqueUrl}}' method='post'>
 								<div class="input-group">
-									<h4>This wish is claimed by: {{guestListItem.checked_by}}
-										<button class="btn btn-default buttonForm" type="submit" name="itemId" value="{{guestListItem.itemId}}"><i class="fa fa-times-circle"></i></button>
-									</h4>
+									<label>This wish is claimed by: </label> 
+										{{guestListItem.checked_by}}
+										<button class="btn btn-xs btn-default buttonForm" type="submit" name="itemId" value="{{guestListItem.itemId}}"><i class="fa fa-times-circle"></i></button>
+									</h5>
 								</div>
 							</form>
 						</div>
