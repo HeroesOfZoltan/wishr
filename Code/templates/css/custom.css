@@ -60,7 +60,9 @@ h1, h2, h3, h4{
 .topMargin{
 	margin-top: 70px; /* For navbar */
 }
-
+.bottomMargin{
+	margin-bottom: 15px;
+}
 .marginTop18vh {
 	margin-top: 18vh;
 }
