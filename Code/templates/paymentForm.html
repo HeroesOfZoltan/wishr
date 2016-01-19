@@ -1,106 +1,108 @@
-<div class="row paymentForm">
-	<div class="col-xs-12">
-		<div class="row">
-			<div class="col-xs-12 text-center">
-				<h1>Pay up</h1>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-4 col-xs-offset-4 text-center">
-				<h4>Här kan du läsa mer om våra betalplaner.</h4>
-			</div>
-		</div>
-
-		<div class="row">
-			<div  class="col-xs-12 col-sm-10 col-sm-offset-1 text-center ">
-				<div  class=" priceFieldDetails">
-					<h4>Go Pro!</h4>
-					<span>Get unlimited access to all functions.</span>
-					<br>
-					<ul>
-						<li>Blacklist</li>
-						<li>Wishr Unlimited</li>
-						<li>Donedidit</li>
-					</ul>
-					<h1>39€</h1>
-					<form action="?/User/payPermission/{{_session.user.id}}" method="post">
-						<button class="btn btn-default" name="permissionType" value="1">Get all!</button>
-					</form>
+<div class="container">
+	<div class="row paymentForm marginTop18vh">
+		<div class="col-xs-12">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<h1>Pay up</h1>
 				</div>
-			</div><!--col-->
-		</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4 col-xs-offset-4 text-center">
+					<h4>Här kan du läsa mer om våra betalplaner.</h4>
+				</div>
+			</div>
 
-		<div class="row">
-			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-5 col-md-offset-1 text-center ">
-				<div  class="priceFieldPayed priceField">
-					<h4>Change names</h4>
-					<span>Here you can change your names</span>
-					<form action='?/wishList/changeListName/{{_session.uniqueUrl}}' method='post'>
-						<div class="col-xs-8 col-xs-offset-2" >
-							<div class="listNameEdit">
-								<input type="text" class="" required placeholder="{{listNames[0].firstName}}" value="{{listNames[0].firstName}}"name="newListNameFirst" >
-								<span class="glyphicon glyphicon-heart" style="font-size:50px; text-aling: center;"aria-hidden="true"></span>
-								<input type="text" class="" required placeholder="{{listNames[0].secondName}}" value="{{listNames[0].secondName}}"name="newListNameSecond" >
-								<button type='submit' class="button">Change name</button>
+			<div class="row">
+				<div  class="col-xs-12 col-sm-10 col-sm-offset-1 text-center ">
+					<div  class=" priceFieldDetails">
+						<h4>Go Pro!</h4>
+						<span>Get unlimited access to all functions.</span>
+						<br>
+						<ul>
+							<li>Blacklist</li>
+							<li>Wishr Unlimited</li>
+							<li>Donedidit</li>
+						</ul>
+						<h1>39€</h1>
+						<form action="?/User/payPermission/{{_session.user.id}}" method="post">
+							<button class="btn btn-default" name="permissionType" value="1">Get all!</button>
+						</form>
+					</div>
+				</div><!--col-->
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-5 col-md-offset-1 text-center ">
+					<div  class="priceFieldPayed priceField">
+						<h4>Change names</h4>
+						<span>Here you can change your names</span>
+						<form action='?/wishList/changeListName/{{_session.uniqueUrl}}' method='post'>
+							<div class="col-xs-8 col-xs-offset-2" >
+								<div class="listNameEdit">
+									<input type="text" class="" required placeholder="{{listNames[0].firstName}}" value="{{listNames[0].firstName}}"name="newListNameFirst" >
+									<span class="glyphicon glyphicon-heart" style="font-size:50px; text-aling: center;"aria-hidden="true"></span>
+									<input type="text" class="" required placeholder="{{listNames[0].secondName}}" value="{{listNames[0].secondName}}"name="newListNameSecond" >
+									<button type='submit' class="button">Change name</button>
+								</div>
 							</div>
-						</div>
-					</form>
-				</div>
-			</div><!--col-->
+						</form>
+					</div>
+				</div><!--col-->
 
-			{% include unlimitedForm %}
-		</div>
+				{% include unlimitedForm %}
+			</div>
 
-		<div class="row">
+			<div class="row">
 
-			{% include blacklistForm %}
+				{% include blacklistForm %}
 
-			{% include doneForm %}
+				{% include doneForm %}
 
-		</div>
-		
-		<div class="row">
-			{%include listImage%}
+			</div>
+			
+			<div class="row">
+				{%include listImage%}
 
-			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-5 col-md-offset-0 text-center ">
-				<div  class="priceField priceField1">
-					<h4>More funcs on da way</h4>
-					<span>YeyeyeyYYYEYYY</span>
-					
-				</div>
-			</div><!--col-->
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-5 col-md-offset-0 text-center ">
+					<div  class="priceField priceField1">
+						<h4>More funcs on da way</h4>
+						<span>YeyeyeyYYYEYYY</span>
+						
+					</div>
+				</div><!--col-->
+			</div>
 		</div>
 	</div>
-</div>
 
-	<!--div class="paymentForm">
-		<h1>Betala</h1>
+		<!--div class="paymentForm">
+			<h1>Betala</h1>
 
-		<form action="?/User/pay/{{userId}}" method="post">
-			<input type="submit" value="Betala!">
-		</form>
-
-		<form action="?/User/payPermission/{{userId}}" method="post">
-			<input type="hidden" name="permissionType" value="1">
-			<input type="submit" value="Get all permissions">
-		</form>
-
+			<form action="?/User/pay/{{userId}}" method="post">
+				<input type="submit" value="Betala!">
+			</form>
 
 			<form action="?/User/payPermission/{{userId}}" method="post">
-			<input type="hidden" name="permissionType" value="2">
-			<input type="submit" value="Permission 2!">
-		</form>
-				<form action="?/User/payPermission/{{userId}}" method="post">
-			<input type="hidden" name="permissionType" value="3">
-			<input type="submit" value="Permission 3!">
-		</form>
-				<form action="?/User/payPermission/{{userId}}" method="post">
-			<input type="hidden" name="permissionType" value="4">
-			<input type="submit" value="Permission 4!">
-		</form>
+				<input type="hidden" name="permissionType" value="1">
+				<input type="submit" value="Get all permissions">
+			</form>
 
-		<form action="?/wishlist/getlist/{{uniqueUrl}}" method="post">
-			<input type="submit" value="Tillbaka">
-		</form>
-	</div-->
 
+				<form action="?/User/payPermission/{{userId}}" method="post">
+				<input type="hidden" name="permissionType" value="2">
+				<input type="submit" value="Permission 2!">
+			</form>
+					<form action="?/User/payPermission/{{userId}}" method="post">
+				<input type="hidden" name="permissionType" value="3">
+				<input type="submit" value="Permission 3!">
+			</form>
+					<form action="?/User/payPermission/{{userId}}" method="post">
+				<input type="hidden" name="permissionType" value="4">
+				<input type="submit" value="Permission 4!">
+			</form>
+
+			<form action="?/wishlist/getlist/{{uniqueUrl}}" method="post">
+				<input type="submit" value="Tillbaka">
+			</form>
+		</div-->
+
+</div>
