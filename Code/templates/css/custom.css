@@ -10,7 +10,6 @@ Coral: #fbd6d1
 
 */
 
-
 body {
 	background-color: #bee9d5;
 	color: #fffff0;
@@ -19,9 +18,7 @@ body {
 	font-size: 14px;
 	line-height: 1.6;
 }
-.topMargin{
-	margin-top: 70px; /* For navbar */
-}
+
 *:focus {
     outline: 0;
 }
@@ -35,10 +32,41 @@ h1, h2, h3, h4{
 	font-family: 'Merriweather', serif;
 }
 
+.lead{
+	color: #fffff0;
+	text-shadow: 1px 1px #a1caf1;
+	font-family: 'Playfair Display';
+	font-size: 1.6em;
+	letter-spacing: 1.6px;
+}
+
+.puff {
+	background-color: #fbd6d1;
+	color: #fffff0;
+	padding: 15px;
+	border-radius: 3px;
+}
+
+.puff p {
+	font-family: 'Merriweather Sans', Georgia, serif;
+	font-size: 1.4em;
+}
+
 /* General classes */
 .width100 {
 	width: 100%;
 }
+
+.topMargin{
+	margin-top: 70px; /* For navbar */
+}
+.bottomMargin{
+	margin-bottom: 15px;
+}
+.marginTop18vh {
+	margin-top: 18vh;
+}
+
 .paddingRight15px {
 	padding-right: 15px;
 }
@@ -95,6 +123,12 @@ h1, h2, h3, h4{
 
 /* Specific classes */
 
+.formAddon {
+	background-color: #a1caf1;
+	color: #fffff0;
+	border: none;
+	text-shadow: 0 1px 1px rgba(0,0,0,.1;);
+}
 .button {
 	background-color: #a1caf1;
 	color: #fffff0;
@@ -107,16 +141,30 @@ h1, h2, h3, h4{
 	color: #fffff0;
 }
 
+.logo {
+	color: #fffff0 !important;
+	font-family: 'Merriweather', Georgia, serif;
+	font-weight: 700;
+	font-style: italic;
+	letter-spacing: 2.6px;
+	padding: 2px 5px;
+	border: 3px solid  #fffff0;
+}
 
 .input {
 	box-shadow: none;
+  	-webkit-box-shadow: none;
+  	-moz-box-shadow: none;
+  	-moz-transition: none;
+  	-webkit-transition: none;
 	background-color: #fffff0;
 	color: #a1caf1;
 	border: none;
-	border-bottom: 2px solid #a1caf1;
 	border-radius: 3px 3px 0 0;
 }
-
+.inputBorderBottom{
+	border-bottom: 2px solid #a1caf1;
+}
 .input::-webkit-input-placeholder {
 	color: #a1caf1; 
 }
@@ -195,6 +243,83 @@ h2 > .fa{
 h2 {
 	margin-top: 15px;
 	margin-bottom: 15px;
+}
+
+/********************************************
+---------- Style for landingPage.html ----------
+*********************************************/
+
+.landing-logo{
+	letter-spacing: 0.1em;
+    font-size: 8em;
+    padding: 0.03em 0.15em 0em 0.15em;
+    border-width: 0.05em;
+}
+
+/********************************************
+---------- Style for ourProduct.html ----------
+*********************************************/
+
+.productContainer {
+	background-color: #fbd6d1;
+	background-size: cover;
+	position: absolute;
+    width: 100%;
+    min-height: 760px;
+    left: 0;
+}
+
+.productHead {
+	margin-top: 10vh;
+}
+
+.productTitle {
+	font-size: 4.2em;
+	padding: 0.1em 0.2em;
+}
+
+.productIntro {
+	font-size: 2.4em;
+	font-style: italic;
+	font-weight: 400;
+	line-height: 1.4;
+}
+
+.productIntroStrong {
+	font-size: 1.4em;
+	font-weight: 700;
+}
+
+.productBlurb {
+	font-size: 1.6em;
+	letter-spacing: 1.4;
+}
+
+.productButtons {
+	padding: 25px 0;
+}
+
+.devicesImg {
+	padding: 50px 0;
+}
+
+.productSection {
+	background-color: #fffff0;
+	color: #a1caf1;
+	padding: 25px 0;
+	margin-bottom: 50px;
+	border-radius: 3px;
+}
+
+.productSection > .col-xs-12 {
+	padding: 25px 0;
+}
+
+.productSignUp {
+
+}
+
+.pricingForm {
 }
 
 /* ---------- Style for dash ---------- */
@@ -379,20 +504,47 @@ h2 {
 /* ---------- Style end GuestListForm ---------- */
 
 /* ---------- Style for paymentForm ---------- */
-
-.priceField {	
-	font-weight: 300;
+.priceFieldDetails{
+		font-weight: 300;
 	border-radius: 10px; 
-	padding: 10px;
 	color: #FFFFFF;
 	margin-top: 15px;
+	background-color:#fbd6d1;
+}
+
+.priceField1 {	
+	font-weight: 300;
+	border-radius: 10px; 
+	color: #FFFFFF;
+	margin-top: 15px;
+	background-color:#a1caf1;
+}
+
+.priceFieldBig {	
+	font-weight: 300;
+	border-radius: 10px; 
+	color: #FFFFFF;
+	margin-top: 15px;
+	background-color:#fbd6d1;
+}
+
+.priceFieldPayed {	
+	font-weight: 300;
+	border-radius: 10px; 
+	color: #c6daf1;
+	margin-top: 15px;
+	background-color: #fffff0;
+	border: solid 4px #c6daf1;
 }
 @media all and (min-width: 990px) {
-	.priceField {
-		width: 110%;
+
+	.priceFieldDetails{
 		min-height: 300px;
-		margin-top: 50px;
-		margin-bottom: 100px;
+	}
+
+	.priceField {
+		min-height: 300px;
+
 	}
 	.priceField p {
 		min-height: 100px;
@@ -427,21 +579,6 @@ h2 {
 }
 .priceFieldDetails li{
 	text-align: center;
-}
-#plan_pro{
-	background-color: #fbd6d1;
-}
-#plan_pro button{
-	background-color: #e1c0bc
-}
-#plan_2 {
-	background-color: #c6daf1; 
-}
-#plan_3 {
-	background-color: #c6daf1;
-}
-#plan_4 {
-	background-color: #c6daf1;
 }
 
 /* ---------- Style for listName ---------- */
@@ -497,6 +634,8 @@ h2 {
 }
 
 /* ---------- Style for pageNav ---------- */
+
+
 .navbar-nav {}
 
 .navbar-default{
@@ -504,29 +643,8 @@ h2 {
 	border-color: transparent;
 }
 
-.logo {
-	color: #fffff0 !important;
-	font-family: 'Merriweather', Georgia, serif;
-	font-weight: 700;
-	font-style: italic;
-	letter-spacing: 2.6px;
-	padding: 2px 5px;
-	border: 3px solid  #fffff0;
-}
-
 .navbar-logo{
 	
-}
-
-.landing-logo{
-	letter-spacing: 0.1em;
-    font-size: 8em;
-    padding: 0.03em 0.15em 0em 0.15em;
-    border-width: 0.05em;
-}
-
-.lead{
-	color: #fffff0;
 }
 
 .copyrightText{
@@ -550,7 +668,7 @@ h2 {
 
 }
 .triangleFilter{
-    border-right: 100vw solid rgba(244,228,163,0.3);
+    border-right: 100vw solid rgba(244,228,163,0.6);
 	border-bottom: 100vh solid  #bee9d5;
     width: 100vw;
 	position: absolute;

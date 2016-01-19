@@ -1,41 +1,46 @@
-<div class="row topMargin70">
+{% include "triangleBg.html" %}
+<div class="container">
+	<div class="row marginTop18vh">
 
-	<div class="col-xs-12 text-center"> 
-	<i class="logo landing-logo">WISHR</i>
-	<p class="lead">Make all your wishes come true!</p>
+		<div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center"> 
+		<i class="logo landing-logo">WISHR</i>
+		<p class="lead">Make all your wishes come true!<br />
+		Wishr is a online gift registry that you can easily with friends and family!</p>
+		</div>
 	</div>
+
+	<form class="form-horizontal" action='?/User/createUser' method='post'>
+		{%if message == 1%}
+		<div class="alert alert-danger col-xs-12 col-sm-8 col-sm-offset-2" role="alert">User already exists!</div>
+		{%elseif message == 2%}
+		<div class="alert alert-success col-xs-12 col-sm-8 col-sm-offset-2" role="alert">New user created! Please log in to start your list.</div>
+		{%else%}
+
+		{%endif%}
+		<div class="form-group">
+			<div class="col-xs-12 col-sm-5 col-sm-offset-1">
+				<input class="form-control input" type='text' required name='email' placeholder="E-mail">
+			</div>
+			<div class="col-xs-12 col-sm-5">
+				<input class="form-control input" type='password'required name='password' placeholder="Password">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-xs-12 col-sm-5 col-sm-offset-1">
+				<input class="form-control input" type='text' required name='firstname' placeholder="Firstname">
+			</div>
+			<div class="col-xs-12 col-sm-5">
+				<input class="form-control input" type='text' required name='lastname' placeholder="Lastname">
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-xs-12 col-sm-4 col-sm-offset-4">
+				<input class="btn btn-default width100 button" type='submit' value='Sign up!'>
+			</div>
+		</div>
+
+
+	</form>
 </div>
-
-<form class="form-horizontal" action='?/User/createUser' method='post'>
-	<div class="form-group">
-		<div class="col-xs-12 col-sm-4 col-sm-offset-2">
-			<input class="form-control input" type='text' required name='email' placeholder="E-mail">
-		</div>
-		<div class="col-xs-12 col-sm-4">
-			<input class="form-control input" type='password'required name='password' placeholder="Password">
-		</div>
-	</div>
-
-	<div class="form-group">
-		<div class="col-xs-12 col-sm-4 col-sm-offset-2">
-			<input class="form-control input" type='text' required name='firstname' placeholder="Firstname">
-		</div>
-		<div class="col-xs-12 col-sm-4">
-			<input class="form-control input" type='text' required name='lastname' placeholder="Lastname">
-		</div>
-	</div>
-	{%if message == 1%}
-	<div class="alert alert-danger col-xs-12 col-sm-8 col-sm-offset-2" role="alert">User already exists!</div>
-	{%elseif message == 2%}
-	<div class="alert alert-success col-xs-12 col-sm-8 col-sm-offset-2" role="alert">New user created! Please log in to start your list.</div>
-	{%else%}
-
-	{%endif%}
-	<div class="form-group">
-		<div class="col-xs-12 col-sm-4 col-sm-offset-4">
-			<input class="btn btn-default width100 button" type='submit' value='Sign up!'>
-		</div>
-	</div>
-
-</form>
-

@@ -17,13 +17,12 @@
 			<div id="wish{{item.itemId}}" class="collapse">
 				<div class="row">
 					<div class="col-xs-12">
-						<textarea class="form-control input textBox listItemDescription" rows="6" id="wishDescription" name="wishDescription" placeholder="{{item.description}}"></textarea>
+						<textarea class="form-control input listItemDescription" rows="6" id="wishDescription" name="wishDescription" placeholder="{{item.description}}"></textarea>
 					</div>
 				</div>
 
 				<div class="row">
-					<label class="col-xs-4 col-md-2 control-label" for="categoryUpdate"><p>Category:</p></label>
-					<div class="col-xs-2">
+					<div class="col-xs-12 col-sm-3 bottomMargin">
 						<select class="form-control clearForm input listItemInput" id="categoryUpdate" name="wishCategoryId">
 							{% for category in categories%}
 								{% if category.categoryName == item.categoryName %}
@@ -34,25 +33,26 @@
 							{% endfor %}
 						</select>
 					</div>
-				
-					<label class="col-xs-4 col-md-2 control-label" for="prio"><p>Priority:</p></label>
-					<div class="col-xs-8 col-md-2">
-						<input class="form-control clearForm input listItemInput" type="number" name="prio" value="{{item.prio}}">
+					<div class="col-xs-6 col-sm-2 bottomMargin">
+						<div class="input-group">
+							<span class="input-group-addon formAddon" id="addon-prio"><i class="fa fa-list-ol"></i></span>
+							<input class="form-control clearForm input listItemInput" type="number" name="prio" value="{{item.prio}}" aria-describedby="addon-prio">
+						</div>
 					</div>
-				
-					<label class="col-xs-4 col-md-2 control-label" for="cost"><p>Est. cost:</p></label>
-					<div class="col-xs-8 col-md-2">
-						<input class="form-control clearForm input listItemInput" type="number" name="cost" value="{{item.cost}}">
-					</div>
-				</div>
 
-				<div class="row">
-					<input type='hidden' name="wishId" value='{{item.itemId}}'>
-					<div class="col-xs-12 col-sm-2 col-sm-offset-4">
-						<button class="btn btn-default width100 button" type='submit' name="deleteBtn" value='Delete'>Delete&nbsp;&nbsp;<i class="fa fa-trash"></i></button>
+					<div class="col-xs-6 col-sm-2 bottomMargin">
+						<div class="input-group">
+							<span class="input-group-addon formAddon" id="addon-cost"><i class="fa fa-money"></i></span>
+							<input class="form-control clearForm input listItemInput" type="number" name="cost" value="{{item.cost}}" aria-describedby="addon-cost">
+						</div>
 					</div>
-					<div class="col-xs-12 col-sm-2">
+
+					<input type='hidden' name="wishId" value='{{item.itemId}}'>
+					<div class="col-xs-6 col-sm-offset-1  col-sm-2">
 						<button class="btn btn-default width100 button" type='submit' name="updateBtn" value='Update'>Update&nbsp;&nbsp;<i class="fa fa-refresh"></i></button>
+					</div>
+					<div class="col-xs-6 col-sm-2">
+						<button class="btn btn-default width100 button" type='submit' name="deleteBtn" value='Delete'>Delete&nbsp;&nbsp;<i class="fa fa-trash"></i></button>
 					</div>
 				</div>
 			</div>

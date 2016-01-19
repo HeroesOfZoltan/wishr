@@ -1,0 +1,10 @@
+<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-5 col-md-offset-0 text-center ">
+	<div  class="priceField priceField1">
+		<h4>Done</h4>
+		<span>Allows you'r guests to PAX a gift.</span>
+		<h1>9€</h1>
+		<form action="?/User/payPermission/{{_session.user.id}}" method="post">
+			<button class="btn btn-default" name="permissionType" value="4">Buy Done</button>
+		</form>
+	</div>
+</div><!--col-->
