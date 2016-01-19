@@ -3,7 +3,7 @@
 
 {% if items %}	
 	{% include payment %}
-
+	{% include "listHead.html" %}
 	{% for item in items %}
 		{% include "listItemForm.html" %}
 	{% endfor %}

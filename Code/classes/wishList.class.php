@@ -23,7 +23,7 @@ class WishList{
 
 		$uniqueUrl = $params[0];
 
-		return ['items' => Sql::getListItems($uniqueUrl, $_SESSION['user']['id']), 'categories' => Sql::category(), 'listNames'=> Sql::listName($uniqueUrl), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
+		return ['items' => Sql::getListItems($uniqueUrl, $_SESSION['user']['id']), 'categories' => Sql::category(),'listName' => Sql::getListName($uniqueUrl), 'listSubNames'=> Sql::getListSubName($uniqueUrl), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 	}
 
 
@@ -43,6 +43,14 @@ class WishList{
 		
 		$wish = new Wish($uniqueUrl, $_POST['wishName'], $_POST['wishDescription'], $_POST['wishCategory'],NULL,NULL, $_POST['blacklist']);
 		return ['redirect' => "?/User/getBlacklist/$uniqueUrl"];
+	}
+	public static function newListName($params){
+		$mysqli = DB::getInstance();
+		$uniqueUrl = $params[0];
+		$listNameClean = $mysqli->real_escape_string($_POST['newListName']);
+		Sql::setListName($listNameClean, $uniqueUrl);
+
+		return['redirect' => '?/User/myList'];
 	}
 
 	public static function changeListName($params){
