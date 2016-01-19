@@ -41,9 +41,32 @@ if($url_parts!= null){
 		$template = 'payUp.html';
 
 		if( $_SESSION["user"]){
+				if(in_array(1, $_SESSION["userPermission"]) || in_array(3, $_SESSION["userPermission"])){
+						$data['unlimitedForm'] = "payedUnlimited.html";
+				}
+				else{
+						$data['unlimitedForm'] = "unpayedUnlimited.html";
+				}
+				if(in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
+						$data['blacklistForm'] = "payedBlacklist.html";
+				}
+				else{
+						$data['blacklistForm'] = "unpayedBlacklist.html";
+				}
+				if(in_array(1, $_SESSION["userPermission"]) || in_array(5, $_SESSION["userPermission"])){
+						$data['listImage'] = "payedChangeBg.html";
+				}
+				else{
+						$data['listImage'] = "unpayedChangeBg.html";
+				}
+				if(in_array(1, $_SESSION["userPermission"]) || in_array(4, $_SESSION["userPermission"])){
+						$data['doneForm'] = "payedDonedidit.html";
+				}
+				else{
+						$data['doneForm'] = "unpayedDonedidit.html";
+				}
+				
 				$data['payView'] = "paymentForm.html";
-				$data['listName'] = "editlistName.html";
-				$data['listImage'] = "changeImage.html";
 			}
 		else{
 				$data['payView'] = "ourProduct.html";
@@ -56,10 +79,7 @@ if($url_parts!= null){
 				$data['payView'] = "paymentForm.html";
 		}
 		else{
-			$template = 'payUp.html';
-			$data['payView'] = "paymentForm.html";
-			$data['listName'] = "editlistName.html";
-				$data['listImage'] = "changeImage.html";
+			$data['redirect']= "?/User/payUp/";
 		}
 	}
 
