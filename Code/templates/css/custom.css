@@ -3,6 +3,7 @@
 Light green: #bee9d5
 Light lavender: #c6daf1 
 Light blue: #a1caf1 / rgba(161,202,241,1)
+Extra light blue: #bde2f8
 Cream white: #fffff0 / rgba(255,255,240,1)
 Light yellow: #f7ebb9
 Coral: #fbd6d1
@@ -12,9 +13,14 @@ Coral: #fbd6d1
 
 body {
 	background-color: #bee9d5;
+	color: #fffff0;
+	font-family: 'Merriweather Sans', 'arial', san-serif;
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 1.6;
 }
-.topMargin70{
-	margin-top: 300px; /* For navbar */
+.topMargin{
+	margin-top: 70px; /* For navbar */
 }
 *:focus {
     outline: 0;
@@ -170,7 +176,6 @@ h2 {
 }
 .dashForm {
 	background-color: #a1caf1;
-	margin-top: 30px;
 	padding: 20px;
 }
 
@@ -264,6 +269,28 @@ h2 {
 .listItemContent {
 	background-color: #fffff0; 
 	color: #a1caf1;
+}
+
+.listItemInput, .listItemInput:focus {
+	background-color: #a1caf1;
+	color: #fffff0;
+	border-radius: 3px;
+}
+
+.listItemInput::-webkit-input-placeholder {
+	color: #fffff0;
+}
+
+.listItemInput:-moz-placeholder { 
+	color: #fffff0;
+}
+
+.listItemInput::-moz-placeholder { 
+	color: #fffff0;
+}
+
+.listItemInput:-ms-input-placeholder { 
+	color: #fffff0; 
 }
 
 /********************************************
@@ -491,7 +518,20 @@ position: absolute;
     width: 100vw;
 
 }
+.triangleFilter{
+    border-right: 100vw solid rgba(161,202,241, 0.5);
+	border-bottom: 100vh solid  #bee9d5;
+    width: 100vw;
+position: absolute;
+}
 
+.triangleError{
+	    width:100vw;
+    height: 100vh;
+position: absolute;
+	background-image: url("not-found.png");
+
+}
 .userSettings{
 
 }

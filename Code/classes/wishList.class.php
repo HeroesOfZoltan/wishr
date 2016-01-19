@@ -48,8 +48,9 @@ class WishList{
 	public static function changeListName($params){
 		$mysqli = DB::getInstance();
 		$uniqueUrl = $params[0];
-		$newListNameClean= $mysqli->real_escape_string($_POST['newListName']);
-		Sql::updateListName($uniqueUrl, $newListNameClean);
+		$newListNameFirstClean= $mysqli->real_escape_string($_POST['newListNameFirst']);
+		$newListNameSecondClean= $mysqli->real_escape_string($_POST['newListNameSecond']);
+		Sql::updateListName($uniqueUrl, $newListNameFirstClean,$newListNameSecondClean);
 
 		return ['redirect' => "?/User/payUp/"];
 	}

@@ -121,7 +121,7 @@ public static function getListImage($uniqueUrl){
 
 	public static function listName($uniqueUrl) {
 		$query =
-			"SELECT listName
+			"SELECT firstName, secondName
 			FROM list
 			WHERE list.unique_string = '$uniqueUrl'
 			LIMIT 1";
@@ -183,7 +183,7 @@ public static function getListImage($uniqueUrl){
 		return $user;
 	}
 
-	public static function setUserRole($user){
+	public static function setUserRole($user){ /* ANVÄNDS DENNA?!?! NÄÄÄÄE?!?! */
 		$mysqli = DB::getInstance();
 		$query = 
 			"SELECT role
@@ -254,13 +254,13 @@ public static function getListImage($uniqueUrl){
 			}			
 	}
 
-	public static function insertNewList($listName, $uniqueUrl, $userId){
+	public static function insertNewList($firstName, $secondName, $uniqueUrl, $userId){
 		$mysqli = DB::getInstance();
 		
 			$query =
 				"INSERT INTO list 
-				(listName, user_id, unique_string, imageUrl) 
-				VALUES ('$listName', '$userId', '$uniqueUrl', 'flowers.jpg')";
+				(firstName, secondName, user_id, unique_string, imageUrl) 
+				VALUES ('$firstName','$secondName', '$userId', '$uniqueUrl', 'flowers.jpg')";
 			$mysqli->query($query);
 	}
 
@@ -268,9 +268,10 @@ public static function getListImage($uniqueUrl){
 		$mysqli = DB::getInstance();
 		$permissionTypeClean = $mysqli->real_escape_string($_POST['permissionType']);
 		$idClean = $mysqli->real_escape_string($id);
-		$query = "INSERT INTO user_permission
-			(user_id, permission_id)
-			VALUES ($idClean, $permissionTypeClean)";
+
+		$query = 
+				"INSERT INTO user_permission (user_id, permission_id)
+				VALUES ($idClean, $permissionTypeClean)";
 
 		$mysqli->query($query);
 	}
@@ -343,13 +344,23 @@ public static function getListImage($uniqueUrl){
 
 		$mysqli->query($query);
 	}
+	public static function deleteCategory($category) {
+		$mysqli = DB::getInstance();
 
-	public static function updateListName($uniqueUrl, $newName){
+		$query = 
+				"DELETE FROM category
+				WHERE id = '$category'";
+		$mysqli->query($query);
+
+				
+	}
+
+	public static function updateListName($uniqueUrl, $newNameFirst, $newNameSecond){
 		$mysqli = DB::getInstance();
 		
 		$query = 
 				"UPDATE list
-				SET listName = '$newName'
+				SET firstName = '$newNameFirst', secondName = '$newNameSecond'
 				WHERE unique_string = '$uniqueUrl'";
 		$mysqli->query($query);
 	}

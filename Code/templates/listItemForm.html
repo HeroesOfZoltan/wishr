@@ -17,14 +17,14 @@
 			<div id="wish{{item.itemId}}" class="collapse">
 				<div class="row">
 					<div class="col-xs-12">
-						<textarea type="text" id="listItemDescription" class="form-control input textBox listItemDescription" rows="6" id="wishDescription" name="listItemDescription" required placeholder="{{item.description}}"></textarea>
+						<textarea class="form-control input textBox listItemDescription" rows="6" id="wishDescription" name="listItemDescription" placeholder="{{item.description}}"></textarea>
 					</div>
 				</div>
 
 				<div class="row">
 					<label class="col-xs-4 col-md-2 control-label" for="categoryUpdate"><p>Category:</p></label>
 					<div class="col-xs-2">
-						<select class="form-control clearForm input" id="categoryUpdate" name="wishCategoryId">
+						<select class="form-control clearForm input listItemInput" id="categoryUpdate" name="wishCategoryId">
 							{% for category in categories%}
 								{% if category.categoryName == item.categoryName %}
 									<option value='{{category.id}}' selected>{{category.categoryName}}</option>
@@ -37,20 +37,22 @@
 				
 					<label class="col-xs-4 col-md-2 control-label" for="prio"><p>Priority:</p></label>
 					<div class="col-xs-8 col-md-2">
-						<input class="form-control clearForm input inputNumber" type="number" name="prio" value="{{item.prio}}">
+						<input class="form-control clearForm input listItemInput" type="number" name="prio" value="{{item.prio}}">
 					</div>
 				
 					<label class="col-xs-4 col-md-2 control-label" for="cost"><p>Est. cost:</p></label>
 					<div class="col-xs-8 col-md-2">
-						<input class="form-control clearForm input inputNumber" type="number" name="cost" value="{{item.cost}}">
+						<input class="form-control clearForm input listItemInput" type="number" name="cost" value="{{item.cost}}">
 					</div>
 				</div>
 
 				<div class="row">
 					<input type='hidden' name="wishId" value='{{item.itemId}}'>
-					<div class="col-xs-12 col-md-3">
-						<input class="btn btn-default button" type='submit' name="updateBtn" value='Update'>
-						<input class="btn btn-default button" type='submit' name="deleteBtn" value='Delete'>
+					<div class="col-xs-12 col-sm-2 col-sm-offset-4">
+						<button class="btn btn-default width100 button" type='submit' name="deleteBtn" value='Delete'>Delete&nbsp;&nbsp;<i class="fa fa-trash"></i></button>
+					</div>
+					<div class="col-xs-12 col-sm-2">
+						<button class="btn btn-default width100 button" type='submit' name="updateBtn" value='Update'>Update&nbsp;&nbsp;<i class="fa fa-refresh"></i></button>
 					</div>
 				</div>
 			</div>
