@@ -42,6 +42,8 @@ if($url_parts!= null){
 
 		if( $_SESSION["user"]){
 				$data['payView'] = "paymentForm.html";
+				$data['listName'] = "editlistName.html";
+				$data['listImage'] = "changeImage.html";
 			}
 		else{
 				$data['payView'] = "ourProduct.html";
@@ -56,6 +58,8 @@ if($url_parts!= null){
 		else{
 			$template = 'payUp.html';
 			$data['payView'] = "paymentForm.html";
+			$data['listName'] = "editlistName.html";
+				$data['listImage'] = "changeImage.html";
 		}
 	}
 
@@ -76,24 +80,28 @@ if($url_parts!= null){
 		}
 	}
 
+
 	elseif($method ==  'adminDash' AND $_SESSION['user']['role'] == 1 ){
 		$template = 'adminDash.html';
 	}
-	//var_dump($data);
-	//redirectar sidan till valt destination.
-		if(isset($data['redirect'])){
-			header("Location: ".$data['redirect']);
-		}
+
+
+//redirectar sidan till valt destination.
+	if(isset($data['redirect'])){
+		header("Location: ".$data['redirect']);
+	}
+
 }
 else{
 	$template = 'login.html';
 	$data= array();//Här kan vi lägga t ex statestik om sidan som ska visas på förstasidan
 }
 
+//var_dump($data);
 $twig = startTwig();
 echo $twig->render($template, $data);
 
-//var_dump($data);
+
 function getUrlParts($get){
 	$get_params = array_keys($get);//plockar key värden ur get-arrayen
 	$url = $get_params[0];

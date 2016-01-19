@@ -22,10 +22,21 @@
 </head>
 <body>
 
-	<div class="topImage">
-		<div class="triangleBg" ></div>
+			<div class="triangleError" ></div>
+	{% if _session.user %}
+		<div class="topImageDiv" style="background-image: url({{imageUrl.imageUrl}});">
+	{%else%}
+		<div class="topImage topImageDiv">
+	{%endif%}
+
+	<div class="triangleFilter" ></div>
+	<div class="triangleBg" ></div>
+
 	</div>
+
 
 	{% include "pageNav.html" %}
 	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 topMargin">
 		

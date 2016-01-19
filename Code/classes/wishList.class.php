@@ -23,7 +23,7 @@ class WishList{
 
 		$uniqueUrl = $params[0];
 
-		return ['items' => Sql::getListItems($uniqueUrl, $_SESSION['user']['id']), 'categories' => Sql::category(), 'listNames'=> Sql::listName($uniqueUrl)];
+		return ['items' => Sql::getListItems($uniqueUrl, $_SESSION['user']['id']), 'categories' => Sql::category(), 'listNames'=> Sql::listName($uniqueUrl), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 	}
 
 
@@ -41,18 +41,27 @@ class WishList{
 
 		$uniqueUrl = $params[0];
 		
-		$wish = new Wish($uniqueUrl, $_POST['wishName'], $_POST['wishDescription'], $_POST['wishCategory'],NULL,
-				NULL, $_POST['blacklist']);
+		$wish = new Wish($uniqueUrl, $_POST['wishName'], $_POST['wishDescription'], $_POST['wishCategory'],NULL,NULL, $_POST['blacklist']);
 		return ['redirect' => "?/User/getBlacklist/$uniqueUrl"];
 	}
 
 	public static function changeListName($params){
 		$mysqli = DB::getInstance();
 		$uniqueUrl = $params[0];
-		$newListNameClean= $mysqli->real_escape_string($_POST['newListName']);
-		Sql::updateListName($uniqueUrl, $newListNameClean);
+		$newListNameFirstClean= $mysqli->real_escape_string($_POST['newListNameFirst']);
+		$newListNameSecondClean= $mysqli->real_escape_string($_POST['newListNameSecond']);
+		Sql::updateListName($uniqueUrl, $newListNameFirstClean,$newListNameSecondClean);
 
-		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
+		return ['redirect' => "?/User/payUp/"];
+	}
+
+	public static function changeListImage($params){
+		$mysqli = DB::getInstance();
+		$uniqueUrl = $params[0];
+		$newListImageClean= $mysqli->real_escape_string($_POST['newListImage']);
+		Sql::updateListImage($uniqueUrl, $newListImageClean);
+
+	return ['redirect' => "?/User/payUp/"];
 	}
 
 

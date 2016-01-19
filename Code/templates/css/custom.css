@@ -19,8 +19,8 @@ body {
 	font-size: 14px;
 	line-height: 1.6;
 }
-.topMargin70{
-	margin-top: 300px; /* For navbar */
+.topMargin{
+	margin-top: 70px; /* For navbar */
 }
 *:focus {
     outline: 0;
@@ -50,6 +50,16 @@ h1, h2, h3, h4{
 	cursor: pointer;
 }
 
+.button{
+	background-color: #a1caf1;
+	border: none;
+	color: #fffff0;
+	text-shadow: 0 1px 1px rgba(0,0,0,.1)
+}
+.textImportant {
+	font-weight: 700;
+	font-size: 1.3em;
+}
 .clearForm, .clearForm:focus {
 	background-color: transparent;
 	border:none;
@@ -93,9 +103,6 @@ h1, h2, h3, h4{
 	color: #fffff0;
 }
 
-.btnInvisible{
-	display: none;
-}
 
 .input {
 	background-color: #fffff0;
@@ -130,12 +137,7 @@ h1, h2, h3, h4{
 	border-left: 4px solid #a1caf1;
 }
 
-.dashboard {
-	background-color: tomato;
-	width: 75%;
-	margin: 0 auto;
-	border: 3px solid black;
-}
+
 
 .listItemForm {
 	margin-top: 15px;
@@ -170,6 +172,17 @@ h2 {
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
+
+/* ---------- Style for dash ---------- */
+
+.dashboard {
+	background-color: #fbd6d1;
+}
+.dashForm {
+	background-color: #a1caf1;
+	padding: 20px;
+}
+
 
 /********************************************
 ---------- Style for newWishForm ----------
@@ -409,7 +422,7 @@ h2 {
 }
 
 .listName p, .listName input{
-	color: #fffff0;
+	/*color: #fffff0;*/
 	font-family: 'Merriweather', serif;
 	font-size: 30px;
 	text-transform: uppercase;;
@@ -420,9 +433,9 @@ h2 {
 }
 
 .listNameEdit>input {
-	background-color: #bee9d5;
+	/*background-color: #bee9d5;
 	text-align: right;
-	border: none;
+	border: none;*/
 }
 
 .listNameEditlistName::-webkit-input-placeholder {
@@ -483,22 +496,39 @@ h2 {
 	color: #fffff0;
 }
 /* ---------- Style for header ---------- */
-.topImage{
- background-image: url("jGlzr.png");
-  background-style:cover;
+.topImageDiv{
+  background-size:cover;
     width:100vw;
     height: 100vh;
 position: absolute;
+}
+.topImage{
+ background-image: url("flowers.jpg");
 }
 
 .triangleBg{
     border-right: 100vw solid transparent;
 	border-bottom: 100vh solid  #bee9d5;
-
     width: 100vw;
 
 }
+.triangleFilter{
+    border-right: 100vw solid rgba(161,202,241, 0.5);
+	border-bottom: 100vh solid  #bee9d5;
+    width: 100vw;
+position: absolute;
+}
 
+.triangleError{
+	    width:100vw;
+    height: 100vh;
+position: absolute;
+	background-image: url("not-found.png");
+
+}
+.userSettings{
+
+}
 
 /* For small-screens / col-xs-12 */
 @media (max-width: 767px) {
