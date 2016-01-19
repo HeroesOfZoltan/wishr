@@ -183,7 +183,7 @@ public static function getListImage($uniqueUrl){
 		return $user;
 	}
 
-	public static function setUserRole($user){
+	public static function setUserRole($user){ /* ANVÄNDS DENNA?!?! NÄÄÄÄE?!?! */
 		$mysqli = DB::getInstance();
 		$query = 
 			"SELECT role
@@ -268,9 +268,10 @@ public static function getListImage($uniqueUrl){
 		$mysqli = DB::getInstance();
 		$permissionTypeClean = $mysqli->real_escape_string($_POST['permissionType']);
 		$idClean = $mysqli->real_escape_string($id);
-		$query = "INSERT INTO user_permission
-			(user_id, permission_id)
-			VALUES ($idClean, $permissionTypeClean)";
+
+		$query = 
+				"INSERT INTO user_permission (user_id, permission_id)
+				VALUES ($idClean, $permissionTypeClean)";
 
 		$mysqli->query($query);
 	}
@@ -342,6 +343,16 @@ public static function getListImage($uniqueUrl){
 				VALUES('$categoryName')";
 
 		$mysqli->query($query);
+	}
+	public static function deleteCategory($category) {
+		$mysqli = DB::getInstance();
+
+		$query = 
+				"DELETE FROM category
+				WHERE id = '$category'";
+		$mysqli->query($query);
+
+				
 	}
 
 	public static function updateListName($uniqueUrl, $newNameFirst, $newNameSecond){

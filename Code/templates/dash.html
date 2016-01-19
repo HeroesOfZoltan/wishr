@@ -2,61 +2,87 @@
 <div class="row">
 	<div class="col-xs-12">
 
-	<h1 class="text-center">Admin Dashboard</h1>
+		<h1 class="text-center">Admin Dashboard</h1>
+
+		<div class="row">
+			<div class="col-xs-12 col-md-4 col-md-offset-4 text-center">
+				<h3>Functions</h3>
+			</div>
+		</div>
 
 		<div class="row">
 			<div class="col-xs-12 col-md-4 col-md-offset-4 dashForm">
-				<h3>Create new category</h3>
-
+				<h4>Create new category</h4>
 				<form action="?/Admin/createNewCategory" method="post">
 					<input type="text" name="newCategory" placeolder="New category name..">
-					<input type="submit" value="Create!">
+					<input type="submit" value="Create">
 				</form>
-				
+
+				<h4>Delete Category</h4>
+				<form action="?/Admin/deleteCategory" method="post">
+					<select name="category">
+						{% for category in categories %}
+							<option value="{{category.id}}">{{category.categoryName}}</option>
+						{% endfor %}
+					</select>
+					<input type="submit" value="Delete category">
+				</form>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12 col-md-4 col-md-offset-4 text-center">
+				<h3>Stats</h3>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard">
-				<p>There are <span class="textImportant">{{lists.lists}}</span> lists in the database</p>
-				<p>There are <span class="textImportant">{{users.users}}</span> users in the database</p>
-				<p>There are <span class="textImportant">{{customers.customers}}</span> paying customers in the database</p>
+				<p>There are <span class="textImportant">{{dashboard.lists.lists}}</span> lists in the database</p>
+				<p>There are <span class="textImportant">{{dashboard.users.users}}</span> users in the database</p>
+				<p>There are <span class="textImportant">{{dashboard.customers.customers}}</span> paying customers in the database</p>
 			</div>
 		</div>
-	
+		
+		<div class="row">
+			<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard text-center">
+				<h4>Amount of customers paying for:</h4>
+			</div>
+		</div>
+
 
 		<div class="row">
 			<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard">
-				<p>Amount of customers paying for <span class="textImportant">function 1</span> </p>
+				<p class="textImportant text-center">Premium</p>
 				<div class="progress">
-					<div class="progress-bar progress-bar-striped" role="progressbar" style="width:{{permissions[0].number_of_permissions / customers.customers * 100}}%">{{permissions[0].number_of_permissions / customers.customers * 100 }}%
+					<div class="progress-bar progress-bar-striped" role="progressbar" style="width:{{dashboard.permissions[0].number_of_permissions / dashboard.customers.customers * 100}}%">{{dashboard.permissions[0].number_of_permissions / dashboard.customers.customers * 100 }}%
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard">
-				<p>Amount of customers paying for <span class="textImportant">function 2</span> </p>
+				<p class="textImportant text-center">Blacklist</p>
 				<div class="progress">
-					<div class="progress-bar progress-bar-striped" role="progressbar" style="width:{{permissions[1].number_of_permissions / customers.customers * 100}}%">{{permissions[1].number_of_permissions / customers.customers * 100}}%
+					<div class="progress-bar progress-bar-striped" role="progressbar" style="width:{{dashboard.permissions[1].number_of_permissions / dashboard.customers.customers * 100}}%">{{dashboard.permissions[1].number_of_permissions / dashboard.customers.customers * 100}}%
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard">
-				<p>Amount of customers paying for <span class="textImportant">function 3</span> </p>
+				<p class="textImportant text-center">Wishr unlimited</p>
 				<div class="progress">
-					<div class="progress-bar progress-bar-striped" role="progressbar" style="width:{{permissions[2].number_of_permissions / customers.customers * 100}}%">{{permissions[2].number_of_permissions / customers.customers * 100}}%
+					<div class="progress-bar progress-bar-striped" role="progressbar" style="width:{{dashboard.permissions[2].number_of_permissions / dashboard.customers.customers * 100}}%">{{dashboard.permissions[2].number_of_permissions / dashboard.customers.customers * 100}}%
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard">
-				<p>Amount of customers paying for <span class="textImportant">function 4</span> </p>
+				<p class="textImportant text-center">Done didIt</p>
 				<div class="progress">
-					<div class="progress-bar progress-bar-striped" role="progressbar" style="width:{{permissions[3].number_of_permissions / customers.customers * 100}}%">{{permissions[3].number_of_permissions / customers.customers * 100}}%
+					<div class="progress-bar progress-bar-striped" role="progressbar" style="width:{{dashboard.permissions[3].number_of_permissions / dashboard.customers.customers * 100}}%">{{dashboard.permissions[3].number_of_permissions / dashboard.customers.customers * 100}}%
 					</div>
 				</div>
 			</div>
