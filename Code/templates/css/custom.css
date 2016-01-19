@@ -18,9 +18,7 @@ body {
 	font-size: 14px;
 	line-height: 1.6;
 }
-.topMargin{
-	margin-top: 70px; /* For navbar */
-}
+
 *:focus {
     outline: 0;
 }
@@ -34,10 +32,39 @@ h1, h2, h3, h4{
 	font-family: 'Merriweather', serif;
 }
 
+.lead{
+	color: #fffff0;
+	text-shadow: 1px 1px #a1caf1;
+	font-family: 'Playfair Display';
+	font-size: 1.6em;
+	letter-spacing: 1.6px;
+}
+
+.puff {
+	background-color: #fbd6d1;
+	color: #fffff0;
+	padding: 15px;
+	border-radius: 3px;
+}
+
+.puff p {
+	font-family: 'Merriweather Sans', Georgia, serif;
+	font-size: 1.4em;
+}
+
 /* General classes */
 .width100 {
 	width: 100%;
 }
+
+.topMargin{
+	margin-top: 70px; /* For navbar */
+}
+
+.marginTop18vh {
+	margin-top: 18vh;
+}
+
 .paddingRight15px {
 	padding-right: 15px;
 }
@@ -110,6 +137,16 @@ h1, h2, h3, h4{
 .button:hover, .button:active {
 	background-color: rgba(161,202,241,0.6);
 	color: #fffff0;
+}
+
+.logo {
+	color: #fffff0 !important;
+	font-family: 'Merriweather', Georgia, serif;
+	font-weight: 700;
+	font-style: italic;
+	letter-spacing: 2.6px;
+	padding: 2px 5px;
+	border: 3px solid  #fffff0;
 }
 
 .input {
@@ -204,6 +241,82 @@ h2 > .fa{
 h2 {
 	margin-top: 15px;
 	margin-bottom: 15px;
+}
+
+/********************************************
+---------- Style for landingPage.html ----------
+*********************************************/
+
+.landing-logo{
+	letter-spacing: 0.1em;
+    font-size: 8em;
+    padding: 0.03em 0.15em 0em 0.15em;
+    border-width: 0.05em;
+}
+
+/********************************************
+---------- Style for ourProduct.html ----------
+*********************************************/
+
+.productContainer {
+	background-color: #fbd6d1;
+	background-size: cover;
+	position: absolute;
+    width: 100%;
+    min-height: 760px;
+    left: 0;
+}
+
+.productHead {
+	margin-top: 10vh;
+}
+
+.productTitle {
+	font-size: 4.2em;
+	padding: 0.1em 0.2em;
+}
+
+.productIntro {
+	font-size: 2.4em;
+	font-style: italic;
+	font-weight: 400;
+	line-height: 1.4;
+}
+
+.productIntroStrong {
+	font-size: 1.4em;
+	font-weight: 700;
+}
+
+.productBlurb {
+	font-size: 1.6em;
+	letter-spacing: 1.4;
+}
+
+.productButtons {
+	padding: 25px 0;
+}
+
+.devicesImg {
+	padding: 50px 0;
+}
+
+.productSection {
+	background-color: #fffff0;
+	color: #a1caf1;
+	padding: 25px 0;
+	margin-bottom: 50px;
+}
+
+.productSection > .col-xs-12 {
+	padding: 25px 0;
+}
+
+.productSignUp {
+
+}
+
+.pricingForm {
 }
 
 /* ---------- Style for dash ---------- */
@@ -513,29 +626,8 @@ h2 {
 	border-color: transparent;
 }
 
-.logo {
-	color: #fffff0 !important;
-	font-family: 'Merriweather', Georgia, serif;
-	font-weight: 700;
-	font-style: italic;
-	letter-spacing: 2.6px;
-	padding: 2px 5px;
-	border: 3px solid  #fffff0;
-}
-
 .navbar-logo{
 	
-}
-
-.landing-logo{
-	letter-spacing: 0.1em;
-    font-size: 8em;
-    padding: 0.03em 0.15em 0em 0.15em;
-    border-width: 0.05em;
-}
-
-.lead{
-	color: #fffff0;
 }
 
 .copyrightText{
@@ -559,7 +651,7 @@ h2 {
 
 }
 .triangleFilter{
-    border-right: 100vw solid rgba(244,228,163,0.3);
+    border-right: 100vw solid rgba(244,228,163,0.6);
 	border-bottom: 100vh solid  #bee9d5;
     width: 100vw;
 	position: absolute;

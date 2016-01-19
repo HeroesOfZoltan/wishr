@@ -1,4 +1,83 @@
-<div class="row paymentForm">
+<div class="productContainer"></div>
+
+<div class="row productHead">
+	<div class="col-xs-12 col-sm-6 col-sm-offset-2">
+		<span class="logo productTitle">Gifts</span><br />
+		<h2 class="productIntro">The best reason to get married. Don't miss out on any opportunity to get the stuff you want!</h2>
+		<p class="productBlurb">Wishr is your answer!</p>
+	</div>
+</div>
+
+<div class="row productButtons">
+	<div class="col-xs-6 col-sm-2 col-sm-offset-2">
+		<a href="#pricing"><button class="btn btn-default button width100">Pricing</button></a>
+	</div>
+	<div class="col-xs-6 col-sm-2">
+		<a href="#signUp"><button class="btn btn-default button width100">Sign up</button></a>
+	</div>
+</div>
+
+<div class="row devicesImg">
+	<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+		<img class="img-responsive img-center" src="devices_mockup.png" alt="Wishr on different devices">
+	</div>
+</div>
+
+<div id="pricing" class="row productSection">
+		<div class="col-xs-12 col-sm-6 col-sm-offset-2">
+			<h2>Make all your wishes come true!</h2>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-sm-offset-2">
+			<p>Kickstarter lumbersexual vice, four dollar toast pop-up swag green juice iPhone pabst flannel XOXO quinoa neutra echo park. Raw denim everyday carry celiac authentic, sustainable kale chips salvia pickled jean shorts waistcoat taxidermy 90's. Tumblr swag venmo vice. Small batch mlkshk YOLO schlitz retro, portland gentrify humblebrag cold-pressed distillery austin truffaut tofu echo park. Stumptown health goth hella mumblecore echo park pop-up flannel. Disrupt green juice thundercats, cred DIY yr health goth 90's authentic. Flexitarian godard locavore, crucifix everyday carry austin neutra schlitz cornhole.</p>
+		</div>
+
+		<div class="col-xs-12 col-sm-6 col-sm-offset-4">
+			<p>Helvetica irony tattooed tote bag pinterest. Flannel gochujang vegan knausgaard cornhole 3 wolf moon, single-origin coffee sartorial yr church-key distillery. Aesthetic try-hard squid semiotics everyday carry, plaid brooklyn intelligentsia. Echo park locavore meggings cardigan microdosing. Mlkshk selvage celiac lumbersexual freegan, blue bottle tofu kogi keytar raw denim slow-carb hoodie pickled. Paleo biodiesel four loko, you probably haven't heard of them everyday carry kitsch blue bottle salvia meh artisan humblebrag bespoke locavore. Narwhal direct trade organic banh mi, master cleanse drinking vinegar pork belly yuccie deep v flexitarian food truck kale chips.</p>
+		</div>
+</div>
+
+<div id="signUp" class="row productSection">
+	<div class="col-xs-12 col-sm-6 col-sm-offset-2">
+		<h2>Sign up today!</h2>
+	</div>
+	<form class="form-horizontal" action='?/User/createUser' method='post'>
+		{%if message == 1%}
+		<div class="alert alert-danger col-xs-12 col-sm-8 col-sm-offset-2" role="alert">User already exists!</div>
+		{%elseif message == 2%}
+		<div class="alert alert-success col-xs-12 col-sm-8 col-sm-offset-2" role="alert">New user created! Please log in to start your list.</div>
+		{%else%}
+
+		{%endif%}
+		<div class="form-group">
+			<div class="col-xs-12 col-sm-4 col-sm-offset-2">
+				<input class="form-control input" type='text' required name='email' placeholder="E-mail">
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<input class="form-control input" type='password'required name='password' placeholder="Password">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-xs-12 col-sm-4 col-sm-offset-2">
+				<input class="form-control input" type='text' required name='firstname' placeholder="Firstname">
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<input class="form-control input" type='text' required name='lastname' placeholder="Lastname">
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-xs-12 col-sm-4 col-sm-offset-4">
+				<input class="btn btn-default width100 button" type='submit' value='Sign up!'>
+			</div>
+		</div>
+
+
+	</form>
+</div>
+
+<!-- 
+<div class="row pricingForm">
 	<div class="col-xs-12">
 		<div class="row">
 			<div class="col-xs-12 text-center">
@@ -30,7 +109,7 @@
 					</form>
 				</div>
 
-			</div><!--col-->
+			</div>
 
 			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-2 col-md-offset-0 text-center ">
 				<div id="plan_2" class="priceField">
@@ -41,7 +120,7 @@
 						<button class="btn btn-default" name="permissionType" value="2">Permission 2</button>
 					</form>
 				</div>
-			</div><!--col-->
+			</div>
 
 			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-2 col-md-offset-0 text-center">
 				<div id="plan_3" class="priceField">
@@ -52,7 +131,7 @@
 						<button class="btn btn-default" name="permissionType" value="3">Permission 3</button>
 					</form>
 				</div>
-			</div><!--col-->
+			</div>
 
 			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-2 col-md-offset-0 text-center">
 				<div id="plan_4" class=" priceField">
@@ -63,11 +142,11 @@
 						<button class="btn btn-default" name="permissionType" value="4">Permission 4</button>
 					</form>
 				</div>
-			</div><!--col-->
+			</div>
 		</div>
 	</div>
 </div>
-
+-->
 	<!--div class="paymentForm">
 		<h1>Betala</h1>
 
