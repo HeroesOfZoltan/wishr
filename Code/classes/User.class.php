@@ -90,7 +90,7 @@ class User{
 		Sql::insertUserPermission($idClean);
 		$uniqueUrl = $_SESSION['uniqueUrl'];
 		$_SESSION['userPermission'] = Sql::userPermission($_SESSION['user']['id']);
-		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
+		return ['redirect' => "?/User/payUp/"];
 	}
 
 

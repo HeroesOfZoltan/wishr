@@ -502,20 +502,47 @@ h2 {
 /* ---------- Style end GuestListForm ---------- */
 
 /* ---------- Style for paymentForm ---------- */
-
-.priceField {	
-	font-weight: 300;
+.priceFieldDetails{
+		font-weight: 300;
 	border-radius: 10px; 
-	padding: 10px;
 	color: #FFFFFF;
 	margin-top: 15px;
+	background-color:#fbd6d1;
+}
+
+.priceField1 {	
+	font-weight: 300;
+	border-radius: 10px; 
+	color: #FFFFFF;
+	margin-top: 15px;
+	background-color:#a1caf1;
+}
+
+.priceFieldBig {	
+	font-weight: 300;
+	border-radius: 10px; 
+	color: #FFFFFF;
+	margin-top: 15px;
+	background-color:#fbd6d1;
+}
+
+.priceFieldPayed {	
+	font-weight: 300;
+	border-radius: 10px; 
+	color: #c6daf1;
+	margin-top: 15px;
+	background-color: #fffff0;
+	border: solid 4px #c6daf1;
 }
 @media all and (min-width: 990px) {
-	.priceField {
-		width: 110%;
+
+	.priceFieldDetails{
 		min-height: 300px;
-		margin-top: 50px;
-		margin-bottom: 100px;
+	}
+
+	.priceField {
+		min-height: 300px;
+
 	}
 	.priceField p {
 		min-height: 100px;
@@ -550,21 +577,6 @@ h2 {
 }
 .priceFieldDetails li{
 	text-align: center;
-}
-#plan_pro{
-	background-color: #fbd6d1;
-}
-#plan_pro button{
-	background-color: #e1c0bc
-}
-#plan_2 {
-	background-color: #c6daf1; 
-}
-#plan_3 {
-	background-color: #c6daf1;
-}
-#plan_4 {
-	background-color: #c6daf1;
 }
 
 /* ---------- Style for listName ---------- */
