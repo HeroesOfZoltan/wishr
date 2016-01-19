@@ -6,7 +6,8 @@ class Admin {
 
 	public static function adminDash(){
 
-		return ['dashboard' => Sql::dashboard(), 'categories' => Sql::category()];
+		Sql::setUniqueUrl($_SESSION['user']['id']);
+		return ['dashboard' => Sql::dashboard(), 'categories' => Sql::category(), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 
 
 		/*$arrays =  Self::arrayResult($query);
