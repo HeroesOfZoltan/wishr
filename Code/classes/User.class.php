@@ -63,12 +63,12 @@ class User{
 			return ['items' => $items, 'categories' => Sql::category(),'listName' => Sql::getListName($_SESSION['uniqueUrl']), 'listSubNames'=> Sql::getListSubName($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 		}
 		else if ($_SESSION['user']['id'])	{
-			return ['listNames'=> Sql::listName($_SESSION['uniqueUrl']),'categories' =>Sql::category(),'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
+			return ['listName' => Sql::getListName($_SESSION['uniqueUrl']), 'listSubNames'=> Sql::getListSubName($_SESSION['uniqueUrl']),'categories' =>Sql::category(),'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 		}
 	}
 
 	public static function payUp() {
-		return ['listNames'=> Sql::listName($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
+		return ['listName' => Sql::getListName($_SESSION['uniqueUrl']), 'listSubNames'=> Sql::getListSubName($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 
 	} 
 		public static function ourProduct() {
@@ -105,17 +105,22 @@ class User{
 		}
 
 		public static function itemDone($params) {
+			$mysqli = DB::getInstance();
+			$itemIdClean = $mysqli->real_escape_string($_POST['itemId']);
+			$checkedByClean = $mysqli->real_escape_string($_POST['checked_by']);
 
-			Sql::itemDone($_POST['itemId'], $_POST['checked_by']);
+			Sql::itemDone($itemIdClean, $checkedByClean);
+
 			$uniqueUrl = $params[0];
-
 			return ['redirect' => "?/User/guestView/$uniqueUrl"];
 		}
 		public static function unDoneItem($params) {
+			$mysqli = DB::getInstance();
+			$itemIdClean = $mysqli->real_escape_string($_POST['itemId']);
 
-			Sql::itemUnDone($_POST['itemId']);
+			Sql::itemUnDone($itemIdClean);
+			
 			$uniqueUrl = $params[0];
-
 			return ['redirect' => "?/User/guestView/$uniqueUrl"];
 		}
 
