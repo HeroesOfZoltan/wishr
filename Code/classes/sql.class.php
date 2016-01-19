@@ -182,8 +182,9 @@ public static function getListImage($uniqueUrl){
 
 		return $user;
 	}
+	/* ANVÄNDS DENNA?!?! NÄÄÄÄE?!?! */
 
-	public static function setUserRole($user){ /* ANVÄNDS DENNA?!?! NÄÄÄÄE?!?! */
+	public static function setUserRole($user){ 
 		$mysqli = DB::getInstance();
 		$query = 
 			"SELECT role

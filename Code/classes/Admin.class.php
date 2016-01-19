@@ -6,31 +6,22 @@ class Admin {
 
 	public static function adminDash(){
 
-		return ['dashboard' => Sql::dashboard(), 'categories' => Sql::category()];
+		Sql::setUniqueUrl($_SESSION['user']['id']);
 
+		$dashboard = Sql::dashboard();
 
-		/*$arrays =  Self::arrayResult($query);
-
-		if($arrays){
-		foreach($arrays as $row ) {
-	       	foreach($row as $k['permission'] => $v ) {
-	            $dashArray['permissions'][] = $v;
-	       }
-		}
-	}*/
-		/*$array = Self::arrayResult($query);
-
-		foreach($array as $permission => $value) {
-			foreach($value as $key => $val) {
-				if ($key=='number_of_permissions'){
-
-					$val = $val / $dashArray[2]
-					echo $val;
+// Räknar om värden från databasen till en procentsats som sedan läggs in i return arrayen
+		foreach($dashboard['permissions'] as $permission => $value) {
+			foreach($value as $key => $val){
+			
+				if($key == 'number_of_permissions') {
+					$val = round($val / $dashboard['customers']['customers'] * 100);
+					$percent[] = $val;
 				}
 			}
-			//echo $permission;
-		}*/
-		//return ['dashboard' => Sql::dashboard()];
+		}
+		return ['users' => $dashboard['users'], 'lists' => $dashboard['lists'], 'customers' => $dashboard['customers'], 'percent' => $percent, 'categories' => Sql::category(), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
+
 	}
 
 	public static function createNewCategory() {

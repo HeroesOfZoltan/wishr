@@ -87,7 +87,9 @@ h1, h2, h3, h4{
   	border-bottom: solid 2px;
   	border-color: #a1caf1;
 }
-
+[type=text], select {
+	color: #a1caf1;
+}
 
 /* Specific classes */
 
