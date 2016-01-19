@@ -5,7 +5,7 @@ Light lavender: #c6daf1
 Light blue: #a1caf1 / rgba(161,202,241,1)
 Extra light blue: #bde2f8
 Cream white: #fffff0 / rgba(255,255,240,1)
-Light yellow: #f7ebb9
+Light yellow: #f4e4a3 / rgba (244,228,163,1)
 Coral: #fbd6d1
 
 */
@@ -137,7 +137,26 @@ h1, h2, h3, h4{
 	border-left: 4px solid #a1caf1;
 }
 
+.listItemDescription {
+	background-color: #a1caf1;
+	color: #fffff0;
+}
 
+.listItemDescription::-webkit-input-placeholder {
+	color: #fffff0; 
+}
+
+.listItemDescription:-moz-placeholder { 
+	color: #fffff0; 
+}
+
+.listItemDescription::-moz-placeholder { 
+	color: #fffff0; 
+}
+
+.listItemDescription:-ms-input-placeholder { 
+	color: #fffff0; 
+}
 
 .listItemForm {
 	margin-top: 15px;
@@ -469,23 +488,26 @@ h2 {
 	background: rgba(255,255,240,.2);
 	border-color: transparent;
 }
-.navbar-logo{
-	font-family:Merriweather;
-	border: 2px solid  #fffff0;
-	color: #fffff0 !important;
-	font-size: 30px;
-	padding: 0 2px 0 2px;
 
+.logo {
+	color: #fffff0 !important;
+	font-family: 'Merriweather', Georgia, serif;
+	font-weight: 700;
+	font-style: italic;
+	letter-spacing: 2.6px;
+	padding: 2px 5px;
+	border: 3px solid  #fffff0;
+}
+
+.navbar-logo{
+	
 }
 
 .landing-logo{
-	font-family:Merriweather;
-	border: 4px solid  #fffff0;
-	color: #fffff0 !important;
-	font-size: 100px;
-	padding: 0 2px 0 2px;
-	width: 600px;
-
+	letter-spacing: 0.1em;
+    font-size: 8em;
+    padding: 0.03em 0.15em 0em 0.15em;
+    border-width: 0.05em;
 }
 
 .lead{
@@ -497,13 +519,13 @@ h2 {
 }
 /* ---------- Style for header ---------- */
 .topImageDiv{
-  background-size:cover;
-    width:100vw;
-    height: 100vh;
-position: absolute;
+	background-size:cover;
+	width:100vw;
+	height: 100vh;
+	position: absolute;
 }
 .topImage{
- background-image: url("flowers.jpg");
+ 	background-image: url("flowers.jpg");
 }
 
 .triangleBg{
@@ -513,16 +535,16 @@ position: absolute;
 
 }
 .triangleFilter{
-    border-right: 100vw solid rgba(161,202,241, 0.5);
+    border-right: 100vw solid rgba(244,228,163,0.3);
 	border-bottom: 100vh solid  #bee9d5;
     width: 100vw;
-position: absolute;
+	position: absolute;
 }
 
 .triangleError{
-	    width:100vw;
-    height: 100vh;
-position: absolute;
+	width:100vw;
+	height: 100vh;
+	position: absolute;
 	background-image: url("not-found.png");
 
 }
