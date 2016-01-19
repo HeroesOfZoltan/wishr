@@ -1,16 +1,21 @@
 {% include "pageHeader.html" %}
-{% include "listName.html" %}
 
-{% if items %}	
-	{% include payment %}
+{% include "triangleBg.html" %}
+<div class="container">
+	{% include "listName.html" %}
 
-	{% for item in items %}
-		{% include "listItemForm.html" %}
-	{% endfor %}
-	
-{% else%}
-	{% include "newWishForm.html" %}
-{% endif %}
-			
-{% include "linkToSend.html" %}		
+	{% if items %}	
+		{% include payment %}
+
+		{% for item in items %}
+			{% include "listItemForm.html" %}
+		{% endfor %}
+		
+	{% else%}
+		{% include "newWishForm.html" %}
+	{% endif %}
+				
+	{% include "linkToSend.html" %}		
+</div>
 {% include "footer.html" %}
+
