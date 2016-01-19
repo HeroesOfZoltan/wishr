@@ -83,6 +83,15 @@ h1, h2, h3, h4{
   	-webkit-transition: none;
 }
 
+.buttonDibs{
+  	border-bottom: solid 2px;
+  	border-color: #a1caf1;
+}
+[type=text], select {
+	color: #a1caf1;
+}
+
+
 /* Specific classes */
 
 .formAddon {

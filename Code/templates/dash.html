@@ -1,91 +1,83 @@
+<div class="row">
+	<div class="col-xs-12 text-center">
+		<i class="text-center landing-logo">Admin Dashboard</i>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-md-4 col-md-offset-4 text-center">
+		<h3>Functions</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-md-4 col-md-offset-4 dashForm">
+		<h4>Create new category</h4>
+		<form action="?/Admin/createNewCategory" method="post">
+			<input type="text" name="newCategory" placeolder="New category name..">
+			<input class="button" type="submit" value="Create">
+		</form>
+		<h4>Delete Category</h4>
+		<form action="?/Admin/deleteCategory" method="post">
+			<select name="category">
+				{% for category in categories %}
+					<option value="{{category.id}}">{{category.categoryName}}</option>
+				{% endfor %}
+			</select>
+			<input class="button" type="submit" value="Delete category">
+		</form>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-md-4 col-md-offset-4 text-center">
+		<h3>Stats</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard">
+		<p>There are <span class="textImportant">{{lists.lists}}</span> lists in the database</p>
+		<p>There are <span class="textImportant">{{users.users}}</span> users in the database</p>
+		<p>There are <span class="textImportant">{{customers.customers}}</span> paying customers in the database</p>
+	</div>
+</div>
+
 
 <div class="row">
-	<div class="col-xs-12">
-
-		<h1 class="text-center">Admin Dashboard</h1>
-
-		<div class="row">
-			<div class="col-xs-12 col-md-4 col-md-offset-4 text-center">
-				<h3>Functions</h3>
+	<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard text-center">
+		<h4>Amount of customers paying for:</h4>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard">
+		<p class="textImportant text-center">Premium</p>
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" style="width:{{percent[0]}}%">{{percent[0]}}%
 			</div>
 		</div>
-
-		<div class="row">
-			<div class="col-xs-12 col-md-4 col-md-offset-4 dashForm">
-				<h4>Create new category</h4>
-				<form action="?/Admin/createNewCategory" method="post">
-					<input type="text" name="newCategory" placeolder="New category name..">
-					<input type="submit" value="Create">
-				</form>
-
-				<h4>Delete Category</h4>
-				<form action="?/Admin/deleteCategory" method="post">
-					<select name="category">
-						{% for category in categories %}
-							<option value="{{category.id}}">{{category.categoryName}}</option>
-						{% endfor %}
-					</select>
-					<input type="submit" value="Delete category">
-				</form>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard">
+		<p class="textImportant text-center">Blacklist</p>
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" style="width:{{percent[1]}}%">{{percent[1]}}%
 			</div>
 		</div>
-
-		<div class="row">
-			<div class="col-xs-12 col-md-4 col-md-offset-4 text-center">
-				<h3>Stats</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard">
+		<p class="textImportant text-center">Wishr unlimited</p>
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" style="width:{{percent[2]}}%">{{percent[2]}}%
 			</div>
 		</div>
-
-		<div class="row">
-			<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard">
-				<p>There are <span class="textImportant">{{dashboard.lists.lists}}</span> lists in the database</p>
-				<p>There are <span class="textImportant">{{dashboard.users.users}}</span> users in the database</p>
-				<p>There are <span class="textImportant">{{dashboard.customers.customers}}</span> paying customers in the database</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard">
+		<p class="textImportant text-center">Done didIt</p>
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" style="width:{{percent[3]}}%">{{percent[3]}}%
 			</div>
 		</div>
-		
-		<div class="row">
-			<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard text-center">
-				<h4>Amount of customers paying for:</h4>
-			</div>
-		</div>
-
-
-		<div class="row">
-			<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard">
-				<p class="textImportant text-center">Premium</p>
-				<div class="progress">
-					<div class="progress-bar progress-bar-striped" role="progressbar" style="width:{{dashboard.permissions[0].number_of_permissions / dashboard.customers.customers * 100}}%">{{dashboard.permissions[0].number_of_permissions / dashboard.customers.customers * 100| number_format(0, '.', ',')}}%
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard">
-				<p class="textImportant text-center">Blacklist</p>
-				<div class="progress">
-					<div class="progress-bar progress-bar-striped" role="progressbar" style="width:{{dashboard.permissions[1].number_of_permissions / dashboard.customers.customers * 100}}%">{{dashboard.permissions[1].number_of_permissions / dashboard.customers.customers * 100}}%
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard">
-				<p class="textImportant text-center">Wishr unlimited</p>
-				<div class="progress">
-					<div class="progress-bar progress-bar-striped" role="progressbar" style="width:{{dashboard.permissions[2].number_of_permissions / dashboard.customers.customers * 100}}%">{{dashboard.permissions[2].number_of_permissions / dashboard.customers.customers * 100}}%
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 col-md-4 col-md-offset-4 dashboard">
-				<p class="textImportant text-center">Done didIt</p>
-				<div class="progress">
-					<div class="progress-bar progress-bar-striped" role="progressbar" style="width:{{dashboard.permissions[3].number_of_permissions / dashboard.customers.customers * 100}}%">{{dashboard.permissions[3].number_of_permissions / dashboard.customers.customers * 100}}%
-					</div>
-				</div>
-			</div>
-		</div>
-	</div><!--col-->
-</div><!--row-->
+	</div>
+</div>
