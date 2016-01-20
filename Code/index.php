@@ -10,7 +10,7 @@ if(isset($_POST['killSession'])){
 
 }
 
-error_reporting(0);
+error_reporting(1);
 
 //anropar getUrlParts och skickar in url. url_parts blir en array med uppstyckad url. 
 $url_parts = getUrlParts($_GET); 
