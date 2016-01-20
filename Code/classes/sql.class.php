@@ -33,7 +33,7 @@ class Sql {
 		 	$userPerm[] = $_SESSION["userPermission"];
 		if(in_array(1, $userPerm ) || in_array(3, $userPerm)){
 		 	$query = 
-		 		"SELECT wish, category_id, description, checked_by, isChecked, prio, cost, blacklist, categoryName, item.id as 'itemId'
+		 		"SELECT wish, category_id, description, checked_by, prio, cost, blacklist, categoryName, item.id as 'itemId'
 				FROM list, item, category
 				WHERE list.unique_string = item.list_unique_string
 				AND item.category_id = category.id
@@ -44,7 +44,7 @@ class Sql {
 			}
 		else{
 			$query = 
-				"SELECT wish, category_id, description, checked_by, isChecked, prio, cost, blacklist, categoryName, item.id as 'itemId'
+				"SELECT wish, category_id, description, checked_by, prio, cost, blacklist, categoryName, item.id as 'itemId'
 				FROM list, item, category
 				WHERE list.unique_string = item.list_unique_string
 				AND item.category_id = category.id
@@ -108,7 +108,7 @@ public static function getListImage($uniqueUrl){
 
 		public static function listBlackItemsGuest($uniqueUrl) {
 		$query = 
-			"SELECT item.wish, item.description, item.blacklist, item.isChecked, item.id as itemId, 
+			"SELECT item.wish, item.description, item.blacklist, item.id as itemId, 
 			list.unique_string as uniqueUrl, user.role, item.checked_by, item.cost
 			FROM list, item, user
 			WHERE item.list_unique_string = list.unique_string
