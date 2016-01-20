@@ -29,7 +29,7 @@ if($url_parts!= null){
 
 	if($method ==  'myList' || $method ==  'getList'){
 		$template = 'myList.html';
-		if( count($data["items"])<4|| in_array(1, $_SESSION["userPermission"]) || in_array(3, $_SESSION["userPermission"])){
+		if( count($data["items"])<20|| in_array(1, $_SESSION["userPermission"]) || in_array(3, $_SESSION["userPermission"])){
 			$data['payment'] = "newWishForm.html";
 		}
 		else{
