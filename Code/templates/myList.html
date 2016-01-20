@@ -2,9 +2,10 @@
 {% include "triangleBg.html" %}
 
 <div class="container">
-{% include "listHead.html" %}
 	{% if items %}	
 		{% include payment %}
+		{% include "listHead.html" %}
+
 
 		{% for item in items %}
 			{% include "listItemForm.html" %}
@@ -12,6 +13,8 @@
 		
 	{% else%}
 		{% include "newWishForm.html" %}
+		{% include "listHead.html" %}
+
 	{% endif %}
 				
 	{% include "linkToSend.html" %}		

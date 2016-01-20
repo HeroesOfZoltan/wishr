@@ -72,6 +72,10 @@ h1, h2, h3, h4{
 	margin-top: 18vh;
 }
 
+.marginTop10vh {
+	margin-top: 10vh;
+}
+
 .paddingRight15px {
 	padding-right: 15px;
 }
@@ -267,6 +271,11 @@ h2 > .fa{
 h2 {
 	margin-top: 15px;
 	margin-bottom: 15px;
+}
+.pageSection a {
+	text-decoration: none;
+	color:;
+	font-weight: 700;
 }
 
 /********************************************
