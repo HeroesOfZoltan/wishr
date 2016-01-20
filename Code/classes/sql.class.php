@@ -258,7 +258,7 @@ public static function getListImage($uniqueUrl){
 	       }
 		}
 	}
-		return  $userPermission;
+		$_SESSION['userPermission'] =  $userPermission;
 	}
 
 	public static function setUniqueUrl($userId) {
