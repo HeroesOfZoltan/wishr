@@ -1,54 +1,56 @@
-<div class="row newWishForm ">
-	<form action='?/wishList/addItem/{{_session.uniqueUrl}}' method='post' role="form">
-		<div class="form-group">
-			<div class="col-xs-12 col-sm-10 col-sm-offset-1 wishName">
-				<div class="input-group">
-					<input type="text" id="wishName" class="form-control noSelect input inputBorderBottom wishName wishNameInput" required placeholder="Make your wish here" name="wishName" value="{{item.wish}}" aria-describedby="basic-addon1">
-						<span class="input-group-addon input inputBorderBottom wishName wishNameInput">
-							<label for="wishName"><i class="fa fa-pencil"></i></label>
-						</span>
-				</div><!-- /input-group -->
+<div class="container marginTop18vh">
+	<div class="row newWishForm ">
+		<form action='?/wishList/addItem/{{_session.uniqueUrl}}' method='post' role="form">
+			<div class="form-group">
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1 wishName">
+					<div class="input-group">
+						<input type="text" id="wishName" class="form-control noSelect input inputBorderBottom wishName wishNameInput" required placeholder="Make your wish here" name="wishName" value="{{item.wish}}" aria-describedby="basic-addon1">
+							<span class="input-group-addon input inputBorderBottom wishName wishNameInput">
+								<label for="wishName"><i class="fa fa-pencil"></i></label>
+							</span>
+					</div><!-- /input-group -->
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<div class="col-xs-12 col-sm-10 col-sm-offset-1">
-				<!-- <label for="wishDescription"><h3>Description:</h3></label> -->
-				<textarea class="form-control input inputBorderBottom textBox wishDescription" rows="6" id="wishDescription" name="wishDescription" required placeholder="Describe your wish here..."></textarea>
+			<div class="form-group">
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+					<!-- <label for="wishDescription"><h3>Description:</h3></label> -->
+					<textarea class="form-control input inputBorderBottom textBox wishDescription" rows="6" id="wishDescription" name="wishDescription" required placeholder="Describe your wish here..."></textarea>
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<div class="col-xs-12 col-sm-3 col-sm-offset-1">
-				<select class="form-control dropdown wishCatDropdownBtn" name="wishCategory">
-					<button class="btn btn-default dropdown-toggle " type="button" id="categoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-						<option value="" disabled selected>Select category:</option>
-					</button>
-					<ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-					    {% for category in categories%}
-							<li><option value='{{category.id}}'>{{category.categoryName}}</option></li>
-						{% endfor %}
-					</ul>
-				</select>
+			<div class="form-group">
+				<div class="col-xs-12 col-sm-3 col-sm-offset-1">
+					<select class="form-control dropdown wishCatDropdownBtn" name="wishCategory">
+						<button class="btn btn-default dropdown-toggle " type="button" id="categoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							<option value="" disabled selected>Select category:</option>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+						    {% for category in categories%}
+								<li><option value='{{category.id}}'>{{category.categoryName}}</option></li>
+							{% endfor %}
+						</ul>
+					</select>
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<div class="col-xs-6 col-sm-2">
-				<input class="form-control input inputBorderBottom inputNumber" type="number" name="prio" placeholder="Priority">
+			<div class="form-group">
+				<div class="col-xs-6 col-sm-2">
+					<input class="form-control input inputBorderBottom inputNumber" type="number" name="prio" placeholder="Priority">
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<div class="col-xs-6 col-sm-2">
-				<input class="form-control input inputBorderBottom inputNumber" type="number" name="cost" placeholder="Est. cost">
+			<div class="form-group">
+				<div class="col-xs-6 col-sm-2">
+					<input class="form-control input inputBorderBottom inputNumber" type="number" name="cost" placeholder="Est. cost">
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<div class="col-xs-12 col-sm-offset-1 col-sm-2">
-				<button type='submit' class="btn btn-default width100 button submitButton">Submit</button>
+			<div class="form-group">
+				<div class="col-xs-12 col-sm-offset-1 col-sm-2">
+					<button type='submit' class="btn btn-default width100 button submitButton">Submit</button>
+				</div>
 			</div>
-		</div>
-	</form>	
+		</form>	
+	</div>
 </div>

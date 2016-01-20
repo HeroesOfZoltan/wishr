@@ -68,6 +68,10 @@ h1, h2, h3, h4{
 	margin-top: 18vh;
 }
 
+.marginTop10vh {
+	margin-top: 10vh;
+}
+
 .paddingRight15px {
 	padding-right: 15px;
 }
@@ -167,6 +171,14 @@ h1, h2, h3, h4{
 	color: #a1caf1;
 	font-family: 'Playfair Display', serif;
 	font-size: 1.6em;
+    letter-spacing: 1.6px;
+    padding: 25px 0;
+}
+
+.listLead {
+	color: #a1caf1;
+	font-family: 'Playfair Display', serif;
+	font-size: 1.2em;
     letter-spacing: 1.6px;
     padding: 25px 0;
 }

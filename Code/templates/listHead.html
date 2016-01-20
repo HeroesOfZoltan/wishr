@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row marginTop10vh">
 	<div class="col-xs-12 col-md-10 col-md-offset-1 text-center">
 		<h1 class="logo minor-landing-logo">{{listName.0.listName}}</h1>
 	</div>
@@ -11,6 +11,7 @@
 
 <form action="?/wishList/newListName/{{_session.uniqueUrl}}" method="post">
 	<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+	
 
 		<div class="form-group">
 			<div class="input-group pull-right">
@@ -18,6 +19,9 @@
 				<input type="submit" class="button" value="send">
 			</div>
 			<div class="clearfix"></div>
+			
+				<p class="pageLead">Below is your list. You can easily make changes in every field and use the update botton to save the changes you've made. You can also delete items by using the delete button. If you want to change the name of your list you can do use the field below your listname.</p>
+			
 		</div>
 	</div>
 </form>
