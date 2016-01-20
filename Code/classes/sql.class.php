@@ -119,14 +119,31 @@ public static function getListImage($uniqueUrl){
 		return Self::arrayResult($query);
 	}
 
-	public static function listName($uniqueUrl) {
+	public static function getListSubName($uniqueUrl) {
 		$query =
-			"SELECT firstName, secondName
+			"SELECT firstName, secondName, listIcon
 			FROM list
 			WHERE list.unique_string = '$uniqueUrl'
 			LIMIT 1";
 
 		return Self::arrayResult($query);
+	}
+	public static function getListName($uniqueUrl) {
+		$query =
+			"SELECT listName
+			FROM list
+			WHERE list.unique_string = '$uniqueUrl'
+			LIMIT 1";
+
+		return Self::arrayResult($query);
+	}
+	public static function setListName($newListName, $uniqueUrl) {
+		$mysqli = DB::getInstance();
+		$query =
+				"UPDATE list
+				SET listName='$newListName'
+				WHERE unique_string = '$uniqueUrl'";
+		$mysqli->query($query);
 	}
 
 	public static function checkUserName($email) {
@@ -197,7 +214,7 @@ public static function getListImage($uniqueUrl){
 
 
 		return $user;
-	}
+	}///////////////////////////////////////////
 
 	public static function userPermission($userId){
 		$mysqli = DB::getInstance();
@@ -260,8 +277,8 @@ public static function getListImage($uniqueUrl){
 		
 			$query =
 				"INSERT INTO list 
-				(firstName, secondName, user_id, unique_string, imageUrl) 
-				VALUES ('$firstName','$secondName', '$userId', '$uniqueUrl', 'flowers.jpg')";
+				(firstName, secondName, user_id, unique_string, imageUrl, listName) 
+				VALUES ('$firstName','$secondName', '$userId', '$uniqueUrl', 'flowers.jpg', 'Add a listname!')";
 			$mysqli->query($query);
 	}
 
@@ -362,6 +379,15 @@ public static function getListImage($uniqueUrl){
 		$query = 
 				"UPDATE list
 				SET firstName = '$newNameFirst', secondName = '$newNameSecond'
+				WHERE unique_string = '$uniqueUrl'";
+		$mysqli->query($query);
+	}
+	public static function updateListIcon($uniqueUrl, $listIcon){
+		$mysqli = DB::getInstance();
+		
+		$query = 
+				"UPDATE list
+				SET listIcon = '$listIcon'
 				WHERE unique_string = '$uniqueUrl'";
 		$mysqli->query($query);
 	}

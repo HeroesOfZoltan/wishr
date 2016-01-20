@@ -89,7 +89,6 @@ if($url_parts!= null){
 
 	elseif($method ==  'guestView'){
 		$template = 'guestView.html';
-
 		if( in_array(1, $_SESSION["userPermission"]) || in_array(4, $_SESSION["userPermission"])){
 			$data['guestDonelist'] = "guestDonelist.html";
 

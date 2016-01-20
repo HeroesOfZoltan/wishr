@@ -1,11 +1,11 @@
 {% include "pageHeader.html" %}
-
 {% include "triangleBg.html" %}
+
 <div class="container">
-	{% include "listName.html" %}
 
 	{% if items %}	
 		{% include payment %}
+		{% include "listHead.html" %}
 
 		{% for item in items %}
 			{% include "listItemForm.html" %}
@@ -17,5 +17,6 @@
 				
 	{% include "linkToSend.html" %}		
 </div>
+
 {% include "footer.html" %}
 

@@ -45,19 +45,47 @@
 						<h4>Change names</h4>
 						<span>Here you can change your names</span>
 						<form action='?/wishList/changeListName/{{_session.uniqueUrl}}' method='post'>
-							<div class="col-xs-8 col-xs-offset-2" >
+							<div class="row">
+							<div class="col-xs-5 col-xs-offset-3 text-center ">
 								<div class="listNameEdit">
-									<input type="text" class="" required placeholder="{{listNames[0].firstName}}" value="{{listNames[0].firstName}}"name="newListNameFirst" >
-									<span class="glyphicon glyphicon-heart" style="font-size:50px; text-aling: center;"aria-hidden="true"></span>
-									<input type="text" class="" required placeholder="{{listNames[0].secondName}}" value="{{listNames[0].secondName}}"name="newListNameSecond" >
+
+									<input type="text" class="" required placeholder="{{listSubNames[0].firstName}}" value="{{listSubNames[0].firstName}}"name="newListNameFirst" >
+									
+									<input type="text" class="" required placeholder="{{listSubNames[0].secondName}}" value="{{listSubNames[0].secondName}}"name="newListNameSecond" >
+
 									<button type='submit' class="button">Change name</button>
 								</div>
 							</div>
+							<div class="col-xs-1 col-xs-offset-1 col-md-offset-0 text-center ">
+								<span class="{{listSubNames[0].listIcon}}" style="font-size:50px; text-aling: center;"aria-hidden="true"></span>
+						</div>
+						</div>
 						</form>
-					</div>
-				</div><!--col-->
 
-				{% include unlimitedForm %}
+						<div class="row">
+							<div class="col-xs-12">
+								<form action='?/wishList/changeListIcon/{{_session.uniqueUrl}}' style="display: inline;" method='post'>
+									<button type='submit' name="icon" value="fa fa-heart" style="font-size: 1.5em;"class="fa fa-heart"></button>
+								</form>
+								<form action='?/wishList/changeListIcon/{{_session.uniqueUrl}}' style="display: inline;"method='post'>
+									<button type='submit' name="icon" value="fa fa-heart-o" style="font-size: 1.5em;"class="fa fa-heart-o"></button>
+								</form>
+								<form action='?/wishList/changeListIcon/{{_session.uniqueUrl}}'style="display: inline;"method='post'>
+									<button type='submit' name="icon" value="fa fa-diamond" style="font-size: 1.5em;"class="fa fa-diamond"></button>
+								</form>
+								<form action='?/wishList/changeListIcon/{{_session.uniqueUrl}}' style="display: inline;"method='post'>
+									<button type='submit' name="icon" value="fa fa-bug" style="font-size: 1.5em;"class="fa fa-bug"></button>
+								</form>
+								<form action='?/wishList/changeListIcon/{{_session.uniqueUrl}}' style="display: inline;"method='post'>
+									<button type='submit' name="icon" value="" style="font-size: 1.5em;"class="fa fa-times"></button>
+								</form>
+							</div>
+						</div>
+				</div>
+			</div><!--col-->
+
+				{%include listImage%}
+				
 			</div>
 
 			<div class="row">
@@ -69,7 +97,8 @@
 			</div>
 			
 			<div class="row">
-				{%include listImage%}
+
+				{% include unlimitedForm %}
 
 				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-5 col-md-offset-0 upgradeBox">
 					<div  class="priceField priceField1">
@@ -81,36 +110,4 @@
 			</div>
 		</div>
 	</div>
-
-		<!--div class="paymentForm">
-			<h1>Betala</h1>
-
-			<form action="?/User/pay/{{userId}}" method="post">
-				<input type="submit" value="Betala!">
-			</form>
-
-			<form action="?/User/payPermission/{{userId}}" method="post">
-				<input type="hidden" name="permissionType" value="1">
-				<input type="submit" value="Get all permissions">
-			</form>
-
-
-				<form action="?/User/payPermission/{{userId}}" method="post">
-				<input type="hidden" name="permissionType" value="2">
-				<input type="submit" value="Permission 2!">
-			</form>
-					<form action="?/User/payPermission/{{userId}}" method="post">
-				<input type="hidden" name="permissionType" value="3">
-				<input type="submit" value="Permission 3!">
-			</form>
-					<form action="?/User/payPermission/{{userId}}" method="post">
-				<input type="hidden" name="permissionType" value="4">
-				<input type="submit" value="Permission 4!">
-			</form>
-
-			<form action="?/wishlist/getlist/{{uniqueUrl}}" method="post">
-				<input type="submit" value="Tillbaka">
-			</form>
-		</div-->
-
 </div>
