@@ -121,7 +121,7 @@ public static function getListImage($uniqueUrl){
 
 	public static function listName($uniqueUrl) {
 		$query =
-			"SELECT firstName, secondName
+			"SELECT firstName, secondName, listIcon
 			FROM list
 			WHERE list.unique_string = '$uniqueUrl'
 			LIMIT 1";
@@ -362,6 +362,15 @@ public static function getListImage($uniqueUrl){
 		$query = 
 				"UPDATE list
 				SET firstName = '$newNameFirst', secondName = '$newNameSecond'
+				WHERE unique_string = '$uniqueUrl'";
+		$mysqli->query($query);
+	}
+	public static function updateListIcon($uniqueUrl, $listIcon){
+		$mysqli = DB::getInstance();
+		
+		$query = 
+				"UPDATE list
+				SET listIcon = '$listIcon'
 				WHERE unique_string = '$uniqueUrl'";
 		$mysqli->query($query);
 	}
