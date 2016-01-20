@@ -33,7 +33,7 @@ class Sql {
 		 	$userPerm[] = $_SESSION["userPermission"];
 		if(in_array(1, $userPerm ) || in_array(3, $userPerm)){
 		 	$query = 
-		 		"SELECT *, item.id as 'itemId'
+		 		"SELECT wish, category_id, description, checked_by, isChecked, prio, cost, blacklist, categoryName, item.id as 'itemId'
 				FROM list, item, category
 				WHERE list.unique_string = item.list_unique_string
 				AND item.category_id = category.id
@@ -44,7 +44,7 @@ class Sql {
 			}
 		else{
 			$query = 
-				"SELECT *, item.id as 'itemId'
+				"SELECT wish, category_id, description, checked_by, isChecked, prio, cost, blacklist, categoryName, item.id as 'itemId'
 				FROM list, item, category
 				WHERE list.unique_string = item.list_unique_string
 				AND item.category_id = category.id
@@ -87,11 +87,13 @@ public static function getListImage($uniqueUrl){
 
 			return $imageUrl;
 		 }	
-
+		 
+// lägga till 
+		 //
 	public static function listItemsGuest($uniqueUrl) {
 		$query = 
 			"SELECT item.wish, item.description, item.blacklist, category.categoryName, item.isChecked, item.id as itemId, 
-			list.unique_string as uniqueUrl, user.role, item.checked_by, item.cost
+			list.unique_string as uniqueUrl, user.role, item.checked_by, item.cost, list.listName, list.firstName, list.secondName, list.listIcon
 			FROM list, item, category, user
 			WHERE category.id = item.category_id
 			AND item.list_unique_string = list.unique_string
@@ -119,15 +121,16 @@ public static function getListImage($uniqueUrl){
 		return Self::arrayResult($query);
 	}
 
-	public static function getListSubName($uniqueUrl) {
+	public static function getListInfo($uniqueUrl) {
 		$query =
-			"SELECT firstName, secondName, listIcon
+			"SELECT listName, firstName, secondName, listIcon
 			FROM list
 			WHERE list.unique_string = '$uniqueUrl'
 			LIMIT 1";
 
 		return Self::arrayResult($query);
 	}
+	
 	public static function getListName($uniqueUrl) {
 		$query =
 			"SELECT listName
@@ -137,6 +140,7 @@ public static function getListImage($uniqueUrl){
 
 		return Self::arrayResult($query);
 	}
+	
 	public static function setListName($newListName, $uniqueUrl) {
 		$mysqli = DB::getInstance();
 		$query =
@@ -254,7 +258,7 @@ public static function getListImage($uniqueUrl){
 	       }
 		}
 	}
-		return  $userPermission;
+		$_SESSION['userPermission'] =  $userPermission;
 	}
 
 	public static function setUniqueUrl($userId) {
