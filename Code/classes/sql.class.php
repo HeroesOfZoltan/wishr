@@ -93,7 +93,7 @@ public static function getListImage($uniqueUrl){
 	public static function listItemsGuest($uniqueUrl) {
 		$query = 
 			"SELECT item.wish, item.description, item.blacklist, category.categoryName, item.isChecked, item.id as itemId, 
-			list.unique_string as uniqueUrl, user.role, item.checked_by, item.cost, list.listName, list.firstName, list.secondName
+			list.unique_string as uniqueUrl, user.role, item.checked_by, item.cost, list.listName, list.firstName, list.secondName, list.listIcon
 			FROM list, item, category, user
 			WHERE category.id = item.category_id
 			AND item.list_unique_string = list.unique_string
@@ -123,7 +123,7 @@ public static function getListImage($uniqueUrl){
 
 	public static function getListSubName($uniqueUrl) {
 		$query =
-			"SELECT firstName, secondName
+			"SELECT firstName, secondName, listIcon
 			FROM list
 			WHERE list.unique_string = '$uniqueUrl'
 			LIMIT 1";
@@ -276,13 +276,13 @@ public static function getListImage($uniqueUrl){
 			}			
 	}
 
-	public static function insertNewList($firstName, $secondName, $uniqueUrl, $userId){
+	public static function insertNewList($firstName, $secondName, $uniqueUrl, $userId, $icon){
 		$mysqli = DB::getInstance();
 		
 			$query =
 				"INSERT INTO list 
-				(firstName, secondName, user_id, unique_string, imageUrl, listName) 
-				VALUES ('$firstName','$secondName', '$userId', '$uniqueUrl', 'flowers.jpg', 'Add a listname!')";
+				(firstName, secondName, user_id, unique_string, imageUrl,listIcon, listName) 
+				VALUES ('$firstName','$secondName', '$userId', '$uniqueUrl', 'flowers.jpg','$icon', 'Add a listname!')";
 			$mysqli->query($query);
 	}
 
@@ -383,6 +383,15 @@ public static function getListImage($uniqueUrl){
 		$query = 
 				"UPDATE list
 				SET firstName = '$newNameFirst', secondName = '$newNameSecond'
+				WHERE unique_string = '$uniqueUrl'";
+		$mysqli->query($query);
+	}
+	public static function updateListIcon($uniqueUrl, $listIcon){
+		$mysqli = DB::getInstance();
+		
+		$query = 
+				"UPDATE list
+				SET listIcon = '$listIcon'
 				WHERE unique_string = '$uniqueUrl'";
 		$mysqli->query($query);
 	}

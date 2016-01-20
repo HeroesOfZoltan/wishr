@@ -17,7 +17,7 @@ class User{
 
 			$userId = $mysqli->insert_id;
 			$uniqueString = substr(md5(microtime()),rand(0,26),5); //genererar unik sträng på 5 tecken.
-			Sql::insertNewList($firstnameClean,$lastnameClean, $uniqueString, $userId); //Anropar metod som sparar ny lista i databasen
+			Sql::insertNewList($firstnameClean,$lastnameClean, $uniqueString, $userId, 'fa fa-heart'); //Anropar metod som sparar ny lista i databasen
 
 		return ['message' => $message];			
 	}

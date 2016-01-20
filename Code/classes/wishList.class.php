@@ -63,12 +63,27 @@ class WishList{
 		return ['redirect' => "?/User/payUp/"];
 	}
 
+	public static function changeListIcon($params){
+		$mysqli = DB::getInstance();
+		$uniqueUrl = $params[0];
+
+			$iconClean= $mysqli->real_escape_string($_POST['icon']);
+
+		Sql::updateListIcon($uniqueUrl, $iconClean);
+
+		return ['redirect' => "?/User/payUp/"];
+	}
+
 	public static function changeListImage($params){
 		$mysqli = DB::getInstance();
 		$uniqueUrl = $params[0];
-		$newListImageClean= $mysqli->real_escape_string($_POST['newListImage']);
-		Sql::updateListImage($uniqueUrl, $newListImageClean);
-
+		if(isset($_POST['originalImage'])){
+			Sql::updateListImage($uniqueUrl, 'flowers.jpg');
+		}
+		else{
+			$newListImageClean= $mysqli->real_escape_string($_POST['newListImage']);
+			Sql::updateListImage($uniqueUrl, $newListImageClean);
+		}
 	return ['redirect' => "?/User/payUp/"];
 	}
 
