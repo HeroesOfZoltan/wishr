@@ -50,7 +50,9 @@ class WishList{
 		$listNameClean = $mysqli->real_escape_string($_POST['newListName']);
 		Sql::setListName($listNameClean, $uniqueUrl);
 
+
 		return['redirect' => '?/User/payUp/#pageContent1'];
+
 	}
 
 	public static function changeListName($params){
