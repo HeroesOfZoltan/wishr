@@ -36,30 +36,24 @@
 				</form>
 
 			{% else %}
-			<!-- Login Dropdown -->
-			<ul class="nav navbar-nav navbar-right paddingRight15px">
-		        <li class="dropdown">
-		        	<button type="button" href="#" class="btn btn-default navbar-btn dropdown-toggle button" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-						Log in&nbsp;<i class="fa fa-caret-down"></i>
-		         	</button>
-		        	<ul class="dropdown-menu">
-			            <li>
-			            	<form class="navbar-form" action='?/User/login' method='post'>
-								<div class="form-group">
-									<input class="form-control" type='text' name='email' placeholder="E-mail">
-									<input class="form-control" type='password' name='password' placeholder="Password">
-								</div>
-								<button class="btn btn-default btn-xs btn-block" type='submit' name='submitLogin' value='Log in'>Log in</button>
-							</form>
-			            </li>
-		        	</ul>
-		        </li>
-		     </ul>
-			<!-- End Login Dropdown -->
-			
-			<!-- Upgrade Button -->
+<!-- Login navbar -->
+		
+			<div class="nav navbar-nav navbar-right">
+            	<form class="form-inline navbar-form" action='?/User/login' method='post'>
+					<div class="form-group">
+						<input class="form-control input" type='text' name='email' placeholder="E-mail">
+						<input class="form-control input" type='password' name='password' placeholder="Password">
+					</div>
+					<button class="btn navbar-btn button" type='submit' name='submitLogin' value='Log in'>Login</button>
+				</form>
+			</div>
+							
+			    
+			<!-- End Login navbar -->
+
+			<!-- Upgrade Button navbar -->
 			<form class="navbar-form  navbar-right"  method="post" action="?/User/payUp/">
-				<button type="submit" class="btn btn-default button" name='goPro' value='Go Pro!'>Upgrade!&nbsp;<i class="fa fa-gift"></i></button>
+				<button type="submit" class="btn navbar-btn button" name='goPro' value='Go Pro!'>The Product!&nbsp;<i class="fa fa-gift"></i></button>
 			</form>
 			{% endif %}
 		</div>
