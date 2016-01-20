@@ -272,13 +272,13 @@ public static function getListImage($uniqueUrl){
 			}			
 	}
 
-	public static function insertNewList($firstName, $secondName, $uniqueUrl, $userId){
+	public static function insertNewList($firstName, $secondName, $uniqueUrl, $userId, $icon){
 		$mysqli = DB::getInstance();
 		
 			$query =
 				"INSERT INTO list 
-				(firstName, secondName, user_id, unique_string, imageUrl, listName) 
-				VALUES ('$firstName','$secondName', '$userId', '$uniqueUrl', 'flowers.jpg', 'Add a listname!')";
+				(firstName, secondName, user_id, unique_string, imageUrl,listIcon, listName) 
+				VALUES ('$firstName','$secondName', '$userId', '$uniqueUrl', 'flowers.jpg','$icon', 'Add a listname!')";
 			$mysqli->query($query);
 	}
 
