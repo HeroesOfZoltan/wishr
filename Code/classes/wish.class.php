@@ -5,40 +5,16 @@ class Wish{
 	function __construct($uniqueUrl, $wish, $description, $wishCategory, $wishPrio="", $wishCost="", $wishBlacklist=""){
 
 		$mysqli = DB::getInstance();
-		//$uniqueIdClean = $mysqli->real_escape_string($uniqueUrl);
+
 		$wishClean = $mysqli->real_escape_string($wish);
-		//clean([&$wish,$description]);
 		$descriptionClean = $mysqli->real_escape_string($description);
 		$wishCategoryClean = $mysqli->real_escape_string($wishCategory);
 		$wishPrioClean = $mysqli->real_escape_string($wishPrio);
 		$wishCostClean = $mysqli->real_escape_string($wishCost);
 		$wishBlacklistClean = $mysqli->real_escape_string($wishBlacklist);
 
-		$query = 
-			"INSERT INTO item 
-			(wish, list_unique_string, description, category_id, prio, cost, blacklist) 
-			VALUES ('$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryClean', '$wishPrioClean', '$wishCostClean','$wishBlacklistClean')";
-		$mysqli->query($query);
-		
-		/*clean($uniqueUrl);
-		clean($wish);
-		clean($description);
-		clean($wishCategory);
-		clean($wishPrio);
-		clean($wishCost);
-		clean($wishBlacklist);
-		$query = 
-			"INSERT INTO item 
-			(wish, list_unique_string, description, category_id, prio, cost, blacklist) 
-			VALUES ('$wish', '$uniqueUrl','$description','$wishCategory', '$wishPrio', '$wishCost','$wishBlacklist')";
-		$mysqli->query($query);*/
-
-
-
-		
+		Sql::insertNewItem($wishClean, $uniqueUrl,$descriptionClean,$wishCategoryClean, $wishPrioClean, $wishCostClean,$wishBlacklistClean);	
 	}
-
-
 
 	public static function updateItem($params){
 		$mysqli = DB::getInstance();
@@ -53,40 +29,40 @@ class Wish{
 		$wishCostClean = $mysqli->real_escape_string($_POST['cost']);
 
 		if(isset($_POST['updateBtn'])){
-
-			$query = 
-					"UPDATE item
-					SET wish='$wishClean', description='$descriptionClean', category_id ='$wishCategoryIdClean',
-					prio='$wishPrioClean', cost='$wishCostClean'
-					WHERE id = $wishIdClean
-					";
-			
-			$mysqli->query($query);
+			Sql::updateItem($wishClean,$descriptionClean,$wishIdClean,$wishCategoryIdClean,$wishPrioClean,$wishCostClean);
 		}
 
 		if(isset($_POST['deleteBtn'])){
-
-			$query = 
-					"INSERT INTO deletedItem
-					(id, wish, list_unique_string, description, category_id) 
-					VALUES ('$wishIdClean','$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryIdClean')
-					";
-			$mysqli->query($query);
-
-			$query = 
-					"DELETE FROM item
-					WHERE item.id = $wishIdClean";
-
-			$mysqli->query($query);
+			Sql::deleteItem($wishIdClean,$wishClean, $uniqueUrl,$descriptionClean,$wishCategoryIdClean);
 		}
 
 
 		if(isset($_POST['toBlacklist'])){
-			return ['redirect' => "?/User/getBlacklist/$uniqueUrl"];
+			return ['redirect' => "?/wishList/getBlacklist/$uniqueUrl"];
 		}
 		else{
 			return ['redirect' => "?/wishList/getList/$uniqueUrl"];
 		}
 
+	}
+
+		public static function itemDone($params) {
+		$mysqli = DB::getInstance();
+		$itemIdClean = $mysqli->real_escape_string($_POST['itemId']);
+		$checkedByClean = $mysqli->real_escape_string($_POST['checked_by']);
+
+		Sql::itemDone($itemIdClean, $checkedByClean);
+
+		$uniqueUrl = $params[0];
+		return ['redirect' => "?/wishList/guestView/$uniqueUrl"];
+	}
+	public static function unDoneItem($params) {
+		$mysqli = DB::getInstance();
+		$itemIdClean = $mysqli->real_escape_string($_POST['itemId']);
+
+		Sql::itemUnDone($itemIdClean);
+		
+		$uniqueUrl = $params[0];
+		return ['redirect' => "?/wishList/guestView/$uniqueUrl"];
 	}
 }

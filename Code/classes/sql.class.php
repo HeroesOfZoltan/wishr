@@ -18,6 +18,45 @@ class Sql {
 		return Self::arrayResult($query);
 	}
 
+	public static function insertNewItem($wishClean, $uniqueUrl,$descriptionClean,$wishCategoryClean, $wishPrioClean, $wishCostClean,$wishBlacklistClean){
+		$mysqli = DB::getInstance();
+		$query = 
+				"INSERT INTO item 
+				(wish, list_unique_string, description, category_id, prio, cost, blacklist) 
+				VALUES ('$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryClean', '$wishPrioClean', '$wishCostClean','$wishBlacklistClean')";
+
+		$mysqli->query($query);	
+	}
+	public static function updateItem($wishClean,$descriptionClean,$wishIdClean,$wishCategoryIdClean,$wishPrioClean,$wishCostClean){
+		$mysqli = DB::getInstance();
+		$query = 
+					"UPDATE item
+					SET wish='$wishClean', description='$descriptionClean', category_id ='$wishCategoryIdClean',
+					prio='$wishPrioClean', cost='$wishCostClean'
+					WHERE id = $wishIdClean
+					";
+			
+			$mysqli->query($query);
+
+	}
+
+		public static function deleteItem($wishIdClean,$wishClean, $uniqueUrl,$descriptionClean,$wishCategoryIdClean){
+			$mysqli = DB::getInstance();
+			$query = 
+					"INSERT INTO deletedItem
+					(id, wish, list_unique_string, description, category_id) 
+					VALUES ('$wishIdClean','$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryIdClean')
+					";
+			$mysqli->query($query);
+
+			$query = 
+					"DELETE FROM item
+					WHERE item.id = $wishIdClean";
+
+			$mysqli->query($query);
+
+	}
+
 	public static function getListItems($uniqueUrl, $userId){
 		 	$userPerm[] = $_SESSION["userPermission"];
 		if(in_array(1, $userPerm ) || in_array(3, $userPerm)){
