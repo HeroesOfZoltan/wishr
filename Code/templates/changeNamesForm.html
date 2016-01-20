@@ -1,0 +1,29 @@
+<div class="row upgradeBox payedBox changeNameBox">
+	<h3 class="col-xs-12 text-center">Change names</h3>
+	<p class="col-xs-12 text-center">This is where you can change your names.</p>
+	<form action='?/wishList/changeListName/{{_session.uniqueUrl}}' method='post'>
+		
+		<div class="input-group col-xs-12 payedInputGroup name1">
+			<span class="input-group-addon payedInput">
+				<label for="newListNameFirst">Name 1:</label>
+			</span>
+			<input type="text" name="newListNameFirst" class="payedInput" required value="{{listInfo[0].firstName}}" placeholder="{{listInfo[0].firstName}}" >
+			<span class="input-group-addon payedInput">
+				<label for="newListNameFirst"><i class="fa fa-pencil"></i></label>
+			</span>
+		</div>
+
+		<div class="input-group col-xs-12 payedInputGroup name2">
+			<span class="input-group-addon payedInput">
+				<label for="newListNameSecond">Name 2:</label>
+			</span>
+			<input type="text" name="newListNameSecond" class="payedInput" required value="{{listInfo[0].secondName}}" placeholder="{{listInfo[0].secondName}}">
+			<span class="input-group-addon payedInput">
+				<label for="newListNameSecond"><i class="fa fa-pencil"></i></label>
+			</span>
+		</div>
+		<div class="col-xs-12 text-center">
+			<button type='submit' class="btn btn-default button payedButton"><p>Change names<p></button>
+		</div>
+	</form>
+</div>

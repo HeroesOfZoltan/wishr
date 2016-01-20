@@ -1,11 +1,11 @@
-<div class="col-xs-12 col-sm-6">
-	<div class="upgradeBox payedBox text-center">
-		<div class="col-xs-12">
-			<h2 class="payedBoxIcon"><i class="fa fa-picture-o"></i></h2>
-		</div>
-		<div class="col-xs-12">
-			<h3>Change background image:</h3>
-			<form action='?/wishList/changeListImage/{{_session.uniqueUrl}}' method='post'>
+<div class="row upgradeBox payedBox text-center">
+	<div class="col-xs-12">
+		<h2 class="payedBoxIcon"><i class="fa fa-picture-o"></i></h2>
+	</div>
+	<div class="col-xs-12">
+		<h3>Change background image:</h3>
+		<form action='?/wishList/changeListImage/{{_session.uniqueUrl}}' method='post'>
+			<div class="row">
 				<div class="input-group col-xs-12 payedInputGroup">
 					<span class="input-group-addon payedInput">
 						<label for="newListImage"><i class="fa fa-pencil"></i></label>
@@ -16,7 +16,7 @@
 					</span>
 				</div>
 				<button type='submit' name="originalImage" class="btn btn-default button payedButton"><p>Reset original image</p></button>
-			</form>
-		</div>
+			</div>
+		</form>
 	</div>
-</div><!--col-->
+</div>

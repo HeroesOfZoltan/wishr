@@ -35,8 +35,8 @@ h1, h2, h3, h4{
 
 .lead{
 	color: #fffff0;
-	text-shadow: 1px 1px #a1caf1;
-	font-family: 'Playfair Display';
+	font-family: 'Roboto Slab';
+	font-weight: 400;
 	font-size: 1.6em;
 	letter-spacing: 1.6px;
 }
@@ -173,13 +173,13 @@ h1, h2, h3, h4{
 
 .pageLead {
 	color: #a1caf1;
-	font-family: 'Playfair Display', serif;
+	font-family: 'Roboto Slab', serif;
 	font-size: 1.6em;
     letter-spacing: 1.6px;
     padding: 25px 0;
 }
 
-.input {
+.input, .input:focus {
 	box-shadow: none;
   	-webkit-box-shadow: none;
   	-moz-box-shadow: none;
@@ -190,8 +190,9 @@ h1, h2, h3, h4{
 	border: none;
 	border-radius: 3px 3px 0 0;
 }
-.inputBorderBottom{
-	border-bottom: 2px solid #a1caf1;
+
+.inputBorderBottom, .inputBorderBottom:focus{
+	border-bottom: 4px solid #a1caf1;
 }
 .input::-webkit-input-placeholder {
 	color: #a1caf1; 
@@ -214,9 +215,9 @@ h1, h2, h3, h4{
 	border-radius: 0 3px 0 0;
 }
 
-.textBox {
+/* .textBox {
 	border-left: 4px solid #a1caf1;
-}
+} */
 
 .listItemDescription {
 	background-color: #a1caf1;
@@ -274,6 +275,43 @@ h2 {
 	color: #a1caf1;
 	font-weight: 700;
 }
+
+/********************************************
+-------- Style for triangleBg.html ----------
+*********************************************/
+
+.topImageDiv{
+	background-size:cover;
+	width:100vw;
+	height: 100vh;
+	position: absolute;
+	z-index: -98;
+}
+.topImage{
+ 	background-image: url("flowers.jpg");
+}
+
+.triangleBg{
+    border-right: 100vw solid transparent;
+	border-bottom: 100vh solid  #bee9d5;
+    width: 100vw;
+
+}
+.triangleFilter{
+    border-right: 100vw solid rgba(244,228,163,0.6);
+	border-bottom: 100vh solid  #bee9d5;
+    width: 100vw;
+	position: absolute;
+}
+
+.triangleError{
+	width:100vw;
+	height: 100vh;
+	position: absolute;
+	background-image: url("not-found.png");
+	z-index: -99;
+}
+
 
 /********************************************
 ---------- Style for landingPage.html ----------
@@ -670,6 +708,44 @@ h2 {
 	border: none;
 }
 
+.changeNameBox {
+	color: #fffff0;
+}
+
+.changeNameBox .row {
+	padding: 15px 0;
+}
+
+/*
+.changeNameBox input, .changeNameBox::-webkit-input-placeholder {
+	background-color: transparent;
+	color: #fffff0;
+	font-family: 'Merriweather', Georgia, serif;
+	font-size: 1.2em;
+	border: none;
+} */
+
+.changeNameBox .name1 {
+	padding-right: 0px;
+}
+
+
+.changeNameIcons form {
+	display: inline;
+}
+
+.changeNameIcons button {
+	margin: 0px;
+}
+
+.changeNameIcons .fa {
+	font-size: 0.9em;
+}
+
+.currentIcon > .fa {
+	font-size: 1.4em;
+}
+
 /* ---------- Style for listName ---------- */
 .listNameContainer {
 	min-height: 100px;
@@ -740,36 +816,6 @@ h2 {
 	color: #fffff0;
 }
 /* ---------- Style for header ---------- */
-.topImageDiv{
-	background-size:cover;
-	width:100vw;
-	height: 100vh;
-	position: absolute;
-}
-.topImage{
- 	background-image: url("flowers.jpg");
-}
-
-.triangleBg{
-    border-right: 100vw solid transparent;
-	border-bottom: 100vh solid  #bee9d5;
-    width: 100vw;
-
-}
-.triangleFilter{
-    border-right: 100vw solid rgba(244,228,163,0.6);
-	border-bottom: 100vh solid  #bee9d5;
-    width: 100vw;
-	position: absolute;
-}
-
-.triangleError{
-	width:100vw;
-	height: 100vh;
-	position: absolute;
-	background-image: url("not-found.png");
-
-}
 .userSettings{
 
 }
