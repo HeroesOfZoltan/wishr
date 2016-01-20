@@ -92,7 +92,7 @@ public static function getListImage($uniqueUrl){
 		 //
 	public static function listItemsGuest($uniqueUrl) {
 		$query = 
-			"SELECT item.wish, item.description, item.blacklist, category.categoryName, item.isChecked, item.id as itemId, 
+			"SELECT item.wish, item.description, item.blacklist, category.categoryName, item.id as itemId, 
 			list.unique_string as uniqueUrl, user.role, item.checked_by, item.cost, list.listName, list.firstName, list.secondName, list.listIcon
 			FROM list, item, category, user
 			WHERE category.id = item.category_id
@@ -303,7 +303,7 @@ public static function getListImage($uniqueUrl){
 		
 		$query = 
 				"UPDATE item
-				SET isChecked = 1, checked_by = '$checkedBy'
+				SET checked_by = '$checkedBy'
 				WHERE id = $itemId";
 		$mysqli->query($query);
 	}
@@ -313,7 +313,7 @@ public static function getListImage($uniqueUrl){
 		
 		$query = 
 				"UPDATE item
-				SET isChecked=NULL, checked_by = NULL
+				SET checked_by = NULL
 				WHERE id = $itemId";
 		/*"UPDATE item
 				SET isChecked=NULL

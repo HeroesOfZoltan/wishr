@@ -6,20 +6,19 @@
 	<div class="row marginTop18vh">
 		<div class="row">
 			<div class="col-xs-12 col-md-10 col-md-offset-1 text-center">
-				<h1 class="logo landing-logo">{{guestListItems[0].listName}}</h1>
+				<h1 class="logo landing-logo">{{listInfo[0].listName}}</h1>
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-4 col-sm-offset-4 text-center">
-			<h1>{{guestListItems[0].firstName}}<span class="{{guestListItems[0].listIcon}}" aria-hidden="true"></span>{{guestListItems[0].secondName}}</h1>
+			<h1>{{listInfo[0].firstName}}<span class="{{listInfo[0].listIcon}}" aria-hidden="true"></span>{{listInfo[0].secondName}}</h1>
 		</div>
-
 	</div>
 
 
 	<div class="row">
 	<!-- wish list: -->
 		{% for guestListItem in guestListItems %}
-			{% if guestListItem.isChecked == NULL %}
+			{% if guestListItem.checked_by == NULL %}
 				<div class="col-xs-12 col-sm-offset-2 col-sm-8 wishHeader" data-toggle="collapse" data-target="#wish{{guestListItem.itemId}}">
 					<h2><i class="fa fa-chevron-down"> </i> {{guestListItem.wish}} </h2>
 				</div>

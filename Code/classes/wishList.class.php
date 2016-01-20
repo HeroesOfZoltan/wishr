@@ -50,7 +50,7 @@ class WishList{
 		$listNameClean = $mysqli->real_escape_string($_POST['newListName']);
 		Sql::setListName($listNameClean, $uniqueUrl);
 
-		return['redirect' => '?/User/myList'];
+		return['redirect' => '?/User/payUp/#pageContent1'];
 	}
 
 	public static function changeListName($params){
@@ -60,7 +60,7 @@ class WishList{
 		$newListNameSecondClean= $mysqli->real_escape_string($_POST['newListNameSecond']);
 		Sql::updateListName($uniqueUrl, $newListNameFirstClean,$newListNameSecondClean);
 
-		return ['redirect' => "?/User/payUp/"];
+		return ['redirect' => "?/User/payUp/#pageContent1"];
 	}
 
 	public static function changeListIcon($params){
@@ -71,7 +71,7 @@ class WishList{
 
 		Sql::updateListIcon($uniqueUrl, $iconClean);
 
-		return ['redirect' => "?/User/payUp/"];
+		return ['redirect' => "?/User/payUp/#pageContent1"];
 	}
 
 	public static function changeListImage($params){
@@ -84,7 +84,7 @@ class WishList{
 			$newListImageClean= $mysqli->real_escape_string($_POST['newListImage']);
 			Sql::updateListImage($uniqueUrl, $newListImageClean);
 		}
-	return ['redirect' => "?/User/payUp/"];
+	return ['redirect' => "?/User/payUp/#pageContent2"];
 	}
 
 
