@@ -121,9 +121,9 @@ public static function getListImage($uniqueUrl){
 		return Self::arrayResult($query);
 	}
 
-	public static function getListSubName($uniqueUrl) {
+	public static function getListInfo($uniqueUrl) {
 		$query =
-			"SELECT firstName, secondName, listIcon
+			"SELECT listName, firstName, secondName, listIcon
 			FROM list
 			WHERE list.unique_string = '$uniqueUrl'
 			LIMIT 1";
