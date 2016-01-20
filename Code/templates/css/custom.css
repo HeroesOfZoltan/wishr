@@ -542,8 +542,12 @@ h2 {
 
 /* ---------- Style end GuestListForm ---------- */
 
-/* ---------- Style for paymentForm ---------- */
+/********************************************
+---------- Style for paymentForm ----------
+----------   and unpayedBoxes    ----------
+*********************************************/
 .upgradeBox {
+	min-height: 320px;
 	background-color: #a1caf1;
 	color: #fffff0;
 	font-size: 1.4em;
@@ -606,6 +610,13 @@ h2 {
 	font-size: 1.8em;
 }
 
+.upgradeBoxPrice > h2 > .fa {
+	position: relative;
+	top: 2px;
+	font-size: 0.8em;
+	margin-right: 5px;
+}
+
 .payButton, .moreButton {
 	background-color: #a1caf1;
 	border: none;
@@ -623,93 +634,43 @@ h2 {
 	margin: 5px 0px;
 }
 
-.upgradeBoxPrice > h2 > .fa {
-	position: relative;
-	top: 2px;
-	font-size: 0.8em;
-	margin-right: 5px;
-}
-
 .moreButton {
 	min-height: 320px;
 	background-color: rgba(161,202,241,0.6);
 }
 
-.priceFieldDetails{
-		font-weight: 300;
-	border-radius: 10px; 
-	color: #FFFFFF;
-	margin-top: 15px;
-	background-color:#fbd6d1;
+/********************************************
+---------- Style for payedBoxes ----------
+*********************************************/
+
+.payedBox {
+	min-height: 320px;
+	background-color: #fbd6d1;
 }
 
-.priceField1 {	
-	font-weight: 300;
-	border-radius: 10px; 
-	color: #FFFFFF;
-	margin-top: 15px;
-	background-color:#a1caf1;
+.payedBox h3 {
+	font-size: 1.2em;
 }
 
-.priceFieldBig {	
-	font-weight: 300;
-	border-radius: 10px; 
-	color: #FFFFFF;
-	margin-top: 15px;
-	background-color:#fbd6d1;
+.payedBoxIcon .fa {
+	font-size: 1.2em;
 }
 
-.priceFieldPayed {	
-	font-weight: 300;
-	border-radius: 10px; 
-	color: #c6daf1;
-	margin-top: 15px;
+.payedButton p {
+	margin-bottom: 0px;
+}
+
+.payedInputGroup {
+	height: 36px;
 	background-color: #fffff0;
-	border: solid 4px #c6daf1;
+	padding: 5px;
+	margin: 15px 0;
 }
-@media all and (min-width: 990px) {
 
-	.priceFieldDetails{
-		min-height: 300px;
-	}
-
-	.priceField {
-		min-height: 300px;
-
-	}
-	.priceField p {
-		min-height: 100px;
-		max-height: 200px;
-	}
-	.priceField button {
-		margin-top: 10px;
-	}
-}
-.priceField h4 {
-	font-family: Merriweather;
-	font-size: 2.0em;
-	font-weight: 800;
-	letter-spacing: 0.05em;
-	height: 70px;
-	text-shadow: 0px 2px 1px rgba(0,0,0,.1);
-}
-.priceField h1 {
-	font-family: Merriweather;
-	font-size: 4.0em;
-	font-weight: 800;
-	text-shadow: 0px 3px 1px rgba(0,0,0,.1);
-}
-.priceField button {
-	margin-bottom: 15px;
-}
-.priceFieldDetails ul{
-	font-family: Merriweather sans;
-	font-weight: 300;
-	font-size: 0.8em;
-	text-align: center;
-}
-.priceFieldDetails li{
-	text-align: center;
+.payedInput {
+	background-color: #fffff0;
+	color: #a1caf1;
+	border: none;
 }
 
 /* ---------- Style for listName ---------- */
