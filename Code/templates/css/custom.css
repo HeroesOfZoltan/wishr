@@ -58,6 +58,10 @@ h1, h2, h3, h4{
 	width: 100%;
 }
 
+.heigth100 {
+	height: 100%;
+}
+
 .topMargin{
 	margin-top: 70px; /* For navbar */
 }
@@ -548,6 +552,22 @@ h2 {
 	margin: 15px 0;
 }
 
+.upgradeBox p {
+	font-size: 0.8em;
+}
+
+.upgradeBox h2{
+	font-size: 3em;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.upgradeBox h3 {
+	font-size: 1.6em;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
 .upgradeBox ul {
 	font-style: italic;
 	line-height: 1.6;
@@ -560,33 +580,59 @@ h2 {
 	padding-right: 15px;
 }
 
-.upgradeBox h2{
-	font-size: 3em;
-	font-weight: 700;
-	text-transform: uppercase;
-}
-
-.upgradeBox h3{
-	font-size: 1.6em;
-	font-weight: 700;
-	text-transform: uppercase;
-}
-
 .upgradeBox button {
 	font-size: 1.2em;
 }
 
 .upgradeBox .fa {
-	font-size: 0.8em;
+	font-size: 1em;
 }
 
 .upgradeAllBox {
 	background-color: #fbd6d1;
 }
 
-.payButton, .payButton:hover {
-	background-color: #fffff0;
-	color: #a1caf1;
+.upgradeBoxIcon {
+	margin: 0px 0px;
+}
+
+.upgradeBoxIcon .fa {
+	font-size: 2.2em;
+	position: relative;
+	top: 15px;
+}
+
+.upgradeBoxPrice {
+	font-size: 1.8em;
+}
+
+.payButton, .moreButton {
+	background-color: #a1caf1;
+	border: none;
+	border-radius: 3px;
+	color: #fffff0;
+}
+
+.payButton:hover, .payButton:active, .payButton:active:focus {
+	background-color: rgba(161,202,241,0.6);
+	color: #fffff0;
+}
+
+.payButton h4 {
+	font-size: 0.8em;
+	margin: 5px 0px;
+}
+
+.upgradeBoxPrice > h2 > .fa {
+	position: relative;
+	top: 2px;
+	font-size: 0.8em;
+	margin-right: 5px;
+}
+
+.moreButton {
+	min-height: 320px;
+	background-color: rgba(161,202,241,0.6);
 }
 
 .priceFieldDetails{
