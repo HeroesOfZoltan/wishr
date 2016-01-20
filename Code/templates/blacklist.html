@@ -1,5 +1,13 @@
 {% include "pageHeader.html" %}
-
+{% include "triangleBg.html" %}
+<div class="container">
+	<div class="row marginTop18vh">
+		<div class="row">
+			<div class="col-xs-12 col-md-10 col-md-offset-1 text-center">
+				<h1 class="logo landing-logo">Blacklist</h1>
+			</div>
+		</div>
+	</div>
 {% include "newBlacklistForm.html" %}
 
 {% for item in items %}
@@ -7,3 +15,4 @@
 {% endfor %}
 
 {% include "footer.html" %}
+</div>

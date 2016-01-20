@@ -58,11 +58,11 @@ class Sql {
 		
 			return Self::arrayResult($query);
 		 }
-
+//ersätta * med det viktiga!
 public static function getBlackListItems($uniqueUrl, $userId){
 	
 			$query = 
-				"SELECT *, item.id as 'itemId'
+				"SELECT item.wish, item.description, item.id as 'itemId'
 				FROM list, item
 				WHERE list.unique_string = item.list_unique_string
 				AND list.unique_string = '$uniqueUrl'
