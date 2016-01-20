@@ -2,10 +2,9 @@
 {% include "triangleBg.html" %}
 
 <div class="container">
-
+{% include "listHead.html" %}
 	{% if items %}	
 		{% include payment %}
-		{% include "listHead.html" %}
 
 		{% for item in items %}
 			{% include "listItemForm.html" %}

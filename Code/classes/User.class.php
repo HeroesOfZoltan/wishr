@@ -17,7 +17,7 @@ class User{
 
 			$userId = $mysqli->insert_id;
 			$uniqueString = substr(md5(microtime()),rand(0,26),5); //genererar unik sträng på 5 tecken.
-			Sql::insertNewList($firstnameClean,$lastnameClean, $uniqueString, $userId); //Anropar metod som sparar ny lista i databasen
+			Sql::insertNewList($firstnameClean,$lastnameClean, $uniqueString, $userId, 'fa fa-heart'); //Anropar metod som sparar ny lista i databasen
 
 		return ['message' => $message];			
 	}
@@ -60,15 +60,15 @@ class User{
 		
 		
 		if($items){
-			return ['items' => $items, 'categories' => Sql::category(),'listName' => Sql::getListName($_SESSION['uniqueUrl']), 'listSubNames'=> Sql::getListSubName($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
+			return ['items' => $items, 'categories' => Sql::category(), 'listInfo' => Sql::getListInfo($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 		}
 		else if ($_SESSION['user']['id'])	{
-			return ['listName' => Sql::getListName($_SESSION['uniqueUrl']), 'listSubNames'=> Sql::getListSubName($_SESSION['uniqueUrl']),'categories' =>Sql::category(),'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
+			return ['listInfo' => Sql::getListInfo($_SESSION['uniqueUrl']), 'categories' =>Sql::category(),'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 		}
 	}
 
 	public static function payUp() {
-		return ['listName' => Sql::getListName($_SESSION['uniqueUrl']), 'listSubNames'=> Sql::getListSubName($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
+		return ['listInfo' => Sql::getListInfo($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 
 	} 
 		public static function ourProduct() {
@@ -101,7 +101,10 @@ class User{
 			$uniqueUrl = $params[0];
 			$uniqueUrlClean = $mysqli->real_escape_string($uniqueUrl);
 
-			return ['guestListItems' => Sql::listItemsGuest($uniqueUrlClean), 'guestBlackListItems' => Sql::listBlackItemsGuest($uniqueUrlClean), 'listName' => Sql::getListName($uniqueUrl), 'listSubNames'=> Sql::getListSubName($uniqueUrl), 'userPermission' => Sql::getUserGuestPermission($uniqueUrlClean),'imageUrl' => Sql::getListImage($uniqueUrlClean)];
+			Sql::getUserGuestPermission($uniqueUrlClean);
+
+			return ['guestListItems' => Sql::listItemsGuest($uniqueUrlClean), 'guestBlackListItems' => Sql::listBlackItemsGuest($uniqueUrlClean),'imageUrl' => Sql::getListImage($uniqueUrlClean)];
+
 		}
 
 		public static function itemDone($params) {
