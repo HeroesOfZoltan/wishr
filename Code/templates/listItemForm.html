@@ -46,7 +46,8 @@
 							<input class="form-control clearForm input listItemInput" type="number" name="cost" value="{{item.cost}}" aria-describedby="addon-cost">
 						</div>
 					</div>
-
+					<input type='hidden' name="blacklist" value='{{item.blacklist}}'>
+					<input type='hidden' name="checkedBy" value='{{item.checkedBy}}'>
 					<input type='hidden' name="wishId" value='{{item.itemId}}'>
 					<div class="col-xs-6 col-sm-offset-1  col-sm-2">
 						<button class="btn btn-default width100 button" type='submit' name="updateBtn" value='Update'>Update&nbsp;&nbsp;<i class="fa fa-refresh"></i></button>
