@@ -28,6 +28,7 @@ body {
 p, input, textarea, button {
 	font-family: 'Merriweather Sans', 'Helvetica Neue', Helvetica, san-serif;
 }
+
 h1, h2, h3, h4{
 	font-family: 'Merriweather', serif;
 }
@@ -133,7 +134,8 @@ h1, h2, h3, h4{
 	background-color: #a1caf1;
 	color: #fffff0;
 	border: none;
-	text-shadow: 0 1px 1px rgba(0,0,0,.1;);
+	border-radius: 6px;
+	text-shadow: 0 1px 1px rgba(0,0,0,.1);
 }
 
 .button:hover, .button:active {
@@ -141,14 +143,32 @@ h1, h2, h3, h4{
 	color: #fffff0;
 }
 
-.logo {
-	color: #fffff0 !important;
+.logo, .title {
+	color: #fffff0;
 	font-family: 'Merriweather', Georgia, serif;
 	font-weight: 700;
 	font-style: italic;
+	text-transform: uppercase;
 	letter-spacing: 2.6px;
 	padding: 2px 5px;
 	border: 3px solid  #fffff0;
+}
+
+.pageTitle {
+	color: #a1caf1;
+	letter-spacing: 0.1em;
+    font-size: 4.1em;
+    text-transform: uppercase;
+    padding: 0.2em 0.4em;
+    border: #a1caf1 solid 0.05em;
+}
+
+.pageLead {
+	color: #a1caf1;
+	font-family: 'Playfair Display', serif;
+	font-size: 1.6em;
+    letter-spacing: 1.6px;
+    padding: 25px 0;
 }
 
 .input {
@@ -309,7 +329,7 @@ h2 {
 	padding: 50px 0;
 }
 
-.productSection {
+.pageSection {
 	background-color: #fffff0;
 	color: #a1caf1;
 	padding: 25px 0;
@@ -317,7 +337,7 @@ h2 {
 	border-radius: 3px;
 }
 
-.productSection > .col-xs-12 {
+.pageSection > .col-xs-12 {
 	padding: 25px 0;
 }
 
@@ -510,6 +530,56 @@ h2 {
 /* ---------- Style end GuestListForm ---------- */
 
 /* ---------- Style for paymentForm ---------- */
+.upgradeBox {
+	background-color: #a1caf1;
+	color: #fffff0;
+	font-size: 1.4em;
+	border-radius: 3px;
+	padding: 25px;
+	margin: 15px 0;
+}
+
+.upgradeBox ul {
+	font-style: italic;
+	line-height: 1.6;
+	list-style: none;
+	padding-left: 0px;
+}
+
+.upgradeBox ul .fa {
+	font-size: 1em;
+	padding-right: 15px;
+}
+
+.upgradeBox h2{
+	font-size: 3em;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.upgradeBox h3{
+	font-size: 1.6em;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.upgradeBox button {
+	font-size: 1.2em;
+}
+
+.upgradeBox .fa {
+	font-size: 0.8em;
+}
+
+.upgradeAllBox {
+	background-color: #fbd6d1;
+}
+
+.payButton, .payButton:hover {
+	background-color: #fffff0;
+	color: #a1caf1;
+}
+
 .priceFieldDetails{
 		font-weight: 300;
 	border-radius: 10px; 
