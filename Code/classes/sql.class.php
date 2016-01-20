@@ -18,17 +18,6 @@ class Sql {
 		return Self::arrayResult($query);
 	}
 
-	/*public static function listItems($userId) {
-		$query = 
-			"SELECT *, item.id as 'itemId'
-			FROM list, item, category
-			WHERE list.unique_string = item.list_unique_string
-			AND item.category_id = category.id
-			AND list.user_id = '$userId'";
-
-		return Self::arrayResult($query);
-	}*/
-
 	public static function getListItems($uniqueUrl, $userId){
 		 	$userPerm[] = $_SESSION["userPermission"];
 		if(in_array(1, $userPerm ) || in_array(3, $userPerm)){
@@ -68,14 +57,13 @@ public static function getBlackListItems($uniqueUrl, $userId){
 				AND list.unique_string = '$uniqueUrl'
 				AND list.user_id = $userId
 				AND item.blacklist = 1
-				ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id
-				LIMIT 20";
+				ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id";
 		
 			return Self::arrayResult($query);
 		 }	 
 
-public static function getListImage($uniqueUrl){
-	$mysqli = DB::getInstance();
+	public static function getListImage($uniqueUrl){
+			$mysqli = DB::getInstance();
 			$query = 
 				"SELECT imageUrl
 				FROM list
@@ -90,7 +78,7 @@ public static function getListImage($uniqueUrl){
 		 
 // lägga till 
 		 //
-	public static function listItemsGuest($uniqueUrl) {
+	public static function getListItemsGuest($uniqueUrl) {
 		$query = 
 			"SELECT item.wish, item.description, item.blacklist, category.categoryName, item.id as itemId, 
 			list.unique_string as uniqueUrl, user.role, item.checked_by, item.cost, list.listName, list.firstName, list.secondName, list.listIcon
@@ -106,7 +94,7 @@ public static function getListImage($uniqueUrl){
 		return Self::arrayResult($query);
 	}
 
-		public static function listBlackItemsGuest($uniqueUrl) {
+		public static function getBlacklistItemsGuest($uniqueUrl) {
 		$query = 
 			"SELECT item.wish, item.description, item.blacklist, item.id as itemId, 
 			list.unique_string as uniqueUrl, user.role, item.checked_by, item.cost

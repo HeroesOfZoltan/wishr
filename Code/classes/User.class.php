@@ -103,7 +103,7 @@ class User{
 
 			Sql::getUserGuestPermission($uniqueUrlClean);
 
-			return ['guestListItems' => Sql::listItemsGuest($uniqueUrlClean), 'guestBlackListItems' => Sql::listBlackItemsGuest($uniqueUrlClean),'imageUrl' => Sql::getListImage($uniqueUrlClean), 'listInfo' => Sql::getListInfo($uniqueUrlClean)];
+			return ['guestListItems' => Sql::getListItemsGuest($uniqueUrlClean), 'guestBlackListItems' => Sql::getBlacklistItemsGuest($uniqueUrlClean),'imageUrl' => Sql::getListImage($uniqueUrlClean), 'listInfo' => Sql::getListInfo($uniqueUrlClean)];
 
 		}
 
