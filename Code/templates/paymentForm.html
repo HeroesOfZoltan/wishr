@@ -2,8 +2,8 @@
 	<div class="row paymentForm marginTop18vh">
 		<div class="col-xs-12">
 			<div class="row">
-				<div class="col-xs-12 text-center">
-					<h1>Pay up</h1>
+				<div class="col-xs-12 col-md-10 col-md-offset-1 text-center">
+					<h1 class="logo landing-logo">Pay up</h1>
 				</div>
 			</div>
 			<div class="row">
@@ -40,14 +40,16 @@
 							<div class="row">
 							<div class="col-xs-5 col-xs-offset-3 text-center ">
 								<div class="listNameEdit">
-									<input type="text" class="" required placeholder="{{listNames[0].firstName}}" value="{{listNames[0].firstName}}"name="newListNameFirst" >
-									<input type="text" class="" required placeholder="{{listNames[0].secondName}}" value="{{listNames[0].secondName}}"name="newListNameSecond" >
-									<br>
+
+									<input type="text" class="" required placeholder="{{listSubNames[0].firstName}}" value="{{listSubNames[0].firstName}}"name="newListNameFirst" >
+									
+									<input type="text" class="" required placeholder="{{listSubNames[0].secondName}}" value="{{listSubNames[0].secondName}}"name="newListNameSecond" >
+
 									<button type='submit' class="button">Change name</button>
 								</div>
 							</div>
 							<div class="col-xs-1 col-xs-offset-1 col-md-offset-0 text-center ">
-								<span class="{{listNames[0].listIcon}}" style="font-size:50px; text-aling: center;"aria-hidden="true"></span>
+								<span class="{{listSubNames[0].listIcon}}" style="font-size:50px; text-aling: center;"aria-hidden="true"></span>
 						</div>
 						</div>
 						</form>
