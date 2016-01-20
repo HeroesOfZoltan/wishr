@@ -17,7 +17,7 @@ class User{
 
 			$userId = $mysqli->insert_id;
 			$uniqueString = substr(md5(microtime()),rand(0,26),5); //genererar unik sträng på 5 tecken.
-			Sql::insertNewList($firstnameClean,$lastnameClean, $uniqueString, $userId, 'fa fa-heart'); //Anropar metod som sparar ny lista i databasen
+			Sql::insertNewList("Your name","Your partners name", $uniqueString, $userId, 'fa fa-heart'); //Anropar metod som sparar ny lista i databasen
 
 		return ['message' => $message];			
 	}
@@ -90,7 +90,7 @@ class User{
 		Sql::insertUserPermission($idClean);
 		$uniqueUrl = $_SESSION['uniqueUrl'];
 		$_SESSION['userPermission'] = Sql::userPermission($_SESSION['user']['id']);
-		return ['redirect' => "?/User/payUp/"];
+		return ['redirect' => "?/User/payUp/#pageContent2"];
 	}
 
 
@@ -103,28 +103,28 @@ class User{
 
 			Sql::getUserGuestPermission($uniqueUrlClean);
 
-			return ['guestListItems' => Sql::listItemsGuest($uniqueUrlClean), 'guestBlackListItems' => Sql::listBlackItemsGuest($uniqueUrlClean),'imageUrl' => Sql::getListImage($uniqueUrlClean)];
+			return ['guestListItems' => Sql::listItemsGuest($uniqueUrlClean), 'guestBlackListItems' => Sql::listBlackItemsGuest($uniqueUrlClean),'imageUrl' => Sql::getListImage($uniqueUrlClean), 'listInfo' => Sql::getListInfo($uniqueUrlClean)];
 
 		}
 
-		public static function itemDone($params) {
-			$mysqli = DB::getInstance();
-			$itemIdClean = $mysqli->real_escape_string($_POST['itemId']);
-			$checkedByClean = $mysqli->real_escape_string($_POST['checked_by']);
+	public static function itemDone($params) {
+		$mysqli = DB::getInstance();
+		$itemIdClean = $mysqli->real_escape_string($_POST['itemId']);
+		$checkedByClean = $mysqli->real_escape_string($_POST['checked_by']);
 
-			Sql::itemDone($itemIdClean, $checkedByClean);
+		Sql::itemDone($itemIdClean, $checkedByClean);
 
-			$uniqueUrl = $params[0];
-			return ['redirect' => "?/User/guestView/$uniqueUrl"];
-		}
-		public static function unDoneItem($params) {
-			$mysqli = DB::getInstance();
-			$itemIdClean = $mysqli->real_escape_string($_POST['itemId']);
+		$uniqueUrl = $params[0];
+		return ['redirect' => "?/User/guestView/$uniqueUrl"];
+	}
+	public static function unDoneItem($params) {
+		$mysqli = DB::getInstance();
+		$itemIdClean = $mysqli->real_escape_string($_POST['itemId']);
 
-			Sql::itemUnDone($itemIdClean);
-			
-			$uniqueUrl = $params[0];
-			return ['redirect' => "?/User/guestView/$uniqueUrl"];
-		}
+		Sql::itemUnDone($itemIdClean);
+		
+		$uniqueUrl = $params[0];
+		return ['redirect' => "?/User/guestView/$uniqueUrl"];
+	}
 
 }
