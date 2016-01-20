@@ -84,6 +84,22 @@
 				</div>
 			</div><!--col-->
 
+			<div class="col-xs-12 col-sm-6">
+				<div class="upgradeBox">
+					<h4>Change the name of your list</h4>
+
+					<form action="?/wishList/newListName/{{_session.uniqueUrl}}" method="post">
+						<div class="form-group">
+							<div class="input-group pull-right">
+							  		<input type="text" class="" name="newListName" placeholder="New listname..." autocomplete="off">
+									<input type="submit" class="button" value="Change!">
+							</div>
+							<div class="clearfix"></div>
+						</div>						
+					</form>
+				</div>
+			</div>
+
 				{%include listImage%}
 				
 			</div>

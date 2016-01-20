@@ -175,14 +175,6 @@ h1, h2, h3, h4{
     padding: 25px 0;
 }
 
-.listLead {
-	color: #a1caf1;
-	font-family: 'Playfair Display', serif;
-	font-size: 1.2em;
-    letter-spacing: 1.6px;
-    padding: 25px 0;
-}
-
 .input {
 	box-shadow: none;
   	-webkit-box-shadow: none;
@@ -275,6 +267,11 @@ h2 > .fa{
 h2 {
 	margin-top: 15px;
 	margin-bottom: 15px;
+}
+.pageSection a {
+	text-decoration: none;
+	color:;
+	font-weight: 700;
 }
 
 /********************************************
