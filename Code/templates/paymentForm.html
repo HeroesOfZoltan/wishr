@@ -11,7 +11,8 @@
 
 			<div class="row">
 				<div class="col-xs-12 text-center">
-					<p class="pageLead">It's easy to make Wishr your very own. Just click any of these upgrades or why don't get it all!</p>
+					<p class="pageLead">It's easy to make Wishr your very own.<br>
+					Just click any of these upgrades or why don't get it all!</p>
 				</div>
 			</div>
 
@@ -45,49 +46,21 @@
 			<!-- Start upgradeBoxes Row 1 -->
 			<div class="row"id="pageContent2">
 				<div class="col-xs-12 col-sm-6">
-					<div class="upgradeBox">
-						<h3>Change names</h3>
-						<p>This is where you can change your names.</p>
-						<form action='?/wishList/changeListName/{{_session.uniqueUrl}}' method='post'>
-							<div class="row">
-								<div class="col-xs-5 text-center">
-									<input type="text" class="width100" required placeholder="{{listInfo[0].firstName}}" value="{{listInfo[0].firstName}}"name="newListNameFirst" >
-								</div>
-								<div class="col-xs-2 text-center">
-									<span class="{{listInfo[0].listIcon}}" style="font-size:50px; text-aling: center;"aria-hidden="true"></span>
-								</div>
 
-								<div class="col-xs-5 text-center">
-										<input type="text" class="width100" required placeholder="{{listInfo[0].secondName}}" value="{{listInfo[0].secondName}}"name="newListNameSecond">
-								</div>
-								<button type='submit' class="button">Change names</button>
-							</div>
-						</form>
+					{% include "changeNamesForm.html" %}
+				</div>
 
-						<div class="row">
-							<div class="col-xs-12">
-								<form action='?/wishList/changeListIcon/{{_session.uniqueUrl}}' style="display: inline;" method='post'>
-									<button type='submit' name="icon" value="fa fa-heart" style="font-size: 1.5em;"class="fa fa-heart"></button>
-								</form>
-								<form action='?/wishList/changeListIcon/{{_session.uniqueUrl}}' style="display: inline;"method='post'>
-									<button type='submit' name="icon" value="fa fa-heart-o" style="font-size: 1.5em;"class="fa fa-heart-o"></button>
-								</form>
-								<form action='?/wishList/changeListIcon/{{_session.uniqueUrl}}'style="display: inline;"method='post'>
-									<button type='submit' name="icon" value="fa fa-diamond" style="font-size: 1.5em;"class="fa fa-diamond"></button>
-								</form>
-								<form action='?/wishList/changeListIcon/{{_session.uniqueUrl}}' style="display: inline;"method='post'>
-									<button type='submit' name="icon" value="fa fa-bug" style="font-size: 1.5em;"class="fa fa-bug"></button>
-								</form>
-								<form action='?/wishList/changeListIcon/{{_session.uniqueUrl}}' style="display: inline;"method='post'>
-									<button type='submit' name="icon" value="" style="font-size: 1.5em;"class="fa fa-times"></button>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div><!--col-->
 
 				<div class="col-xs-12 col-sm-6">
-					<div class="upgradeBox payedBox text-center">
+					{% include "changeNameIconForm.html" %}
+				</div>
+			</div>
+			<!-- End upgradeBoxes Row 1 -->	
+
+			<!-- Start upgradeBoxes Row 2 -->		
+			<div class="row">
+				<div class="col-xs-12 col-sm-6">
+					<div class="row upgradeBox payedBox text-center">
 						<div class="col-xs-12">
 							<h2 class="payedBoxIcon"><i class="fa fa-pencil-square-o"></i></h2>
 						</div>
@@ -108,22 +81,22 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- End upgradeBoxes Row 1 -->	
 
-			<!-- Start upgradeBoxes Row 2 -->		
-			<div class="row">
-				{%include listImage%}
-
-				{% include blacklistForm %}
+				<div class="col-xs-12 col-sm-6">
+					{%include listImage%}
+				</div>
 			</div>
 			<!-- End upgradeBoxes Row 2 -->
 
 			<!-- Start upgradeBoxes Row 3 -->
 			<div class="row">
-				{% include doneForm %}
+				<div class="col-xs-12 col-sm-6">
+					{% include blacklistForm %}
+				</div>
 
-				{% include unlimitedForm %}
+				<div class="col-xs-12 col-sm-6">
+					{% include doneForm %}
+				</div>
 			</div>
 			<!-- End upgradeBoxes Row 3 -->
 
@@ -158,6 +131,10 @@
 							</form>
 						</div>
 					</div>
+				</div>
+
+				<div class="col-xs-12 col-sm-6">
+					{% include unlimitedForm %}
 				</div>
 
 				<div class="col-xs-12 col-sm-6">

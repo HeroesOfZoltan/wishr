@@ -1,0 +1,36 @@
+<div class="row upgradeBox payedBox changeNameBox">
+	<h3 class="col-xs-12 text-center">Change the icon</h3>
+	
+	<!-- Current Icon -->
+	<div class="col-xs-12 currentIcon text-center">
+			<h2 class="payedBoxIcon"><i class="{{listInfo[0].listIcon}}" name="currentIcon"></i></h2>
+	</div>
+
+	<p class="col-xs-12 text-center">Click on one of the icons below to change the icon between your names.</p>
+
+	<div class="col-xs-12 changeNameIcons text-center">
+		<div class="btn-group" role="group" aria-label="...">
+			<form action='?/wishList/changeListIcon/{{_session.uniqueUrl}}' method='post'>
+				<button type='submit' name="icon" value="fa fa-heart" class="button"><i class="fa fa-heart"></i></button>
+			</form>
+
+			<form action='?/wishList/changeListIcon/{{_session.uniqueUrl}}' method='post'>
+				<button type='submit' name="icon" value="fa fa-heart-o" class="button"><i class="fa fa-heart-o"></i></button>
+			</form>
+
+			<form action='?/wishList/changeListIcon/{{_session.uniqueUrl}}' method='post'>
+				<button type='submit' name="icon" value="fa fa-diamond" class="button"><i class="fa fa-diamond"></i></button>
+			</form>
+
+			<form action='?/wishList/changeListIcon/{{_session.uniqueUrl}}' method='post'>
+				<button type='submit' name="icon" value="fa fa-bug" class="button"><i class="fa fa-bug"></i></button>
+			</form>
+		</div>
+		<!-- Remove Icon -->
+		<div class="btn-group" role="group" aria-label="...">
+			<form action='?/wishList/changeListIcon/{{_session.uniqueUrl}}' method='post'>
+				<button type='submit' name="icon" value="" class="button"><i class="fa fa-times"></i></button>
+			</form>
+		</div>
+	</div>
+</div>
