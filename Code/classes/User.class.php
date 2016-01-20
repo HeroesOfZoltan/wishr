@@ -12,7 +12,7 @@ class User{
 			$lastnameClean = $mysqli->real_escape_string($_POST['lastname']);
 
 			$password = crypt($passwordClean,'$2a$'.sha1($usernameClean));
-			$message = Sql::insertUser($password, $usernameClean, $firstnameClean, $lastnameClean, 2);
+			$message = Sql::insertUser($password, $usernameClean, $firstnameClean, $lastnameClean);
 			}
 
 			$userId = $mysqli->insert_id;
@@ -53,7 +53,7 @@ class User{
 
 	public static function mylist(){
 
-		$_SESSION['userPermission'] = Sql::userPermission($_SESSION['user']['id']);
+		$_SESSION['userPermission'] = Sql::getUserPermission($_SESSION['user']['id']);
 		Sql::setUniqueUrl($_SESSION['user']['id']);
 
 		$items = Sql::getListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']);
@@ -89,7 +89,7 @@ class User{
 		$idClean = $mysqli->real_escape_string($id);
 		Sql::insertUserPermission($idClean);
 		$uniqueUrl = $_SESSION['uniqueUrl'];
-		$_SESSION['userPermission'] = Sql::userPermission($_SESSION['user']['id']);
+		$_SESSION['userPermission'] = Sql::getUserPermission($_SESSION['user']['id']);
 		return ['redirect' => "?/User/payUp/#pageContent2"];
 	}
 
@@ -101,7 +101,7 @@ class User{
 			$uniqueUrl = $params[0];
 			$uniqueUrlClean = $mysqli->real_escape_string($uniqueUrl);
 
-			Sql::getUserGuestPermission($uniqueUrlClean);
+			Sql::setUserGuestPermission($uniqueUrlClean);
 
 			return ['guestListItems' => Sql::getListItemsGuest($uniqueUrlClean), 'guestBlackListItems' => Sql::getBlacklistItemsGuest($uniqueUrlClean),'imageUrl' => Sql::getListImage($uniqueUrlClean), 'listInfo' => Sql::getListInfo($uniqueUrlClean)];
 
