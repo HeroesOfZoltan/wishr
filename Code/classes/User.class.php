@@ -100,8 +100,11 @@ class User{
 
 			$uniqueUrl = $params[0];
 			$uniqueUrlClean = $mysqli->real_escape_string($uniqueUrl);
+
 			Sql::getUserGuestPermission($uniqueUrlClean);
-			return ['guestListItems' => Sql::listItemsGuest($uniqueUrlClean),'imageUrl' => Sql::getListImage($uniqueUrlClean), 'listName' => Sql::getListName($uniqueUrl), 'guestBlackListItems' => Sql::listBlackItemsGuest($uniqueUrlClean), 'listSubNames'=> Sql::getListSubName($uniqueUrl)];
+
+			return ['guestListItems' => Sql::listItemsGuest($uniqueUrlClean), 'guestBlackListItems' => Sql::listBlackItemsGuest($uniqueUrlClean),'imageUrl' => Sql::getListImage($uniqueUrlClean)];
+
 		}
 
 		public static function itemDone($params) {
