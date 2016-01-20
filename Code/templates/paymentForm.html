@@ -16,7 +16,7 @@
 			</div>
 
 			<!-- Start upgradeAllBox -->
-			<div class="row">
+			<div class="row"  id="pageContent1">
 				<div  class="col-xs-12">
 					<div class="row upgradeBox upgradeAllBox">
 						<div class="col-xs-6">
@@ -43,7 +43,7 @@
 			<!-- End upgradeAllBox -->
 
 			<!-- Start upgradeBoxes Row 1 -->
-			<div class="row">
+			<div class="row"id="pageContent2">
 				<div class="col-xs-12 col-sm-6">
 					<div class="upgradeBox">
 						<h3>Change names</h3>
@@ -99,7 +99,7 @@
 									<span class="input-group-addon payedInput">
 										<label for="newListImage"><i class="fa fa-pencil"></i></label>
 									</span>
-									<input type="text" class="payedInput" name="newListName" placeholder="Write new title here..." autocomplete="off">
+									<input type="text" class="payedInput" name="newListName" value="{{listInfo[0].listName}}" placeholder="Write new title here..." autocomplete="off">
 									<span class="input-group-addon payedInput">
 										<button type='submit' class="button" value="Change!"><i class="fa fa-check-circle"></i></button>
 									</span>

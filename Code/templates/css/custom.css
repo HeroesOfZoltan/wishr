@@ -246,9 +246,6 @@ h1, h2, h3, h4{
 .linkToSend {
 	padding: 8px;
 }
-.linkToSend a {
-	text-decoration:none;
-}
 .loginForm {
 	width: 50%;
 	margin: 0 auto;
@@ -274,7 +271,7 @@ h2 {
 }
 .pageSection a {
 	text-decoration: none;
-	color:;
+	color: #a1caf1;
 	font-weight: 700;
 }
 

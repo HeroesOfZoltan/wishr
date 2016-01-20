@@ -3,7 +3,7 @@
 		<h1>Done list:</h1>
 	</div>
 	{% for guestListItem in guestListItems %}
-		{% if guestListItem.isChecked == 1 %}
+		{% if guestListItem.checked_by != NULL %}
 
 			<div class="col-xs-12 col-sm-offset-2 col-sm-8 wishHeader" data-toggle="collapse" data-target="#wish{{guestListItem.itemId}}">
 				<h2><i class="fa fa-chevron-down"> </i> <del>{{guestListItem.wish}}</del> </h2>

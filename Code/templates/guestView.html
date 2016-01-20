@@ -6,20 +6,32 @@
 	<div class="row marginTop18vh">
 		<div class="row">
 			<div class="col-xs-12 col-md-10 col-md-offset-1 text-center">
-				<h1 class="logo landing-logo">{{guestListItems[0].listName}}</h1>
+				<h1 class="logo landing-logo">{{listInfo[0].listName}}</h1>
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-4 col-sm-offset-4 text-center">
-			<h1>{{guestListItems[0].firstName}}<span class="{{guestListItems[0].listIcon}}" aria-hidden="true"></span>{{guestListItems[0].secondName}}</h1>
+			<h1>{{listInfo[0].firstName}}<span class="{{listInfo[0].listIcon}}" aria-hidden="true"></span>{{listInfo[0].secondName}}</h1>
 		</div>
-
 	</div>
 
+	<div class="col-xs-10 col-xs-offset-1 text-left" data-toggle="collapse" data-target="#info">
+		<p class="textImportant pull-left"><i class="fa fa-chevron-down"></i> About this list</p>			
+	</div>
+
+		<div class="col-xs-12 col-md-10 col-md-offset-1 text-left">
+			<div id="info" class="collapse">
+				<p>Below you will find a wishlist that has been shared with you. You can click each item to expand it and find more information about that item. If your hosts has unlocked the function for reserving gifts, you can reserve an item from the list by puttning your name in the appropriate field attached to that item. </p>
+
+				<p>Reserved items from the list will be shown in the Done list. If you wanna undo a reservation, simply remove your name form that item in the Done list</p>
+
+				<p>If your hosts has items they don't want to recieve as gifts, you can view those items in the Blacklist.</p>	
+			</div>
+		</div>
 
 	<div class="row">
 	<!-- wish list: -->
 		{% for guestListItem in guestListItems %}
-			{% if guestListItem.isChecked == NULL %}
+			{% if guestListItem.checked_by == NULL %}
 				<div class="col-xs-12 col-sm-offset-2 col-sm-8 wishHeader" data-toggle="collapse" data-target="#wish{{guestListItem.itemId}}">
 					<h2><i class="fa fa-chevron-down"> </i> {{guestListItem.wish}} </h2>
 				</div>
