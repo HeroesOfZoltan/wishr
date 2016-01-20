@@ -6,7 +6,7 @@ class Admin {
 
 		Sql::setUniqueUrl($_SESSION['user']['id']);
 
-		$dashboard = Sql::dashboard();
+		$dashboard = Sql::getDashboard();
 
 	// Räknar om värden från databasen till en procentsats som sedan läggs in i return arrayen
 		foreach($dashboard['permissions'] as $permission => $value) {

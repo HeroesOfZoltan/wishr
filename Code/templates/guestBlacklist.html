@@ -1,23 +1,25 @@
-<div class="row">
-	<div class="col-xs-12 text-center">
-		<h1>Black list:</h1>
-	</div>
-	{% for guestBlackListItem in guestBlackListItems %}
-		<div class="col-xs-12 col-sm-offset-2 col-sm-8 wishHeader" data-toggle="collapse" data-target="#wish{{guestBlackListItem.itemId}}" >
-			<h2><i class="fa fa-chevron-down"></i> {{guestBlackListItem.wish}}</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 text-center">
+			<h1>Black list:</h1>
 		</div>
+		{% for guestBlackListItem in guestBlackListItems %}
+			<div class="col-xs-12 col-sm-offset-2 col-sm-8 wishHeader" data-toggle="collapse" data-target="#wish{{guestBlackListItem.itemId}}" >
+				<h2><i class="fa fa-chevron-down"></i> {{guestBlackListItem.wish}}</h2>
+			</div>
 
-		<div class="col-xs-12 col-sm-offset-2 col-sm-8 wishCollapseBody">
-			<div id="wish{{guestBlackListItem.itemId}}" class="collapse">
-				<div class="row">
-					<div class="col-xs-6">
-						<p>{{guestBlackListItem.description}}</p>
-					</div>
-					<div class="col-xs-6">
-						<p>{{guestBlackListItem.category}}</p>
+			<div class="col-xs-12 col-sm-offset-2 col-sm-8 wishCollapseBody">
+				<div id="wish{{guestBlackListItem.itemId}}" class="collapse">
+					<div class="row">
+						<div class="col-xs-6">
+							<p>{{guestBlackListItem.description}}</p>
+						</div>
+						<div class="col-xs-6">
+							<p>{{guestBlackListItem.category}}</p>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	{% endfor %}
+		{% endfor %}
+	</div>
 </div>

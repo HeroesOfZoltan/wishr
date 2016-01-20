@@ -10,10 +10,11 @@
 	</div>
 
 	<form class="form-horizontal" action='?/User/createUser' method='post'>
-		{%if message == 1%}
-		<div class="alert alert-danger col-xs-12 col-sm-8 col-sm-offset-2" role="alert">User already exists!</div>
-		{%elseif message == 2%}
+		{%if message == 'NewUserCreated'%}
 		<div class="alert alert-success col-xs-12 col-sm-8 col-sm-offset-2" role="alert">New user created! Please log in to start your list.</div>
+
+		{%elseif message == 'Exists'%}
+				<div class="alert alert-danger col-xs-12 col-sm-8 col-sm-offset-2" role="alert">User already exists!</div>
 		{%else%}
 
 		{%endif%}

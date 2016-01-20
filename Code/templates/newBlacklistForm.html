@@ -1,30 +1,45 @@
-<div class="row newWishForm">
-	<form action='?/wishList/addBlacklistItem/{{_session.uniqueUrl}}' method='post' role="form">
+<div class="container">
 
-		<div class="form-group">
-			<div class="col-xs-12 col-sm-10 col-sm-offset-1 wishName">
-				<div class="input-group">
-					<input type="text" id="wishName" class="form-control noSelect input inputBorderBottom wishName wishNameInput" required placeholder="Specify non wanted item here..." name="wishName" value="{{item.wish}}" aria-describedby="basic-addon1">
-					<input type="hidden" name="blacklist" value="1">
-					<span class="input-group-addon input inputBorderBottom wishName wishNameInput">
-						<label for="wishName"><i class="fa fa-pencil"></i></label>
-					</span>
+	<div class="row marginTop18vh">
+		<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+			<div class="row pageSection">
+				<div class="col-xs-12 text-center">
+					<span class="title pageTitle">Blacklist</span>
+				</div>
+				<div class="col-xs-12 text-center">
+					<p class="pageLead">Create a list with all the items you rather not recive.</p>
 				</div>
 			</div>
 		</div>
+	</div>
 
+	<div class="row newWishForm">
+		<form class="row newWishForm" action='?/wishList/addBlacklistItem/{{_session.uniqueUrl}}' method='post' role="form">
 
-		<div class="form-group">
-			<div class="col-xs-12 col-sm-offset-1 col-sm-10">
-				<!--<label for="wishDescription"><h3>Description:</h3></label>-->
-				<textarea class="form-control input inputBorderBottom textBox wishDescription" rows="6" id="wishDescription" name="wishDescription" required placeholder="Describe item here..."></textarea>
+			<div class="form-group">
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1 wishName">
+					<div class="input-group">
+						<input type="text" id="wishName" class="form-control noSelect input inputBorderBottom wishName wishNameInput" required placeholder="Specify non wanted item here..." name="wishName" value="{{item.wish}}" aria-describedby="basic-addon1">
+						<input type="hidden" name="blacklist" value="1">
+						<span class="input-group-addon input inputBorderBottom wishName wishNameInput">
+							<label for="wishName"><i class="fa fa-pencil"></i></label>
+						</span>
+					</div>
+				</div>
 			</div>
-		</div>
-		
-		<div class="form-group">
-			<div class="col-xs-12 col-sm-offset-1 col-sm-8">
-				<button type='submit' class="btn btn-default button">Submit</button>
+
+			<div class="form-group">
+				<div class="col-xs-12 col-sm-offset-1 col-sm-10">
+					<!--<label for="wishDescription"><h3>Description:</h3></label>-->
+					<textarea class="form-control input inputBorderBottom textBox wishDescription" rows="6" id="wishDescription" name="wishDescription" required placeholder="Describe item here..."></textarea>
+				</div>
 			</div>
-		</div>
-	</form>	
-</div>
+			
+			<div class="form-group">
+				<div class="col-xs-12 col-sm-offset-9 col-sm-2">
+					<button type='submit' class="btn btn-default width100 button">Submit</button>
+				</div>
+			</div>
+		</form>	
+	</div>
+</div> <!-- end container -->

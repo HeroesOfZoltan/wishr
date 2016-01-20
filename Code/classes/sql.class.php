@@ -18,16 +18,44 @@ class Sql {
 		return Self::arrayResult($query);
 	}
 
-	/*public static function listItems($userId) {
+	public static function insertNewItem($wishClean, $uniqueUrl,$descriptionClean,$wishCategoryClean, $wishPrioClean, $wishCostClean,$wishBlacklistClean){
+		$mysqli = DB::getInstance();
 		$query = 
-			"SELECT *, item.id as 'itemId'
-			FROM list, item, category
-			WHERE list.unique_string = item.list_unique_string
-			AND item.category_id = category.id
-			AND list.user_id = '$userId'";
+				"INSERT INTO item 
+				(wish, list_unique_string, description, category_id, prio, cost, blacklist) 
+				VALUES ('$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryClean', '$wishPrioClean', '$wishCostClean','$wishBlacklistClean')";
 
-		return Self::arrayResult($query);
-	}*/
+		$mysqli->query($query);	
+	}
+	public static function updateItem($wishClean,$descriptionClean,$wishIdClean,$wishCategoryIdClean,$wishPrioClean,$wishCostClean){
+		$mysqli = DB::getInstance();
+		$query = 
+					"UPDATE item
+					SET wish='$wishClean', description='$descriptionClean', category_id ='$wishCategoryIdClean',
+					prio='$wishPrioClean', cost='$wishCostClean'
+					WHERE id = $wishIdClean
+					";
+			
+			$mysqli->query($query);
+
+	}
+
+		public static function deleteItem($wishIdClean,$wishClean, $uniqueUrl,$descriptionClean,$wishCategoryIdClean){
+			$mysqli = DB::getInstance();
+			$query = 
+					"INSERT INTO deletedItem
+					(id, wish, list_unique_string, description, category_id) 
+					VALUES ('$wishIdClean','$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryIdClean')
+					";
+			$mysqli->query($query);
+
+			$query = 
+					"DELETE FROM item
+					WHERE item.id = $wishIdClean";
+
+			$mysqli->query($query);
+
+	}
 
 	public static function getListItems($uniqueUrl, $userId){
 		 	$userPerm[] = $_SESSION["userPermission"];
@@ -58,24 +86,23 @@ class Sql {
 		
 			return Self::arrayResult($query);
 		 }
-
+//ersätta * med det viktiga!
 public static function getBlackListItems($uniqueUrl, $userId){
 	
 			$query = 
-				"SELECT *, item.id as 'itemId'
+				"SELECT item.wish, item.description, item.id as 'itemId'
 				FROM list, item
 				WHERE list.unique_string = item.list_unique_string
 				AND list.unique_string = '$uniqueUrl'
 				AND list.user_id = $userId
 				AND item.blacklist = 1
-				ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id
-				LIMIT 20";
+				ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id";
 		
 			return Self::arrayResult($query);
 		 }	 
 
-public static function getListImage($uniqueUrl){
-	$mysqli = DB::getInstance();
+	public static function getListImage($uniqueUrl){
+			$mysqli = DB::getInstance();
 			$query = 
 				"SELECT imageUrl
 				FROM list
@@ -90,7 +117,7 @@ public static function getListImage($uniqueUrl){
 		 
 // lägga till 
 		 //
-	public static function listItemsGuest($uniqueUrl) {
+	public static function getListItemsGuest($uniqueUrl) {
 		$query = 
 			"SELECT item.wish, item.description, item.blacklist, category.categoryName, item.id as itemId, 
 			list.unique_string as uniqueUrl, user.role, item.checked_by, item.cost, list.listName, list.firstName, list.secondName, list.listIcon
@@ -106,7 +133,7 @@ public static function getListImage($uniqueUrl){
 		return Self::arrayResult($query);
 	}
 
-		public static function listBlackItemsGuest($uniqueUrl) {
+		public static function getBlacklistItemsGuest($uniqueUrl) {
 		$query = 
 			"SELECT item.wish, item.description, item.blacklist, item.id as itemId, 
 			list.unique_string as uniqueUrl, user.role, item.checked_by, item.cost
@@ -175,16 +202,16 @@ public static function getListImage($uniqueUrl){
 		$exists = Self::checkUserName($email);
 		
 		if($exists === TRUE){
-			return 1;
+			return 'Exists';
 		}
 		else {
 			$query = 
 				"INSERT INTO user
-				(password, email, firstname, lastname, role)
-				VALUES ('$pass','$email','$first','$last','$role')";
+				(password, email, firstname, lastname)
+				VALUES ('$pass','$email','$first','$last')";
 			$mysqli->query($query);
 
-			return 2;
+			return 'NewUserCreated';
 		}
 	}
 	
@@ -199,28 +226,10 @@ public static function getListImage($uniqueUrl){
 		$result = $mysqli->query($query);
 		$user = $result->fetch_assoc();
 
-		$role = Self::setUserRole($user);
-
 		return $user;
 	}
-	/* ANVÄNDS DENNA?!?! NÄÄÄÄE?!?! */
 
-	public static function setUserRole($user){ 
-		$mysqli = DB::getInstance();
-		$query = 
-			"SELECT role
-			FROM user, user_permission
-			WHERE user.id = user_id
-			AND user.id = '$user'
-			LIMIT 1";
-		$result = $mysqli->query($query);
-		$user = $result->fetch_assoc();
-
-
-		return $user;
-	}///////////////////////////////////////////
-
-	public static function userPermission($userId){
+	public static function getUserPermission($userId){
 		$mysqli = DB::getInstance();
 		$query = 
 				"SELECT permission_id
@@ -241,7 +250,7 @@ public static function getListImage($uniqueUrl){
 		return  $userPermission;
 	}
 
-	public static function getUserGuestPermission($uniqueUrl) {
+	public static function setUserGuestPermission($uniqueUrl) {
 		$query = 
 			"SELECT user_permission.permission_id
 			FROM user_permission, list
@@ -281,8 +290,9 @@ public static function getListImage($uniqueUrl){
 		
 			$query =
 				"INSERT INTO list 
-				(firstName, secondName, user_id, unique_string, imageUrl,listIcon, listName) 
+				(firstName, secondName, user_id, unique_string, imageUrl, listIcon, listName) 
 				VALUES ('$firstName','$secondName', '$userId', '$uniqueUrl', 'flowers.jpg','$icon', 'Add a listname!')";
+
 			$mysqli->query($query);
 	}
 
@@ -305,6 +315,7 @@ public static function getListImage($uniqueUrl){
 				"UPDATE item
 				SET checked_by = '$checkedBy'
 				WHERE id = $itemId";
+
 		$mysqli->query($query);
 	}
 
@@ -315,13 +326,11 @@ public static function getListImage($uniqueUrl){
 				"UPDATE item
 				SET checked_by = NULL
 				WHERE id = $itemId";
-		/*"UPDATE item
-				SET isChecked=NULL
-				WHERE id = $itemId";*/
+
 		$mysqli->query($query);
 	}
 
-	public static function dashBoard() {
+	public static function getDashBoard() {
 
 		$mysqli = DB::getInstance();
 		$dashArray=[];
@@ -366,15 +375,15 @@ public static function getListImage($uniqueUrl){
 
 		$mysqli->query($query);
 	}
+
 	public static function deleteCategory($category) {
 		$mysqli = DB::getInstance();
 
 		$query = 
 				"DELETE FROM category
 				WHERE id = '$category'";
-		$mysqli->query($query);
 
-				
+		$mysqli->query($query);	
 	}
 
 	public static function updateListName($uniqueUrl, $newNameFirst, $newNameSecond){
@@ -384,8 +393,10 @@ public static function getListImage($uniqueUrl){
 				"UPDATE list
 				SET firstName = '$newNameFirst', secondName = '$newNameSecond'
 				WHERE unique_string = '$uniqueUrl'";
+
 		$mysqli->query($query);
 	}
+
 	public static function updateListIcon($uniqueUrl, $listIcon){
 		$mysqli = DB::getInstance();
 		
@@ -393,6 +404,7 @@ public static function getListImage($uniqueUrl){
 				"UPDATE list
 				SET listIcon = '$listIcon'
 				WHERE unique_string = '$uniqueUrl'";
+
 		$mysqli->query($query);
 	}
 
@@ -403,6 +415,7 @@ public static function getListImage($uniqueUrl){
 				"UPDATE list
 				SET imageUrl = '$newImage'
 				WHERE unique_string = '$uniqueUrl'";
+				
 		$mysqli->query($query);
 	}
 }
