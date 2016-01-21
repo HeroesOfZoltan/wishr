@@ -7,7 +7,8 @@ class WishList{
 	public static function check(){
 
 		$methods= ['createList' => TRUE, 'getList' => TRUE, 'addItem' => TRUE, 'addBlacklistItem' => TRUE,
-		 'changeListName' => TRUE, 'ChangeListIcon' => TRUE, 'changeListImage' => TRUE, 'getBlacklist' => TRUE, 'guestView' => FALSE ];
+		 'changeListName' => TRUE, 'ChangeListIcon' => TRUE, 'changeListImage' => TRUE, 'getBlacklist' => TRUE, 
+		 'guestView' => FALSE];
 
 		return $methods;
 	}
