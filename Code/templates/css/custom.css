@@ -17,6 +17,8 @@ body {
 	font-weight: 300;
 	font-size: 14px;
 	line-height: 1.6;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 *:focus {
@@ -294,6 +296,7 @@ h2 {
 *********************************************/
 
 .topImageDiv{
+	background-color:#f4e4a3;
 	background-size:cover;
 	width:100vw;
 	height: 100vh;
@@ -316,15 +319,6 @@ h2 {
     width: 100vw;
 	position: absolute;
 }
-
-.triangleError{
-	width:100vw;
-	height: 100vh;
-	position: absolute;
-	background-image: url("not-found.png");
-	z-index: -99;
-}
-
 
 /********************************************
 ---------- Style for landingPage.html ----------
