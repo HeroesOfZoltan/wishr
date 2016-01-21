@@ -22,7 +22,7 @@ class Sql {
 		$mysqli = DB::getInstance();
 		$query = 
 				"INSERT INTO item 
-				(wish, list_unique_string, description, category_id, prio, cost, blacklist) 
+				(wish, list_uniqueString, description, category_id, prio, cost, blacklist) 
 				VALUES ('$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryClean', '$wishPrioClean', '$wishCostClean','$wishBlacklistClean')";
 
 		$mysqli->query($query);	
@@ -40,12 +40,13 @@ class Sql {
 
 	}
 
-		public static function deleteItem($wishIdClean,$wishClean, $uniqueUrl,$descriptionClean,$wishCategoryIdClean){
+		public static function deleteItem($wishIdClean,$wishClean, $uniqueUrl,$descriptionClean,$wishCategoryIdClean,$checkedByClean,$prioClean,$costClean,$blacklistClean){
 			$mysqli = DB::getInstance();
 			$query = 
 					"INSERT INTO deletedItem
-					(id, wish, list_unique_string, description, category_id) 
-					VALUES ('$wishIdClean','$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryIdClean')
+					(id, wish, list_uniqueString, description, category_id, checkedBy, prio, cost, blacklist) 
+					VALUES ('$wishIdClean','$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryIdClean',
+						'$checkedByClean','$prioClean','$costClean','$blacklistClean')
 					";
 			$mysqli->query($query);
 
@@ -61,22 +62,22 @@ class Sql {
 		 	$userPerm[] = $_SESSION["userPermission"];
 		if(in_array(1, $userPerm ) || in_array(3, $userPerm)){
 		 	$query = 
-		 		"SELECT wish, category_id, description, checked_by, prio, cost, blacklist, categoryName, item.id as 'itemId'
+		 		"SELECT wish, category_id, description, checkedBy, prio, cost, blacklist, categoryName, item.id as 'itemId'
 				FROM list, item, category
-				WHERE list.unique_string = item.list_unique_string
+				WHERE list.uniqueString = item.list_uniqueString
 				AND item.category_id = category.id
-				AND list.unique_string = '$uniqueUrl'
+				AND list.uniqueString = '$uniqueUrl'
 				AND list.user_id = $userId
 				AND item.blacklist = 0
 				ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id";
 			}
 		else{
 			$query = 
-				"SELECT wish, category_id, description, checked_by, prio, cost, blacklist, categoryName, item.id as 'itemId'
+				"SELECT wish, category_id, description, checkedBy, prio, cost, blacklist, categoryName, item.id as 'itemId'
 				FROM list, item, category
-				WHERE list.unique_string = item.list_unique_string
+				WHERE list.uniqueString = item.list_uniqueString
 				AND item.category_id = category.id
-				AND list.unique_string = '$uniqueUrl'
+				AND list.uniqueString = '$uniqueUrl'
 				AND list.user_id = $userId
 				AND item.blacklist = 0
 				ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id
@@ -90,10 +91,10 @@ class Sql {
 public static function getBlackListItems($uniqueUrl, $userId){
 	
 			$query = 
-				"SELECT item.wish, item.description, item.id as 'itemId'
+				"SELECT item.wish, item.description, item.id as 'itemId', item.blacklist
 				FROM list, item
-				WHERE list.unique_string = item.list_unique_string
-				AND list.unique_string = '$uniqueUrl'
+				WHERE list.uniqueString = item.list_uniqueString
+				AND list.uniqueString = '$uniqueUrl'
 				AND list.user_id = $userId
 				AND item.blacklist = 1
 				ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id";
@@ -106,7 +107,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 			$query = 
 				"SELECT imageUrl
 				FROM list
-				WHERE list.unique_string = '$uniqueUrl'
+				WHERE list.uniqueString = '$uniqueUrl'
 				LIMIT 1";
 		
 			$result = $mysqli->query($query);
@@ -120,12 +121,12 @@ public static function getBlackListItems($uniqueUrl, $userId){
 	public static function getListItemsGuest($uniqueUrl) {
 		$query = 
 			"SELECT item.wish, item.description, item.blacklist, category.categoryName, item.id as itemId, 
-			list.unique_string as uniqueUrl, user.role, item.checked_by, item.cost, list.listName, list.firstName, list.secondName, list.listIcon
+			list.uniqueString as uniqueUrl, user.role, item.checkedBy, item.cost, list.listName, list.firstName, list.secondName, list.listIcon
 			FROM list, item, category, user
 			WHERE category.id = item.category_id
-			AND item.list_unique_string = list.unique_string
+			AND item.list_uniqueString = list.uniqueString
 			AND list.user_id = user.id
-			AND list.unique_string = '$uniqueUrl' 
+			AND list.uniqueString = '$uniqueUrl' 
 			AND item.blacklist = 0
 			ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id
 			";		
@@ -136,11 +137,11 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		public static function getBlacklistItemsGuest($uniqueUrl) {
 		$query = 
 			"SELECT item.wish, item.description, item.blacklist, item.id as itemId, 
-			list.unique_string as uniqueUrl, user.role, item.checked_by, item.cost
+			list.uniqueString as uniqueUrl, user.role, item.checkedBy, item.cost
 			FROM list, item, user
-			WHERE item.list_unique_string = list.unique_string
+			WHERE item.list_uniqueString = list.uniqueString
 			AND list.user_id = user.id
-			AND list.unique_string = '$uniqueUrl' 
+			AND list.uniqueString = '$uniqueUrl' 
 			AND item.blacklist = 1
 			ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id
 			";		
@@ -152,7 +153,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		$query =
 			"SELECT listName, firstName, secondName, listIcon
 			FROM list
-			WHERE list.unique_string = '$uniqueUrl'
+			WHERE list.uniqueString = '$uniqueUrl'
 			LIMIT 1";
 
 		return Self::arrayResult($query);
@@ -162,7 +163,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		$query =
 			"SELECT listName
 			FROM list
-			WHERE list.unique_string = '$uniqueUrl'
+			WHERE list.uniqueString = '$uniqueUrl'
 			LIMIT 1";
 
 		return Self::arrayResult($query);
@@ -173,7 +174,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		$query =
 				"UPDATE list
 				SET listName='$newListName'
-				WHERE unique_string = '$uniqueUrl'";
+				WHERE uniqueString = '$uniqueUrl'";
 		$mysqli->query($query);
 	}
 
@@ -207,7 +208,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		else {
 			$query = 
 				"INSERT INTO user
-				(password, email, firstname, lastname)
+				(password, email, firstName, lastName)
 				VALUES ('$pass','$email','$first','$last')";
 			$mysqli->query($query);
 
@@ -255,7 +256,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 			"SELECT user_permission.permission_id
 			FROM user_permission, list
 			WHERE list.user_id = user_permission.user_id
-			AND list.unique_string = '$uniqueUrl'
+			AND list.uniqueString = '$uniqueUrl'
 			";
 
 		$arrays =  Self::arrayResult($query);
@@ -273,7 +274,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 	public static function setUniqueUrl($userId) {
 		$mysqli = DB::getInstance();
 		$query = 
-			"SELECT list.unique_string as uniqueUrl
+			"SELECT list.uniqueString as uniqueUrl
 			FROM list
 			WHERE list.user_id = '$userId'
 			LIMIT 1";
@@ -290,7 +291,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		
 			$query =
 				"INSERT INTO list 
-				(firstName, secondName, user_id, unique_string, imageUrl, listIcon, listName) 
+				(firstName, secondName, user_id, uniqueString, imageUrl, listIcon, listName) 
 				VALUES ('$firstName','$secondName', '$userId', '$uniqueUrl', 'flowers.jpg','$icon', 'Add a listname!')";
 
 			$mysqli->query($query);
@@ -313,7 +314,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		
 		$query = 
 				"UPDATE item
-				SET checked_by = '$checkedBy'
+				SET checkedBy = '$checkedBy'
 				WHERE id = $itemId";
 
 		$mysqli->query($query);
@@ -324,7 +325,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		
 		$query = 
 				"UPDATE item
-				SET checked_by = NULL
+				SET checkedBy = NULL
 				WHERE id = $itemId";
 
 		$mysqli->query($query);
@@ -392,7 +393,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		$query = 
 				"UPDATE list
 				SET firstName = '$newNameFirst', secondName = '$newNameSecond'
-				WHERE unique_string = '$uniqueUrl'";
+				WHERE uniqueString = '$uniqueUrl'";
 
 		$mysqli->query($query);
 	}
@@ -403,7 +404,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		$query = 
 				"UPDATE list
 				SET listIcon = '$listIcon'
-				WHERE unique_string = '$uniqueUrl'";
+				WHERE uniqueString = '$uniqueUrl'";
 
 		$mysqli->query($query);
 	}
@@ -414,8 +415,30 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		$query = 
 				"UPDATE list
 				SET imageUrl = '$newImage'
-				WHERE unique_string = '$uniqueUrl'";
+				WHERE uniqueString = '$uniqueUrl'";
 				
 		$mysqli->query($query);
+	}
+
+	public static function getUserInfo($userId){
+		$query =
+			"SELECT firstName, lastName, email
+			FROM user
+			WHERE user.id = $userId
+			LIMIT 1";
+
+		return Self::arrayResult($query);
+	}
+
+	public static function updateUserInfo($id, $firstName, $lastName, $email){
+		$mysqli = DB::getInstance();
+		
+		$query = 
+				"UPDATE user
+				SET firstName = '$firstName', lastName = '$lastName', email = '$email'
+				WHERE id = $id";
+
+		$mysqli->query($query);
+
 	}
 }

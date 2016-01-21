@@ -53,7 +53,7 @@ class User{
 
 
 	public static function payUp() {
-		return ['listInfo' => Sql::getListInfo($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
+		return ['userInfo' => Sql::getUserInfo($_SESSION['user']['id']),'listInfo' => Sql::getListInfo($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 
 	} 
 
@@ -72,6 +72,19 @@ class User{
 		$uniqueUrl = $_SESSION['uniqueUrl'];
 
 		$_SESSION['userPermission'] = Sql::getUserPermission($_SESSION['user']['id']);
+		return ['redirect' => "?/User/payUp/#pageContent2"];
+	}
+
+	public static function updateUserInfo($params){
+		$mysqli = DB::getInstance();
+
+		$id = $params[0];
+		$firstNameClean = $mysqli->real_escape_string($_POST['newFirstName']);
+		$LastNameClean = $mysqli->real_escape_string($_POST['newLastName']);
+		$emailClean = $mysqli->real_escape_string($_POST['newEmail']);
+
+		Sql::updateUserInfo($id, $firstNameClean, $LastNameClean, $emailClean);
+
 		return ['redirect' => "?/User/payUp/#pageContent2"];
 	}
 

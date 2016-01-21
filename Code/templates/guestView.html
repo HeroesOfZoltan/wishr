@@ -30,7 +30,7 @@
 	<div class="row">
 	<!-- wish list: -->
 		{% for guestListItem in guestListItems %}
-			{% if guestListItem.checked_by == NULL %}
+			{% if guestListItem.checkedBy == NULL %}
 				<div class="col-xs-12 col-sm-offset-2 col-sm-8 wishHeader" data-toggle="collapse" data-target="#wish{{guestListItem.itemId}}">
 					<h2><i class="fa fa-chevron-down"> </i> {{guestListItem.wish}} </h2>
 				</div>

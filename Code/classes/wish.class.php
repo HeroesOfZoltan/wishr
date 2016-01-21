@@ -27,13 +27,15 @@ class Wish{
 		$wishCategoryIdClean = $mysqli->real_escape_string($_POST['wishCategoryId']);
 		$wishPrioClean = $mysqli->real_escape_string($_POST['prio']);
 		$wishCostClean = $mysqli->real_escape_string($_POST['cost']);
+		$checkedByClean = $mysqli->real_escape_string($_POST['checkedBy']);
+		$blacklistClean = $mysqli->real_escape_string($_POST['blacklist']);
 
 		if(isset($_POST['updateBtn'])){
 			Sql::updateItem($wishClean,$descriptionClean,$wishIdClean,$wishCategoryIdClean,$wishPrioClean,$wishCostClean);
 		}
 
 		if(isset($_POST['deleteBtn'])){
-			Sql::deleteItem($wishIdClean,$wishClean, $uniqueUrl,$descriptionClean,$wishCategoryIdClean);
+			Sql::deleteItem($wishIdClean,$wishClean, $uniqueUrl,$descriptionClean,$wishCategoryIdClean,$checkedByClean,$wishPrioClean,$wishCostClean,$blacklistClean);
 		}
 
 
@@ -49,7 +51,7 @@ class Wish{
 		public static function itemDone($params) {
 		$mysqli = DB::getInstance();
 		$itemIdClean = $mysqli->real_escape_string($_POST['itemId']);
-		$checkedByClean = $mysqli->real_escape_string($_POST['checked_by']);
+		$checkedByClean = $mysqli->real_escape_string($_POST['checkedBy']);
 
 		Sql::itemDone($itemIdClean, $checkedByClean);
 

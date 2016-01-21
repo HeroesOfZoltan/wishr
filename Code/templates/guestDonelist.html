@@ -3,7 +3,7 @@
 		<h1>Done list:</h1>
 	</div>
 	{% for guestListItem in guestListItems %}
-		{% if guestListItem.checked_by != NULL %}
+		{% if guestListItem.checkedBy != NULL %}
 
 			<div class="col-xs-12 col-sm-offset-2 col-sm-8 wishHeader" data-toggle="collapse" data-target="#wish{{guestListItem.itemId}}">
 				<h2><i class="fa fa-chevron-down"> </i> <del>{{guestListItem.wish}}</del> </h2>
@@ -16,7 +16,7 @@
 							<form action='?/wish/unDoneItem/{{guestListItem.uniqueUrl}}' method='post'>
 								<div class="input-group">
 									<label>This wish is claimed by: </label> 
-										{{guestListItem.checked_by}}
+										{{guestListItem.checkedBy}}
 										<button class="btn btn-xs btn-default buttonForm" type="submit" name="itemId" value="{{guestListItem.itemId}}"><i class="fa fa-times-circle"></i></button>
 									</h5>
 								</div>
