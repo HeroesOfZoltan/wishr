@@ -2,6 +2,13 @@
 
 class Admin {
 
+	public static function check(){
+
+		$methods= ['adminDash' => TRUE, 'createNewCategory' => TRUE, 'deleteCategory' => TRUE];
+
+		return $methods;
+	}
+
 	public static function adminDash(){
 
 		Sql::setUniqueUrl($_SESSION['user']['id']);
