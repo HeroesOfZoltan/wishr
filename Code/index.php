@@ -23,6 +23,32 @@ if($url_parts!= null){
 
 //skickar in class och anropar dess statiska metod.
 	require_once("classes/".$class.".class.php"); 
+
+
+
+	$_permissions = $class::check();
+
+	if($_permissions["$method"] == TRUE){
+		if($_SESSION['user']){
+			$access = TRUE;
+		}
+		else{
+			$access = FALSE;
+			$template = "login.html";
+			return ['redirect' => '?/'];
+		}
+	}
+	elseif($_permissions["$method"] == FALSE){
+		$access = TRUE;
+	}
+	else {
+		return ['redirect' => '?/'];
+	}
+
+
+
+if($access == TRUE){
+
 	$data = $class::$method($url_parts);
 	$data['_session'] = $_SESSION;
 
@@ -40,7 +66,7 @@ if($url_parts!= null){
 	elseif($method ==  'payUp'){
 		$template = 'payUp.html';
 
-		if( $_SESSION["user"]){
+
 				if(in_array(1, $_SESSION["userPermission"]) || in_array(3, $_SESSION["userPermission"])){
 						$data['unlimitedForm'] = "payedUnlimited.html";
 				}
@@ -66,11 +92,9 @@ if($url_parts!= null){
 						$data['doneForm'] = "unpayedDonedidit.html";
 				}
 				
-				$data['payView'] = "paymentForm.html";
-			}
-		else{
-				$data['payView'] = "ourProduct.html";
-		}
+	}
+	elseif($method ==  'ourProduct'){
+		$template= "ourProduct.html";
 	}
 
 	elseif($method ==  'getBlacklist'){
@@ -104,17 +128,25 @@ if($url_parts!= null){
 		$template = 'adminDash.html';
 	}
 
+}//ends access if
+
 
 //redirectar sidan till valt destination.
 	if(isset($data['redirect'])){
 		header("Location: ".$data['redirect']);
 	}
 
+
+
 }
+
+
 else{
 	$template = 'login.html';
 	$data= array();//Här kan vi lägga t ex statestik om sidan som ska visas på förstasidan
 }
+
+
 
 //var_dump($data);
 $twig = startTwig();
@@ -139,22 +171,3 @@ function startTwig(){
 	$loader = new Twig_Loader_Filesystem('templates/');
 	return $twig = new Twig_Environment($loader);
 }
-
-/*function clean(&$var) {
-	$mysqli = DB::getInstance();
-
-
-	if (is_array($var)) {
-		foreach($var as $key => $val) {
-			$mysqli->real_escape_string($val);
-		}
-	}
-	else{
-		$mysqli->real_escape_string($var);
-	}
-	//$_SESSION['test'] = 'test';
-}
-*/
-
-
-

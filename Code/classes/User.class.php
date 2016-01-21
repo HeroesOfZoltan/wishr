@@ -1,6 +1,14 @@
 <?php
 class User{
 
+	public static function check(){
+
+		$methods= ['createUser' => FALSE,'logIn' => FALSE,'ourProduct' => FALSE, 'payUp' => TRUE,'payPermission' => TRUE, 
+		'updateUserInfo' => TRUE];
+
+		return $methods;
+	}
+
 //Skapar, tvättar, krypterar och sparar ner ny user till databasem
 	public static function createUser($params){
 		
@@ -44,9 +52,7 @@ class User{
 
 			}else{
 				return ['redirect' => "?/"];
-			}
-//Borde kanske flytta nedan kod och ersätta med ett metodanrop som skriver ut listan istället?
-	
+			}	
 		}
 		return [];
 	}

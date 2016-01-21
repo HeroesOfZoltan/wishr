@@ -1,6 +1,16 @@
 <?php
 
 class Wish{
+
+
+	public static function check(){
+
+		$methods= ['updateItem' => TRUE, 'itemDone' => FALSE, 'unDoneItem' => FALSE];
+
+		return $methods;
+	}
+
+
 //Tvättar och sparar ner ett önskeobjekt till databasen
 	function __construct($uniqueUrl, $wish, $description, $wishCategory, $wishPrio="", $wishCost="", $wishBlacklist=""){
 
