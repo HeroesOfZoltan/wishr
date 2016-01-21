@@ -57,7 +57,6 @@ class User{
 		return [];
 	}
 
-
 	public static function payUp() {
 		return ['userInfo' => Sql::getUserInfo($_SESSION['user']['id']),'listInfo' => Sql::getListInfo($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 

@@ -7,7 +7,6 @@ require_once("classes/sql.class.php");
 
 if(isset($_POST['killSession'])){
 	session_unset();
-
 }
 //lägga till konstanter
 error_reporting(1);
@@ -26,32 +25,21 @@ if($url_parts!= null){
 
 	$access = FALSE;
 
-	if($class != 'sql'){
+    if($class != 'sql'){
 
+        $_permissions = $class::check();
 
-		$_permissions = $class::check();
-
-
-		if($_permissions["$method"] == TRUE){
-			if($_SESSION['user']){
-				$access = TRUE;
-			}
-			else{
-				$access = FALSE;
-			}
-		}
-
-		elseif($_permissions["$method"] == FALSE){
-			$access = TRUE;
-		}
-	}
-
+        if($_permissions[$method] == TRUE && $_SESSION['user']){
+            $access = TRUE;
+        }elseif($_permissions[$method] == FALSE){
+            $access = TRUE;
+        }
+    }
 
 	if($access == TRUE){
 
 		$data = $class::$method($url_parts);
 		$data['_session'] = $_SESSION;
-
 
 		if($method ==  'myList' || $method ==  'getList'){
 			$template = 'myList.html';
@@ -132,31 +120,24 @@ if($url_parts!= null){
 		$data = array();
 	}
 
-
-//ends url_parts
-
-
-
 //redirectar sidan till valt destination.
 	if(isset($data['redirect'])){
 		header("Location: ".$data['redirect']);
 	}
 }	//ends if url_parts
 
-
 else{
 	$template = 'login.html';
 	$data= array();//Här kan vi lägga t ex statestik om sidan som ska visas på förstasidan
 }
 
-
-
 //var_dump($data);
 $twig = startTwig();
 echo $twig->render($template, $data);
 
-print_r($data);
+//print_r($data);
 
+print_r($_SESSION);
 
 function getUrlParts($get){
 	$get_params = array_keys($get);//plockar key värden ur get-arrayen

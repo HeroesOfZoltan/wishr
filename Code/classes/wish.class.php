@@ -41,11 +41,11 @@ class Wish{
 		$blacklistClean = $mysqli->real_escape_string($_POST['blacklist']);
 
 		if(isset($_POST['updateBtn'])){
-			Sql::updateItem($wishClean,$descriptionClean,$wishIdClean,$wishCategoryIdClean,$wishPrioClean,$wishCostClean);
+			Sql::updateItem($wishClean,$descriptionClean,$wishIdClean,$wishCategoryIdClean,$wishPrioClean,$wishCostClean, $_SESSION['user']['id']);
 		}
 
 		if(isset($_POST['deleteBtn'])){
-			Sql::deleteItem($wishIdClean,$wishClean, $uniqueUrl,$descriptionClean,$wishCategoryIdClean,$checkedByClean,$wishPrioClean,$wishCostClean,$blacklistClean);
+			Sql::deleteItem($wishIdClean, $_SESSION['user']['id']);
 		}
 
 
