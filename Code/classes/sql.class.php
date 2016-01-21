@@ -292,7 +292,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 			$query =
 				"INSERT INTO list 
 				(firstName, secondName, user_id, uniqueString, imageUrl, listIcon, listName) 
-				VALUES ('$firstName','$secondName', '$userId', '$uniqueUrl', 'flowers.jpg','$icon', 'Add a listname!')";
+				VALUES ('$firstName','$secondName', '$userId', '$uniqueUrl', 'flowers.jpg','$icon', 'Please add a listname!')";
 
 			$mysqli->query($query);
 	}
