@@ -26,7 +26,7 @@ if($url_parts!= null){
 
 
 
-	$_permissions = $class::check();
+	var_dump($_permissions = $class::check());
 
 	if($_permissions["$method"] == TRUE){
 		if($_SESSION['user']){
@@ -34,16 +34,12 @@ if($url_parts!= null){
 		}
 		else{
 			$access = FALSE;
-			$template = "login.html";
-			return ['redirect' => '?/'];
 		}
 	}
 	elseif($_permissions["$method"] == FALSE){
 		$access = TRUE;
 	}
-	else {
-		return ['redirect' => '?/'];
-	}
+
 
 
 
@@ -129,7 +125,10 @@ if($access == TRUE){
 	}
 
 }//ends access if
-
+else{
+	$template = 'login.html';
+	$data= array();//Här kan vi lägga t ex statestik om sidan som ska visas på förstasidan
+}
 
 //redirectar sidan till valt destination.
 	if(isset($data['redirect'])){
