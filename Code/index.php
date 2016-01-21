@@ -9,7 +9,7 @@ if(isset($_POST['killSession'])){
 	session_unset();
 
 }
-
+//lägga till konstanter
 error_reporting(1);
 
 //anropar getUrlParts och skickar in url. url_parts blir en array med uppstyckad url. 
@@ -120,7 +120,8 @@ else{
 $twig = startTwig();
 echo $twig->render($template, $data);
 
-print_r($data);
+//print_r($data);
+
 function getUrlParts($get){
 	$get_params = array_keys($get);//plockar key värden ur get-arrayen
 	$url = $get_params[0];
