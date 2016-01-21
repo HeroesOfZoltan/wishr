@@ -2,11 +2,11 @@
 
 Light green: #bee9d5
 Light lavender: #c6daf1 
-Light blue: #a1caf1 / rgba(161,202,241,1)
+Light blue: #92bfe9 / rgba(146,192,233,1)
 Extra light blue: #bde2f8
 Cream white: #fffff0 / rgba(255,255,240,1)
 Light yellow: #f4e4a3 / rgba (244,228,163,1)
-Coral: #fbd6d1
+Coral: #facac4
 
 */
 
@@ -31,6 +31,10 @@ p, input, textarea, button {
 	font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, san-serif;
 }
 
+a, a:visited {
+	color: #92bfe9;
+}
+
 h1, h2, h3, h4{
 	font-family: 'Merriweather', serif;
 }
@@ -44,7 +48,7 @@ h1, h2, h3, h4{
 }
 
 .puff {
-	background-color: #fbd6d1;
+	background-color: #facac4;
 	color: #fffff0;
 	padding: 15px;
 	border-radius: 3px;
@@ -92,7 +96,7 @@ h1, h2, h3, h4{
 }
 
 .button{
-	background-color: #a1caf1;
+	background-color: #92bfe9;
 	border: none;
 	color: #fffff0;
 	text-shadow: 0 1px 1px rgba(0,0,0,.1)
@@ -114,7 +118,7 @@ h1, h2, h3, h4{
 
 .buttonForm{
 	background-color: transparent;
-	color: #a1caf1;
+	color: #92bfe9;
 	box-shadow: none;
 	border: none;
   	border-radius: 0px;
@@ -127,10 +131,10 @@ h1, h2, h3, h4{
 
 .buttonDibs{
   	border-bottom: solid 2px;
-  	border-color: #a1caf1;
+  	border-color: #92bfe9;
 }
 [type=text], select {
-	color: #a1caf1;
+	color: #92bfe9;
 }
 
 
@@ -141,13 +145,13 @@ h1, h2, h3, h4{
 }
 
 .formAddon {
-	background-color: #a1caf1;
+	background-color: #92bfe9;
 	color: #fffff0;
 	border: none;
 	text-shadow: 0 1px 1px rgba(0,0,0,.1;);
 }
 .button {
-	background-color: #a1caf1;
+	background-color: #92bfe9;
 	color: #fffff0;
 	border: none;
 	border-radius: 6px;
@@ -155,7 +159,7 @@ h1, h2, h3, h4{
 }
 
 .button:hover, .button:active {
-	background-color: rgba(161,202,241,0.6);
+	background-color: rgba(146,192,233,0.6);
 	color: #fffff0;
 }
 
@@ -172,23 +176,23 @@ h1, h2, h3, h4{
 
 .navbar-logo {
 	position: relative;
-	top: 0px;
-	color: #a1caf1;
+	top: 6px;
+	color: #92bfe9;
 	font-size: 1.2em;
-	border: 4px solid #a1caf1;
+	border: 4px solid #92bfe9;
 }
 
 .pageTitle {
-	color: #a1caf1;
+	color: #92bfe9;
 	letter-spacing: 0.1em;
     font-size: 4.1em;
     text-transform: uppercase;
     padding: 0.2em 0.4em;
-    border: #a1caf1 solid 0.05em;
+    border: #92bfe9 solid 0.05em;
 }
 
 .pageLead {
-	color: #a1caf1;
+	color: #92bfe9;
 	font-family: 'Roboto Slab', serif;
 	font-size: 1.6em;
     letter-spacing: 1.6px;
@@ -202,41 +206,36 @@ h1, h2, h3, h4{
   	-moz-transition: none;
   	-webkit-transition: none;
 	background-color: #fffff0;
-	color: #a1caf1;
+	color: #92bfe9;
 	border: none;
 	border-radius: 3px 3px 0 0;
 }
 
 .inputBorderBottom, .inputBorderBottom:focus{
-	border-bottom: 4px solid #a1caf1;
+	border-bottom: 4px solid #92bfe9;
 }
 .input::-webkit-input-placeholder {
-	color: #a1caf1; 
+	color: #92bfe9; 
 }
 
 .input:-moz-placeholder { 
-	color: #a1caf1; 
+	color: #92bfe9; 
 }
 
 .input::-moz-placeholder { 
-	color: #a1caf1; 
+	color: #92bfe9; 
 }
 
 .input:-ms-input-placeholder { 
-	color: #a1caf1; 
+	color: #92bfe9; 
 }
 
 .inputNumber {
-	border-left: 4px solid #a1caf1;
 	border-radius: 0 3px 0 0;
 }
 
-/* .textBox {
-	border-left: 4px solid #a1caf1;
-} */
-
 .listItemDescription, .listItemDescription:focus {
-	background-color: #a1caf1;
+	background-color: #92bfe9;
 	color: #fffff0;
 }
 
@@ -338,7 +337,7 @@ h2 {
 *********************************************/
 
 .productContainer {
-	background-color: #fbd6d1;
+	background-color: #facac4;
 	background-size: cover;
 	position: absolute;
     width: 100%;
@@ -382,7 +381,7 @@ h2 {
 
 .pageSection {
 	background-color: #fffff0;
-	color: #a1caf1;
+	color: #92bfe9;
 	padding: 25px 0;
 	margin-bottom: 50px;
 	border-radius: 3px;
@@ -394,7 +393,7 @@ h2 {
 
 .pageSection a {
 	text-decoration: none;
-	color: #a1caf1;
+	color: #92bfe9;
 	font-weight: 700;
 }
 
@@ -405,7 +404,7 @@ h2 {
 .listHead {
 	min-height: 300px;
 	background-color: #fffff0;
-	color: #a1caf1;
+	color: #92bfe9;
 	padding: 25px 0;
 	margin-bottom: 50px;
 	border-radius: 3px;
@@ -436,7 +435,7 @@ h2 {
 }
 
 .shareUrlBox {
-	background-color: #a1caf1;
+	background-color: #92bfe9;
 	color: #fffff0;
 	border-radius: 3px;
 	padding: 15px 0px;
@@ -462,10 +461,10 @@ h2 {
 /* ---------- Style for dash ---------- */
 
 .dashboard {
-	background-color: #fbd6d1;
+	background-color: #facac4;
 }
 .dashForm {
-	background-color: #a1caf1;
+	background-color: #92bfe9;
 	padding: 20px;
 }
 
@@ -488,7 +487,7 @@ h2 {
 }
 
 .wishName {
-	color: #a1caf1;
+	color: #92bfe9;
 	font-family: 'Merriweather', 'Georgia', serif;
 	font-size: 1.6em;
 }
@@ -502,36 +501,35 @@ h2 {
 
 .inputIcon {
 	padding-right: 25px;
-	color: #a1caf1;
+	color: #92bfe9;
 	font-size: 1.1em;
 }
 
 .wishNameInput::-webkit-input-placeholder {
-	color: #a1caf1; 
+	color: #92bfe9; 
 	text-align: center;
 }
 
 .wishNameInput:-moz-placeholder { 
-	color: #a1caf1; 
+	color: #92bfe9; 
 	text-align: center;
 }
 
 .wishNameInput::-moz-placeholder { 
-	color: #a1caf1; 
+	color: #92bfe9; 
 	text-align: center;
 }
 
 .wishNameInput:-ms-input-placeholder { 
-	color: #a1caf1; 
+	color: #92bfe9; 
 	text-align: center;
 }
 
 .wishCatDropdownBtn {
 	background-color: #fffff0;
-	color: #a1caf1;
+	color: #92bfe9;
 	border: none;
-	border-bottom: 4px solid #a1caf1;
-	border-left: 4px solid #a1caf1;
+	border-bottom: 4px solid #92bfe9;
 	border-radius: 0px 3px 0px 0px;
 }
 
@@ -540,7 +538,7 @@ h2 {
 }
 
 .button:hover, .button:active, .button:focus, .button:action {
-	background-color: rgba(161,202,241,0.8);
+	background-color: rgba(146,192,233,0.8);
 	color: #fffff0;
 }
 
@@ -558,11 +556,11 @@ h2 {
 
 .listItemContent {
 	background-color: #fffff0; 
-	color: #a1caf1;
+	color: #92bfe9;
 }
 
 .listItemInput, .listItemInput:focus {
-	background-color: #a1caf1;
+	background-color: #92bfe9;
 	color: #fffff0;
 	border-radius: 3px;
 }
@@ -589,14 +587,20 @@ h2 {
 
 .wishHeader{
 	background-color: #fffff0; 
-	color: #a1caf1;
+	color: #92bfe9;
 	border-radius: 3px 3px 0 0;
 }
 .wishCollapseBody{
-	background-color: #fffff0; 
+	background-color: #fffff0;
+	color: #92bfe9;
+	font-size: 1.2em; 
 	margin-bottom: 15px;
-	color: #a1caf1;
-	border-bottom: 4px solid #a1caf1;
+	border-bottom: 4px solid #92bfe9;
+}
+
+.wishCollapseBody .col-xs-12 {
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 
 .wishCollapseBody .row {
@@ -607,22 +611,27 @@ h2 {
 	margin-top:10px;
 	margin-bottom:10px;
 }
+
+.wishCollapseBody button {
+	margin-left: 15px;
+}
+
 .formDibs, .formDibs:focus{
 	box-shadow: none;
 	background-color: transparent;
-	color: #a1caf1;
+	color: #92bfe9;
 	border: none;
-	border-bottom: 2px solid #a1caf1;
-	border-left: 2px solid #a1caf1;
+	border-bottom: 2px solid #92bfe9;
+	border-left: 2px solid #92bfe9;
 	border-radius: 0;
 }
 .buttonDibs{
 	background-color: transparent;
-	color: #a1caf1;
+	color: #92bfe9;
 	box-shadow: none;
 	border: none;
   	border-bottom: solid 2px;
-  	border-color: #a1caf1;
+  	border-color: #92bfe9;
   	border-radius: 0px;
   	box-shadow: none;
   	border-radius: 0px;
@@ -646,7 +655,7 @@ h2 {
 *********************************************/
 .upgradeBox {
 	min-height: 320px;
-	background-color: #a1caf1;
+	background-color: #92bfe9;
 	color: #fffff0;
 	font-size: 1.4em;
 	border-radius: 3px;
@@ -691,7 +700,7 @@ h2 {
 }
 
 .upgradeAllBox {
-	background-color: #fbd6d1;
+	background-color: #facac4;
 }
 
 .upgradeBoxIcon {
@@ -716,14 +725,14 @@ h2 {
 }
 
 .payButton, .moreButton {
-	background-color: #a1caf1;
+	background-color: #92bfe9;
 	border: none;
 	border-radius: 3px;
 	color: #fffff0;
 }
 
 .payButton:hover, .payButton:active, .payButton:active:focus {
-	background-color: rgba(161,202,241,0.8);
+	background-color: rgba(146,192,233,0.8);
 	color: #fffff0;
 }
 
@@ -734,7 +743,7 @@ h2 {
 
 .moreButton {
 	min-height: 320px;
-	background-color: rgba(161,202,241,0.6);
+	background-color: rgba(146,192,233,0.6);
 }
 
 /********************************************
@@ -743,7 +752,7 @@ h2 {
 
 .payedBox {
 	min-height: 320px;
-	background-color: #fbd6d1;
+	background-color: #facac4;
 }
 
 .payedBox h3 {
@@ -767,7 +776,7 @@ h2 {
 
 .payedInput {
 	background-color: #fffff0;
-	color: #a1caf1;
+	color: #92bfe9;
 	border: none;
 }
 
@@ -845,10 +854,9 @@ h2 {
 
 }
 /* ---------- Style for footer ---------- */
-.footer {
-	border-top: 1px solid #e7e7e7;
+.footer .col-xs-12 {
 	padding-top: 10px;
-	margin-top: 25px;
+	margin: 25px 0;
 }
 
 /* ---------- Style for listItemForm ---------- */
@@ -873,7 +881,7 @@ h2 {
 /* For small-screens / col-xs-12 */
 @media (max-width: 767px) {
 	.navbar-default {
-		background-color: rgba(161,202,241,0.8);
+		background-color: rgba(146,192,233,0.8);
 
 	}
 
