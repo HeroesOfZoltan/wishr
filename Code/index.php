@@ -40,7 +40,7 @@ if($url_parts!= null){
 	elseif($method ==  'payUp'){
 		$template = 'payUp.html';
 
-		if( $_SESSION["user"]){
+
 				if(in_array(1, $_SESSION["userPermission"]) || in_array(3, $_SESSION["userPermission"])){
 						$data['unlimitedForm'] = "payedUnlimited.html";
 				}
@@ -66,11 +66,9 @@ if($url_parts!= null){
 						$data['doneForm'] = "unpayedDonedidit.html";
 				}
 				
-				$data['payView'] = "paymentForm.html";
-			}
-		else{
-				$data['payView'] = "ourProduct.html";
-		}
+	}
+	elseif($method ==  'ourProduct'){
+		$template= "ourProduct.html";
 	}
 
 	elseif($method ==  'getBlacklist'){

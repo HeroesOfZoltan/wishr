@@ -1,10 +1,3 @@
-{% include "pageHeader.html" %}
-
-{% include "pageNav.html" %}
-
-
-
-
 <div class="container">
 	<div class="productContainer"></div>
 
@@ -84,8 +77,106 @@
 		</form>
 	</div>
 
+	<!-- 
+	<div class="row pricingForm">
+		<div class="col-xs-12">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<h1>Vår produkt</h1>
+				</div>
+			</div>
+			<div class="row">
+			<div class="col-xs-4 col-xs-offset-4 text-center">
+				<p>Här kan du läsa mer om våra betalplaner.</p>
+			</div>
+			</div>
+
+			<div class="row">
+				<div  class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-2 col-md-offset-2 text-center ">
+					<div id="plan_pro" class="priceField">
+						<h4>Go Pro!</h4>
+						Få tillgång till alla våra extrafunktioner i ett köp.
+						<br>
+						<ul>
+							<li>Blacklist</li>
+							<li>Oändligt med önskningar</li>
+							<li>Donedidit</li>
+							<li>Till ett värde av <b><u>26:-</u></b></li>
+						</ul>
+						<h1>49:-</h1>
+
+						<form action="?/" method="post">
+							<button class="btn btn-default" name="permissionType" value="1">Get all!</button>
+						</form>
+					</div>
+
+				</div>
+
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-2 col-md-offset-0 text-center ">
+					<div id="plan_2" class="priceField">
+						<h4>Blacklist</h4>
+						<p>Få tillgång till funktion som tillåter dig att även skapa en blacklist över saker du inte vill ha.</p>
+						<h1>9:-</h1>
+						<form action="?/" method="post">
+							<button class="btn btn-default" name="permissionType" value="2">Permission 2</button>
+						</form>
+					</div>
+				</div>
+
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-2 col-md-offset-0 text-center">
+					<div id="plan_3" class="priceField">
+						<h4>Oändligt med önskningar</h4>
+						<p>Få tillgång till funktion som tillåter dig att ha fler än 20 önskningar i din lista</p>
+						<h1>9:-</h1>
+						<form action="?/" method="post">
+							<button class="btn btn-default" name="permissionType" value="3">Permission 3</button>
+						</form>
+					</div>
+				</div>
+
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-2 col-md-offset-0 text-center">
+					<div id="plan_4" class=" priceField">
+						<h4>Donedidit</h4>
+						<p>Få tillgång till funktion som tillåter dina gäster att 'färdig markera' önskningar i din lista</p>
+						<h1>9:-</h1>
+						<form action="?/" method="post">
+							<button class="btn btn-default" name="permissionType" value="4">Permission 4</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	-->
+		<!--div class="paymentForm">
+			<h1>Betala</h1>
+
+			<form action="?/User/pay/{{userId}}" method="post">
+				<input type="submit" value="Betala!">
+			</form>
+
+			<form action="?/User/payPermission/{{userId}}" method="post">
+				<input type="hidden" name="permissionType" value="1">
+				<input type="submit" value="Get all permissions">
+			</form>
+
+
+				<form action="?/User/payPermission/{{userId}}" method="post">
+				<input type="hidden" name="permissionType" value="2">
+				<input type="submit" value="Permission 2!">
+			</form>
+					<form action="?/User/payPermission/{{userId}}" method="post">
+				<input type="hidden" name="permissionType" value="3">
+				<input type="submit" value="Permission 3!">
+			</form>
+					<form action="?/User/payPermission/{{userId}}" method="post">
+				<input type="hidden" name="permissionType" value="4">
+				<input type="submit" value="Permission 4!">
+			</form>
+
+			<form action="?/wishlist/getlist/{{uniqueUrl}}" method="post">
+				<input type="submit" value="Tillbaka">
+			</form>
+		</div-->
 
 </div>
-
-
-{% include "footer.html" %}
