@@ -10,7 +10,7 @@ if(isset($_POST['killSession'])){
 
 }
 
-error_reporting(1);
+error_reporting(0);
 
 //anropar getUrlParts och skickar in url. url_parts blir en array med uppstyckad url. 
 $url_parts = getUrlParts($_GET); 
@@ -116,11 +116,10 @@ else{
 	$data= array();//Här kan vi lägga t ex statestik om sidan som ska visas på förstasidan
 }
 
-//var_dump($data);
 $twig = startTwig();
 echo $twig->render($template, $data);
 
-print_r($data);
+
 function getUrlParts($get){
 	$get_params = array_keys($get);//plockar key värden ur get-arrayen
 	$url = $get_params[0];
