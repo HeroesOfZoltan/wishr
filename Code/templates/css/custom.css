@@ -159,7 +159,7 @@ h1, h2, h3, h4{
 }
 
 .button:hover, .button:active {
-	background-color: rgba(146,192,233,0.6);
+	background-color: #a1caf1;
 	color: #fffff0;
 }
 
@@ -176,7 +176,6 @@ h1, h2, h3, h4{
 
 .navbar-logo {
 	position: relative;
-	top: 6px;
 	color: #92bfe9;
 	font-size: 1.2em;
 	border: 4px solid #92bfe9;
@@ -562,7 +561,7 @@ h2 {
 }
 
 .button:hover, .button:active, .button:focus, .button:action {
-	background-color: rgba(146,192,233,0.8);
+	background-color: #a1caf1;
 	color: #fffff0;
 }
 
@@ -756,7 +755,7 @@ h2 {
 }
 
 .payButton:hover, .payButton:active, .payButton:active:focus {
-	background-color: rgba(146,192,233,0.8);
+	background-color: #a1caf1;
 	color: #fffff0;
 }
 
@@ -767,7 +766,7 @@ h2 {
 
 .moreButton {
 	min-height: 320px;
-	background-color: rgba(146,192,233,0.6);
+	background-color: #a1caf1;
 }
 
 /********************************************
@@ -909,7 +908,7 @@ h2 {
 /* For small-screens / col-xs-12 */
 @media (max-width: 767px) {
 	.navbar-default {
-		background-color: rgba(146,192,233,0.8);
+		background-color: #a1caf1;
 
 	}
 
