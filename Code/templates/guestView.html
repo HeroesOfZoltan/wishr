@@ -47,17 +47,18 @@
 							{% if guestDoneForm %}
 								{% include guestDoneForm %}
 							{% endif %}
-							<div class="col-xs-12">
-								<label>Description: </label> {{guestListItem.description}}
+							<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+								<label><p>Description:</p></label> 
+								<p>{{guestListItem.description}}</p>
 							</div>
-							<div class="col-xs-6">
-								<label>Category: </label> {{guestListItem.categoryName}}
+							<div class="col-xs-6 col-sm-5 col-sm-offset-1">
+								<label><p>Category: </p></label> {{guestListItem.categoryName}}
 							</div>
-							<div class="col-xs-6">
-								<label>Est. cost: </label> {{guestListItem.cost}}
+							<div class="col-xs-6 col-sm-5">
+								<label><p>Est. cost: </p></label> {{guestListItem.cost}}
 							</div>
-							<div class="col-xs-12">
-								<label>Search for {{guestListItem.wish}}: </label><br>{% include "searchBtns.html" %}
+							<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+								<label><p>Search for {{guestListItem.wish}}:</p> </label>{% include "searchBtns.html" %}
 							</div>
 						</div>
 					</div>
