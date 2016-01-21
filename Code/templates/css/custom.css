@@ -133,6 +133,10 @@ h1, h2, h3, h4{
 
 
 /* Specific classes */
+.navbar-default{
+	background: rgba(255,255,240,0.5);
+	border-color: transparent;
+}
 
 .formAddon {
 	background-color: #a1caf1;
@@ -162,6 +166,13 @@ h1, h2, h3, h4{
 	letter-spacing: 2.6px;
 	padding: 2px 5px;
 	border: 3px solid  #fffff0;
+}
+
+.navbar-logo {
+	position: relative;
+	top: 0px;
+	font-size: 1.2em;
+	border-width: 4px;
 }
 
 .pageTitle {
@@ -800,20 +811,7 @@ h2 {
 	padding: 15px 0;
 }
 
-/* ---------- Style for pageNav ---------- */
-
-
-.navbar-nav {}
-
-.navbar-default{
-	background: rgba(255,255,240,.2);
-	border-color: transparent;
-}
-
-.navbar-logo{
-	
-}
-
+/* ---------- Style for Footer ---------- */
 .copyrightText{
 	color: #fffff0;
 }
@@ -824,6 +822,11 @@ h2 {
 
 /* For small-screens / col-xs-12 */
 @media (max-width: 767px) {
+	.navbar-default {
+		background-color: rgba(161,202,241,0.8);
+
+	}
+
 	.dropdown-menu>li>form {
 	    padding: 3px 20px;
 	    margin: 8px 0;
