@@ -332,6 +332,30 @@ h2 {
     border-width: 0.05em;
 }
 
+.forgotBox {
+    background-color: #fffff0;
+    color: #92bfe9;
+    padding-top: 15px;
+    border-radius: 3px;
+}
+
+.forgotBox button {
+	margin-top: 15px;
+}
+
+.forgotButton {
+	background-color: #facac4;
+	color: #fffff0;
+}
+
+.forgotButton:hover {
+	background-color: rgba(250, 202, 196, 0.8);
+}
+
+.forgotButton > p {
+	margin: 0px;
+}
+
 /********************************************
 ---------- Style for ourProduct.html ----------
 *********************************************/
@@ -854,9 +878,13 @@ h2 {
 
 }
 /* ---------- Style for footer ---------- */
+.footer {
+	margin-top: 75px;
+	margin-bottom: 25px;
+}
+
 .footer .col-xs-12 {
-	padding-top: 10px;
-	margin: 25px 0;
+	margin-bottom: 25px;
 }
 
 /* ---------- Style for listItemForm ---------- */
