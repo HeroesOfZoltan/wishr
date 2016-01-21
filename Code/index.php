@@ -29,7 +29,7 @@ if($url_parts!= null){
 	if($class != 'sql'){
 
 
-			$_permissions = $class::check();
+		$_permissions = $class::check();
 
 
 		if($_permissions["$method"] == TRUE){
@@ -133,18 +133,15 @@ if($url_parts!= null){
 	}
 
 
-}//ends access if
-else{
-	$template = 'login.html';
-	$data= array();//Här kan vi lägga t ex statestik om sidan som ska visas på förstasidan
-}
+//ends url_parts
+
 
 
 //redirectar sidan till valt destination.
 	if(isset($data['redirect'])){
 		header("Location: ".$data['redirect']);
 	}
-	//ends if url_parts
+}	//ends if url_parts
 
 
 else{
@@ -159,6 +156,7 @@ $twig = startTwig();
 echo $twig->render($template, $data);
 
 print_r($data);
+
 
 function getUrlParts($get){
 	$get_params = array_keys($get);//plockar key värden ur get-arrayen
