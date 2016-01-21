@@ -3,6 +3,15 @@
 
 class WishList{
 
+
+	public static function check(){
+
+		$methods= ['createList' => TRUE, 'getList' => TRUE, 'addItem' => TRUE, 'addBlacklistItem' => TRUE,
+		 'changeListName' => TRUE, 'ChangeListIcon' => TRUE, 'changeListImage' => TRUE, 'getBlacklist' => TRUE, 'guestView' => FALSE ];
+
+		return $methods;
+	}
+
 	public static function createList(){
 //Skapar ny lista med namn från POST
 		if(isset($_POST['listName'])){
