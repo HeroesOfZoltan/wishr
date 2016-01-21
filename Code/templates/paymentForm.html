@@ -24,7 +24,7 @@
 							<h2>Go Pro! <i class="fa fa-trophy"></i></h2>
 							<h2><i class="fa fa-eur"></i>39 / <i class="fa fa-usd"></i>39</h2>
 							<form action="?/User/payPermission/{{_session.user.id}}" method="post">
-								<button class="btn btn-default button" name="permissionType" value="1">Get it all!</button>
+								<button class="btn  button" name="permissionType" value="1">Get it all!</button>
 							</form>
 						</div>
 				
@@ -68,15 +68,17 @@
 						<div class="col-xs-12">
 							<h3>Change the list title:</h3>
 							<form action="?/wishList/newListName/{{_session.uniqueUrl}}" method="post">
-								<div class="input-group col-xs-12 payedInputGroup">
-									<span class="input-group-addon payedInput">
-										<label for="newListImage"><i class="fa fa-pencil"></i></label>
-									</span>
-									<input type="text" class="payedInput" name="newListName" value="{{listInfo[0].listName}}" placeholder="Write new title here..." autocomplete="off">
-									<span class="input-group-addon payedInput">
-										<button type='submit' class="button" value="Change!"><i class="fa fa-check-circle"></i></button>
-									</span>
-								</div>						
+								<div class="row">
+									<div class="input-group col-xs-12 payedInputGroup">
+										<span class="input-group-addon payedInput">
+											<label for="newListImage"><i class="fa fa-pencil"></i></label>
+										</span>
+										<input type="text" class="payedInput width100" name="newListName" placeholder="Write new title here..." autocomplete="off">
+										<span class="input-group-addon payedInput">
+											<button type='submit' class="button" value="Change!"><i class="fa fa-check-circle"></i></button>
+										</span>
+									</div>	
+								</div>					
 							</form>
 						</div>
 					</div>
@@ -111,23 +113,23 @@
 									<span class="input-group-addon payedInput">
 										<label for="newListImage"><i class="fa fa-pencil"></i></label>
 									</span>
-									<input type="text" class="payedInput" name="newFirstName" value="{{userInfo[0].firstName}}" placeholder="Firstname" autocomplete="off">
+									<input type="text" class="payedInput width100" name="newFirstName" placeholder="{{userInfo[0].firstName}}" autocomplete="off">
 								</div>
 								<div class="input-group col-xs-12 payedInputGroup">
 									<span class="input-group-addon payedInput">
 										<label for="newListImage"><i class="fa fa-pencil"></i></label>
 									</span>
-									<input type="text" class="payedInput" name="newLastName" value="{{userInfo[0].lastName}}" placeholder="Lastname" autocomplete="off">
+									<input type="text" class="payedInput width100" name="newLastName" placeholder="{{userInfo[0].lastName}}" autocomplete="off">
 								</div>
 								<div class="input-group col-xs-12 payedInputGroup">
 									<span class="input-group-addon payedInput">
 										<label for="newListImage"><i class="fa fa-pencil"></i></label>
 									</span>
-									<input type="text" class="payedInput" name="newEmail" value="{{userInfo[0].email}}" placeholder="E-mail" autocomplete="off">
+									<input type="text" class="payedInput width100" name="newEmail" placeholder="{{userInfo[0].email}}" autocomplete="off">
 
 								</div>
 
-									<button class="btn btn-default button" name="">Update</button>				
+									<button class="btn  button" name="">Update</button>				
 							</form>
 						</div>
 					</div>

@@ -9,7 +9,7 @@ if(isset($_POST['killSession'])){
 	session_unset();
 
 }
-
+//lägga till konstanter
 error_reporting(1);
 
 //anropar getUrlParts och skickar in url. url_parts blir en array med uppstyckad url. 
