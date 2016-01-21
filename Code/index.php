@@ -11,6 +11,7 @@ if(isset($_POST['killSession'])){
 }
 
 error_reporting(0);
+const DONEDIDIT = 4;
 
 //anropar getUrlParts och skickar in url. url_parts blir en array med uppstyckad url. 
 $url_parts = getUrlParts($_GET); 
@@ -23,6 +24,9 @@ if($url_parts!= null){
 
 //skickar in class och anropar dess statiska metod.
 	require_once("classes/".$class.".class.php"); 
+
+	//lägg till kontrollmetod här
+
 	$data = $class::$method($url_parts);
 	$data['_session'] = $_SESSION;
 
