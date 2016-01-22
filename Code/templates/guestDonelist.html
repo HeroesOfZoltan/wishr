@@ -1,34 +1,30 @@
+<div class="row marginTop10vh">
+	<div class="col-xs-12 col-sm-offset-1 col-sm-10 pageSection text-center">
+		<span class="guestTitle">Claimed wishes</span>
+	</div>
+	{% for guestListItem in guestListItems %}
+	{% if guestListItem.checkedBy != NULL %}
 
+	<div class="col-xs-12 col-sm-offset-1 col-sm-10 wishHeader" data-toggle="collapse" data-target="#wish{{guestListItem.itemId}}">
+		<h2 class=""><i class="fa fa-chevron-down"> </i> {{guestListItem.wish}}</h2>
+	</div>
 
-<div class="container">
-	<div class="row marginTop18vh">
-		<div class="col-xs-12 col-sm-offset-1 col-sm-10 pageSection text-center">
-			<span class="guestTitle">Claimed wishes</span>
-		</div>
-		{% for guestListItem in guestListItems %}
-		{% if guestListItem.checkedBy != NULL %}
-
-		<div class="col-xs-12 col-sm-offset-1 col-sm-10 wishHeader" data-toggle="collapse" data-target="#wish{{guestListItem.itemId}}">
-			<h2 class=""><i class="fa fa-chevron-down"> </i> {{guestListItem.wish}}</h2>
-		</div>
-
-		<div class="col-xs-12 col-sm-offset-1 col-sm-10 wishCollapseBody">
-			<div id="wish{{guestListItem.itemId}}" class="collapse">
-				<div class="row">
-					<div class="col-xs-10 col-sm-6">
-						<form action='?/wish/unDoneItem/{{guestListItem.uniqueUrl}}' method='post'>
-							<div class="input-group">
-								<label>This wish is claimed by: </label> 
-									{{guestListItem.checkedBy}}
-									<button class="btn btn-xs btn-default buttonForm" type="submit" name="itemId" value="{{guestListItem.itemId}}"><i class="fa fa-times-circle"></i></button>
-								</h5>
-							</div>
-						</form>
-					</div>
+	<div class="col-xs-12 col-sm-offset-1 col-sm-10 wishCollapseBody">
+		<div id="wish{{guestListItem.itemId}}" class="collapse">
+			<div class="row">
+				<div class="col-xs-10 col-sm-6">
+					<form action='?/wish/unDoneItem/{{guestListItem.uniqueUrl}}' method='post'>
+						<div class="input-group">
+							<label>This wish is claimed by: </label> 
+								{{guestListItem.checkedBy}}
+								<button class="btn btn-xs btn-default buttonForm" type="submit" name="itemId" value="{{guestListItem.itemId}}"><i class="fa fa-times-circle"></i></button>
+							</h5>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
-		{% endif %}
-		{% endfor %}
 	</div>
+	{% endif %}
+	{% endfor %}
 </div>
