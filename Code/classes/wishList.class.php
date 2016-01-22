@@ -25,13 +25,13 @@ class WishList{
 		}
 	}
 
-	//Listvy för en gäst
+//Listvy för en gäst
 	public static function guestView($params){
 			$mysqli = DB::getInstance();
 
 			$uniqueUrl = $params[0];
 			$uniqueUrlClean = $mysqli->real_escape_string($uniqueUrl);
-
+		//Hämtar listskaparens permissions som avgör vad som ska visas i gästvyn
 			Sql::setUserGuestPermission($uniqueUrlClean);
 			return ['guestListItems' => Sql::getListItemsGuest($uniqueUrlClean), 'guestBlackListItems' => Sql::getBlacklistItemsGuest($uniqueUrlClean),'imageUrl' => Sql::getListImage($uniqueUrlClean), 'listInfo' => Sql::getListInfo($uniqueUrlClean)];
 
@@ -40,8 +40,8 @@ class WishList{
 //metod för att lägga till ett objekt i en lista
 	public static function addItem(){
 
+	//kontrollerar så att inloggad user lägger till items i sin egen lista
 		$valid = Sql::checkUser($_SESSION['uniqueUrl'], $_SESSION['user']['id']);
-
 
 		if($valid == TRUE){
 			$wish = new Wish($_SESSION['uniqueUrl'], $_POST['wishName'],$_POST['wishDescription'],$_POST['wishCategory'], $_POST['prio'],
@@ -53,8 +53,10 @@ class WishList{
 		}
 	}
 
+//Lägger till ett unwanted item 
 	public static function addBlacklistItem(){	
-		
+
+	//kontrollerar så att inloggad user lägger till items i sin egen lista
 		$valid = Sql::checkUser($_SESSION['uniqueUrl'], $_SESSION['user']['id']);
 
 		if($valid == TRUE){
@@ -64,11 +66,9 @@ class WishList{
 		else{
 			return ['redirect' => "?/wishList/getBlacklist/"];
 		}
-
-		/*$wish = new Wish($uniqueUrl, $_POST['wishName'], $_POST['wishDescription'], $_POST['wishCategory'],NULL,NULL, $_POST['blacklist']);
-		return ['redirect' => "?/wishList/getBlacklist/$uniqueUrl"];*/
 	}
 
+//Byter namn på lista ifall inloggad user id stämmer med unikt list id i databasen
 	public static function newListName(){
 		$mysqli = DB::getInstance();
 
@@ -78,6 +78,7 @@ class WishList{
 		return['redirect' => '?/User/payUp/#pageContent1'];
 	}
 
+//Byter underrubriks namnen ifall inloggad user id stämmer med unikt list id i databasen
 	public static function changeListName(){
 		$mysqli = DB::getInstance();
 
@@ -88,6 +89,8 @@ class WishList{
 		return ['redirect' => "?/User/payUp/#pageContent1"];
 	}
 
+
+//Byter ikon i underrubrik ifall inloggad user id stämmer med unikt list id i databasen
 	public static function changeListIcon(){
 		$mysqli = DB::getInstance();
 
@@ -97,6 +100,7 @@ class WishList{
 		return ['redirect' => "?/User/payUp/#pageContent1"];
 	}
 
+//Byter bakrgrundsbild alt. återställer till default
 	public static function changeListImage(){
 		$mysqli = DB::getInstance();
 

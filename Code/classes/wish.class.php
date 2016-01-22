@@ -10,7 +10,6 @@ class Wish{
 		return $methods;
 	}
 
-
 //Tvättar och sparar ner ett önskeobjekt till databasen
 	function __construct($uniqueUrl, $wish, $description, $wishCategory, $wishPrio="", $wishCost="", $wishBlacklist=""){
 
@@ -26,6 +25,7 @@ class Wish{
 		Sql::insertNewItem($wishClean, $uniqueUrl,$descriptionClean,$wishCategoryClean, $wishPrioClean, $wishCostClean,$wishBlacklistClean);	
 	}
 
+//Uppdaterar ett item till nya värden alt. tar bort ett item från users lista ifall inloggad user id stämmer med unikt list id i databasen
 	public static function updateItem(){
 		$mysqli = DB::getInstance();
 
@@ -56,8 +56,8 @@ class Wish{
 		}
 
 	}
-
-		public static function itemDone($params) {
+//Färdigmarkerar ett objekt i gästvyn
+	public static function itemDone($params) {
 		$mysqli = DB::getInstance();
 		$itemIdClean = $mysqli->real_escape_string($_POST['itemId']);
 		$checkedByClean = $mysqli->real_escape_string($_POST['checkedBy']);
@@ -67,6 +67,7 @@ class Wish{
 		$uniqueUrl = $params[0];
 		return ['redirect' => "?/wishList/guestView/$uniqueUrl"];
 	}
+//Ångrar en färdigmarkering
 	public static function unDoneItem($params) {
 		$mysqli = DB::getInstance();
 		$itemIdClean = $mysqli->real_escape_string($_POST['itemId']);
