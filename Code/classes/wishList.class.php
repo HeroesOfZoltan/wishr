@@ -3,7 +3,7 @@
 
 class WishList{
 
-
+//Returnerar array med permissions för varje metod. TRUE innebär att en måste vara inloggad för att få anropa den metoden
 	public static function check(){
 
 		$methods= ['createList' => TRUE, 'getList' => TRUE, 'addItem' => TRUE, 'addBlacklistItem' => TRUE,
@@ -13,30 +13,8 @@ class WishList{
 		return $methods;
 	}
 
-	public static function createList(){
-//Skapar ny lista med namn från POST
-		if(isset($_POST['listName'])){
-			$mysqli = DB::getInstance();//Startar databas uppkoppling
-			$listName = $mysqli->real_escape_string($_POST['listName']);//Tvättar input från POST
-			$uniqueString = substr(md5(microtime()),rand(0,26),5); //genererar unik sträng på 5 tecken.
-
-			Sql::insertNewList($listName, $uniqueString); //Anropar metod som sparar ny lista i databasen
-//Returnerar array som sedan renderas av Twig
-			return ['newList' => TRUE, 'listName' => $listName, 'categories' =>Sql::category()];
-		}
-		return ['newList' => FALSE];
-	}
-
-//Tar emot ett id och kollar om det finns tillsammans med en inloggad user och skriver då ut aktuell lista
-	public static function getList($params){
-		$mysqli = DB::getInstance();
-		$uniqueUrl = $params[0];
-		return ['items' => Sql::getListItems($uniqueUrl, $_SESSION['user']['id']), 'categories' => Sql::category(), 'listInfo' => Sql::getListInfo($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
-	}
-
-	public static function myList(){
-		$_SESSION['userPermission'] = Sql::getUserPermission($_SESSION['user']['id']);
-		Sql::setUniqueUrl($_SESSION['user']['id']);
+//Hämtar allt aktuellt innehåll till en users lista ifall den har en lista, annars returneras en lista utan items
+	public static function myList(){		
 
 		$items = Sql::getListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']);
 		if($items){
@@ -47,13 +25,13 @@ class WishList{
 		}
 	}
 
-	//Listvy för en gäst
+//Listvy för en gäst
 	public static function guestView($params){
 			$mysqli = DB::getInstance();
 
 			$uniqueUrl = $params[0];
 			$uniqueUrlClean = $mysqli->real_escape_string($uniqueUrl);
-
+		//Hämtar listskaparens permissions som avgör vad som ska visas i gästvyn
 			Sql::setUserGuestPermission($uniqueUrlClean);
 			return ['guestListItems' => Sql::getListItemsGuest($uniqueUrlClean), 'guestBlackListItems' => Sql::getBlacklistItemsGuest($uniqueUrlClean),'imageUrl' => Sql::getListImage($uniqueUrlClean), 'listInfo' => Sql::getListInfo($uniqueUrlClean)];
 
@@ -61,39 +39,34 @@ class WishList{
 
 //metod för att lägga till ett objekt i en lista
 	public static function addItem($params){
-		$uniqueUrl = $params[0];
 
-		$valid = Sql::checkUser($uniqueUrl, $_SESSION['user']['id']);
-
+	//kontrollerar så att inloggad user lägger till items i sin egen lista
+		$valid = Sql::checkUser($_SESSION['uniqueUrl'], $_SESSION['user']['id']);
 
 		if($valid == TRUE){
-			$wish = new Wish($uniqueUrl, $_POST['wishName'],$_POST['wishDescription'],$_POST['wishCategory'], $_POST['prio'],
+			$wish = new Wish($_SESSION['uniqueUrl'], $_POST['wishName'],$_POST['wishDescription'],$_POST['wishCategory'], $_POST['prio'],
 				$_POST['cost'], NULL);
-		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
+		return ['redirect' => "?/wishList/myList/"];
 		}
 		else{
-			return ['redirect' => "?/wishList/getList/$uniqueUrl"];
+			return ['redirect' => "?/wishList/myList/"];
 		}
 	}
+//Lägger till ett unwanted item 
+	public static function addBlacklistItem($params){	
 
-	public static function addBlacklistItem($params){
-		$uniqueUrl = $params[0];	
-		
-		$valid = Sql::checkUser($uniqueUrl, $_SESSION['user']['id']);
+	//kontrollerar så att inloggad user lägger till items i sin egen lista
+		$valid = Sql::checkUser($_SESSION['uniqueUrl'], $_SESSION['user']['id']);
 
 		if($valid == TRUE){
-		$wish = new Wish($uniqueUrl, $_POST['wishName'], $_POST['wishDescription'], $_POST['wishCategory'],NULL,NULL, $_POST['blacklist']);
-			
-		return ['redirect' => "?/wishList/getBlacklist/$uniqueUrl"];
+			$wish = new Wish($_SESSION['uniqueUrl'], $_POST['wishName'], $_POST['wishDescription'], $_POST['wishCategory'],NULL,NULL, $_POST['blacklist']);	
+			return ['redirect' => "?/wishList/getBlacklist/"];
 		}
 		else{
-		return ['redirect' => "?/wishList/getBlacklist/$uniqueUrl"];
+			return ['redirect' => "?/wishList/getBlacklist/"];
 		}
-
-		/*$wish = new Wish($uniqueUrl, $_POST['wishName'], $_POST['wishDescription'], $_POST['wishCategory'],NULL,NULL, $_POST['blacklist']);
-		return ['redirect' => "?/wishList/getBlacklist/$uniqueUrl"];*/
 	}
-
+//Byter namn på lista ifall inloggad user id stämmer med unikt list id i databasen
 	public static function newListName($params){
 		$mysqli = DB::getInstance();
 
@@ -104,7 +77,7 @@ class WishList{
 		return['redirect' => '?/User/payUp/#pageContent1'];
 
 	}
-
+//Byter underrubriks namnen ifall inloggad user id stämmer med unikt list id i databasen
 	public static function changeListName($params){
 		$mysqli = DB::getInstance();
 
@@ -115,17 +88,16 @@ class WishList{
 
 		return ['redirect' => "?/User/payUp/#pageContent1"];
 	}
-
+//Byter ikon i underrubrik ifall inloggad user id stämmer med unikt list id i databasen
 	public static function changeListIcon($params){
 		$mysqli = DB::getInstance();
 
-		$uniqueUrl = $params[0];
 		$iconClean= $mysqli->real_escape_string($_POST['icon']);
-		Sql::updateListIcon($uniqueUrl, $iconClean, $_SESSION['user']['id']);
+		Sql::updateListIcon($_SESSION['uniqueUrl'], $iconClean, $_SESSION['user']['id']);
 
 		return ['redirect' => "?/User/payUp/#pageContent1"];
 	}
-
+//Byter bakrgrundsbild alt. återställer till default
 	public static function changeListImage($params){
 		$mysqli = DB::getInstance();
 		$uniqueUrl = $params[0];

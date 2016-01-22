@@ -1,6 +1,7 @@
 <?php
 class User{
 
+//Returnerar array med permissions för varje metod. TRUE innebär att en måste vara inloggad för att få anropa den metoden
 	public static function check(){
 
 		$methods= ['createUser' => FALSE,'logIn' => FALSE,'ourProduct' => FALSE, 'payUp' => TRUE,'payPermission' => TRUE, 
@@ -20,10 +21,12 @@ class User{
 			$lastnameClean = $mysqli->real_escape_string($_POST['lastname']);
 
 			$password = crypt($passwordClean,'$2a$'.sha1($usernameClean));
+		//Tar emot värde för lyckad registrering
 			$message = Sql::insertUser($password, $usernameClean, $firstnameClean, $lastnameClean);
 			}
-
+		//Tar user id från databasen som just gjordes och kopplar det till listan
 			$userId = $mysqli->insert_id;
+		//Skapar en unik string som blir primärnyckel för listan
 			$uniqueString = substr(md5(microtime()),rand(0,26),5); //genererar unik sträng på 5 tecken.
 			Sql::insertNewList("Your name","Your partners name", $uniqueString, $userId, 'fa fa-heart'); //Anropar metod som sparar ny lista i databasen
 
@@ -44,6 +47,10 @@ class User{
 			if($user['id']){
 				$_SESSION['user']['id'] = $user['id'];
 				$_SESSION['user']['role'] = $user['role'];
+
+				Sql::getUserPermission($_SESSION['user']['id']);
+				Sql::setUniqueUrl($_SESSION['user']['id']);
+
 				if ($user['role'] == 1) {
 					return ['redirect' => "?/Admin/adminDash"];
 				}
@@ -70,25 +77,21 @@ class User{
 	public static function payPermission($params) {
 		$mysqli = DB::getInstance();
 
-		$id = $params[0];
-		$idClean = $mysqli->real_escape_string($id);
-
-		Sql::insertUserPermission($idClean);
+		Sql::insertUserPermission($_SESSION['user']['id']);
 		$uniqueUrl = $_SESSION['uniqueUrl'];
 
-		$_SESSION['userPermission'] = Sql::getUserPermission($_SESSION['user']['id']);
+		Sql::getUserPermission($_SESSION['user']['id']);
 		return ['redirect' => "?/User/payUp/#pageContent2"];
 	}
 
 	public static function updateUserInfo($params){
 		$mysqli = DB::getInstance();
 
-		$id = $params[0];
 		$firstNameClean = $mysqli->real_escape_string($_POST['newFirstName']);
 		$LastNameClean = $mysqli->real_escape_string($_POST['newLastName']);
 		$emailClean = $mysqli->real_escape_string($_POST['newEmail']);
 
-		Sql::updateUserInfo($id, $firstNameClean, $LastNameClean, $emailClean);
+		Sql::updateUserInfo($_SESSION['user']['id'], $firstNameClean, $LastNameClean, $emailClean);
 
 		return ['redirect' => "?/User/payUp/#pageContent2"];
 	}
