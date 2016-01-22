@@ -1,13 +1,16 @@
 {% include "pageHeader.html" %}
 {% include "triangleBg.html" %} 
 
+
 <div class="container">
 
 	<div class="row marginTop18vh">
-		<div class="col-xs-12 col-sm-10 col-sm-offset-1">
-			<div class="row pageSection">
-				<div class="col-xs-12 text-center">
-					<span class="title pageTitle">{{listInfo[0].listName}}</span>
+		<div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
+			<div class="listHead">
+				<div class="row">
+					<div class="col-xs-12 col-sm-10 col-sm-offset-1 title pageTitle">
+						<h2>{{listInfo[0].listName}}</h2>
+					</div>
 				</div>
 		
 				<div class="col-xs-12 listNames">
@@ -40,7 +43,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+
 
 	<div class="row">
 	<!-- wish list: -->
