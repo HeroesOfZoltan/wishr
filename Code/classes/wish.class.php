@@ -2,7 +2,7 @@
 
 class Wish{
 
-
+//Returnerar array med permissions för varje metod. TRUE innebär att en måste vara inloggad för att få anropa den metoden
 	public static function check(){
 
 		$methods= ['updateItem' => TRUE, 'itemDone' => FALSE, 'unDoneItem' => FALSE];

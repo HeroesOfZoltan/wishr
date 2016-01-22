@@ -140,7 +140,7 @@ echo $twig->render($template, $data);
 
 //print_r($data);
 
-print_r($_SESSION);
+//print_r($_SESSION);
 
 function getUrlParts($get){
 	$get_params = array_keys($get);//plockar key värden ur get-arrayen
