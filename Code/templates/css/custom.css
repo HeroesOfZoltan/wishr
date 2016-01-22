@@ -180,7 +180,8 @@ h1, h2, h3, h4{
 	position: relative;
 	color: #92bfe9;
 	font-size: 1.2em;
-	border: 4px solid #92bfe9;
+	padding-top: 4px;
+	border: 0.1em solid #92bfe9;
 }
 
 .pageTitle {
