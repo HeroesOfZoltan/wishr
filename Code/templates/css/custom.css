@@ -13,10 +13,12 @@ Coral: #fbd6d1
 body {
 	background-color: #bee9d5;
 	color: #fffff0;
-	font-family: 'Merriweather Sans', 'arial', san-serif;
+	font-family: 'Roboto Slab', 'arial', san-serif;
 	font-weight: 300;
 	font-size: 14px;
 	line-height: 1.6;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 *:focus {
@@ -26,7 +28,7 @@ body {
 /* Typography */
 
 p, input, textarea, button {
-	font-family: 'Merriweather Sans', 'Helvetica Neue', Helvetica, san-serif;
+	font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, san-serif;
 }
 
 h1, h2, h3, h4{
@@ -37,7 +39,7 @@ h1, h2, h3, h4{
 	color: #fffff0;
 	font-family: 'Roboto Slab';
 	font-weight: 400;
-	font-size: 1.6em;
+	font-size: 1.4em;
 	letter-spacing: 1.6px;
 }
 
@@ -49,7 +51,7 @@ h1, h2, h3, h4{
 }
 
 .puff p {
-	font-family: 'Merriweather Sans', Georgia, serif;
+	font-family: 'Roboto Slab', Georgia, serif;
 	font-size: 1.4em;
 }
 
@@ -73,7 +75,9 @@ h1, h2, h3, h4{
 .marginTop10vh {
 	margin-top: 10vh;
 }
-
+.marginTop6vh {
+	margin-top: 6vh;
+}
 .paddingRight15px {
 	padding-right: 15px;
 }
@@ -169,8 +173,9 @@ h1, h2, h3, h4{
 .navbar-logo {
 	position: relative;
 	top: 0px;
+	color: #a1caf1;
 	font-size: 1.2em;
-	border-width: 4px;
+	border: 4px solid #a1caf1;
 }
 
 .pageTitle {
@@ -230,7 +235,7 @@ h1, h2, h3, h4{
 	border-left: 4px solid #a1caf1;
 } */
 
-.listItemDescription {
+.listItemDescription, .listItemDescription:focus {
 	background-color: #a1caf1;
 	color: #fffff0;
 }
@@ -281,17 +286,13 @@ h2 {
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
-.pageSection a {
-	text-decoration: none;
-	color: #a1caf1;
-	font-weight: 700;
-}
 
 /********************************************
 -------- Style for triangleBg.html ----------
 *********************************************/
 
 .topImageDiv{
+	background-color:#f4e4a3;
 	background-size:cover;
 	width:100vw;
 	height: 100vh;
@@ -314,15 +315,6 @@ h2 {
     width: 100vw;
 	position: absolute;
 }
-
-.triangleError{
-	width:100vw;
-	height: 100vh;
-	position: absolute;
-	background-image: url("not-found.png");
-	z-index: -99;
-}
-
 
 /********************************************
 ---------- Style for landingPage.html ----------
@@ -396,15 +388,76 @@ h2 {
 	border-radius: 3px;
 }
 
+.pageSection p {
+	font-size: 1.2em;
+}
+
+.pageSection a {
+	text-decoration: none;
+	color: #a1caf1;
+	font-weight: 700;
+}
+
 .pageSection > .col-xs-12 {
 	padding: 25px 0;
 }
 
-.productSignUp {
-
+.listHead {
+	min-height: 300px;
+	background-color: #fffff0;
+	color: #a1caf1;
+	padding: 25px 0;
+	margin-bottom: 50px;
+	border-radius: 3px;
 }
 
-.pricingForm {
+.listHead h2 {
+	font-size: 1.2em;
+	font-weight: 700;
+}
+
+.listHead .pageTitle {
+	border-width: 0.1em;
+}
+
+.listHead .listNames {
+	padding: 25px 0px;
+}
+
+.listHead .listNames h3 {
+	font-size: 2em;
+}
+
+.listHead .listNamesIcon {
+	font-size: 5em;
+	padding: 0px 15px;
+}
+
+.listNamesIcon{
+	font-size: 5em;
+}
+.shareUrlBox {
+	background-color: #a1caf1;
+	color: #fffff0;
+	border-radius: 3px;
+	padding: 15px 0px;
+}
+
+.shareUrlBox a {
+	color: #fffff0;
+	font-family: monospace;
+} 
+
+.shareUrlBox a:hover {
+	color: #fffff0;
+} 
+
+.listHead .aboutListTitle {
+	padding: 25px 0px;
+}
+
+.listHead .aboutListContent {
+	font-size: 1.2em;
 }
 
 /* ---------- Style for dash ---------- */
@@ -487,7 +540,7 @@ h2 {
 	width: 100%;
 }
 
-.button:hover, .button:active {
+.button:hover, .button:active, .button:focus, .button:action {
 	background-color: rgba(161,202,241,0.8);
 	color: #fffff0;
 }
@@ -535,6 +588,20 @@ h2 {
 ---------- Style for GuestListForm ----------
 *********************************************/
 
+.guestTitle{
+	background-color: #fffff0;
+	color: #a1caf1;
+	font-size: 2.5em;
+	letter-spacing: 0.1em;
+	padding: 0.2em 0.4em;
+	font-family: 'Merriweather', Georgia, serif;
+    font-weight: 700;
+    /*border: #a1caf1 solid 0.07em;*/
+    text-transform: uppercase;
+}
+.titleMargin{
+	margin-bottom: 15px;
+}
 .wishHeader{
 	background-color: #fffff0; 
 	color: #a1caf1;
@@ -671,7 +738,7 @@ h2 {
 }
 
 .payButton:hover, .payButton:active, .payButton:active:focus {
-	background-color: rgba(161,202,241,0.6);
+	background-color: rgba(161,202,241,0.8);
 	color: #fffff0;
 }
 
@@ -829,6 +896,11 @@ h2 {
 	    padding: 3px 20px;
 	    margin: 8px 0;
 	    border: none;
+	}
+
+	.logo {
+		color: #fffff0;
+		border-color: #fffff0;
 	}
 
 	.nav>li>button {

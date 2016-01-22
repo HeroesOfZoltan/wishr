@@ -1,28 +1,55 @@
+
+
 <div class="container">
-	<div class="row marginTop10vh pageSection">
+	<div class="row marginTop10vh">
 		<div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
+			<div class="listHead">
+				<div class="row marginTop6vh">
 
-			<!-- VIKTIGT! Ändra standardvärde till "Remember to add a list name." -->
-			<span class="title pageTitle">{{listInfo[0].listName}}</span>
-			<h1>{{listInfo[0].firstName}}<span class="{{listInfo[0].listIcon}}" aria-hidden="true"></span>{{listInfo[0].secondName}}</h1>
+					<!-- VIKTIGT! Ändra standardvärde till "Remember to add a list name." -->
+					<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+						<div class="row PageSection">
+							<div class="col-xs-12 text-center">
+								<h2><span class="title pageTitle">{{listInfo[0].listName}}</span></h2>
+							</div>
+						</div>
+					</div>
 
-			<div class="col-xs-10 col-xs-offset-1 text-left" data-toggle="collapse" data-target="#info">
-				<p class="textImportant pull-left"><i class="fa fa-chevron-down"></i> About your list</p>
-				
+					<div class="col-xs-12 listNames">
+						<div class="row">
+							<div class="col-sm-5 text-right">
+								<h3>{{listInfo[0].firstName}}</h3>
+							</div>
+							<div class="col-sm-2 text-center">
+								<span class="{{listInfo[0].listIcon}} listNamesIcon" aria-hidden="true"></span>
+							</div>
+							<div class="col-sm-5 text-left">
+								<h3>{{listInfo[0].secondName}}</h3>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-8 col-sm-offset-2 shareUrlBox">
+						<p>Share this link with your friends and family:</p>
+						<a href="http://192.168.33.10/Wishr/Code/?/wishList/guestView/{{_session.uniqueUrl}}" target="_blank">http://192.168.33.10/Wishr/Code/?/wishList/guestView/{{_session.uniqueUrl}}</a>
+					</div>
+
+					<div class="aboutList">
+						<div class="col-xs-10 col-xs-offset-1 text-center aboutListTitle" data-toggle="collapse" data-target="#info">
+							<h3 class=""><i class="fa fa-chevron-down"></i> About your list:</h3>
+							
+						</div>
+					
+						<div id="info" class="col-xs-12 col-sm-10 col-sm-offset-1 collapse text-left aboutListContent">
+							<p>Below is your list. You can easily make changes in every field and use the update botton to save the changes you've made. You can also delete items by using the delete button. If you want to change the title of your list or do other customizing, you can do that using our customize page.</p>
+
+							<p>When you've finished your list you can send the link below to your guests.</p>
+
+							<p>Guests will be allowed to see your list thru a guest-view. In this view they will be able reserve items in your list. If you don't want to know which items in your list that hase been reserved <b>we recommend you never visit your list through the guest-view</b> yourself.</p>	
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-
-		<div class="col-xs-12 col-sm-10 col-sm-offset-1 text-left">
-			<div id="info" class="collapse">
-				<p>Below is your list. You can easily make changes in every field and use the update botton to save the changes you've made. You can also delete items by using the delete button. If you want to change the title of your list or do other customizing, you can do that using our customize page.</p>
-
-				<p>When you've finished your list you can send the link below to your guests.</p>
-
-				<p>Guests will be allowed to see your list thru a guest-view. In this view they will be able reserve items in your list. If you don't want to know which items in your list that hase been reserved <b>we recommend you never visit your list through the guest-view</b> yourself.</p>	
-			</div>
-		</div>
-		<div class="col-xs-12 col-sm-10 col-sm-offset-1">
-			<p class="textImportant pull-right"><a href="http://192.168.33.10/Wishr/Code/?/wishList/guestView/{{_session.uniqueUrl}}" target="_blank">http://192.168.33.10/Wishr/Code/?/wishList/guestView/{{_session.uniqueUrl}}</a> <span class="glyphicon glyphicon-new-window"></span></p>
 		</div><!--col-->
 	</div><!--row-->
 </div>
