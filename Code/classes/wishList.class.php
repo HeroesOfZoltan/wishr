@@ -30,8 +30,8 @@ class WishList{
 //Tar emot ett id och kollar om det finns tillsammans med en inloggad user och skriver då ut aktuell lista
 	public static function getList($params){
 		$mysqli = DB::getInstance();
-		$uniqueUrl = $params[0];
-		return ['items' => Sql::getListItems($uniqueUrl, $_SESSION['user']['id']), 'categories' => Sql::category(), 'listInfo' => Sql::getListInfo($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
+
+		return ['items' => Sql::getListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']), 'categories' => Sql::category(), 'listInfo' => Sql::getListInfo($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 	}
 
 	public static function myList(){
@@ -61,18 +61,17 @@ class WishList{
 
 //metod för att lägga till ett objekt i en lista
 	public static function addItem($params){
-		$uniqueUrl = $params[0];
 
-		$valid = Sql::checkUser($uniqueUrl, $_SESSION['user']['id']);
+		$valid = Sql::checkUser($_SESSION['uniqueUrl'], $_SESSION['user']['id']);
 
 
 		if($valid == TRUE){
-			$wish = new Wish($uniqueUrl, $_POST['wishName'],$_POST['wishDescription'],$_POST['wishCategory'], $_POST['prio'],
+			$wish = new Wish($_SESSION['uniqueUrl'], $_POST['wishName'],$_POST['wishDescription'],$_POST['wishCategory'], $_POST['prio'],
 				$_POST['cost'], NULL);
-		return ['redirect' => "?/wishList/getList/$uniqueUrl"];
+		return ['redirect' => "?/wishList/getList/"];
 		}
 		else{
-			return ['redirect' => "?/wishList/getList/$uniqueUrl"];
+			return ['redirect' => "?/wishList/getList/"];
 		}
 	}
 
