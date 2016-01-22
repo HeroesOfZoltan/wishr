@@ -26,9 +26,9 @@ class User{
 			}
 		//Tar user id från databasen som just gjordes och kopplar det till listan
 			$userId = $mysqli->insert_id;
-		//Skapar en unik string som blir primärnyckel för listan
-			$uniqueString = substr(md5(microtime()),rand(0,26),5); //genererar unik sträng på 5 tecken.
-			Sql::insertNewList("Your name","Your partners name", $uniqueString, $userId, 'fa fa-heart'); //Anropar metod som sparar ny lista i databasen
+		//Skapar en unik string på tecken som blir primärnyckel för listan
+			$uniqueString = substr(md5(microtime()),rand(0,26),5);
+			Sql::insertNewList("Your name","Your partners name", $uniqueString, $userId, 'fa fa-heart');
 
 		return ['message' => $message];			
 	}
@@ -43,37 +43,36 @@ class User{
 
 			$password = crypt($passwordClean,'$2a$'.sha1($usernameClean));
 			$user = Sql::logIn($usernameClean, $password);
-//Om inloggning lyckas sparas user id in i session
+//Om inloggning lyckas sparas user id och role in i session
 			if($user['id']){
 				$_SESSION['user']['id'] = $user['id'];
 				$_SESSION['user']['role'] = $user['role'];
 
 				Sql::getUserPermission($_SESSION['user']['id']);
 				Sql::setUniqueUrl($_SESSION['user']['id']);
-
+			//Role == 1 innebär Admin
 				if ($user['role'] == 1) {
 					return ['redirect' => "?/Admin/adminDash"];
 				}
-				
 				return ['redirect' => "?/wishList/myList"];
-
-			}else{
+			}
+			else{
 				return ['redirect' => "?/"];
 			}	
 		}
 		return [];
 	}
-
+//Visar customize/betal-sidan
 	public static function payUp() {
 		return ['userInfo' => Sql::getUserInfo($_SESSION['user']['id']),'listInfo' => Sql::getListInfo($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 
 	} 
-
+//Visar customize/betal-sidan för icke inloggad
 	public static function ourProduct() {
 		return [];
 
 	} 
-
+//Hanterar ett köp av funktion
 	public static function payPermission($params) {
 		$mysqli = DB::getInstance();
 
@@ -83,7 +82,7 @@ class User{
 		Sql::getUserPermission($_SESSION['user']['id']);
 		return ['redirect' => "?/User/payUp/#pageContent2"];
 	}
-
+//Hanterar ändring av användaruppgifter
 	public static function updateUserInfo($params){
 		$mysqli = DB::getInstance();
 
