@@ -1,6 +1,7 @@
 <?php
 class User{
 
+//Returnerar array med permissions för varje metod. TRUE innebär att en måste vara inloggad för att få anropa den metoden
 	public static function check(){
 
 		$methods= ['createUser' => FALSE,'logIn' => FALSE,'ourProduct' => FALSE, 'payUp' => TRUE,'payPermission' => TRUE, 

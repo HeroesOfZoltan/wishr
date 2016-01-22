@@ -2,15 +2,15 @@
 
 class Admin {
 
+//Returnerar array med permissions för varje metod. TRUE innebär att en måste vara inloggad för att få anropa den metoden
 	public static function check(){
 
 		$methods= ['adminDash' => TRUE, 'createNewCategory' => TRUE, 'deleteCategory' => TRUE];
-
 		return $methods;
 	}
 
 	public static function adminDash(){
-
+//Sätts för att andra funtioner ska kunna byggas till
 		Sql::setUniqueUrl($_SESSION['user']['id']);
 
 		$dashboard = Sql::getDashboard();

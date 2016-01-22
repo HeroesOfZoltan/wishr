@@ -3,7 +3,7 @@
 
 class WishList{
 
-
+//Returnerar array med permissions för varje metod. TRUE innebär att en måste vara inloggad för att få anropa den metoden
 	public static function check(){
 
 		$methods= ['createList' => TRUE, 'getList' => TRUE, 'addItem' => TRUE, 'addBlacklistItem' => TRUE,
@@ -13,27 +13,15 @@ class WishList{
 		return $methods;
 	}
 
-	public static function createList(){
-//Skapar ny lista med namn från POST
-		if(isset($_POST['listName'])){
-			$mysqli = DB::getInstance();//Startar databas uppkoppling
-			$listName = $mysqli->real_escape_string($_POST['listName']);//Tvättar input från POST
-			$uniqueString = substr(md5(microtime()),rand(0,26),5); //genererar unik sträng på 5 tecken.
 
-			Sql::insertNewList($listName, $uniqueString); //Anropar metod som sparar ny lista i databasen
-//Returnerar array som sedan renderas av Twig
-			return ['newList' => TRUE, 'listName' => $listName, 'categories' =>Sql::category()];
-		}
-		return ['newList' => FALSE];
-	}
-
-//Tar emot ett id och kollar om det finns tillsammans med en inloggad user och skriver då ut aktuell lista
+//Skriver ut aktuell lista ifall user id och listans unika url i session kan matchas i databasen
 	public static function getList($params){
 		$mysqli = DB::getInstance();
 
 		return ['items' => Sql::getListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']), 'categories' => Sql::category(), 'listInfo' => Sql::getListInfo($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
 	}
 
+//Hämtar allt aktuellt innehåll till en users lista ifall den har en lista, annars returneras en lista utan items
 	public static function myList(){
 		$_SESSION['userPermission'] = Sql::getUserPermission($_SESSION['user']['id']);
 		Sql::setUniqueUrl($_SESSION['user']['id']);
