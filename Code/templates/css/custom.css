@@ -685,7 +685,7 @@ h2 {
 ----------   and unpayedBoxes    ----------
 *********************************************/
 .upgradeBox {
-	min-height: 320px;
+	min-height: 360px;
 	background-color: #92bfe9;
 	color: #fffff0;
 	font-size: 1.4em;
@@ -782,7 +782,7 @@ h2 {
 *********************************************/
 
 .payedBox {
-	min-height: 320px;
+	min-height: 360px;
 	background-color: #facac4;
 }
 
@@ -914,6 +914,9 @@ h2 {
 }
 
 /* For small-screens / col-xs-12 */
+@media (max-width: 990px) {
+
+}
 @media (max-width: 767px) {
 	.navbar-default {
 		background-color: #a1caf1;
