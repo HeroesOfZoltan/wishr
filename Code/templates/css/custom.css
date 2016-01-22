@@ -917,14 +917,33 @@ h2 {
 @media (max-width: 767px) {
 	.navbar-default {
 		background-color: #a1caf1;
-
+	}
+	.listNames .text-center-sm{
+	 text-align:center; 
 	}
 
+
+	.wishName {
+	font-size: 1.3em;
+}
+	.landing-logo{
+		font-size: 5em;
+	}
 	.dropdown-menu>li>form {
 	    padding: 3px 20px;
 	    margin: 8px 0;
 	    border: none;
 	}
+
+	.pageTitle {
+    font-size: 1.1em;
+    text-transform: uppercase;
+    padding: 0.2em 0.4em;
+    	padding-top: 4px;
+	border: 0.1em solid #92bfe9;
+}
+
+}
 
 	.logo {
 		color: #fffff0;
