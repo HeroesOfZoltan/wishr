@@ -44,6 +44,10 @@ class User{
 			if($user['id']){
 				$_SESSION['user']['id'] = $user['id'];
 				$_SESSION['user']['role'] = $user['role'];
+
+				Sql::getUserPermission($_SESSION['user']['id']);
+				Sql::setUniqueUrl($_SESSION['user']['id']);
+
 				if ($user['role'] == 1) {
 					return ['redirect' => "?/Admin/adminDash"];
 				}
@@ -70,25 +74,21 @@ class User{
 	public static function payPermission($params) {
 		$mysqli = DB::getInstance();
 
-		$id = $params[0];
-		$idClean = $mysqli->real_escape_string($id);
-
-		Sql::insertUserPermission($idClean);
+		Sql::insertUserPermission($_SESSION['user']['id']);
 		$uniqueUrl = $_SESSION['uniqueUrl'];
 
-		$_SESSION['userPermission'] = Sql::getUserPermission($_SESSION['user']['id']);
+		Sql::getUserPermission($_SESSION['user']['id']);
 		return ['redirect' => "?/User/payUp/#pageContent2"];
 	}
 
 	public static function updateUserInfo($params){
 		$mysqli = DB::getInstance();
 
-		$id = $params[0];
 		$firstNameClean = $mysqli->real_escape_string($_POST['newFirstName']);
 		$LastNameClean = $mysqli->real_escape_string($_POST['newLastName']);
 		$emailClean = $mysqli->real_escape_string($_POST['newEmail']);
 
-		Sql::updateUserInfo($id, $firstNameClean, $LastNameClean, $emailClean);
+		Sql::updateUserInfo($_SESSION['user']['id'], $firstNameClean, $LastNameClean, $emailClean);
 
 		return ['redirect' => "?/User/payUp/#pageContent2"];
 	}

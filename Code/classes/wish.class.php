@@ -53,7 +53,7 @@ class Wish{
 			return ['redirect' => "?/wishList/getBlacklist/"];
 		}
 		else{
-			return ['redirect' => "?/wishList/getList/"];
+			return ['redirect' => "?/wishList/myList/"];
 		}
 
 	}

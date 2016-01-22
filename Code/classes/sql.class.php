@@ -263,7 +263,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 			}
 		}
 		
-		return  $userPermission;
+		$_SESSION['userPermission'] =  $userPermission;
 	}
 
 	public static function setUserGuestPermission($uniqueUrl) {

@@ -27,16 +27,11 @@ class WishList{
 		return ['newList' => FALSE];
 	}
 
-//Tar emot ett id och kollar om det finns tillsammans med en inloggad user och skriver då ut aktuell lista
-	public static function getList($params){
-		$mysqli = DB::getInstance();
 
-		return ['items' => Sql::getListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']), 'categories' => Sql::category(), 'listInfo' => Sql::getListInfo($_SESSION['uniqueUrl']), 'imageUrl' => Sql::getListImage($_SESSION['uniqueUrl'])];
-	}
 
 	public static function myList(){
-		$_SESSION['userPermission'] = Sql::getUserPermission($_SESSION['user']['id']);
-		Sql::setUniqueUrl($_SESSION['user']['id']);
+		
+		
 
 		$items = Sql::getListItems($_SESSION['uniqueUrl'], $_SESSION['user']['id']);
 		if($items){
@@ -68,25 +63,23 @@ class WishList{
 		if($valid == TRUE){
 			$wish = new Wish($_SESSION['uniqueUrl'], $_POST['wishName'],$_POST['wishDescription'],$_POST['wishCategory'], $_POST['prio'],
 				$_POST['cost'], NULL);
-		return ['redirect' => "?/wishList/getList/"];
+		return ['redirect' => "?/wishList/myList/"];
 		}
 		else{
-			return ['redirect' => "?/wishList/getList/"];
+			return ['redirect' => "?/wishList/myList/"];
 		}
 	}
 
-	public static function addBlacklistItem($params){
-		$uniqueUrl = $params[0];	
+	public static function addBlacklistItem($params){	
 		
-		$valid = Sql::checkUser($uniqueUrl, $_SESSION['user']['id']);
+		$valid = Sql::checkUser($_SESSION['uniqueUrl'], $_SESSION['user']['id']);
 
 		if($valid == TRUE){
-		$wish = new Wish($uniqueUrl, $_POST['wishName'], $_POST['wishDescription'], $_POST['wishCategory'],NULL,NULL, $_POST['blacklist']);
-			
-		return ['redirect' => "?/wishList/getBlacklist/$uniqueUrl"];
+			$wish = new Wish($_SESSION['uniqueUrl'], $_POST['wishName'], $_POST['wishDescription'], $_POST['wishCategory'],NULL,NULL, $_POST['blacklist']);	
+			return ['redirect' => "?/wishList/getBlacklist/"];
 		}
 		else{
-		return ['redirect' => "?/wishList/getBlacklist/$uniqueUrl"];
+			return ['redirect' => "?/wishList/getBlacklist/"];
 		}
 
 		/*$wish = new Wish($uniqueUrl, $_POST['wishName'], $_POST['wishDescription'], $_POST['wishCategory'],NULL,NULL, $_POST['blacklist']);
@@ -118,9 +111,8 @@ class WishList{
 	public static function changeListIcon($params){
 		$mysqli = DB::getInstance();
 
-		$uniqueUrl = $params[0];
 		$iconClean= $mysqli->real_escape_string($_POST['icon']);
-		Sql::updateListIcon($uniqueUrl, $iconClean, $_SESSION['user']['id']);
+		Sql::updateListIcon($_SESSION['uniqueUrl'], $iconClean, $_SESSION['user']['id']);
 
 		return ['redirect' => "?/User/payUp/#pageContent1"];
 	}
