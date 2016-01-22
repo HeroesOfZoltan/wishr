@@ -71,9 +71,7 @@ h1, h2, h3, h4{
 .topMargin{
 	margin-top: 70px; /* For navbar */
 }
-.bottomMargin{
-	margin-bottom: 15px;
-}
+
 .marginTop18vh {
 	margin-top: 18vh;
 }
@@ -81,7 +79,9 @@ h1, h2, h3, h4{
 .marginTop10vh {
 	margin-top: 10vh;
 }
-
+.marginTop6vh {
+	margin-top: 6vh;
+}
 .paddingRight15px {
 	padding-right: 15px;
 }
@@ -451,12 +451,13 @@ h2 {
 }
 
 .listHead .listNamesIcon {
-	position: relative;
-	top: 18px;
-	font-size: 3em;
+	font-size: 5em;
 	padding: 0px 15px;
 }
 
+.listNamesIcon{
+	font-size: 5em;
+}
 .shareUrlBox {
 	background-color: #92bfe9;
 	color: #fffff0;
@@ -608,6 +609,20 @@ h2 {
 ---------- Style for GuestListForm ----------
 *********************************************/
 
+.guestTitle{
+	background-color: #fffff0;
+	color: #a1caf1;
+	font-size: 2.5em;
+	letter-spacing: 0.1em;
+	padding: 0.2em 0.4em;
+	font-family: 'Merriweather', Georgia, serif;
+    font-weight: 700;
+    /*border: #a1caf1 solid 0.07em;*/
+    text-transform: uppercase;
+}
+.titleMargin{
+	margin-bottom: 15px;
+}
 .wishHeader{
 	background-color: #fffff0; 
 	color: #92bfe9;
@@ -937,5 +952,7 @@ h2 {
 	.navbar-nav {
 		margin: 0;
 	}
-
+	.bottomMargin {
+		margin-bottom: 15px;
+	}
 }

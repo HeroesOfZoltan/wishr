@@ -18,7 +18,7 @@
 			</div>
 		{% endif %}
 
-		<div class="collapse navbar-collapse" id="navbar-collapse">
+			<div class="collapse navbar-collapse" id="navbar-collapse">
 			{% if _session.user %}
 				<!-- Logut Button -->
 				<form class="navbar-form  navbar-right" method="post" action="index.php">
@@ -38,22 +38,23 @@
 			{% else %}
 <!-- Login navbar -->
 		
-			<div class="nav navbar-nav navbar-right">
-            	<form class="form-inline navbar-form" action='?/User/login' method='post'>
+
+            	<form class="navbar-form navbar-right" action='?/User/login' method='post'>
 					<div class="form-group">
-						<input class="form-control input" type='text' name='email' placeholder="E-mail">
-						<input class="form-control input" type='password' name='password' placeholder="Password">
+						<input class="form-control input bottomMargin" type='text' name='email' placeholder="E-mail" autofocus>
+						<input class="form-control input bottomMargin" type='password' name='password' placeholder="Password">
 					</div>
-					<button class="btn navbar-btn button" type='submit' name='submitLogin' value='Log in'>Login</button>
+					<button class="btn button" type='submit' name='submitLogin' value='Log in'>Login</button>
 				</form>
-			</div>
+
 							
 			    
 			<!-- End Login navbar -->
 
 			<!-- Upgrade Button navbar -->
+
 			<form class="navbar-form  navbar-right"  method="post" action="?/User/ourProduct/">
-				<button type="submit" class="btn navbar-btn button" name='goPro' value='Go Pro!'>Our product&nbsp;<i class="fa fa-info-circle"></i></button>
+				<button type="submit" class="btn button" name='goPro' value='Go Pro!'>Our product&nbsp;<i class="fa fa-info-circle"></i></button>
 			</form>
 			{% endif %}
 		</div>

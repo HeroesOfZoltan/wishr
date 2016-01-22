@@ -8,8 +8,11 @@ require_once("classes/sql.class.php");
 if(isset($_POST['killSession'])){
 	session_unset();
 }
+
 //lägga till konstanter
-error_reporting(1);
+const DONEDIDIT = 4;
+
+error_reporting(0);
 
 //anropar getUrlParts och skickar in url. url_parts blir en array med uppstyckad url. 
 $url_parts = getUrlParts($_GET); 
@@ -131,9 +134,9 @@ else{
 	$data= array();//Här kan vi lägga t ex statestik om sidan som ska visas på förstasidan
 }
 
-//var_dump($data);
 $twig = startTwig();
 echo $twig->render($template, $data);
+
 
 //print_r($data);
 
