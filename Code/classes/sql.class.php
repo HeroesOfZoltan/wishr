@@ -351,7 +351,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		$mysqli = DB::getInstance();
 		$dashArray=[];
 		$query = 
-				"SELECT COUNT(id) as lists
+				"SELECT COUNT(uniqueString) as lists
 				FROM list
 				LIMIT 1";
 
