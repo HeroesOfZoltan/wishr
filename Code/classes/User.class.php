@@ -21,10 +21,12 @@ class User{
 			$lastnameClean = $mysqli->real_escape_string($_POST['lastname']);
 
 			$password = crypt($passwordClean,'$2a$'.sha1($usernameClean));
+		//Tar emot värde för lyckad registrering
 			$message = Sql::insertUser($password, $usernameClean, $firstnameClean, $lastnameClean);
 			}
-
+		//Tar user id från databasen som just gjordes och kopplar det till listan
 			$userId = $mysqli->insert_id;
+		//Skapar en unik string som blir primärnyckel för listan
 			$uniqueString = substr(md5(microtime()),rand(0,26),5); //genererar unik sträng på 5 tecken.
 			Sql::insertNewList("Your name","Your partners name", $uniqueString, $userId, 'fa fa-heart'); //Anropar metod som sparar ny lista i databasen
 
