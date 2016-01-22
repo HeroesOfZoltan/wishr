@@ -7,7 +7,7 @@ class WishList{
 	public static function check(){
 
 		$methods= ['createList' => TRUE, 'getList' => TRUE, 'addItem' => TRUE, 'addBlacklistItem' => TRUE,
-		 'changeListName' => TRUE, 'ChangeListIcon' => TRUE, 'changeListImage' => TRUE, 'getBlacklist' => TRUE, 
+		 'changeListName' => TRUE, 'ChangeListIcon' => TRUE, 'changeListImage' => TRUE, 'getBlacklist' => TRUE,'myList'=>TRUE, 
 		 'guestView' => FALSE];
 
 		return $methods;
@@ -28,13 +28,16 @@ class WishList{
 //Listvy för en gäst
 	public static function guestView($params){
 			$mysqli = DB::getInstance();
-
 			$uniqueUrl = $params[0];
 			$uniqueUrlClean = $mysqli->real_escape_string($uniqueUrl);
 		//Hämtar listskaparens permissions som avgör vad som ska visas i gästvyn
-			Sql::setUserGuestPermission($uniqueUrlClean);
-			return ['guestListItems' => Sql::getListItemsGuest($uniqueUrlClean), 'guestBlackListItems' => Sql::getBlacklistItemsGuest($uniqueUrlClean),'imageUrl' => Sql::getListImage($uniqueUrlClean), 'listInfo' => Sql::getListInfo($uniqueUrlClean)];
-
+			if($uniqueUrlClean){
+				Sql::setUserGuestPermission($uniqueUrlClean);
+				return ['guestListItems' => Sql::getListItemsGuest($uniqueUrlClean), 'guestBlackListItems' => Sql::getBlacklistItemsGuest($uniqueUrlClean),'imageUrl' => Sql::getListImage($uniqueUrlClean), 'listInfo' => Sql::getListInfo($uniqueUrlClean)];
+			}
+			else{
+				return ['redirect' => "?/"];
+			}
 		}
 
 //metod för att lägga till ett objekt i en lista
