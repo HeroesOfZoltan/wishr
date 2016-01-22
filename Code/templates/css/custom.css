@@ -63,7 +63,9 @@ h1, h2, h3, h4{
 .width100 {
 	width: 100%;
 }
-
+.marginLeft15{
+	margin-left: 15px;
+}
 .heigth100 {
 	height: 100%;
 }
@@ -636,11 +638,6 @@ h2 {
 	border-bottom: 4px solid #92bfe9;
 }
 
-.wishCollapseBody .col-xs-12 {
-	padding-top: 15px;
-	padding-bottom: 15px;
-}
-
 .wishCollapseBody .row {
 	padding: 15px 0;
 }
@@ -648,10 +645,6 @@ h2 {
 .wishCollapseBody form{
 	margin-top:10px;
 	margin-bottom:10px;
-}
-
-.wishCollapseBody button {
-	margin-left: 15px;
 }
 
 .formDibs, .formDibs:focus{

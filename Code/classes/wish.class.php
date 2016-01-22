@@ -50,10 +50,10 @@ class Wish{
 
 
 		if(isset($_POST['toBlacklist'])){
-			return ['redirect' => "?/wishList/getBlacklist/$uniqueUrl"];
+			return ['redirect' => "?/wishList/getBlacklist/"];
 		}
 		else{
-			return ['redirect' => "?/wishList/getList/$uniqueUrl"];
+			return ['redirect' => "?/wishList/getList/"];
 		}
 
 	}
