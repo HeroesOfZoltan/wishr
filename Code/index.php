@@ -7,7 +7,6 @@ require_once("classes/sql.class.php");
 
 if(isset($_POST['killSession'])){
 	session_unset();
-
 }
 
 //lägga till konstanter
@@ -18,7 +17,7 @@ error_reporting(0);
 //anropar getUrlParts och skickar in url. url_parts blir en array med uppstyckad url. 
 $url_parts = getUrlParts($_GET); 
 
-//var_dump($url_parts);
+
 //array_shift lägger in första värdet i $class osv.
 if($url_parts!= null){
 	$class = array_shift($url_parts); 
@@ -27,96 +26,109 @@ if($url_parts!= null){
 //skickar in class och anropar dess statiska metod.
 	require_once("classes/".$class.".class.php"); 
 
-	//lägg till kontrollmetod här
+	$access = FALSE;
 
-	$data = $class::$method($url_parts);
-	$data['_session'] = $_SESSION;
+    if($class != 'sql'){
 
+        $_permissions = $class::check();
 
-	if($method ==  'myList' || $method ==  'getList'){
-		$template = 'myList.html';
-		if( count($data["items"])<20|| in_array(1, $_SESSION["userPermission"]) || in_array(3, $_SESSION["userPermission"])){
-			$data['payment'] = "newWishForm.html";
-		}
-		else{
-			$data['payment'] = "paymentInfo.html";
-		}
-	}
+        if($_permissions[$method] == TRUE && $_SESSION['user']){
+            $access = TRUE;
+        }elseif($_permissions[$method] == FALSE){
+            $access = TRUE;
+        }
+    }
 
-	elseif($method ==  'payUp'){
-		$template = 'payUp.html';
+	if($access == TRUE){
 
-		if( $_SESSION["user"]){
-				if(in_array(1, $_SESSION["userPermission"]) || in_array(3, $_SESSION["userPermission"])){
-						$data['unlimitedForm'] = "payedUnlimited.html";
-				}
-				else{
-						$data['unlimitedForm'] = "unpayedUnlimited.html";
-				}
-				if(in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
-						$data['blacklistForm'] = "payedBlacklist.html";
-				}
-				else{
-						$data['blacklistForm'] = "unpayedBlacklist.html";
-				}
-				if(in_array(1, $_SESSION["userPermission"]) || in_array(5, $_SESSION["userPermission"])){
-						$data['listImage'] = "payedChangeBg.html";
-				}
-				else{
-						$data['listImage'] = "unpayedChangeBg.html";
-				}
-				if(in_array(1, $_SESSION["userPermission"]) || in_array(4, $_SESSION["userPermission"])){
-						$data['doneForm'] = "payedDonedidit.html";
-				}
-				else{
-						$data['doneForm'] = "unpayedDonedidit.html";
-				}
-				
-				$data['payView'] = "paymentForm.html";
+		$data = $class::$method($url_parts);
+		$data['_session'] = $_SESSION;
+
+		if($method ==  'myList' || $method ==  'getList'){
+			$template = 'myList.html';
+
+			if( count($data["items"])<20|| in_array(1, $_SESSION["userPermission"]) || in_array(3, $_SESSION["userPermission"])){
+				$data['payment'] = "newWishForm.html";
 			}
-		else{
-				$data['payView'] = "ourProduct.html";
+			else{
+				$data['payment'] = "paymentInfo.html";
+			}
 		}
-	}
 
-	elseif($method ==  'getBlacklist'){
-		if(in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
+		elseif($method ==  'payUp'){
+			$template = 'payUp.html';
+
+			if(in_array(1, $_SESSION["userPermission"]) || in_array(3, $_SESSION["userPermission"])){
+				$data['unlimitedForm'] = "payedUnlimited.html";
+			}
+			else{
+				$data['unlimitedForm'] = "unpayedUnlimited.html";
+			}
+			if(in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
+				$data['blacklistForm'] = "payedBlacklist.html";
+			}
+			else{
+				$data['blacklistForm'] = "unpayedBlacklist.html";
+			}
+			if(in_array(1, $_SESSION["userPermission"]) || in_array(5, $_SESSION["userPermission"])){
+				$data['listImage'] = "payedChangeBg.html";
+			}
+			else{
+				$data['listImage'] = "unpayedChangeBg.html";
+			}
+			if(in_array(1, $_SESSION["userPermission"]) || in_array(4, $_SESSION["userPermission"])){
+				$data['doneForm'] = "payedDonedidit.html";
+			}
+			else{
+				$data['doneForm'] = "unpayedDonedidit.html";
+			}
+					
+		}
+		elseif($method ==  'ourProduct'){
+			$template= "ourProduct.html";
+		}
+
+		elseif($method ==  'getBlacklist'){
+			if(in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
 				$template = 'blacklist.html';
 				$data['payView'] = "paymentForm.html";
+			}
+			else{
+				$data['redirect']= "?/User/payUp/";
+			}
 		}
-		else{
-			$data['redirect']= "?/User/payUp/";
-		}
-	}
 
-	elseif($method ==  'createUser'){
+		elseif($method ==  'createUser'){
+			$template = 'login.html';
+		}
+
+		elseif($method ==  'guestView'){
+			$template = 'guestView.html';
+			if( in_array(1, $_SESSION["userPermission"]) || in_array(4, $_SESSION["userPermission"])){
+				$data['guestDonelist'] = "guestDonelist.html";
+
+				$data['guestDoneForm'] = "guestDoneForm.html";
+			}
+			if( in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
+				$data['guestBlacklist'] = "guestBlacklist.html";
+			}
+		}
+		elseif($method ==  'adminDash' AND $_SESSION['user']['role'] == 1 ){
+			$template = 'adminDash.html';
+		}
+
+	}	//ends access if
+	else{
 		$template = 'login.html';
+		$data = array();
 	}
-
-	elseif($method ==  'guestView'){
-		$template = 'guestView.html';
-		if( in_array(1, $_SESSION["userPermission"]) || in_array(4, $_SESSION["userPermission"])){
-			$data['guestDonelist'] = "guestDonelist.html";
-
-			$data['guestDoneForm'] = "guestDoneForm.html";
-		}
-		if( in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
-			$data['guestBlacklist'] = "guestBlacklist.html";
-		}
-	}
-
-
-	elseif($method ==  'adminDash' AND $_SESSION['user']['role'] == 1 ){
-		$template = 'adminDash.html';
-	}
-
 
 //redirectar sidan till valt destination.
 	if(isset($data['redirect'])){
 		header("Location: ".$data['redirect']);
 	}
+}	//ends if url_parts
 
-}
 else{
 	$template = 'login.html';
 	$data= array();//Här kan vi lägga t ex statestik om sidan som ska visas på förstasidan
@@ -127,6 +139,8 @@ echo $twig->render($template, $data);
 
 
 //print_r($data);
+
+print_r($_SESSION);
 
 function getUrlParts($get){
 	$get_params = array_keys($get);//plockar key värden ur get-arrayen
@@ -145,22 +159,3 @@ function startTwig(){
 	$loader = new Twig_Loader_Filesystem('templates/');
 	return $twig = new Twig_Environment($loader);
 }
-
-/*function clean(&$var) {
-	$mysqli = DB::getInstance();
-
-
-	if (is_array($var)) {
-		foreach($var as $key => $val) {
-			$mysqli->real_escape_string($val);
-		}
-	}
-	else{
-		$mysqli->real_escape_string($var);
-	}
-	//$_SESSION['test'] = 'test';
-}
-*/
-
-
-

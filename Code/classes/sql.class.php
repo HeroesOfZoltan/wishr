@@ -27,27 +27,40 @@ class Sql {
 
 		$mysqli->query($query);	
 	}
-	public static function updateItem($wishClean,$descriptionClean,$wishIdClean,$wishCategoryIdClean,$wishPrioClean,$wishCostClean){
+	public static function updateItem($wishClean,$descriptionClean,$wishIdClean,$wishCategoryIdClean,$wishPrioClean,$wishCostClean, $userId){
 		$mysqli = DB::getInstance();
 		$query = 
 					"UPDATE item
 					SET wish='$wishClean', description='$descriptionClean', category_id ='$wishCategoryIdClean',
 					prio='$wishPrioClean', cost='$wishCostClean'
 					WHERE id = $wishIdClean
-					";
+					AND list_uniqueString IN (
+						SELECT uniqueString
+						FROM list, user
+						WHERE list.user_id = user.id
+						AND user.id = $userId
+					)";
 			
 			$mysqli->query($query);
 
 	}
 
-		public static function deleteItem($wishIdClean,$wishClean, $uniqueUrl,$descriptionClean,$wishCategoryIdClean,$checkedByClean,$prioClean,$costClean,$blacklistClean){
+		public static function deleteItem($wishIdClean, $userId){
 			$mysqli = DB::getInstance();
 			$query = 
 					"INSERT INTO deletedItem
-					(id, wish, list_uniqueString, description, category_id, checkedBy, prio, cost, blacklist) 
-					VALUES ('$wishIdClean','$wishClean', '$uniqueUrl','$descriptionClean','$wishCategoryIdClean',
-						'$checkedByClean','$prioClean','$costClean','$blacklistClean')
-					";
+					(id, wish, list_uniqueString, description, category_id, checkedBy, prio, cost, blacklist)
+					select id, wish, list_uniqueString, description, category_id, checkedBy, prio, cost, blacklist
+					from item
+					where item.id = $wishIdClean
+
+					AND list_uniqueString IN (
+						SELECT uniqueString
+						FROM list, user
+						WHERE list.user_id = user.id
+						AND user.id = $userId
+					)";
+				
 			$mysqli->query($query);
 
 			$query = 
@@ -59,8 +72,8 @@ class Sql {
 	}
 
 	public static function getListItems($uniqueUrl, $userId){
-		 	$userPerm[] = $_SESSION["userPermission"];
-		if(in_array(1, $userPerm ) || in_array(3, $userPerm)){
+
+		if(in_array(1,$_SESSION['userPermission'] ) || in_array(3,$_SESSION['userPermission'])){
 		 	$query = 
 		 		"SELECT wish, category_id, description, checkedBy, prio, cost, blacklist, categoryName, item.id as 'itemId'
 				FROM list, item, category
@@ -169,12 +182,14 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		return Self::arrayResult($query);
 	}
 	
-	public static function setListName($newListName, $uniqueUrl) {
+	public static function setListName($newListName, $uniqueUrl, $userId) {
 		$mysqli = DB::getInstance();
 		$query =
 				"UPDATE list
 				SET listName='$newListName'
-				WHERE uniqueString = '$uniqueUrl'";
+				WHERE uniqueString = '$uniqueUrl'
+				AND user_id = $userId";
+
 		$mysqli->query($query);
 	}
 
@@ -189,7 +204,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		$result = $mysqli->query($query);
 		
 		if($row = $result->fetch_assoc()){
-				$exists = TRUE;
+			$exists = TRUE;
 			}
 		else {
 			$exists = NULL;
@@ -336,7 +351,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		$mysqli = DB::getInstance();
 		$dashArray=[];
 		$query = 
-				"SELECT COUNT(id) as lists
+				"SELECT COUNT(uniqueString) as lists
 				FROM list
 				LIMIT 1";
 
@@ -387,35 +402,38 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		$mysqli->query($query);	
 	}
 
-	public static function updateListName($uniqueUrl, $newNameFirst, $newNameSecond){
+	public static function updateListName($uniqueUrl, $newNameFirst, $newNameSecond, $userId){
 		$mysqli = DB::getInstance();
 		
 		$query = 
 				"UPDATE list
 				SET firstName = '$newNameFirst', secondName = '$newNameSecond'
-				WHERE uniqueString = '$uniqueUrl'";
+				WHERE uniqueString = '$uniqueUrl'
+				AND user_id = $userId";
 
 		$mysqli->query($query);
 	}
 
-	public static function updateListIcon($uniqueUrl, $listIcon){
+	public static function updateListIcon($uniqueUrl, $listIcon, $userId){
 		$mysqli = DB::getInstance();
 		
 		$query = 
 				"UPDATE list
 				SET listIcon = '$listIcon'
-				WHERE uniqueString = '$uniqueUrl'";
+				WHERE uniqueString = '$uniqueUrl'
+				AND user_id = $userId";
 
 		$mysqli->query($query);
 	}
 
-	public static function updateListImage($uniqueUrl, $newImage){
+	public static function updateListImage($uniqueUrl, $newImage, $userId){
 		$mysqli = DB::getInstance();
 		
 		$query = 
 				"UPDATE list
 				SET imageUrl = '$newImage'
-				WHERE uniqueString = '$uniqueUrl'";
+				WHERE uniqueString = '$uniqueUrl'
+				AND user_id = $userId";
 				
 		$mysqli->query($query);
 	}
@@ -439,6 +457,19 @@ public static function getBlackListItems($uniqueUrl, $userId){
 				WHERE id = $id";
 
 		$mysqli->query($query);
+	}
 
+	public static function checkUser($uniqueUrl, $userId){
+		$mysqli = DB::getInstance();
+
+		$query =
+				"SELECT uniqueString
+				FROM list
+				WHERE uniqueString = '$uniqueUrl'
+				AND list.user_id = $userId
+				LIMIT 1";
+			
+
+			return Self::arrayResult($query);
 	}
 }

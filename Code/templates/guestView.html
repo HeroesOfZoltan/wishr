@@ -1,6 +1,5 @@
 {% include "pageHeader.html" %}
-{% include "triangleBg.html" %}
-
+{% include "triangleBg.html" %} 
 
 <div class="container">
 
@@ -25,17 +24,18 @@
 					</div>
 				</div>
 
-				<div class="aboutList">
-					<div class="col-xs-10 col-xs-offset-1 text-center aboutListTitle" data-toggle="collapse" data-target="#info">
-						<h3 class=""><i class="fa fa-chevron-down"></i> About this list:</h3>
-					</div>
-				
-					<div id="info" class="col-xs-12 col-sm-10 col-sm-offset-1 collapse text-left aboutListContent">
-						<p>Below you will find a wishlist that has been shared with you. You can click each item to expand it and find more information about that item. If your hosts has unlocked the function for reserving gifts, you can reserve an item from the list by puttning your name in the appropriate field attached to that item. </p>
+					<div class="aboutList">
+						<div class="col-xs-10 col-xs-offset-1 text-center aboutListTitle" data-toggle="collapse" data-target="#info">
+							<h3 class=""><i class="fa fa-chevron-down"></i> About this list:</h3>
+						</div>
+					
+						<div id="info" class="col-xs-12 col-sm-10 col-sm-offset-1 collapse text-left aboutListContent">
+							<p>Below you will find a wishlist that has been shared with you. You can click each item to expand it and find more information about that item. If your hosts has unlocked the function for reserving gifts, you can reserve an item from the list by puttning your name in the appropriate field attached to that item. </p>
 
-						<p>Reserved items from the list will be shown in the Done list. If you wanna undo a reservation, simply remove your name form that item in the Done list</p>
+							<p>Reserved items from the list will be shown in the Done list. If you wanna undo a reservation, simply remove your name form that item in the Done list</p>
 
-						<p>If your hosts has items they don't want to recieve as gifts, you can view those items in the Blacklist.</p>	
+							<p>If your hosts has items they don't want to recieve as gifts, you can view those items in the Blacklist.</p>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -55,17 +55,18 @@
 							{% if guestDoneForm %}
 								{% include guestDoneForm %}
 							{% endif %}
-							<div class="col-xs-12">
-								<label>Description: </label> {{guestListItem.description}}
+							<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+								<label><p>Description:</p></label> 
+								<p>{{guestListItem.description}}</p>
 							</div>
-							<div class="col-xs-6">
-								<label>Category: </label> {{guestListItem.categoryName}}
+							<div class="col-xs-6 col-sm-5 col-sm-offset-1">
+								<label><p>Category: </p></label> {{guestListItem.categoryName}}
 							</div>
-							<div class="col-xs-6">
-								<label>Est. cost: </label> {{guestListItem.cost}}
+							<div class="col-xs-6 col-sm-5">
+								<label><p>Est. cost: </p></label> {{guestListItem.cost}}
 							</div>
-							<div class="col-xs-12">
-								<label>Search for {{guestListItem.wish}}: </label><br>{% include "searchBtns.html" %}
+							<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+								<label><p>Search for {{guestListItem.wish}}:</p> </label>{% include "searchBtns.html" %}
 							</div>
 						</div>
 					</div>
