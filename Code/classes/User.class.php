@@ -11,7 +11,7 @@ class User{
 	}
 
 //Skapar, tvättar, krypterar och sparar ner ny user till databasem
-	public static function createUser($params){
+	public static function createUser(){
 		
 		if(isset($_POST['email'])){
 			$mysqli = DB::getInstance();
@@ -21,8 +21,10 @@ class User{
 			$lastnameClean = $mysqli->real_escape_string($_POST['lastname']);
 
 			$password = crypt($passwordClean,'$2a$'.sha1($usernameClean));
+
 		//Tar emot värde för lyckad registrering
 			$message = Sql::insertUser($password, $usernameClean, $firstnameClean, $lastnameClean);
+
 			}
 		//Tar user id från databasen som just gjordes och kopplar det till listan
 			$userId = $mysqli->insert_id;
@@ -34,7 +36,7 @@ class User{
 	}
 
 //Hanterar inloggning
-	public static function login($params){
+	public static function login(){
 		
 		if(isset($_POST['email'])){
 			$mysqli = DB::getInstance();
@@ -72,8 +74,10 @@ class User{
 		return [];
 
 	} 
+
 //Hanterar ett köp av funktion
-	public static function payPermission($params) {
+	public static function payPermission() {
+
 		$mysqli = DB::getInstance();
 
 		Sql::insertUserPermission($_SESSION['user']['id']);
@@ -82,8 +86,9 @@ class User{
 		Sql::getUserPermission($_SESSION['user']['id']);
 		return ['redirect' => "?/User/payUp/#pageContent2"];
 	}
+
 //Hanterar ändring av användaruppgifter
-	public static function updateUserInfo($params){
+	public static function updateUserInfo(){
 		$mysqli = DB::getInstance();
 
 		$firstNameClean = $mysqli->real_escape_string($_POST['newFirstName']);

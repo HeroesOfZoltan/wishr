@@ -24,11 +24,11 @@ class Wish{
 
 		Sql::insertNewItem($wishClean, $uniqueUrl,$descriptionClean,$wishCategoryClean, $wishPrioClean, $wishCostClean,$wishBlacklistClean);	
 	}
+
 //Uppdaterar ett item till nya värden alt. tar bort ett item från users lista ifall inloggad user id stämmer med unikt list id i databasen
-	public static function updateItem($params){
+	public static function updateItem(){
 		$mysqli = DB::getInstance();
 
-		$uniqueUrl = $params[0];
 
 		$wishClean = $mysqli->real_escape_string($_POST['wishName']);
 		$descriptionClean = $mysqli->real_escape_string($_POST['wishDescription']);
