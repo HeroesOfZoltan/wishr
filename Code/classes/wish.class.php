@@ -26,10 +26,9 @@ class Wish{
 		Sql::insertNewItem($wishClean, $uniqueUrl,$descriptionClean,$wishCategoryClean, $wishPrioClean, $wishCostClean,$wishBlacklistClean);	
 	}
 
-	public static function updateItem($params){
+	public static function updateItem(){
 		$mysqli = DB::getInstance();
 
-		$uniqueUrl = $params[0];
 
 		$wishClean = $mysqli->real_escape_string($_POST['wishName']);
 		$descriptionClean = $mysqli->real_escape_string($_POST['wishDescription']);

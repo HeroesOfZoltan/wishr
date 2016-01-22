@@ -38,7 +38,7 @@ class WishList{
 		}
 
 //metod för att lägga till ett objekt i en lista
-	public static function addItem($params){
+	public static function addItem(){
 
 		$valid = Sql::checkUser($_SESSION['uniqueUrl'], $_SESSION['user']['id']);
 
@@ -53,7 +53,7 @@ class WishList{
 		}
 	}
 
-	public static function addBlacklistItem($params){	
+	public static function addBlacklistItem(){	
 		
 		$valid = Sql::checkUser($_SESSION['uniqueUrl'], $_SESSION['user']['id']);
 
@@ -69,29 +69,26 @@ class WishList{
 		return ['redirect' => "?/wishList/getBlacklist/$uniqueUrl"];*/
 	}
 
-	public static function newListName($params){
+	public static function newListName(){
 		$mysqli = DB::getInstance();
 
-		$uniqueUrl = $params[0];
 		$listNameClean = $mysqli->real_escape_string($_POST['newListName']);
-		Sql::setListName($listNameClean, $uniqueUrl, $_SESSION['user']['id']);
+		Sql::setListName($listNameClean, $_SESSION['uniqueUrl'], $_SESSION['user']['id']);
 
 		return['redirect' => '?/User/payUp/#pageContent1'];
-
 	}
 
-	public static function changeListName($params){
+	public static function changeListName(){
 		$mysqli = DB::getInstance();
 
-		$uniqueUrl = $params[0];
 		$newListNameFirstClean= $mysqli->real_escape_string($_POST['newListNameFirst']);
 		$newListNameSecondClean= $mysqli->real_escape_string($_POST['newListNameSecond']);
-		Sql::updateListName($uniqueUrl, $newListNameFirstClean,$newListNameSecondClean, $_SESSION['user']['id']);
+		Sql::updateListName($_SESSION['uniqueUrl'], $newListNameFirstClean,$newListNameSecondClean, $_SESSION['user']['id']);
 
 		return ['redirect' => "?/User/payUp/#pageContent1"];
 	}
 
-	public static function changeListIcon($params){
+	public static function changeListIcon(){
 		$mysqli = DB::getInstance();
 
 		$iconClean= $mysqli->real_escape_string($_POST['icon']);
@@ -100,16 +97,15 @@ class WishList{
 		return ['redirect' => "?/User/payUp/#pageContent1"];
 	}
 
-	public static function changeListImage($params){
+	public static function changeListImage(){
 		$mysqli = DB::getInstance();
-		$uniqueUrl = $params[0];
 
 		if(isset($_POST['originalImage'])){
-			Sql::updateListImage($uniqueUrl, 'flowers.jpg', $_SESSION['user']['id']);
+			Sql::updateListImage($_SESSION['uniqueUrl'], 'flowers.jpg', $_SESSION['user']['id']);
 		}
 		else{
 			$newListImageClean= $mysqli->real_escape_string($_POST['newListImage']);
-			Sql::updateListImage($uniqueUrl, $newListImageClean, $_SESSION['user']['id']);
+			Sql::updateListImage($_SESSION['uniqueUrl'], $newListImageClean, $_SESSION['user']['id']);
 		}
 		return ['redirect' => "?/User/payUp/#pageContent2"];
 	}
