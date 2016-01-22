@@ -2,6 +2,7 @@
 
 class Sql {
 
+//Anropas av metoder inom klassen och returnerar array med värden
 	private static function arrayResult($query) {
 		$mysqli = DB::getInstance();
 
@@ -30,44 +31,41 @@ class Sql {
 	public static function updateItem($wishClean,$descriptionClean,$wishIdClean,$wishCategoryIdClean,$wishPrioClean,$wishCostClean, $userId){
 		$mysqli = DB::getInstance();
 		$query = 
-					"UPDATE item
-					SET wish='$wishClean', description='$descriptionClean', category_id ='$wishCategoryIdClean',
-					prio='$wishPrioClean', cost='$wishCostClean'
-					WHERE id = $wishIdClean
-					AND list_uniqueString IN (
-						SELECT uniqueString
-						FROM list, user
-						WHERE list.user_id = user.id
-						AND user.id = $userId
-					)";
+				"UPDATE item
+				SET wish='$wishClean', description='$descriptionClean', category_id ='$wishCategoryIdClean',
+				prio='$wishPrioClean', cost='$wishCostClean'
+				WHERE id = $wishIdClean
+				AND list_uniqueString IN (
+					SELECT uniqueString
+					FROM list, user
+					WHERE list.user_id = user.id
+					AND user.id = $userId
+				)";
 			
-			$mysqli->query($query);
+		$mysqli->query($query);
 
 	}
 
-		public static function deleteItem($wishIdClean, $userId){
-			$mysqli = DB::getInstance();
-			$query = 
-					"INSERT INTO deletedItem
-					(id, wish, list_uniqueString, description, category_id, checkedBy, prio, cost, blacklist)
-					select id, wish, list_uniqueString, description, category_id, checkedBy, prio, cost, blacklist
-					from item
-					where item.id = $wishIdClean
-
-					AND list_uniqueString IN (
-						SELECT uniqueString
-						FROM list, user
-						WHERE list.user_id = user.id
-						AND user.id = $userId
-					)";
-				
-			$mysqli->query($query);
-
-			$query = 
-					"DELETE FROM item
-					WHERE item.id = $wishIdClean";
-
-			$mysqli->query($query);
+	public static function deleteItem($wishIdClean, $userId){
+		$mysqli = DB::getInstance();
+		$query = 
+				"INSERT INTO deletedItem
+				(id, wish, list_uniqueString, description, category_id, checkedBy, prio, cost, blacklist)
+				select id, wish, list_uniqueString, description, category_id, checkedBy, prio, cost, blacklist
+				from item
+				where item.id = $wishIdClean
+				AND list_uniqueString IN (
+					SELECT uniqueString
+					FROM list, user
+					WHERE list.user_id = user.id
+					AND user.id = $userId
+				)";
+			
+		$mysqli->query($query);
+		$query = 
+				"DELETE FROM item
+				WHERE item.id = $wishIdClean";
+		$mysqli->query($query);
 
 	}
 
@@ -97,40 +95,36 @@ class Sql {
 				LIMIT 20";
 		}
 
-		
 			return Self::arrayResult($query);
 		 }
-//ersätta * med det viktiga!
-public static function getBlackListItems($uniqueUrl, $userId){
+
+	public static function getBlackListItems($uniqueUrl, $userId){
 	
-			$query = 
-				"SELECT item.wish, item.description, item.id as 'itemId', item.blacklist
-				FROM list, item
-				WHERE list.uniqueString = item.list_uniqueString
-				AND list.uniqueString = '$uniqueUrl'
-				AND list.user_id = $userId
-				AND item.blacklist = 1
-				ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id";
-		
-			return Self::arrayResult($query);
-		 }	 
+		$query = 
+			"SELECT item.wish, item.description, item.id as 'itemId', item.blacklist
+			FROM list, item
+			WHERE list.uniqueString = item.list_uniqueString
+			AND list.uniqueString = '$uniqueUrl'
+			AND list.user_id = $userId
+			AND item.blacklist = 1
+			ORDER BY item.prio is null, item.prio = 0, item.prio asc, item.id";
+	
+		return Self::arrayResult($query);
+	 }	 
 
 	public static function getListImage($uniqueUrl){
-			$mysqli = DB::getInstance();
-			$query = 
-				"SELECT imageUrl
-				FROM list
-				WHERE list.uniqueString = '$uniqueUrl'
-				LIMIT 1";
-		
-			$result = $mysqli->query($query);
-			$imageUrl = $result->fetch_assoc();
-
-			return $imageUrl;
-		 }	
+		$mysqli = DB::getInstance();
+		$query = 
+			"SELECT imageUrl
+			FROM list
+			WHERE list.uniqueString = '$uniqueUrl'
+			LIMIT 1";
+	
+		$result = $mysqli->query($query);
+		$imageUrl = $result->fetch_assoc();
+		return $imageUrl;
+	}	
 		 
-// lägga till 
-		 //
 	public static function getListItemsGuest($uniqueUrl) {
 		$query = 
 			"SELECT item.wish, item.description, item.blacklist, category.categoryName, item.id as itemId, 
@@ -147,7 +141,7 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		return Self::arrayResult($query);
 	}
 
-		public static function getBlacklistItemsGuest($uniqueUrl) {
+	public static function getBlacklistItemsGuest($uniqueUrl) {
 		$query = 
 			"SELECT item.wish, item.description, item.blacklist, item.id as itemId, 
 			list.uniqueString as uniqueUrl, user.role, item.checkedBy, item.cost
@@ -277,13 +271,13 @@ public static function getBlackListItems($uniqueUrl, $userId){
 		$arrays =  Self::arrayResult($query);
 
 		if($arrays){
-		foreach($arrays as $row ) {
-	       	foreach($row as $k['permission_id'] => $v ) {
-	            $userPermission[] = $v;
-	       }
+			foreach($arrays as $row ) {
+	    	   	foreach($row as $k['permission_id'] => $v ) {
+	    	        $userPermission[] = $v;
+	    	   }
+			}
 		}
-	}
-		$_SESSION['userPermission'] =  $userPermission;
+		$_SESSION['userPermission'] = $userPermission;
 	}
 
 	public static function setUniqueUrl($userId) {
@@ -294,22 +288,20 @@ public static function getBlackListItems($uniqueUrl, $userId){
 			WHERE list.user_id = '$userId'
 			LIMIT 1";
 
-			if($result = $mysqli->query($query)){
-		 		$item = $result->fetch_assoc();
-
-			 	$_SESSION['uniqueUrl'] = $item['uniqueUrl'];
-			}			
+		if($result = $mysqli->query($query)){
+	 		$item = $result->fetch_assoc();
+		 	$_SESSION['uniqueUrl'] = $item['uniqueUrl'];
+		}			
 	}
 
 	public static function insertNewList($firstName, $secondName, $uniqueUrl, $userId, $icon){
 		$mysqli = DB::getInstance();
 		
-			$query =
-				"INSERT INTO list 
-				(firstName, secondName, user_id, uniqueString, imageUrl, listIcon, listName) 
-				VALUES ('$firstName','$secondName', '$userId', '$uniqueUrl', 'flowers.jpg','$icon', 'Please add a listname!')";
-
-			$mysqli->query($query);
+		$query =
+			"INSERT INTO list 
+			(firstName, secondName, user_id, uniqueString, imageUrl, listIcon, listName) 
+			VALUES ('$firstName','$secondName', '$userId', '$uniqueUrl', 'flowers.jpg','$icon', 'Please add a listname!')";
+		$mysqli->query($query);
 	}
 
 	public static function insertUserPermission($id){
@@ -470,6 +462,6 @@ public static function getBlackListItems($uniqueUrl, $userId){
 				LIMIT 1";
 			
 
-			return Self::arrayResult($query);
+		return Self::arrayResult($query);
 	}
 }

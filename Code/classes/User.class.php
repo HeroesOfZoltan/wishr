@@ -94,5 +94,4 @@ class User{
 
 		return ['redirect' => "?/User/payUp/#pageContent2"];
 	}
-
 }
