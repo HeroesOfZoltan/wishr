@@ -103,6 +103,14 @@ h1, h2, h3, h4{
 	color: #fffff0;
 	text-shadow: 0 1px 1px rgba(0,0,0,.1)
 }
+
+.aboutListBtn{
+    border: 0 none;
+    width: 100%;
+    background-color: transparent;
+
+}
+
 .textImportant {
 	font-weight: 700;
 	font-size: 1.3em;
