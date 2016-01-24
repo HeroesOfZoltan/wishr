@@ -1,46 +1,40 @@
-
-
 <div class="container">
 	<div class="row marginTop10vh">
 		<div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
 			<div class="listHead">
-				<div class="row marginTop6vh">
+				<div class="row">
 
 					<!-- VIKTIGT! Ändra standardvärde till "Remember to add a list name." -->
-					<div class="col-xs-12 col-sm-10 col-sm-offset-1">
-						<div class="row PageSection">
-							<div class="col-xs-12 text-center">
-								<h2><span class="title pageTitle">{{listInfo[0].listName}}</span></h2>
-							</div>
-						</div>
+					<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1">
+						<div class="title pageTitle">{{listInfo[0].listName}}</div>
 					</div>
 
-					<div class="col-xs-12 listNames">
+					<div class="col-xs-12 listNames"> 
 						<div class="row">
-							<div class="col-sm-5 text-right">
+							<div class="col-xs-12 col-sm-5 text-right text-center-sm">
 								<h3>{{listInfo[0].firstName}}</h3>
 							</div>
-							<div class="col-sm-2 text-center">
+							<div class=" col-sm-2 text-center">
 								<span class="{{listInfo[0].listIcon}} listNamesIcon" aria-hidden="true"></span>
 							</div>
-							<div class="col-sm-5 text-left">
+							<div class="col-xs-12 col-sm-5 text-left text-center-sm">
 								<h3>{{listInfo[0].secondName}}</h3>
 							</div>
 						</div>
 					</div>
 
-					<div class="col-xs-12 col-sm-8 col-sm-offset-2 shareUrlBox">
-						<p>Share this link with your friends and family:</p>
-						<a href="http://192.168.33.10/Wishr/Code/?/wishList/guestView/{{_session.uniqueUrl}}" target="_blank">http://192.168.33.10/Wishr/Code/?/wishList/guestView/{{_session.uniqueUrl}}</a>
+					<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 shareUrlBox">
+
+						<p>Share this link with your friends and family: <a href="http://andersberg.net/wishr/?/wishList/guestView/{{_session.uniqueUrl}}" target="_blank">http://andersberg.net/wishr/?/wishList/guestView/{{_session.uniqueUrl}}</a></p>
 					</div>
 
 					<div class="aboutList">
-						<div class="col-xs-10 col-xs-offset-1 text-center aboutListTitle" data-toggle="collapse" data-target="#info">
+						<button class="aboutListBtn" data-toggle="collapse" data-target="#info" href="#info"><div class="col-xs-10 col-xs-offset-1 text-center aboutListTitle" >
 							<h3 class=""><i class="fa fa-chevron-down"></i> About your list:</h3>
 							
-						</div>
+						</div></button>
 					
-						<div id="info" class="col-xs-12 col-sm-10 col-sm-offset-1 collapse text-left aboutListContent">
+						<div id="info" class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 collapse text-left aboutListContent">
 							<p>Below is your list. You can easily make changes in every field and use the update botton to save the changes you've made. You can also delete items by using the delete button. If you want to change the title of your list or do other customizing, you can do that using our customize page.</p>
 
 							<p>When you've finished your list you can send the link below to your guests.</p>

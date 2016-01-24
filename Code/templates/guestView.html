@@ -1,37 +1,40 @@
 {% include "pageHeader.html" %}
 {% include "triangleBg.html" %} 
 
+
 <div class="container">
 
 	<div class="row marginTop18vh">
-		<div class="col-xs-12 col-sm-10 col-sm-offset-1">
-			<div class="pageSection">
+		<div class="col-xs-12 col-sm-10 col-sm-offset-1 listHead text-center">
+
 				<div class="row">
-					<div class="col-xs-12 text-center">
-						<span class="title pageTitle">{{listInfo[0].listName}}</span>
+					<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1">
+						<div class="title pageTitle">{{listInfo[0].listName}}</div>
 					</div>
-			
-					<div class="col-xs-12 listNames">
+
+					<div class="col-xs-12 listNames"> 
 						<div class="row">
-							<div class="col-sm-5 text-right">
+							<div class="col-xs-12 col-sm-5 text-right text-center-sm">
 								<h3>{{listInfo[0].firstName}}</h3>
 							</div>
-							<div class="col-sm-2 text-center">
+							<div class=" col-sm-2 text-center">
 								<span class="{{listInfo[0].listIcon}} listNamesIcon" aria-hidden="true"></span>
 							</div>
-							<div class="col-sm-5 text-left">
+							<div class="col-xs-12 col-sm-5 text-left text-center-sm">
 								<h3>{{listInfo[0].secondName}}</h3>
 							</div>
 						</div>
 					</div>
+	
+					<div class="aboutList">
+						<button class="aboutListBtn" data-toggle="collapse" data-target="#info" href="#info"><div class="col-xs-10 col-xs-offset-1 text-center aboutListTitle" >
+							<h3 class=""><i class="fa fa-chevron-down"></i> About your list:</h3>
+							
+						</div></button>
 
-						<div class="aboutList">
-							<div class="col-xs-10 col-xs-offset-1 text-center aboutListTitle" data-toggle="collapse" data-target="#info">
-								<h3 class=""><i class="fa fa-chevron-down"></i> About this list:</h3>
-							</div>
-						
-							<div id="info" class="col-xs-12 col-sm-10 col-sm-offset-1 collapse text-left aboutListContent">
-								<p>Below you will find a wishlist that has been shared with you. You can click each item to expand it and find more information about that item. If your hosts has unlocked the function for reserving gifts, you can reserve an item from the list by puttning your name in the appropriate field attached to that item. </p>
+					
+						<div id="info" class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 collapse text-left aboutListContent">
+							<p>Below you will find a wishlist that has been shared with you. You can click each item to expand it and find more information about that item. If your hosts has unlocked the function for reserving gifts, you can reserve an item from the list by puttning your name in the appropriate field attached to that item. </p>
 
 								<p>Reserved items from the list will be shown in the Done list. If you wanna undo a reservation, simply remove your name form that item in the Done list</p>
 
@@ -40,9 +43,10 @@
 						</div>
 					</div>
 				</div>
-			</div>
+
 		</div>
 	</div>
+
 
 	<div class="row">
 	<!-- wish list: -->

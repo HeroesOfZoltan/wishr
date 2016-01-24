@@ -2,14 +2,13 @@
 
 class Wish{
 
-
+//Returnerar array med permissions för varje metod. TRUE innebär att en måste vara inloggad för att få anropa den metoden
 	public static function check(){
 
 		$methods= ['updateItem' => TRUE, 'itemDone' => FALSE, 'unDoneItem' => FALSE];
 
 		return $methods;
 	}
-
 
 //Tvättar och sparar ner ett önskeobjekt till databasen
 	function __construct($uniqueUrl, $wish, $description, $wishCategory, $wishPrio="", $wishCost="", $wishBlacklist=""){
@@ -26,10 +25,10 @@ class Wish{
 		Sql::insertNewItem($wishClean, $uniqueUrl,$descriptionClean,$wishCategoryClean, $wishPrioClean, $wishCostClean,$wishBlacklistClean);	
 	}
 
-	public static function updateItem($params){
+//Uppdaterar ett item till nya värden alt. tar bort ett item från users lista ifall inloggad user id stämmer med unikt list id i databasen
+	public static function updateItem(){
 		$mysqli = DB::getInstance();
 
-		$uniqueUrl = $params[0];
 
 		$wishClean = $mysqli->real_escape_string($_POST['wishName']);
 		$descriptionClean = $mysqli->real_escape_string($_POST['wishDescription']);
@@ -50,15 +49,15 @@ class Wish{
 
 
 		if(isset($_POST['toBlacklist'])){
-			return ['redirect' => "?/wishList/getBlacklist/$uniqueUrl"];
+			return ['redirect' => "?/wishList/getBlacklist/"];
 		}
 		else{
-			return ['redirect' => "?/wishList/getList/$uniqueUrl"];
+			return ['redirect' => "?/wishList/myList/"];
 		}
 
 	}
-
-		public static function itemDone($params) {
+//Färdigmarkerar ett objekt i gästvyn
+	public static function itemDone($params) {
 		$mysqli = DB::getInstance();
 		$itemIdClean = $mysqli->real_escape_string($_POST['itemId']);
 		$checkedByClean = $mysqli->real_escape_string($_POST['checkedBy']);
@@ -68,6 +67,7 @@ class Wish{
 		$uniqueUrl = $params[0];
 		return ['redirect' => "?/wishList/guestView/$uniqueUrl"];
 	}
+//Ångrar en färdigmarkering
 	public static function unDoneItem($params) {
 		$mysqli = DB::getInstance();
 		$itemIdClean = $mysqli->real_escape_string($_POST['itemId']);

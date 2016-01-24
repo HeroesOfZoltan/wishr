@@ -69,7 +69,9 @@ h1, h2, h3, h4{
 .width100 {
 	width: 100%;
 }
-
+.marginLeft15{
+	margin-left: 15px;
+}
 .heigth100 {
 	height: 100%;
 }
@@ -107,6 +109,14 @@ h1, h2, h3, h4{
 	color: #fffff0;
 	text-shadow: 0 1px 1px rgba(0,0,0,.1)
 }
+
+.aboutListBtn{
+    border: 0 none;
+    width: 100%;
+    background-color: transparent;
+
+}
+
 .textImportant {
 	font-weight: 700;
 	font-size: 1.3em;
@@ -114,8 +124,8 @@ h1, h2, h3, h4{
 .clearForm, .clearForm:focus {
 	background-color: transparent;
 	border:none;
+	border-radius: 0px;
   	box-shadow: none;
-  	border-radius: 0px;
   	-webkit-box-shadow: none;
   	-moz-box-shadow: none;
   	-moz-transition: none;
@@ -180,11 +190,17 @@ h1, h2, h3, h4{
 	border: 3px solid  #fffff0;
 }
 
+.logo {
+	color: #fffff0;
+	border-color: #fffff0;
+}
+
 .navbar-logo {
 	position: relative;
 	color: #92bfe9;
 	font-size: 1.2em;
-	border: 4px solid #92bfe9;
+	padding-top: 4px;
+	border: 0.1em solid #92bfe9;
 }
 
 .pageTitle {
@@ -444,10 +460,6 @@ h2 {
 	font-weight: 700;
 }
 
-.listHead .pageTitle {
-	border-width: 0.1em;
-}
-
 .listHead .listNames {
 	padding: 25px 0px;
 }
@@ -469,6 +481,8 @@ h2 {
 	color: #fffff0;
 	border-radius: 3px;
 	padding: 15px 0px;
+	overflow-wrap: break-word;
+  	word-wrap: break-word;
 }
 
 .shareUrlBox a {
@@ -566,7 +580,10 @@ h2 {
 .submitButton {
 	width: 100%;
 }
-
+.btn:focus, .btn:active:focus, .btn.active:focus{
+    outline:none;
+    box-shadow:none;
+}
 .button:hover, .button:active, .button:focus, .button:action {
 	background-color: #a1caf1;
 	color: #fffff0;
@@ -642,11 +659,6 @@ h2 {
 	border-bottom: 4px solid #92bfe9;
 }
 
-.wishCollapseBody .col-xs-12 {
-	padding-top: 15px;
-	padding-bottom: 15px;
-}
-
 .wishCollapseBody .row {
 	padding: 15px 0;
 }
@@ -654,10 +666,6 @@ h2 {
 .wishCollapseBody form{
 	margin-top:10px;
 	margin-bottom:10px;
-}
-
-.wishCollapseBody button {
-	margin-left: 15px;
 }
 
 .formDibs, .formDibs:focus{
@@ -698,7 +706,7 @@ h2 {
 ----------   and unpayedBoxes    ----------
 *********************************************/
 .upgradeBox {
-	min-height: 320px;
+	min-height: 360px;
 	background-color: #92bfe9;
 	color: #fffff0;
 	font-size: 1.4em;
@@ -795,7 +803,7 @@ h2 {
 *********************************************/
 
 .payedBox {
-	min-height: 320px;
+	min-height: 360px;
 	background-color: #facac4;
 }
 
@@ -927,10 +935,23 @@ h2 {
 }
 
 /* For small-screens / col-xs-12 */
+@media (max-width: 990px) {
+
+}
 @media (max-width: 767px) {
 	.navbar-default {
 		background-color: #a1caf1;
+	}
+	.listNames .text-center-sm{
+	 text-align:center; 
+	}
 
+	.wishName {
+	font-size: 1.3em;
+	}
+
+	.landing-logo{
+		font-size: 5em;
 	}
 
 	.dropdown-menu>li>form {
@@ -938,6 +959,15 @@ h2 {
 	    margin: 8px 0;
 	    border: none;
 	}
+
+	.pageTitle {
+    font-size: 1.1em;
+    text-transform: uppercase;
+    padding: 0.2em 0.4em;
+    	padding-top: 4px;
+	border: 0.1em solid #92bfe9;
+	}
+
 
 	.logo {
 		color: #fffff0;
