@@ -60,6 +60,12 @@ h1, h2, h3, h4{
 }
 
 /* General classes */
+
+.wishHeader {
+	cursor: hand;
+	cursor: pointer;
+}
+
 .width100 {
 	width: 100%;
 }
@@ -182,6 +188,11 @@ h1, h2, h3, h4{
 	letter-spacing: 2.6px;
 	padding: 2px 5px;
 	border: 3px solid  #fffff0;
+}
+
+.logo {
+	color: #fffff0;
+	border-color: #fffff0;
 }
 
 .navbar-logo {
@@ -935,13 +946,14 @@ h2 {
 	 text-align:center; 
 	}
 
-
 	.wishName {
 	font-size: 1.3em;
-}
+	}
+
 	.landing-logo{
 		font-size: 5em;
 	}
+
 	.dropdown-menu>li>form {
 	    padding: 3px 20px;
 	    margin: 8px 0;
@@ -954,9 +966,8 @@ h2 {
     padding: 0.2em 0.4em;
     	padding-top: 4px;
 	border: 0.1em solid #92bfe9;
-}
+	}
 
-}
 
 	.logo {
 		color: #fffff0;
