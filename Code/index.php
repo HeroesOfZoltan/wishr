@@ -9,8 +9,11 @@ if(isset($_POST['killSession'])){
 	session_unset();
 }
 
-//lägga till konstanter
+const GetAllPerms = 1;
+const Blacklist = 2;
+const UltimateWishes = 3;
 const DONEDIDIT = 4;
+const ChangeImage = 5;
 
 error_reporting(0);
 
@@ -47,36 +50,36 @@ if($url_parts!= null){
 		if($method ==  'myList' || $method ==  'getList'){
 			$template = 'myList.html';
 
-			if( count($data["items"])<20|| in_array(1, $_SESSION["userPermission"]) || in_array(3, $_SESSION["userPermission"])){
-				$data['payment'] = "newWishForm.html";
+			if( count($data["items"])<20|| in_array(GetAllPerms, $_SESSION["userPermission"]) || in_array(UltimateWishes, $_SESSION["userPermission"])){
+				$data['wishForm'] = "newWishForm.html";
 			}
 			else{
-				$data['payment'] = "paymentInfo.html";
+				$data['wishForm'] = "paymentInfo.html";
 			}
 		}
 
 		elseif($method ==  'payUp'){
 			$template = 'payUp.html';
 
-			if(in_array(1, $_SESSION["userPermission"]) || in_array(3, $_SESSION["userPermission"])){
+			if(in_array(GetAllPerms, $_SESSION["userPermission"]) || in_array(UltimateWishes, $_SESSION["userPermission"])){
 				$data['unlimitedForm'] = "payedUnlimited.html";
 			}
 			else{
 				$data['unlimitedForm'] = "unpayedUnlimited.html";
 			}
-			if(in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
+			if(in_array(GetAllPerms, $_SESSION["userPermission"]) || in_array(Blacklist, $_SESSION["userPermission"])){
 				$data['blacklistForm'] = "payedBlacklist.html";
 			}
 			else{
 				$data['blacklistForm'] = "unpayedBlacklist.html";
 			}
-			if(in_array(1, $_SESSION["userPermission"]) || in_array(5, $_SESSION["userPermission"])){
+			if(in_array(GetAllPerms, $_SESSION["userPermission"]) || in_array(ChangeImage, $_SESSION["userPermission"])){
 				$data['listImage'] = "payedChangeBg.html";
 			}
 			else{
 				$data['listImage'] = "unpayedChangeBg.html";
 			}
-			if(in_array(1, $_SESSION["userPermission"]) || in_array(4, $_SESSION["userPermission"])){
+			if(in_array(GetAllPerms, $_SESSION["userPermission"]) || in_array(DONEDIDIT, $_SESSION["userPermission"])){
 				$data['doneForm'] = "payedDonedidit.html";
 			}
 			else{
@@ -89,7 +92,7 @@ if($url_parts!= null){
 		}
 
 		elseif($method ==  'getBlacklist'){
-			if(in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
+			if(in_array(GetAllPerms, $_SESSION["userPermission"]) || in_array(Blacklist, $_SESSION["userPermission"])){
 				$template = 'blacklist.html';
 				$data['payView'] = "paymentForm.html";
 			}
@@ -104,16 +107,16 @@ if($url_parts!= null){
 
 		elseif($method ==  'guestView'){
 			$template = 'guestView.html';
-			if( in_array(1, $_SESSION["userPermission"]) || in_array(4, $_SESSION["userPermission"])){
+			if( in_array(GetAllPerms, $_SESSION["userPermission"]) || in_array(DONEDIDIT, $_SESSION["userPermission"])){
 				$data['guestDonelist'] = "guestDonelist.html";
 
 				$data['guestDoneForm'] = "guestDoneForm.html";
 			}
-			if( in_array(1, $_SESSION["userPermission"]) || in_array(2, $_SESSION["userPermission"])){
+			if( in_array(GetAllPerms, $_SESSION["userPermission"]) || in_array(Blacklist, $_SESSION["userPermission"])){
 				$data['guestBlacklist'] = "guestBlacklist.html";
 			}
 		}
-		elseif($method ==  'adminDash' AND $_SESSION['user']['role'] == 1 ){
+		elseif($method ==  'adminDash' AND $_SESSION['user']['role'] == GetAllPerms ){
 			$template = 'adminDash.html';
 		}
 
